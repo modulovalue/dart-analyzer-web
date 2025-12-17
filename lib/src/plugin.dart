@@ -41,15 +41,17 @@ class PluginResult {
   final String content;
   final String? error;
   final Duration? processingTime;
+  final bool hasIssues;
 
-  PluginResult.success(this.content, {this.processingTime})
+  PluginResult.success(this.content, {this.processingTime, this.hasIssues = false})
       : success = true,
         error = null;
 
   PluginResult.error(this.error)
       : success = false,
         content = '',
-        processingTime = null;
+        processingTime = null,
+        hasIssues = true;
 }
 
 /// Registry for managing plugins

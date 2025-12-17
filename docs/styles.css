@@ -324,12 +324,25 @@ body {
     border-bottom-color: var(--accent-blue);
 }
 
+.plugin-tab.has-error {
+    color: var(--error-red);
+}
+
+.plugin-tab.has-error.active {
+    border-bottom-color: var(--error-red);
+}
+
+.tab-error-icon {
+    font-size: 10px;
+    margin-left: 2px;
+}
+
 .plugin-content {
     flex: 1;
     overflow: auto;
     padding: 12px;
     background-color: var(--bg-primary);
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .plugin-loading {
@@ -426,6 +439,79 @@ body {
     margin-top: 12px;
     font-size: 12px;
     color: var(--text-secondary);
+}
+
+/* Hover highlight styles */
+.highlight-range {
+    background-color: rgba(255, 255, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 0, 0.6);
+}
+
+.highlight-active {
+    background-color: var(--bg-hover) !important;
+}
+
+.token-table tr.highlight-active {
+    background-color: rgba(255, 255, 0, 0.15) !important;
+}
+
+.ast-node.highlight-active > .node-type,
+.ast-node.highlight-active > .node-name,
+.ast-node.highlight-active > .node-value {
+    background-color: rgba(255, 255, 0, 0.2);
+    border-radius: 2px;
+}
+
+/* Plugin header for version info */
+.plugin-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.plugin-badge {
+    background-color: var(--accent-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.grammar-info, .version-info {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.grammar-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 11px;
+    margin-left: auto;
+}
+
+.grammar-link:hover {
+    text-decoration: underline;
+}
+
+/* Grammar viewer styles */
+.grammar-viewer {
+    display: flex;
+    flex-direction: column;
+}
+
+.grammar-editor-container {
+    border: 1px solid var(--border-color);
+    border-radius: var(--panel-radius);
+    min-height: 400px;
+}
+
+.grammar-viewer .plugin-header {
+    flex-shrink: 0;
+    margin-bottom: 8px;
 }
 
 /* AST Plugin Styles */

@@ -2,6 +2,9 @@ import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/token.dart';
 import '../plugin.dart';
 
+// Analyzer version - update when upgrading the analyzer package
+const _analyzerVersion = '6.4.1';
+
 /// Plugin that displays the token stream from lexical analysis
 class TokenStreamPlugin extends Plugin {
   @override
@@ -85,6 +88,10 @@ class TokenStreamPlugin extends Plugin {
   String _generateHtml(List<_TokenInfo> tokens) {
     final buffer = StringBuffer();
     buffer.writeln('<div class="token-stream">');
+    buffer.writeln('<div class="plugin-header">');
+    buffer.writeln('<span class="plugin-badge">Analyzer</span>');
+    buffer.writeln('<span class="version-info">v$_analyzerVersion</span>');
+    buffer.writeln('</div>');
     buffer.writeln('<table class="token-table">');
     buffer.writeln('<thead><tr>');
     buffer.writeln('<th>Line</th><th>Col</th><th>Type</th><th>Lexeme</th>');
@@ -94,7 +101,7 @@ class TokenStreamPlugin extends Plugin {
     for (final token in tokens) {
       final cssClass = _getCssClass(token);
       final escapedLexeme = _escapeHtml(token.lexeme);
-      buffer.writeln('<tr class="$cssClass">');
+      buffer.writeln('<tr class="$cssClass" data-offset="${token.offset}" data-length="${token.length}">');
       buffer.writeln('<td class="line-num">${token.line}</td>');
       buffer.writeln('<td class="col-num">${token.column}</td>');
       buffer.writeln('<td class="token-type">${token.type}</td>');

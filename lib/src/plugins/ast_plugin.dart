@@ -3,6 +3,9 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import '../plugin.dart';
 
+// Analyzer version - update when upgrading the analyzer package
+const _analyzerVersion = '6.4.1';
+
 /// Plugin that displays the Abstract Syntax Tree
 class AstPlugin extends Plugin {
   @override
@@ -29,7 +32,7 @@ class AstPlugin extends Plugin {
       stopwatch.stop();
 
       final html = _generateHtml(visitor.root, result.errors);
-      return PluginResult.success(html, processingTime: stopwatch.elapsed);
+      return PluginResult.success(html, processingTime: stopwatch.elapsed, hasIssues: result.errors.isNotEmpty);
     } catch (e) {
       stopwatch.stop();
       return PluginResult.error('AST parsing failed: $e');
@@ -39,6 +42,11 @@ class AstPlugin extends Plugin {
   String _generateHtml(_AstNode root, List<dynamic> errors) {
     final buffer = StringBuffer();
     buffer.writeln('<div class="ast-view">');
+
+    buffer.writeln('<div class="plugin-header">');
+    buffer.writeln('<span class="plugin-badge">Analyzer</span>');
+    buffer.writeln('<span class="version-info">v$_analyzerVersion</span>');
+    buffer.writeln('</div>');
 
     // Show errors if any
     if (errors.isNotEmpty) {
@@ -61,12 +69,15 @@ class AstPlugin extends Plugin {
   }
 
   void _writeNode(StringBuffer buffer, _AstNode node, int depth) {
-    final indent = '  ' * depth;
     final hasChildren = node.children.isNotEmpty;
     final expandClass = hasChildren ? 'expandable' : 'leaf';
     final nodeClass = _getNodeClass(node.type);
 
-    buffer.writeln('<div class="ast-node $expandClass $nodeClass" data-depth="$depth">');
+    final dataAttrs = node.offset != null && node.length != null
+        ? 'data-offset="${node.offset}" data-length="${node.length}"'
+        : '';
+
+    buffer.writeln('<div class="ast-node $expandClass $nodeClass" data-depth="$depth" $dataAttrs>');
     buffer.writeln('<span class="node-toggle">${hasChildren ? "▶" : "○"}</span>');
     buffer.writeln('<span class="node-type">${_escapeHtml(node.type)}</span>');
 
@@ -117,9 +128,11 @@ class _AstNode {
   final String? name;
   final String? value;
   final String? location;
+  final int? offset;
+  final int? length;
   final List<_AstNode> children = [];
 
-  _AstNode(this.type, {this.name, this.value, this.location});
+  _AstNode(this.type, {this.name, this.value, this.location, this.offset, this.length});
 }
 
 class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
@@ -145,6 +158,15 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
     return '[${node.offset}:${node.offset + node.length}]';
   }
 
+  _AstNode _node(String type, AstNode astNode, {String? name, String? value}) {
+    return _AstNode(type,
+        name: name,
+        value: value,
+        location: _loc(astNode),
+        offset: astNode.offset,
+        length: astNode.length);
+  }
+
   @override
   void visitCompilationUnit(CompilationUnit node) {
     root.children.clear();
@@ -158,35 +180,26 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitImportDirective(ImportDirective node) {
-    final n = _AstNode('ImportDirective',
-        value: node.uri.stringValue, location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('ImportDirective', node, value: node.uri.stringValue));
   }
 
   @override
   void visitExportDirective(ExportDirective node) {
-    final n = _AstNode('ExportDirective',
-        value: node.uri.stringValue, location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('ExportDirective', node, value: node.uri.stringValue));
   }
 
   @override
   void visitLibraryDirective(LibraryDirective node) {
-    final n = _AstNode('LibraryDirective',
-        name: node.name2?.name, location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('LibraryDirective', node, name: node.name2?.name));
   }
 
   @override
   void visitClassDeclaration(ClassDeclaration node) {
-    final n = _AstNode('ClassDeclaration',
-        name: node.name.lexeme, location: _loc(node));
-    _push(n);
+    _push(_node('ClassDeclaration', node, name: node.name.lexeme));
 
     if (node.extendsClause != null) {
-      final ext = _AstNode('ExtendsClause',
-          value: node.extendsClause!.superclass.name2.lexeme);
-      _current.children.add(ext);
+      _current.children.add(_node('ExtendsClause', node.extendsClause!,
+          value: node.extendsClause!.superclass.name2.lexeme));
     }
 
     for (final member in node.members) {
@@ -197,14 +210,11 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitFunctionDeclaration(FunctionDeclaration node) {
-    final n = _AstNode('FunctionDeclaration',
-        name: node.name.lexeme, location: _loc(node));
-    _push(n);
+    _push(_node('FunctionDeclaration', node, name: node.name.lexeme));
 
     // Return type
     if (node.returnType != null) {
-      final rt = _AstNode('ReturnType', value: node.returnType.toString());
-      _current.children.add(rt);
+      _current.children.add(_node('ReturnType', node.returnType!, value: node.returnType.toString()));
     }
 
     // Parameters
@@ -217,13 +227,10 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitMethodDeclaration(MethodDeclaration node) {
-    final n = _AstNode('MethodDeclaration',
-        name: node.name.lexeme, location: _loc(node));
-    _push(n);
+    _push(_node('MethodDeclaration', node, name: node.name.lexeme));
 
     if (node.returnType != null) {
-      final rt = _AstNode('ReturnType', value: node.returnType.toString());
-      _current.children.add(rt);
+      _current.children.add(_node('ReturnType', node.returnType!, value: node.returnType.toString()));
     }
 
     node.parameters?.accept(this);
@@ -234,21 +241,18 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
   @override
   void visitConstructorDeclaration(ConstructorDeclaration node) {
     final name = node.name?.lexeme ?? '(default)';
-    final n = _AstNode('ConstructorDeclaration', name: name, location: _loc(node));
-    _push(n);
+    _push(_node('ConstructorDeclaration', node, name: name));
     node.parameters.accept(this);
-    node.body?.accept(this);
+    node.body.accept(this);
     _pop();
   }
 
   @override
   void visitFieldDeclaration(FieldDeclaration node) {
     for (final variable in node.fields.variables) {
-      final n = _AstNode('FieldDeclaration',
+      _push(_node('FieldDeclaration', node,
           name: variable.name.lexeme,
-          value: node.fields.type?.toString(),
-          location: _loc(node));
-      _push(n);
+          value: node.fields.type?.toString()));
       variable.initializer?.accept(this);
       _pop();
     }
@@ -256,8 +260,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitFormalParameterList(FormalParameterList node) {
-    final n = _AstNode('Parameters', location: _loc(node));
-    _push(n);
+    _push(_node('Parameters', node));
     for (final param in node.parameters) {
       param.accept(this);
     }
@@ -266,11 +269,9 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitSimpleFormalParameter(SimpleFormalParameter node) {
-    final n = _AstNode('Parameter',
+    _current.children.add(_node('Parameter', node,
         name: node.name?.lexeme ?? '?',
-        value: node.type?.toString(),
-        location: _loc(node));
-    _current.children.add(n);
+        value: node.type?.toString()));
   }
 
   @override
@@ -280,16 +281,14 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitBlockFunctionBody(BlockFunctionBody node) {
-    final n = _AstNode('BlockBody', location: _loc(node));
-    _push(n);
+    _push(_node('BlockBody', node));
     node.block.accept(this);
     _pop();
   }
 
   @override
   void visitExpressionFunctionBody(ExpressionFunctionBody node) {
-    final n = _AstNode('ExpressionBody', location: _loc(node));
-    _push(n);
+    _push(_node('ExpressionBody', node));
     node.expression.accept(this);
     _pop();
   }
@@ -304,11 +303,9 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
   @override
   void visitVariableDeclarationStatement(VariableDeclarationStatement node) {
     for (final variable in node.variables.variables) {
-      final n = _AstNode('VariableDeclaration',
+      _push(_node('VariableDeclaration', node,
           name: variable.name.lexeme,
-          value: node.variables.type?.toString() ?? 'var',
-          location: _loc(node));
-      _push(n);
+          value: node.variables.type?.toString() ?? 'var'));
       variable.initializer?.accept(this);
       _pop();
     }
@@ -316,38 +313,32 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitExpressionStatement(ExpressionStatement node) {
-    final n = _AstNode('ExpressionStatement', location: _loc(node));
-    _push(n);
+    _push(_node('ExpressionStatement', node));
     node.expression.accept(this);
     _pop();
   }
 
   @override
   void visitReturnStatement(ReturnStatement node) {
-    final n = _AstNode('ReturnStatement', location: _loc(node));
-    _push(n);
+    _push(_node('ReturnStatement', node));
     node.expression?.accept(this);
     _pop();
   }
 
   @override
   void visitIfStatement(IfStatement node) {
-    final n = _AstNode('IfStatement', location: _loc(node));
-    _push(n);
+    _push(_node('IfStatement', node));
 
-    final cond = _AstNode('Condition');
-    _push(cond);
+    _push(_node('Condition', node.expression));
     node.expression.accept(this);
     _pop();
 
-    final then = _AstNode('Then');
-    _push(then);
+    _push(_node('Then', node.thenStatement));
     node.thenStatement.accept(this);
     _pop();
 
     if (node.elseStatement != null) {
-      final els = _AstNode('Else');
-      _push(els);
+      _push(_node('Else', node.elseStatement!));
       node.elseStatement!.accept(this);
       _pop();
     }
@@ -357,8 +348,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitForStatement(ForStatement node) {
-    final n = _AstNode('ForStatement', location: _loc(node));
-    _push(n);
+    _push(_node('ForStatement', node));
     node.forLoopParts.accept(this);
     node.body.accept(this);
     _pop();
@@ -366,19 +356,16 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitForPartsWithDeclarations(ForPartsWithDeclarations node) {
-    final init = _AstNode('Init');
-    _push(init);
+    _push(_node('Init', node.variables));
     for (final v in node.variables.variables) {
-      final vn = _AstNode('Variable', name: v.name.lexeme);
-      _push(vn);
+      _push(_node('Variable', v, name: v.name.lexeme));
       v.initializer?.accept(this);
       _pop();
     }
     _pop();
 
     if (node.condition != null) {
-      final cond = _AstNode('Condition');
-      _push(cond);
+      _push(_node('Condition', node.condition!));
       node.condition!.accept(this);
       _pop();
     }
@@ -393,8 +380,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitWhileStatement(WhileStatement node) {
-    final n = _AstNode('WhileStatement', location: _loc(node));
-    _push(n);
+    _push(_node('WhileStatement', node));
     node.condition.accept(this);
     node.body.accept(this);
     _pop();
@@ -403,9 +389,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
   @override
   void visitMethodInvocation(MethodInvocation node) {
     final target = node.target != null ? '${node.target}.' : '';
-    final n = _AstNode('MethodInvocation',
-        name: '$target${node.methodName.name}', location: _loc(node));
-    _push(n);
+    _push(_node('MethodInvocation', node, name: '$target${node.methodName.name}'));
     for (final arg in node.argumentList.arguments) {
       arg.accept(this);
     }
@@ -414,8 +398,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitFunctionExpressionInvocation(FunctionExpressionInvocation node) {
-    final n = _AstNode('FunctionInvocation', location: _loc(node));
-    _push(n);
+    _push(_node('FunctionInvocation', node));
     node.function.accept(this);
     for (final arg in node.argumentList.arguments) {
       arg.accept(this);
@@ -425,9 +408,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitInstanceCreationExpression(InstanceCreationExpression node) {
-    final n = _AstNode('InstanceCreation',
-        name: node.constructorName.toString(), location: _loc(node));
-    _push(n);
+    _push(_node('InstanceCreation', node, name: node.constructorName.toString()));
     for (final arg in node.argumentList.arguments) {
       arg.accept(this);
     }
@@ -436,9 +417,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitBinaryExpression(BinaryExpression node) {
-    final n = _AstNode('BinaryExpression',
-        value: node.operator.lexeme, location: _loc(node));
-    _push(n);
+    _push(_node('BinaryExpression', node, value: node.operator.lexeme));
     node.leftOperand.accept(this);
     node.rightOperand.accept(this);
     _pop();
@@ -446,27 +425,21 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitPrefixExpression(PrefixExpression node) {
-    final n = _AstNode('PrefixExpression',
-        value: node.operator.lexeme, location: _loc(node));
-    _push(n);
+    _push(_node('PrefixExpression', node, value: node.operator.lexeme));
     node.operand.accept(this);
     _pop();
   }
 
   @override
   void visitPostfixExpression(PostfixExpression node) {
-    final n = _AstNode('PostfixExpression',
-        value: node.operator.lexeme, location: _loc(node));
-    _push(n);
+    _push(_node('PostfixExpression', node, value: node.operator.lexeme));
     node.operand.accept(this);
     _pop();
   }
 
   @override
   void visitAssignmentExpression(AssignmentExpression node) {
-    final n = _AstNode('Assignment',
-        value: node.operator.lexeme, location: _loc(node));
-    _push(n);
+    _push(_node('Assignment', node, value: node.operator.lexeme));
     node.leftHandSide.accept(this);
     node.rightHandSide.accept(this);
     _pop();
@@ -474,48 +447,37 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitSimpleIdentifier(SimpleIdentifier node) {
-    final n = _AstNode('Identifier', name: node.name, location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('Identifier', node, name: node.name));
   }
 
   @override
   void visitIntegerLiteral(IntegerLiteral node) {
-    final n = _AstNode('IntegerLiteral',
-        value: node.value.toString(), location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('IntegerLiteral', node, value: node.value.toString()));
   }
 
   @override
   void visitDoubleLiteral(DoubleLiteral node) {
-    final n =
-        _AstNode('DoubleLiteral', value: node.value.toString(), location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('DoubleLiteral', node, value: node.value.toString()));
   }
 
   @override
   void visitSimpleStringLiteral(SimpleStringLiteral node) {
-    final n =
-        _AstNode('StringLiteral', value: node.value, location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('StringLiteral', node, value: node.value));
   }
 
   @override
   void visitBooleanLiteral(BooleanLiteral node) {
-    final n = _AstNode('BooleanLiteral',
-        value: node.value.toString(), location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('BooleanLiteral', node, value: node.value.toString()));
   }
 
   @override
   void visitNullLiteral(NullLiteral node) {
-    final n = _AstNode('NullLiteral', location: _loc(node));
-    _current.children.add(n);
+    _current.children.add(_node('NullLiteral', node));
   }
 
   @override
   void visitListLiteral(ListLiteral node) {
-    final n = _AstNode('ListLiteral', location: _loc(node));
-    _push(n);
+    _push(_node('ListLiteral', node));
     for (final element in node.elements) {
       element.accept(this);
     }
@@ -525,8 +487,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
   @override
   void visitSetOrMapLiteral(SetOrMapLiteral node) {
     final type = node.isMap ? 'MapLiteral' : 'SetLiteral';
-    final n = _AstNode(type, location: _loc(node));
-    _push(n);
+    _push(_node(type, node));
     for (final element in node.elements) {
       element.accept(this);
     }
@@ -535,8 +496,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitConditionalExpression(ConditionalExpression node) {
-    final n = _AstNode('ConditionalExpression', location: _loc(node));
-    _push(n);
+    _push(_node('ConditionalExpression', node));
     node.condition.accept(this);
     node.thenExpression.accept(this);
     node.elseExpression.accept(this);
@@ -550,8 +510,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitIndexExpression(IndexExpression node) {
-    final n = _AstNode('IndexExpression', location: _loc(node));
-    _push(n);
+    _push(_node('IndexExpression', node));
     node.target?.accept(this);
     node.index.accept(this);
     _pop();
@@ -559,33 +518,28 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitPropertyAccess(PropertyAccess node) {
-    final n = _AstNode('PropertyAccess',
-        name: node.propertyName.name, location: _loc(node));
-    _push(n);
+    _push(_node('PropertyAccess', node, name: node.propertyName.name));
     node.target?.accept(this);
     _pop();
   }
 
   @override
   void visitAwaitExpression(AwaitExpression node) {
-    final n = _AstNode('AwaitExpression', location: _loc(node));
-    _push(n);
+    _push(_node('AwaitExpression', node));
     node.expression.accept(this);
     _pop();
   }
 
   @override
   void visitThrowExpression(ThrowExpression node) {
-    final n = _AstNode('ThrowExpression', location: _loc(node));
-    _push(n);
+    _push(_node('ThrowExpression', node));
     node.expression.accept(this);
     _pop();
   }
 
   @override
   void visitFunctionExpression(FunctionExpression node) {
-    final n = _AstNode('FunctionExpression', location: _loc(node));
-    _push(n);
+    _push(_node('FunctionExpression', node));
     node.parameters?.accept(this);
     node.body.accept(this);
     _pop();
@@ -593,9 +547,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitNamedExpression(NamedExpression node) {
-    final n = _AstNode('NamedArgument',
-        name: node.name.label.name, location: _loc(node));
-    _push(n);
+    _push(_node('NamedArgument', node, name: node.name.label.name));
     node.expression.accept(this);
     _pop();
   }

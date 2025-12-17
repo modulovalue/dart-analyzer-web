@@ -8,6 +8,7 @@ environment:
 dependencies:
   web: ^1.0.0
   analyzer: ^6.0.0
+  antlr4: ^4.13.2
 
 dev_dependencies:
   build_runner: ^2.4.0
