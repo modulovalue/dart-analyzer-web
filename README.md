@@ -32,10 +32,10 @@ Visit [https://modulovalue.github.io/dart-analyzer-web/](https://modulovalue.git
 dart pub get
 
 # Compile to JavaScript
-dart compile js web/main.dart -o web/main.dart.js
+dart compile js docs/main.dart -o docs/main.dart.js
 
 # Serve locally (any static server works)
-cd web && python3 -m http.server 8080
+cd docs && python3 -m http.server 8080
 ```
 
 ### Project Structure
@@ -48,7 +48,7 @@ lib/
     plugins/
       token_stream_plugin.dart  # Token viewer
       ast_plugin.dart           # AST viewer
-web/
+docs/
   index.html             # HTML shell
   styles.css             # Styling
   main.dart              # Entry point
