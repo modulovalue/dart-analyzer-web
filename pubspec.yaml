@@ -1,0 +1,15 @@
+name: dart_wasm_playground
+description: Dart to WASM playground with plugin system
+version: 1.0.0
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  web: ^1.0.0
+  analyzer: ^6.0.0
+
+dev_dependencies:
+  build_runner: ^2.4.0
+  build_web_compilers: ^4.0.0
+  lints: ^4.0.0

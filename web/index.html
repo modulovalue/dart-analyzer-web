@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Monaco Editor Loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Dart Analyzer</h1>
+            <button id="info-btn" class="btn btn-icon" title="About">ℹ️</button>
+        </header>
+
+        <!-- Info Modal -->
+        <div id="info-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>About Dart Analyzer</h2>
+                    <button id="close-modal" class="btn-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Dart Analyzer</strong> is a browser-based tool for exploring Dart code structure.</p>
+                    <h3>Features</h3>
+                    <ul>
+                        <li><strong>Token Stream</strong> - View all lexical tokens</li>
+                        <li><strong>AST</strong> - Explore the Abstract Syntax Tree</li>
+                    </ul>
+                    <h3>Version Info</h3>
+                    <table class="info-table">
+                        <tr><td>Analyzer Package</td><td>6.4.1</td></tr>
+                        <tr><td>Built with</td><td>Dart + dart2js</td></tr>
+                    </table>
+                    <h3>Links</h3>
+                    <p>
+                        <a href="https://github.com/modulovalue/dart-analyzer-web" target="_blank">GitHub Repository</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Editor Panel -->
+            <div class="editor-panel">
+                <div class="panel-header">
+                    <span class="panel-title">Editor</span>
+                </div>
+                <div id="editor-container" class="editor-container"></div>
+                <div id="status-bar" class="status-bar">
+                    <span class="status-text">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Right Panel (Analysis Output) -->
+            <div class="right-panel">
+                <!-- Plugin Panel -->
+                <div class="plugin-panel full-height">
+                    <div class="panel-header">
+                        <div id="plugin-tabs" class="plugin-tabs"></div>
+                    </div>
+                    <div id="plugin-content" class="plugin-content">
+                        <div class="plugin-loading">Loading plugins...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load Monaco, then our Dart app -->
+    <script>
+        require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
+        require(['vs/editor/editor.main'], function() {
+            console.log('Monaco loaded, loading Dart app...');
+        });
+    </script>
+    <script defer src="main.dart.js"></script>
+</body>
+</html>
