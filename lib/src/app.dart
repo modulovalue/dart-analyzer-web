@@ -28,6 +28,23 @@ extension JSObjectHelper on JSObject {
 @JS('Reflect.set')
 external void _setProperty(JSObject obj, String key, JSAny? value);
 
+/// Represents a node in the file tree (file or folder)
+class FileNode {
+  final String name;
+  final String path;
+  final bool isDirectory;
+  final List<FileNode> children;
+  String content;
+
+  FileNode({
+    required this.name,
+    required this.path,
+    this.isDirectory = false,
+    this.children = const [],
+    this.content = '',
+  });
+}
+
 /// Dart Code Analyzer - Browser-based Dart code analysis tool
 class DartAnalyzerApp {
   final PluginRegistry plugins = PluginRegistry();
@@ -37,23 +54,239 @@ class DartAnalyzerApp {
   String? _activePluginId;
   Timer? _analyzeDebounce;
 
+  late final List<FileNode> _fileTree;
+  final Map<String, FileNode> _fileMap = {};
+  String? _selectedFilePath;
+
   DartAnalyzerApp() {
     plugins.register(TokenStreamPlugin());
     plugins.register(AstPlugin());
     plugins.register(AntlrTokenStreamPlugin());
     plugins.register(AntlrParseTreePlugin());
     plugins.register(GrammarViewerPlugin());
+    _initializeFileTree();
+  }
+
+  void _initializeFileTree() {
+    _fileTree = [
+      FileNode(
+        name: 'lib',
+        path: 'lib',
+        isDirectory: true,
+        children: [
+          FileNode(
+            name: 'main.dart',
+            path: 'lib/main.dart',
+            content: '''void main() {
+  print('Hello, Dart!');
+  final result = add(2, 3);
+  print('2 + 3 = \$result');
+}
+
+int add(int a, int b) => a + b;''',
+          ),
+          FileNode(
+            name: 'utils.dart',
+            path: 'lib/utils.dart',
+            content: '''String capitalize(String s) {
+  if (s.isEmpty) return s;
+  return s[0].toUpperCase() + s.substring(1);
+}
+
+bool isEven(int n) => n % 2 == 0;''',
+          ),
+          FileNode(
+            name: 'models',
+            path: 'lib/models',
+            isDirectory: true,
+            children: [
+              FileNode(
+                name: 'person.dart',
+                path: 'lib/models/person.dart',
+                content: '''class Person {
+  final String name;
+  final int age;
+
+  Person(this.name, this.age);
+
+  void greet() => print('Hi, I am \$name');
+}''',
+              ),
+              FileNode(
+                name: 'animal.dart',
+                path: 'lib/models/animal.dart',
+                content: '''abstract class Animal {
+  String get sound;
+  void speak() => print(sound);
+}
+
+class Dog extends Animal {
+  @override
+  String get sound => 'Woof!';
+}
+
+class Cat extends Animal {
+  @override
+  String get sound => 'Meow!';
+}''',
+              ),
+            ],
+          ),
+        ],
+      ),
+      FileNode(
+        name: 'test',
+        path: 'test',
+        isDirectory: true,
+        children: [
+          FileNode(
+            name: 'example_test.dart',
+            path: 'test/example_test.dart',
+            content: '''void main() {
+  test('addition works', () {
+    expect(2 + 2, equals(4));
+  });
+}''',
+          ),
+        ],
+      ),
+    ];
+
+    void buildMap(List<FileNode> nodes) {
+      for (final node in nodes) {
+        _fileMap[node.path] = node;
+        if (node.isDirectory) {
+          buildMap(node.children);
+        }
+      }
+    }
+    buildMap(_fileTree);
   }
 
   Future<void> init() async {
     _log('Initializing Dart Analyzer...');
     await _waitForMonaco();
     _createEditor();
+    _setupFileTree();
     _setupPluginTabs();
     _setupEventHandlers();
     _scheduleAnalysis();
     _updateStatusBar();
     _log('Initialization complete');
+  }
+
+  void _setupFileTree() {
+    final treeContainer = web.document.getElementById('file-tree');
+    if (treeContainer == null) return;
+
+    String renderNode(FileNode node, {bool expanded = true}) {
+      if (node.isDirectory) {
+        final childrenHtml = node.children.map((c) => renderNode(c)).join('');
+        return '''
+          <div class="tree-folder${expanded ? ' expanded' : ''}" data-path="${node.path}">
+            <div class="tree-item">
+              <span class="tree-item-icon"></span>
+              <span class="tree-item-name">${node.name}</span>
+            </div>
+            <div class="tree-children${expanded ? '' : ' collapsed'}">$childrenHtml</div>
+          </div>
+        ''';
+      } else {
+        return '''
+          <div class="tree-file" data-path="${node.path}">
+            <div class="tree-item">
+              <span class="tree-item-icon"></span>
+              <span class="tree-item-name">${node.name}</span>
+            </div>
+          </div>
+        ''';
+      }
+    }
+
+    final html = _fileTree.map((n) => renderNode(n)).join('');
+    treeContainer.innerHTML = html.toJS;
+
+    _setupTreeInteractions();
+
+    // Select first file by default
+    final firstFile = _findFirstFile(_fileTree);
+    if (firstFile != null) {
+      _selectFile(firstFile.path);
+    }
+  }
+
+  FileNode? _findFirstFile(List<FileNode> nodes) {
+    for (final node in nodes) {
+      if (!node.isDirectory) return node;
+      final found = _findFirstFile(node.children);
+      if (found != null) return found;
+    }
+    return null;
+  }
+
+  void _setupTreeInteractions() {
+    // Folder toggle
+    final folders = web.document.querySelectorAll('.tree-folder > .tree-item');
+    for (int i = 0; i < folders.length; i++) {
+      final item = folders.item(i) as web.HTMLElement;
+      item.onClick.listen((e) {
+        final folder = item.parentElement;
+        if (folder != null) {
+          folder.classList.toggle('expanded');
+          final children = folder.querySelector('.tree-children') as web.HTMLElement?;
+          children?.classList.toggle('collapsed');
+        }
+      });
+    }
+
+    // File selection
+    final files = web.document.querySelectorAll('.tree-file > .tree-item');
+    for (int i = 0; i < files.length; i++) {
+      final item = files.item(i) as web.HTMLElement;
+      item.onClick.listen((e) {
+        final fileNode = item.parentElement as web.HTMLElement?;
+        final path = fileNode?.dataset['path'];
+        if (path != null) {
+          _selectFile(path);
+        }
+      });
+    }
+  }
+
+  void _selectFile(String path) {
+    final file = _fileMap[path];
+    if (file == null || file.isDirectory) return;
+
+    // Save current file content
+    if (_selectedFilePath != null) {
+      final currentFile = _fileMap[_selectedFilePath!];
+      if (currentFile != null) {
+        final result = _eval('window.dartEditor ? window.dartEditor.getValue() : ""');
+        currentFile.content = (result as JSString?)?.toDart ?? '';
+      }
+    }
+
+    _selectedFilePath = path;
+    _currentCode = file.content;
+
+    // Update selection UI
+    final allItems = web.document.querySelectorAll('.tree-item');
+    for (int i = 0; i < allItems.length; i++) {
+      (allItems.item(i) as web.HTMLElement).classList.remove('selected');
+    }
+
+    final selected = web.document.querySelector('[data-path="$path"] > .tree-item') as web.HTMLElement?;
+    selected?.classList.add('selected');
+
+    // Update editor title
+    final title = web.document.getElementById('editor-title') as web.HTMLElement?;
+    if (title != null) {
+      title.innerText = file.name;
+    }
+
+    // Update editor content
+    _eval('if (window.dartEditor) window.dartEditor.setValue(${_toJsString(file.content)})');
+    _scheduleAnalysis();
   }
 
   Future<void> _waitForMonaco() async {
@@ -67,38 +300,10 @@ class DartAnalyzerApp {
   void _createEditor() {
     _registerDartLanguage();
 
-    final initialCode = '''void main() {
-  print('Hello, Dart!');
-
-  for (int i = 0; i < 5; i++) {
-    print('Count: \$i');
-  }
-
-  final greeting = greet('World');
-  print(greeting);
-}
-
-String greet(String name) {
-  return 'Hello, \$name!';
-}
-
-class Person {
-  final String name;
-  final int age;
-
-  Person(this.name, this.age);
-
-  void introduce() {
-    print('I am \$name, \$age years old');
-  }
-}''';
-
-    _currentCode = initialCode;
-
-    // Create editor using raw JS to avoid string escaping issues
+    // Create editor with empty content - file tree will populate it
     final jsCode = '''
       window.dartEditor = monaco.editor.create(document.getElementById('editor-container'), {
-        value: ${_toJsString(initialCode)},
+        value: '',
         language: 'dart',
         theme: 'vs-dark',
         fontSize: 14,

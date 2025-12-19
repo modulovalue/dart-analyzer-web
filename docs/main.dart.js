@@ -1793,14 +1793,14 @@
       this._next = null;
     },
     LinkedHashMapKeyIterable: function LinkedHashMapKeyIterable(t0, t1) {
-      this._map = t0;
+      this.__js_helper$_map = t0;
       this.$ti = t1;
     },
     LinkedHashMapKeyIterator: function LinkedHashMapKeyIterator(t0, t1, t2) {
       var _ = this;
-      _._map = t0;
+      _.__js_helper$_map = t0;
       _._modifications = t1;
-      _.__js_helper$_current = _._cell = null;
+      _.__js_helper$_current = _.__js_helper$_cell = null;
       _.$ti = t2;
     },
     initHooks_closure: function initHooks_closure(t0) {
@@ -4148,12 +4148,12 @@
       this.K = t0;
     },
     _HashMapKeyIterable: function _HashMapKeyIterable(t0, t1) {
-      this._collection$_map = t0;
+      this._map = t0;
       this.$ti = t1;
     },
     _HashMapKeyIterator: function _HashMapKeyIterator(t0, t1, t2) {
       var _ = this;
-      _._collection$_map = t0;
+      _._map = t0;
       _._keys = t1;
       _._offset = 0;
       _._collection$_current = null;
@@ -4202,7 +4202,7 @@
       var _ = this;
       _._set = t0;
       _._collection$_modifications = t1;
-      _._collection$_current = _._collection$_cell = null;
+      _._collection$_current = _._cell = null;
       _.$ti = t2;
     },
     ListBase: function ListBase() {
@@ -14219,12 +14219,41 @@
       _._parent = t0;
       _.invokingState = t1;
     },
-    DartAnalyzerApp: function DartAnalyzerApp(t0, t1) {
+    FileNode: function FileNode(t0, t1, t2, t3, t4) {
+      var _ = this;
+      _.name = t0;
+      _.path = t1;
+      _.isDirectory = t2;
+      _.children = t3;
+      _.content = t4;
+    },
+    DartAnalyzerApp: function DartAnalyzerApp(t0, t1, t2) {
       var _ = this;
       _.plugins = t0;
       _._pluginErrors = t1;
       _._currentCode = "";
       _._analyzeDebounce = _._activePluginId = null;
+      _.__DartAnalyzerApp__fileTree_F = $;
+      _._fileMap = t2;
+      _._selectedFilePath = null;
+    },
+    DartAnalyzerApp__initializeFileTree_buildMap: function DartAnalyzerApp__initializeFileTree_buildMap(t0) {
+      this.$this = t0;
+    },
+    DartAnalyzerApp__setupFileTree_renderNode: function DartAnalyzerApp__setupFileTree_renderNode() {
+    },
+    DartAnalyzerApp__setupFileTree_renderNode_closure: function DartAnalyzerApp__setupFileTree_renderNode_closure(t0) {
+      this.renderNode = t0;
+    },
+    DartAnalyzerApp__setupFileTree_closure: function DartAnalyzerApp__setupFileTree_closure(t0) {
+      this.renderNode = t0;
+    },
+    DartAnalyzerApp__setupTreeInteractions_closure: function DartAnalyzerApp__setupTreeInteractions_closure(t0) {
+      this.item = t0;
+    },
+    DartAnalyzerApp__setupTreeInteractions_closure0: function DartAnalyzerApp__setupTreeInteractions_closure0(t0, t1) {
+      this.$this = t0;
+      this.item = t1;
     },
     DartAnalyzerApp__createEditor_closure: function DartAnalyzerApp__createEditor_closure(t0) {
       this.$this = t0;
@@ -14984,7 +15013,7 @@
     main() {
       var $async$goto = 0,
         $async$completer = A._makeAsyncAwaitCompleter(type$.void),
-        t1;
+        t1, t2, app;
       var $async$main = A._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
         if ($async$errorCode === 1)
           return A._asyncRethrow($async$result, $async$completer);
@@ -14993,13 +15022,16 @@
             case 0:
               // Function start
               t1 = A._setArrayType([], type$.JSArray_Plugin);
+              t2 = type$.String;
+              app = new A.DartAnalyzerApp(new A.PluginRegistry(t1), A.LinkedHashSet_LinkedHashSet$_empty(t2), A.LinkedHashMap_LinkedHashMap$_empty(t2, type$.FileNode));
               B.JSArray_methods.add$1(t1, new A.TokenStreamPlugin());
               B.JSArray_methods.add$1(t1, new A.AstPlugin());
               B.JSArray_methods.add$1(t1, new A.AntlrTokenStreamPlugin());
               B.JSArray_methods.add$1(t1, new A.AntlrParseTreePlugin());
               B.JSArray_methods.add$1(t1, new A.GrammarViewerPlugin());
+              app._initializeFileTree$0();
               $async$goto = 2;
-              return A._asyncAwait(new A.DartAnalyzerApp(new A.PluginRegistry(t1), A.LinkedHashSet_LinkedHashSet$_empty(type$.String)).init$0(), $async$main);
+              return A._asyncAwait(app.init$0(), $async$main);
             case 2:
               // returning from await.
               // implicit return
@@ -16399,12 +16431,12 @@
   A.LinkedHashMapCell.prototype = {};
   A.LinkedHashMapKeyIterable.prototype = {
     get$length(_) {
-      return this._map.__js_helper$_length;
+      return this.__js_helper$_map.__js_helper$_length;
     },
     get$iterator(_) {
-      var t1 = this._map,
+      var t1 = this.__js_helper$_map,
         t2 = new A.LinkedHashMapKeyIterator(t1, t1._modifications, this.$ti._eval$1("LinkedHashMapKeyIterator<1>"));
-      t2._cell = t1._first;
+      t2.__js_helper$_cell = t1._first;
       return t2;
     }
   };
@@ -16414,16 +16446,16 @@
     },
     moveNext$0() {
       var cell, _this = this,
-        t1 = _this._map;
+        t1 = _this.__js_helper$_map;
       if (_this._modifications !== t1._modifications)
         throw A.wrapException(A.ConcurrentModificationError$(t1));
-      cell = _this._cell;
+      cell = _this.__js_helper$_cell;
       if (cell == null) {
         _this.set$__js_helper$_current(null);
         return false;
       } else {
         _this.set$__js_helper$_current(cell.hashMapCellKey);
-        _this._cell = cell._next;
+        _this.__js_helper$_cell = cell._next;
         return true;
       }
     },
@@ -16448,7 +16480,7 @@
     call$1(tag) {
       return this.prototypeForTag(A._asString(tag));
     },
-    $signature: 50
+    $signature: 51
   };
   A._Record.prototype = {
     get$runtimeType(_) {
@@ -16909,7 +16941,7 @@
       t2 = this.span;
       t1.firstChild ? t1.removeChild(t2) : t1.appendChild(t2);
     },
-    $signature: 21
+    $signature: 22
   };
   A._AsyncRun__scheduleImmediateJsOverride_internalCallback.prototype = {
     call$0() {
@@ -16985,13 +17017,13 @@
     call$2(error, stackTrace) {
       this.bodyFunction.call$2(1, new A.ExceptionAndStackTrace(error, type$.StackTrace._as(stackTrace)));
     },
-    $signature: 16
+    $signature: 21
   };
   A._wrapJsFunctionForAsync_closure.prototype = {
     call$2(errorCode, result) {
       this.$protected(A._asInt(errorCode), result);
     },
-    $signature: 22
+    $signature: 17
   };
   A.AsyncError.prototype = {
     toString$0(_) {
@@ -17290,7 +17322,7 @@
     call$2(error, stackTrace) {
       this.$this._completeError$2(type$.Object._as(error), type$.StackTrace._as(stackTrace));
     },
-    $signature: 37
+    $signature: 39
   };
   A._Future__chainForeignFuture_closure1.prototype = {
     call$0() {
@@ -17710,10 +17742,10 @@
   };
   A._HashMapKeyIterable.prototype = {
     get$length(_) {
-      return this._collection$_map._collection$_length;
+      return this._map._collection$_length;
     },
     get$iterator(_) {
-      var t1 = this._collection$_map;
+      var t1 = this._map;
       return new A._HashMapKeyIterator(t1, t1._computeKeys$0(), this.$ti._eval$1("_HashMapKeyIterator<1>"));
     }
   };
@@ -17726,7 +17758,7 @@
       var _this = this,
         keys = _this._keys,
         offset = _this._offset,
-        t1 = _this._collection$_map;
+        t1 = _this._map;
       if (keys !== t1._keys)
         throw A.wrapException(A.ConcurrentModificationError$(t1));
       else if (offset >= keys.length) {
@@ -17944,7 +17976,7 @@
     get$iterator(_) {
       var _this = this,
         t1 = new A._LinkedHashSetIterator(_this, _this._collection$_modifications, A._instanceType(_this)._eval$1("_LinkedHashSetIterator<1>"));
-      t1._collection$_cell = _this._collection$_first;
+      t1._cell = _this._collection$_first;
       return t1;
     },
     get$length(_) {
@@ -18119,7 +18151,7 @@
     },
     moveNext$0() {
       var _this = this,
-        cell = _this._collection$_cell,
+        cell = _this._cell,
         t1 = _this._set;
       if (_this._collection$_modifications !== t1._collection$_modifications)
         throw A.wrapException(A.ConcurrentModificationError$(t1));
@@ -18128,7 +18160,7 @@
         return false;
       } else {
         _this.set$_collection$_current(_this.$ti._eval$1("1?")._as(cell._element));
-        _this._collection$_cell = cell._collection$_next;
+        _this._cell = cell._collection$_next;
         return true;
       }
     },
@@ -18293,7 +18325,7 @@
       t2 = A.S(v);
       t1._contents += t2;
     },
-    $signature: 48
+    $signature: 50
   };
   A.SetBase.prototype = {
     addAll$1(_, elements) {
@@ -19143,7 +19175,7 @@
     call$2(msg, position) {
       throw A.wrapException(A.FormatException$("Illegal IPv6 address, " + msg, this.host, position));
     },
-    $signature: 17
+    $signature: 56
   };
   A.Uri_parseIPv6Address_parseHex.prototype = {
     call$2(start, end) {
@@ -49203,7 +49235,7 @@
     call$0() {
       return type$.Token._as(this.$arguments.$index(0, "lexeme")).get$lexeme();
     },
-    $signature: 56
+    $signature: 37
   };
   A.formatList_closure.prototype = {
     call$1(match) {
@@ -49382,7 +49414,7 @@
     call$0() {
       return A.HashSet_HashSet(new A.defaultConfigLookup__closure(), new A.defaultConfigLookup__closure0(), type$.ATNConfig);
     },
-    $signature: 39
+    $signature: 59
   };
   A.defaultConfigLookup__closure.prototype = {
     call$2(a, b) {
@@ -70156,7 +70188,19 @@
       return 286;
     }
   };
+  A.FileNode.prototype = {};
   A.DartAnalyzerApp.prototype = {
+    _initializeFileTree$0() {
+      var _this = this,
+        _s9_ = "_fileTree",
+        t1 = type$.JSArray_FileNode;
+      t1 = type$.List_FileNode._as(A._setArrayType([new A.FileNode("lib", "lib", true, A._setArrayType([new A.FileNode("main.dart", "lib/main.dart", false, B.List_empty8, "void main() {\n  print('Hello, Dart!');\n  final result = add(2, 3);\n  print('2 + 3 = $result');\n}\n\nint add(int a, int b) => a + b;"), new A.FileNode("utils.dart", "lib/utils.dart", false, B.List_empty8, "String capitalize(String s) {\n  if (s.isEmpty) return s;\n  return s[0].toUpperCase() + s.substring(1);\n}\n\nbool isEven(int n) => n % 2 == 0;"), new A.FileNode("models", "lib/models", true, A._setArrayType([new A.FileNode("person.dart", "lib/models/person.dart", false, B.List_empty8, "class Person {\n  final String name;\n  final int age;\n\n  Person(this.name, this.age);\n\n  void greet() => print('Hi, I am $name');\n}"), new A.FileNode("animal.dart", "lib/models/animal.dart", false, B.List_empty8, "abstract class Animal {\n  String get sound;\n  void speak() => print(sound);\n}\n\nclass Dog extends Animal {\n  @override\n  String get sound => 'Woof!';\n}\n\nclass Cat extends Animal {\n  @override\n  String get sound => 'Meow!';\n}")], t1), "")], t1), ""), new A.FileNode("test", "test", true, A._setArrayType([new A.FileNode("example_test.dart", "test/example_test.dart", false, B.List_empty8, "void main() {\n  test('addition works', () {\n    expect(2 + 2, equals(4));\n  });\n}")], t1), "")], t1));
+      _this.__DartAnalyzerApp__fileTree_F !== $ && A.throwLateFieldAI(_s9_);
+      _this.set$__DartAnalyzerApp__fileTree_F(t1);
+      t1 = _this.__DartAnalyzerApp__fileTree_F;
+      t1 === $ && A.throwLateFieldNI(_s9_);
+      new A.DartAnalyzerApp__initializeFileTree_buildMap(_this).call$1(t1);
+    },
     init$0() {
       var $async$goto = 0,
         $async$completer = A._makeAsyncAwaitCompleter(type$.void),
@@ -70176,6 +70220,7 @@
             case 2:
               // returning from await.
               $async$self._createEditor$0();
+              $async$self._setupFileTree$0();
               $async$self._setupPluginTabs$0();
               $async$self._setupEventHandlers$0();
               $async$self._scheduleAnalysis$0();
@@ -70186,6 +70231,93 @@
           }
       });
       return A._asyncStartSync($async$init$0, $async$completer);
+    },
+    _setupFileTree$0() {
+      var t1, t2, firstFile, _this = this,
+        treeContainer = type$.nullable_JSObject._as(type$.JSObject._as(self.document).getElementById("file-tree"));
+      if (treeContainer == null)
+        return;
+      t1 = _this.__DartAnalyzerApp__fileTree_F;
+      t1 === $ && A.throwLateFieldNI("_fileTree");
+      t2 = A._arrayInstanceType(t1);
+      treeContainer.innerHTML = new A.MappedListIterable(t1, t2._eval$1("String(1)")._as(new A.DartAnalyzerApp__setupFileTree_closure(new A.DartAnalyzerApp__setupFileTree_renderNode())), t2._eval$1("MappedListIterable<1,String>")).join$1(0, "");
+      _this._setupTreeInteractions$0();
+      firstFile = _this._findFirstFile$1(t1);
+      if (firstFile != null)
+        _this._selectFile$1(firstFile.path);
+    },
+    _findFirstFile$1(nodes) {
+      var t1, _i, node, found;
+      type$.List_FileNode._as(nodes);
+      for (t1 = nodes.length, _i = 0; _i < nodes.length; nodes.length === t1 || (0, A.throwConcurrentModificationError)(nodes), ++_i) {
+        node = nodes[_i];
+        if (!node.isDirectory)
+          return node;
+        found = this._findFirstFile$1(node.children);
+        if (found != null)
+          return found;
+      }
+      return null;
+    },
+    _setupTreeInteractions$0() {
+      var t3, t4, t5, i, item, files,
+        t1 = self,
+        t2 = type$.JSObject,
+        folders = t2._as(t2._as(t1.document).querySelectorAll(".tree-folder > .tree-item"));
+      for (t3 = type$._ElementEventStreamImpl_JSObject, t4 = t3._eval$1("~(1)?"), t3 = t3._precomputed1, t5 = type$.nullable_JSObject, i = 0; i < A._asInt(folders.length); ++i) {
+        item = t5._as(folders.item(i));
+        if (item == null)
+          item = t2._as(item);
+        A._EventStreamSubscription$(item, "click", t4._as(new A.DartAnalyzerApp__setupTreeInteractions_closure(item)), false, t3);
+      }
+      files = t2._as(t2._as(t1.document).querySelectorAll(".tree-file > .tree-item"));
+      for (i = 0; i < A._asInt(files.length); ++i) {
+        item = t5._as(files.item(i));
+        if (item == null)
+          item = t2._as(item);
+        A._EventStreamSubscription$(item, "click", t4._as(new A.DartAnalyzerApp__setupTreeInteractions_closure0(this, item)), false, t3);
+      }
+    },
+    _selectFile$1(path) {
+      var t2, currentFile, allItems, t3, i, t4, selected, title, _this = this,
+        t1 = _this._fileMap,
+        file = t1.$index(0, path);
+      if (file == null || file.isDirectory)
+        return;
+      t2 = _this._selectedFilePath;
+      if (t2 != null) {
+        currentFile = t1.$index(0, t2);
+        if (currentFile != null) {
+          t1 = A._asStringQ(self.eval(string$.window));
+          if (t1 == null)
+            t1 = null;
+          currentFile.content = t1 == null ? "" : t1;
+        }
+      }
+      _this._selectedFilePath = path;
+      _this._currentCode = file.content;
+      t1 = self;
+      t2 = type$.JSObject;
+      allItems = t2._as(t2._as(t1.document).querySelectorAll(".tree-item"));
+      for (t3 = type$.nullable_JSObject, i = 0; i < A._asInt(allItems.length); ++i) {
+        t4 = t3._as(allItems.item(i));
+        if (t4 == null)
+          t4 = t2._as(t4);
+        t2._as(t4.classList).remove("selected");
+      }
+      selected = t3._as(t2._as(t1.document).querySelector('[data-path="' + path + '"] > .tree-item'));
+      if (selected != null)
+        t2._as(selected.classList).add("selected");
+      title = t3._as(t2._as(t1.document).getElementById("editor-title"));
+      if (title != null)
+        title.innerText = file.name;
+      t2 = file.content;
+      t2 = A.stringReplaceAllUnchecked(t2, "\\", "\\\\");
+      t2 = A.stringReplaceAllUnchecked(t2, '"', '\\"');
+      t2 = A.stringReplaceAllUnchecked(t2, "\n", "\\n");
+      t2 = A.stringReplaceAllUnchecked(t2, "\r", "\\r");
+      t1.eval("if (window.dartEditor) window.dartEditor.setValue(" + ('"' + A.stringReplaceAllUnchecked(t2, "\t", "\\t") + '"') + ")");
+      _this._scheduleAnalysis$0();
     },
     _waitForMonaco$0() {
       var $async$goto = 0,
@@ -70227,15 +70359,9 @@
     },
     _createEditor$0() {
       var t2, t3, t4, result,
-        _s368_ = "void main() {\n  print('Hello, Dart!');\n\n  for (int i = 0; i < 5; i++) {\n    print('Count: $i');\n  }\n\n  final greeting = greet('World');\n  print(greeting);\n}\n\nString greet(String name) {\n  return 'Hello, $name!';\n}\n\nclass Person {\n  final String name;\n  final int age;\n\n  Person(this.name, this.age);\n\n  void introduce() {\n    print('I am $name, $age years old');\n  }\n}",
         t1 = self;
       t1.eval("      // Add custom CSS for highlighting\n      var style = document.createElement('style');\n      style.textContent = '.highlight-range-inline { background-color: rgba(255, 255, 0, 0.4) !important; } .highlight-range-line { background-color: rgba(255, 255, 0, 0.15) !important; }';\n      document.head.appendChild(style);\n\n      monaco.languages.register({ id: 'dart' });\n      monaco.languages.setMonarchTokensProvider('dart', {\n        keywords: [\n          'abstract', 'as', 'assert', 'async', 'await', 'break', 'case', 'catch',\n          'class', 'const', 'continue', 'default', 'do', 'dynamic', 'else', 'enum',\n          'export', 'extends', 'external', 'factory', 'false', 'final', 'finally',\n          'for', 'Function', 'get', 'if', 'implements', 'import', 'in', 'interface',\n          'is', 'late', 'library', 'new', 'null', 'on', 'operator', 'part', 'return',\n          'set', 'static', 'super', 'switch', 'this', 'throw', 'true', 'try', 'typedef',\n          'var', 'void', 'while', 'with', 'yield'\n        ],\n        typeKeywords: ['int', 'double', 'String', 'bool', 'List', 'Map', 'Set', 'Future', 'Stream', 'Object', 'dynamic', 'void'],\n        tokenizer: {\n          root: [\n            [/[a-zA-Z_][\\w]*/, { cases: { '@keywords': 'keyword', '@typeKeywords': 'type', '@default': 'identifier' } }],\n            [/[0-9]+(\\.[0-9]+)?/, 'number'],\n            [/\\/\\/.*/, 'comment'],\n            [/\\/\\*/, 'comment', '@comment'],\n            [/\"([^\"\\\\]|\\\\.)*\"/, 'string'],\n            [/'([^'\\\\]|\\\\.)*'/, 'string'],\n            [/[;,.]/, 'delimiter'],\n          ],\n          comment: [\n            [/[^\\/*]+/, 'comment'],\n            [/\\*\\//, 'comment', '@pop'],\n            [/[\\/*]/, 'comment']\n          ],\n        }\n      });\n    ");
-      this._currentCode = _s368_;
-      t2 = A.stringReplaceAllUnchecked(_s368_, "\\", "\\\\");
-      t2 = A.stringReplaceAllUnchecked(t2, '"', '\\"');
-      t2 = A.stringReplaceAllUnchecked(t2, "\n", "\\n");
-      t2 = A.stringReplaceAllUnchecked(t2, "\r", "\\r");
-      t1.eval("      window.dartEditor = monaco.editor.create(document.getElementById('editor-container'), {\n        value: " + ('"' + A.stringReplaceAllUnchecked(t2, "\t", "\\t") + '"') + ",\n        language: 'dart',\n        theme: 'vs-dark',\n        fontSize: 14,\n        fontFamily: \"'Fira Code', Consolas, 'Courier New', monospace\",\n        minimap: { enabled: false },\n        automaticLayout: true,\n        scrollBeyondLastLine: false,\n        lineNumbers: 'on',\n        renderLineHighlight: 'line',\n        tabSize: 2,\n      });\n\n      window.dartEditor.getModel().onDidChangeContent(function() {\n        if (window.onDartCodeChanged) window.onDartCodeChanged();\n      });\n    ");
+      t1.eval("      window.dartEditor = monaco.editor.create(document.getElementById('editor-container'), {\n        value: '',\n        language: 'dart',\n        theme: 'vs-dark',\n        fontSize: 14,\n        fontFamily: \"'Fira Code', Consolas, 'Courier New', monospace\",\n        minimap: { enabled: false },\n        automaticLayout: true,\n        scrollBeyondLastLine: false,\n        lineNumbers: 'on',\n        renderLineHighlight: 'line',\n        tabSize: 2,\n      });\n\n      window.dartEditor.getModel().onDidChangeContent(function() {\n        if (window.onDartCodeChanged) window.onDartCodeChanged();\n      });\n    ");
       t2 = type$.JSObject;
       t3 = t2._as(t1.globalThis);
       t4 = new A.DartAnalyzerApp__createEditor_closure(this);
@@ -70530,12 +70656,81 @@
       var t1 = A.stringReplaceAllUnchecked(s, "&", "&amp;");
       t1 = A.stringReplaceAllUnchecked(t1, "<", "&lt;");
       return A.stringReplaceAllUnchecked(t1, ">", "&gt;");
+    },
+    set$__DartAnalyzerApp__fileTree_F(__DartAnalyzerApp__fileTree_F) {
+      this.__DartAnalyzerApp__fileTree_F = type$.List_FileNode._as(__DartAnalyzerApp__fileTree_F);
     }
+  };
+  A.DartAnalyzerApp__initializeFileTree_buildMap.prototype = {
+    call$1(nodes) {
+      var t1, t2, _i, node;
+      type$.List_FileNode._as(nodes);
+      for (t1 = nodes.length, t2 = this.$this._fileMap, _i = 0; _i < nodes.length; nodes.length === t1 || (0, A.throwConcurrentModificationError)(nodes), ++_i) {
+        node = nodes[_i];
+        t2.$indexSet(0, node.path, node);
+        if (node.isDirectory)
+          this.call$1(node.children);
+      }
+    },
+    $signature: 48
+  };
+  A.DartAnalyzerApp__setupFileTree_renderNode.prototype = {
+    call$2$expanded(node, expanded) {
+      var t1, t2, childrenHtml,
+        _s133_ = '">\n            <div class="tree-item">\n              <span class="tree-item-icon"></span>\n              <span class="tree-item-name">';
+      if (node.isDirectory) {
+        t1 = node.children;
+        t2 = A._arrayInstanceType(t1);
+        childrenHtml = new A.MappedListIterable(t1, t2._eval$1("String(1)")._as(new A.DartAnalyzerApp__setupFileTree_renderNode_closure(this)), t2._eval$1("MappedListIterable<1,String>")).join$1(0, "");
+        return '          <div class="tree-folder expanded" data-path="' + node.path + _s133_ + node.name + '</span>\n            </div>\n            <div class="tree-children">' + childrenHtml + "</div>\n          </div>\n        ";
+      } else
+        return '          <div class="tree-file" data-path="' + node.path + _s133_ + node.name + "</span>\n            </div>\n          </div>\n        ";
+    },
+    call$1(node) {
+      return this.call$2$expanded(node, true);
+    },
+    $signature: 49
+  };
+  A.DartAnalyzerApp__setupFileTree_renderNode_closure.prototype = {
+    call$1(c) {
+      return this.renderNode.call$1(type$.FileNode._as(c));
+    },
+    $signature: 16
+  };
+  A.DartAnalyzerApp__setupFileTree_closure.prototype = {
+    call$1(n) {
+      return this.renderNode.call$1(type$.FileNode._as(n));
+    },
+    $signature: 16
+  };
+  A.DartAnalyzerApp__setupTreeInteractions_closure.prototype = {
+    call$1(e) {
+      var t2, children,
+        t1 = type$.nullable_JSObject,
+        folder = t1._as(this.item.parentElement);
+      if (folder != null) {
+        t2 = type$.JSObject;
+        A._asBool(t2._as(folder.classList).toggle("expanded"));
+        children = t1._as(folder.querySelector(".tree-children"));
+        if (children != null)
+          A._asBool(t2._as(children.classList).toggle("collapsed"));
+      }
+    },
+    $signature: 2
+  };
+  A.DartAnalyzerApp__setupTreeInteractions_closure0.prototype = {
+    call$1(e) {
+      var fileNode = type$.nullable_JSObject._as(this.item.parentElement),
+        path = fileNode == null ? null : A._asString(type$.JSObject._as(fileNode.dataset).path);
+      if (path != null)
+        this.$this._selectFile$1(path);
+    },
+    $signature: 2
   };
   A.DartAnalyzerApp__createEditor_closure.prototype = {
     call$0() {
       var t1 = this.$this,
-        t2 = A._asStringQ(self.eval('window.dartEditor ? window.dartEditor.getValue() : ""'));
+        t2 = A._asStringQ(self.eval(string$.window));
       if (t2 == null)
         t2 = null;
       t1._currentCode = t2 == null ? "" : t2;
@@ -71827,7 +72022,7 @@
       var t1 = type$._TokenInfo;
       return B.JSInt_methods.compareTo$1(t1._as(a).offset, t1._as(b).offset);
     },
-    $signature: 49
+    $signature: 52
   };
   A._TokenInfo0.prototype = {
     get$length(receiver) {
@@ -71909,7 +72104,7 @@
       A._asStringQ(arg);
       return arg == null ? "null" : '"' + arg + '"';
     },
-    $signature: 51
+    $signature: 54
   };
   A.InternalStyle.prototype = {
     getRoot$1(path) {
@@ -72283,7 +72478,7 @@
       t1 = A.Primitives_parseInt(part, null);
       return t1 == null ? part : t1;
     },
-    $signature: 52
+    $signature: 55
   };
   A.EventStreamProvider.prototype = {};
   A._EventStream.prototype = {};
@@ -72351,8 +72546,8 @@
     _static_1(A, "async__AsyncRun__scheduleImmediateWithSetImmediate$closure", "_AsyncRun__scheduleImmediateWithSetImmediate", 5);
     _static_1(A, "async__AsyncRun__scheduleImmediateWithTimer$closure", "_AsyncRun__scheduleImmediateWithTimer", 5);
     _static_0(A, "async___startMicrotaskLoop$closure", "_startMicrotaskLoop", 1);
-    _static_1(A, "core__identityHashCode$closure", "identityHashCode", 54);
-    _static_2(A, "core__identical$closure", "identical", 55);
+    _static_1(A, "core__identityHashCode$closure", "identityHashCode", 57);
+    _static_2(A, "core__identical$closure", "identical", 58);
     _static_1(A, "core_Uri_decodeComponent$closure", "Uri_decodeComponent", 9);
     _static_1(A, "codes___withArgumentsBuiltInIdentifierAsType$closure", "_withArgumentsBuiltInIdentifierAsType", 0);
     _static_1(A, "codes___withArgumentsBuiltInIdentifierInDeclaration$closure", "_withArgumentsBuiltInIdentifierInDeclaration", 0);
@@ -72382,7 +72577,7 @@
       _inherit = hunkHelpers.inherit,
       _inheritMany = hunkHelpers.inheritMany;
     _inherit(A.Object, null);
-    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListBase, A.SentinelValue, A.Iterable, A.ListIterator, A.MappedIterator, A.WhereIterator, A.EmptyIterator, A.WhereTypeIterator, A.NonNullsIterator, A.FixedLengthListMixin, A.UnmodifiableListMixin, A._Record, A.ConstantMap, A._KeysOrValuesOrElementsIterator, A.SetBase, A.Closure, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A.ExceptionAndStackTrace, A._StackTrace, A.MapBase, A.LinkedHashMapCell, A.LinkedHashMapKeyIterator, A.JSSyntaxRegExp, A._MatchImplementation, A._AllMatchesIterator, A.StringMatch, A._StringAllMatchesIterator, A._Cell, A.Rti, A._FunctionParameters, A._Type, A._TimerImpl, A._AsyncAwaitCompleter, A.AsyncError, A._Completer, A._FutureListener, A._Future, A._AsyncCallbackEntry, A.Stream, A._StreamIterator, A._Zone, A._HashMapKeyIterator, A._HashSetIterator, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.Codec, A.Converter, A._Utf8Encoder, A._Utf8Decoder, A.Duration, A._Enum, A.OutOfMemoryError, A.StackOverflowError, A._Exception, A.FormatException, A.MapEntry, A.Null, A._StringStackTrace, A.Stopwatch, A.RuneIterator, A.StringBuffer, A._Uri, A.UriData, A._SimpleUri, A.CssStyleDeclarationBase, A.ImmutableListMixin, A.FixedSizeListIterator, A.NullRejectionException, A.ErrorCode, A.Version0, A.Code, A.Message, A.Template, A.BlockKind, A.DirectiveContext, A.ForwardingListener, A.IdentifierContext0, A.Listener, A.LiteralEntryInfo, A.ModifierContext, A.Parser, A.ForPartsContext, A.StackImpl, A.TokenStreamRewriter, A.NextTokenStreamChange, A.EndGroupTokenStreamChange, A.OffsetTokenStreamChange, A.PrecedingCommentsTokenStreamChange, A.PreviousTokenStreamChange, A.TypeParamOrArgInfo, A.NoType, A.PrefixedType, A.SimpleTypeWith1Argument, A.SimpleType, A.VoidType, A.ComplexTypeInfo, A.AbstractScanner, A._LineStarts_Object_ListMixin, A.ScannerConfiguration, A.SimpleToken, A.NullInterner, A.ArrayKeywordState, A.LeafKeywordState, A.ScannerResult, A._Node, A._StringCanonicalizer, A.TokenType, A._LazySubstring, A.Link, A.LinkIterator, A.NullValue, A.StackChecker, A.BlockDocDirective, A.DocDirectiveArgument, A.DocDirectiveParameter, A.DocDirectiveTag, A.DocImport, A.MdCodeBlock, A.MdCodeBlockLine, A.SimpleDocDirective, A.Precedence, A.GeneralizingAstVisitor, A.AnalysisError, A.ErrorReporter, A.RecordingErrorListener, A.LineInfo, A.Source, A._ExperimentStatus_Object__CurrentState, A._CurrentState, A.EnabledDisabledFlags, A.ExperimentalFeature, A.ParseStringResultImpl, A.AstNodeImpl, A.ChildEntities, A.ChildEntity, A.CompoundAssignmentExpressionImpl, A._NodeListImpl_Object_ListMixin, A.NullShortableExpressionImpl, A.ToSourceVisitor, A.Scanner, A.DiagnosticMessageImpl, A._ClassLikeDeclarationBuilder, A._ConstructorNameWithInvalidTypeArgs, A._Modifiers, A._ObjectPatternFields, A._OperatorName, A._OptionalFormalParameters, A._ParameterDefaultValue, A._ParenthesizedCondition, A._RedirectingFactoryBody, A.DocCommentBuilder, A._BlockDocDirectiveBuilder, A._CharacterSequenceFromMultiLineComment, A._CharacterSequenceFromSingleLineComment, A._DirectiveParser, A.FastaErrorReporter, A.Parser0, A.ParameterKind, A.ATN, A.ATNConfig, A.ATNDeserializationOptions, A.ATNDeserializer, A.ATNSimulator, A.PredictionContextCache, A.ATNState, A.LexerChannelAction, A.LexerCustomAction, A.LexerModeAction, A.LexerMoreAction, A.LexerPopModeAction, A.LexerPushModeAction, A.LexerSkipAction, A.LexerTypeAction, A.LexerIndexedCustomAction, A.LexerActionExecutor, A.SimState, A.SemanticContext, A.Transition, A.DFA, A.DFASerializer, A.PredPrediction, A.DFAState, A.ErrorListener, A.ProxyErrorListener, A.DefaultErrorStrategy, A.IntStream, A.Interval, A.IntervalSet, A.Recognizer, A.LL1Analyzer, A.Pair, A.Tree, A.PredictionContext, A.Token0, A.CommonTokenFactory, A.BufferedTokenStream, A.BitSet, A.VocabularyImpl, A.DefaultEquality, A.IterableEquality, A.ListEquality, A.DartAnalyzerApp, A.Plugin0, A.PluginContext, A.PluginResult, A.PluginRegistry, A._TokenInfo, A._AstNode, A._TokenInfo0, A.Context, A.Style, A.ParsedPath, A.Version, A.EventStreamProvider, A._EventStreamSubscription]);
+    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListBase, A.SentinelValue, A.Iterable, A.ListIterator, A.MappedIterator, A.WhereIterator, A.EmptyIterator, A.WhereTypeIterator, A.NonNullsIterator, A.FixedLengthListMixin, A.UnmodifiableListMixin, A._Record, A.ConstantMap, A._KeysOrValuesOrElementsIterator, A.SetBase, A.Closure, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A.ExceptionAndStackTrace, A._StackTrace, A.MapBase, A.LinkedHashMapCell, A.LinkedHashMapKeyIterator, A.JSSyntaxRegExp, A._MatchImplementation, A._AllMatchesIterator, A.StringMatch, A._StringAllMatchesIterator, A._Cell, A.Rti, A._FunctionParameters, A._Type, A._TimerImpl, A._AsyncAwaitCompleter, A.AsyncError, A._Completer, A._FutureListener, A._Future, A._AsyncCallbackEntry, A.Stream, A._StreamIterator, A._Zone, A._HashMapKeyIterator, A._HashSetIterator, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.Codec, A.Converter, A._Utf8Encoder, A._Utf8Decoder, A.Duration, A._Enum, A.OutOfMemoryError, A.StackOverflowError, A._Exception, A.FormatException, A.MapEntry, A.Null, A._StringStackTrace, A.Stopwatch, A.RuneIterator, A.StringBuffer, A._Uri, A.UriData, A._SimpleUri, A.CssStyleDeclarationBase, A.ImmutableListMixin, A.FixedSizeListIterator, A.NullRejectionException, A.ErrorCode, A.Version0, A.Code, A.Message, A.Template, A.BlockKind, A.DirectiveContext, A.ForwardingListener, A.IdentifierContext0, A.Listener, A.LiteralEntryInfo, A.ModifierContext, A.Parser, A.ForPartsContext, A.StackImpl, A.TokenStreamRewriter, A.NextTokenStreamChange, A.EndGroupTokenStreamChange, A.OffsetTokenStreamChange, A.PrecedingCommentsTokenStreamChange, A.PreviousTokenStreamChange, A.TypeParamOrArgInfo, A.NoType, A.PrefixedType, A.SimpleTypeWith1Argument, A.SimpleType, A.VoidType, A.ComplexTypeInfo, A.AbstractScanner, A._LineStarts_Object_ListMixin, A.ScannerConfiguration, A.SimpleToken, A.NullInterner, A.ArrayKeywordState, A.LeafKeywordState, A.ScannerResult, A._Node, A._StringCanonicalizer, A.TokenType, A._LazySubstring, A.Link, A.LinkIterator, A.NullValue, A.StackChecker, A.BlockDocDirective, A.DocDirectiveArgument, A.DocDirectiveParameter, A.DocDirectiveTag, A.DocImport, A.MdCodeBlock, A.MdCodeBlockLine, A.SimpleDocDirective, A.Precedence, A.GeneralizingAstVisitor, A.AnalysisError, A.ErrorReporter, A.RecordingErrorListener, A.LineInfo, A.Source, A._ExperimentStatus_Object__CurrentState, A._CurrentState, A.EnabledDisabledFlags, A.ExperimentalFeature, A.ParseStringResultImpl, A.AstNodeImpl, A.ChildEntities, A.ChildEntity, A.CompoundAssignmentExpressionImpl, A._NodeListImpl_Object_ListMixin, A.NullShortableExpressionImpl, A.ToSourceVisitor, A.Scanner, A.DiagnosticMessageImpl, A._ClassLikeDeclarationBuilder, A._ConstructorNameWithInvalidTypeArgs, A._Modifiers, A._ObjectPatternFields, A._OperatorName, A._OptionalFormalParameters, A._ParameterDefaultValue, A._ParenthesizedCondition, A._RedirectingFactoryBody, A.DocCommentBuilder, A._BlockDocDirectiveBuilder, A._CharacterSequenceFromMultiLineComment, A._CharacterSequenceFromSingleLineComment, A._DirectiveParser, A.FastaErrorReporter, A.Parser0, A.ParameterKind, A.ATN, A.ATNConfig, A.ATNDeserializationOptions, A.ATNDeserializer, A.ATNSimulator, A.PredictionContextCache, A.ATNState, A.LexerChannelAction, A.LexerCustomAction, A.LexerModeAction, A.LexerMoreAction, A.LexerPopModeAction, A.LexerPushModeAction, A.LexerSkipAction, A.LexerTypeAction, A.LexerIndexedCustomAction, A.LexerActionExecutor, A.SimState, A.SemanticContext, A.Transition, A.DFA, A.DFASerializer, A.PredPrediction, A.DFAState, A.ErrorListener, A.ProxyErrorListener, A.DefaultErrorStrategy, A.IntStream, A.Interval, A.IntervalSet, A.Recognizer, A.LL1Analyzer, A.Pair, A.Tree, A.PredictionContext, A.Token0, A.CommonTokenFactory, A.BufferedTokenStream, A.BitSet, A.VocabularyImpl, A.DefaultEquality, A.IterableEquality, A.ListEquality, A.FileNode, A.DartAnalyzerApp, A.Plugin0, A.PluginContext, A.PluginResult, A.PluginRegistry, A._TokenInfo, A._AstNode, A._TokenInfo0, A.Context, A.Style, A.ParsedPath, A.Version, A.EventStreamProvider, A._EventStreamSubscription]);
     _inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JavaScriptBigInt, J.JavaScriptSymbol, J.JSNumber, J.JSString]);
     _inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.NativeByteBuffer, A.NativeTypedData, A.EventTarget, A.AccessibleNodeList, A.Blob, A.CssTransformComponent, A.CssRule, A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase, A.CssStyleValue, A.DataTransferItemList, A.DomException, A._DomRectList_JavaScriptObject_ListMixin, A.DomRectReadOnly, A._DomStringList_JavaScriptObject_ListMixin, A.DomTokenList, A._FileList_JavaScriptObject_ListMixin, A.Gamepad, A.History, A._HtmlCollection_JavaScriptObject_ListMixin, A.Location, A.MediaList, A._MidiInputMap_JavaScriptObject_MapMixin, A._MidiOutputMap_JavaScriptObject_MapMixin, A.MimeType, A._MimeTypeArray_JavaScriptObject_ListMixin, A._NodeList_JavaScriptObject_ListMixin, A.Plugin, A._PluginArray_JavaScriptObject_ListMixin, A._RtcStatsReport_JavaScriptObject_MapMixin, A.SpeechGrammar, A._SpeechGrammarList_JavaScriptObject_ListMixin, A.SpeechRecognitionResult, A._Storage_JavaScriptObject_MapMixin, A.StyleSheet, A._TextTrackCueList_JavaScriptObject_ListMixin, A.TimeRanges, A.Touch, A._TouchList_JavaScriptObject_ListMixin, A.TrackDefaultList, A.Url, A.__CssRuleList_JavaScriptObject_ListMixin, A.__GamepadList_JavaScriptObject_ListMixin, A.__NamedNodeMap_JavaScriptObject_ListMixin, A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin, A.__StyleSheetList_JavaScriptObject_ListMixin, A.Length, A._LengthList_JavaScriptObject_ListMixin, A.Number, A._NumberList_JavaScriptObject_ListMixin, A.PointList, A._StringList_JavaScriptObject_ListMixin, A.Transform, A._TransformList_JavaScriptObject_ListMixin, A.AudioBuffer, A._AudioParamMap_JavaScriptObject_MapMixin]);
     _inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction]);
@@ -72400,7 +72595,7 @@
     _inherit(A.ConstantStringMap, A.ConstantMap);
     _inheritMany(A.SetBase, [A.ConstantSet, A._SetBase]);
     _inherit(A.ConstantStringSet, A.ConstantSet);
-    _inheritMany(A.Closure, [A.Closure0Args, A.Closure2Args, A.TearOffClosure, A.JsLinkedHashMap_values_closure, A.initHooks_closure, A.initHooks_closure1, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A._awaitOnObject_closure, A._Future__chainForeignFuture_closure, A._Future__propagateToListeners_handleWhenCompleteCallback_closure, A.Stream_length_closure, A._RootZone_bindUnaryCallbackGuarded_closure, A._HashMap_values_closure, A._CustomHashMap_closure, A._CustomHashSet_closure, A.MapBase_entries_closure, A._Uri__makePath_closure, A._createTables_setChars, A._createTables_setRange, A.promiseToFuture_closure, A.promiseToFuture_closure0, A.KeywordState_KEYWORD_STATE_closure, A._TypeToConvert_allElements_addElementsFrom, A._TypeToConvert_allElements_closure, A.AstBuilder_endSwitchCase_updateSwitchMember, A.formatList_closure, A.defaultConfigLookup__closure0, A.ATNDeserializer_readLexerActions_closure, A.PredictionModeExtension_getConflictingAltSubsets_closure0, A.SemanticContext_filterNonPrecedencePredicates_closure, A.IntervalSet_toString_closure, A.DartAnalyzerApp__setupPluginTabs_closure, A.DartAnalyzerApp__setupEventHandlers_closure, A.DartAnalyzerApp__setupEventHandlers_closure0, A.DartAnalyzerApp__setupEventHandlers_closure1, A.Context_joinAll_closure, A.Context_split_closure, A._validateArgList_closure, A.WindowsStyle_absolutePathToUri_closure, A.Version__splitParts_closure, A._EventStreamSubscription_closure]);
+    _inheritMany(A.Closure, [A.Closure0Args, A.Closure2Args, A.TearOffClosure, A.JsLinkedHashMap_values_closure, A.initHooks_closure, A.initHooks_closure1, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A._awaitOnObject_closure, A._Future__chainForeignFuture_closure, A._Future__propagateToListeners_handleWhenCompleteCallback_closure, A.Stream_length_closure, A._RootZone_bindUnaryCallbackGuarded_closure, A._HashMap_values_closure, A._CustomHashMap_closure, A._CustomHashSet_closure, A.MapBase_entries_closure, A._Uri__makePath_closure, A._createTables_setChars, A._createTables_setRange, A.promiseToFuture_closure, A.promiseToFuture_closure0, A.KeywordState_KEYWORD_STATE_closure, A._TypeToConvert_allElements_addElementsFrom, A._TypeToConvert_allElements_closure, A.AstBuilder_endSwitchCase_updateSwitchMember, A.formatList_closure, A.defaultConfigLookup__closure0, A.ATNDeserializer_readLexerActions_closure, A.PredictionModeExtension_getConflictingAltSubsets_closure0, A.SemanticContext_filterNonPrecedencePredicates_closure, A.IntervalSet_toString_closure, A.DartAnalyzerApp__initializeFileTree_buildMap, A.DartAnalyzerApp__setupFileTree_renderNode, A.DartAnalyzerApp__setupFileTree_renderNode_closure, A.DartAnalyzerApp__setupFileTree_closure, A.DartAnalyzerApp__setupTreeInteractions_closure, A.DartAnalyzerApp__setupTreeInteractions_closure0, A.DartAnalyzerApp__setupPluginTabs_closure, A.DartAnalyzerApp__setupEventHandlers_closure, A.DartAnalyzerApp__setupEventHandlers_closure0, A.DartAnalyzerApp__setupEventHandlers_closure1, A.Context_joinAll_closure, A.Context_split_closure, A._validateArgList_closure, A.WindowsStyle_absolutePathToUri_closure, A.Version__splitParts_closure, A._EventStreamSubscription_closure]);
     _inheritMany(A.Closure0Args, [A.Primitives_initTicker_closure, A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A.Future_Future$delayed_closure, A._Future__addListener_closure, A._Future__prependListeners_closure, A._Future__chainForeignFuture_closure1, A._Future__chainCoreFutureAsync_closure, A._Future__asyncCompleteWithValue_closure, A._Future__asyncCompleteError_closure, A._Future__propagateToListeners_handleWhenCompleteCallback, A._Future__propagateToListeners_handleValueCallback, A._Future__propagateToListeners_handleError, A.Stream_length_closure0, A._rootHandleError_closure, A._RootZone_bindCallbackGuarded_closure, A._Utf8Decoder__decoder_closure, A._Utf8Decoder__decoderNonfatal_closure, A.ErrorReporter__convertTypeNames_closure, A.AstBuilder_endSwitchCase_popLabels, A.FastaErrorReporter_reportByCode_lexeme, A.defaultConfigLookup_closure, A.DartAnalyzerApp__createEditor_closure, A.DartAnalyzerApp__scheduleAnalysis_closure, A.GrammarViewerPlugin_onActivate_closure]);
     _inherit(A.NullError, A.TypeError);
     _inheritMany(A.TearOffClosure, [A.StaticClosure, A.BoundClosure]);
@@ -72677,7 +72872,7 @@
     typeUniverse: {eC: new Map(), tR: {}, eT: {}, tPV: {}, sEA: []},
     mangledGlobalNames: {int: "int", double: "double", num: "num", String: "String", bool: "bool", Null: "Null", List: "List", Object: "Object", Map: "Map"},
     mangledNames: {},
-    types: ["Message(Token)", "~()", "~(JSObject)", "Null()", "~(String,@)", "~(~())", "~(@)", "bool(String)", "Null(@)", "String(String)", "bool(@)", "@()", "int()", "~(Uint8List,String,int)", "int(ATNConfig)", "PrecedencePredicate(PrecedencePredicate,PrecedencePredicate)", "Null(@,StackTrace)", "~(String,int?)", "int(int,int)", "@(@)", "Uint8List(@,@)", "Null(~())", "~(int,@)", "~(String,String)", "~(ScannerErrorCode,List<Object>?)", "String(Keyword)", "int(String,String)", "Set<Element0>()", "~(DartType)", "bool(Element0)", "int(AstNode,AstNode)", "int(SyntacticEntity,SyntacticEntity)", "~(ScannerErrorCode,int,List<Object?>?)", "~(Scanner0,LanguageVersionToken)", "List<LabelImpl>()", "SwitchMemberImpl({labels:List<LabelImpl>?,member!SwitchMemberImpl,statements:List<StatementImpl>?})", "~(ScannerErrorCode,int,List<Object>?)", "Null(Object,StackTrace)", "String(Match)", "HashSet<ATNConfig>()", "bool(ATNConfig,ATNConfig)", "_Future<@>(@)", "LexerAction(int)", "bool(ATNConfig?,ATNConfig?)", "bool(SemanticContext)", "@(@,String)", "int(DFAState,DFAState)", "StringBuffer(Interval)", "~(Object?,Object?)", "int(_TokenInfo0,_TokenInfo0)", "@(String)", "String(String?)", "Object(String)", "~(String,int)", "int(Object?)", "bool(Object?,Object?)", "String()"],
+    types: ["Message(Token)", "~()", "~(JSObject)", "Null()", "~(String,@)", "~(~())", "~(@)", "bool(String)", "Null(@)", "String(String)", "bool(@)", "@()", "int()", "~(Uint8List,String,int)", "int(ATNConfig)", "PrecedencePredicate(PrecedencePredicate,PrecedencePredicate)", "String(FileNode)", "~(int,@)", "int(int,int)", "@(@)", "Uint8List(@,@)", "Null(@,StackTrace)", "Null(~())", "~(String,String)", "~(ScannerErrorCode,List<Object>?)", "String(Keyword)", "int(String,String)", "Set<Element0>()", "~(DartType)", "bool(Element0)", "int(AstNode,AstNode)", "int(SyntacticEntity,SyntacticEntity)", "~(ScannerErrorCode,int,List<Object?>?)", "~(Scanner0,LanguageVersionToken)", "List<LabelImpl>()", "SwitchMemberImpl({labels:List<LabelImpl>?,member!SwitchMemberImpl,statements:List<StatementImpl>?})", "~(ScannerErrorCode,int,List<Object>?)", "String()", "String(Match)", "Null(Object,StackTrace)", "bool(ATNConfig,ATNConfig)", "_Future<@>(@)", "LexerAction(int)", "bool(ATNConfig?,ATNConfig?)", "bool(SemanticContext)", "@(@,String)", "int(DFAState,DFAState)", "StringBuffer(Interval)", "~(List<FileNode>)", "String(FileNode{expanded:bool})", "~(Object?,Object?)", "@(String)", "int(_TokenInfo0,_TokenInfo0)", "~(String,int)", "String(String?)", "Object(String)", "~(String,int?)", "int(Object?)", "bool(Object?,Object?)", "HashSet<ATNConfig>()"],
     interceptorsByTag: null,
     leafTags: null,
     arrayRti: Symbol("$ti"),
@@ -72897,7 +73092,8 @@
     Use_at: "Use at most one of the 'in', 'out', or 'inout' modifiers.",
     Variab_: "Variable patterns in declaration context can't specify 'var' or 'final' keyword.",
     Variabsc: "Variables can't be declared using both 'var' and a type name.",
-    Variabsm: "Variables must be declared using the keywords 'const', 'final', 'var' or a type name."
+    Variabsm: "Variables must be declared using the keywords 'const', 'final', 'var' or a type name.",
+    window: 'window.dartEditor ? window.dartEditor.getValue() : ""'
   };
   var type$ = (function rtii() {
     var findType = A.findType;
@@ -73035,6 +73231,7 @@
       FieldFormalParameterContext: findType("FieldFormalParameterContext"),
       FieldInitializerContext: findType("FieldInitializerContext"),
       File: findType("File"),
+      FileNode: findType("FileNode"),
       FinalConstVarOrTypeContext: findType("FinalConstVarOrTypeContext"),
       FinalVarOrTypeContext: findType("FinalVarOrTypeContext"),
       FinallyPartContext: findType("FinallyPartContext"),
@@ -73118,6 +73315,7 @@
       JSArray_EnumConstantDeclarationImpl: findType("JSArray<EnumConstantDeclarationImpl>"),
       JSArray_ErrorListener: findType("JSArray<ErrorListener>"),
       JSArray_ExpressionImpl: findType("JSArray<ExpressionImpl>"),
+      JSArray_FileNode: findType("JSArray<FileNode>"),
       JSArray_FormalParameterImpl: findType("JSArray<FormalParameterImpl>"),
       JSArray_InterpolationElementImpl: findType("JSArray<InterpolationElementImpl>"),
       JSArray_Interval: findType("JSArray<Interval>"),
@@ -73186,6 +73384,7 @@
       ListPatternElementImpl: findType("ListPatternElementImpl"),
       ListPatternElementsContext: findType("ListPatternElementsContext"),
       List_AstNode: findType("List<AstNode>"),
+      List_FileNode: findType("List<FileNode>"),
       List_Interval: findType("List<Interval>"),
       List_IntervalSet: findType("List<IntervalSet>"),
       List_Object: findType("List<Object>"),
@@ -73914,7 +74113,7 @@
     B.DirectiveState_4 = new A.DirectiveState(4, "Part");
     B.DirectiveState_5 = new A.DirectiveState(5, "PartOf");
     B.DirectiveState_6 = new A.DirectiveState(6, "Declarations");
-    B.List_empty8 = A._setArrayType(makeConstList([]), type$.JSArray_DocDirectiveParameter);
+    B.List_empty9 = A._setArrayType(makeConstList([]), type$.JSArray_DocDirectiveParameter);
     B.DocDirectiveType_CTu = new A.DocDirectiveType("end-inject-html", "inject-html", 3, "endInjectHtml");
     B.DocDirectiveParameterFormat_0_any = new A.DocDirectiveParameterFormat(0, "any");
     B.C_DocDirectiveParameter = new A.DocDirectiveParameter();
@@ -74120,6 +74319,7 @@
     B.List_empty7 = A._setArrayType(makeConstList([]), type$.JSArray_ConstructorInitializerImpl);
     B.List_empty2 = A._setArrayType(makeConstList([]), type$.JSArray_DiagnosticMessage);
     B.List_empty5 = A._setArrayType(makeConstList([]), type$.JSArray_ExpressionImpl);
+    B.List_empty8 = A._setArrayType(makeConstList([]), type$.JSArray_FileNode);
     B.List_empty4 = A._setArrayType(makeConstList([]), type$.JSArray_Object);
     B.List_empty6 = A._setArrayType(makeConstList([]), type$.JSArray_RecordTypeAnnotationPositionalFieldImpl);
     B.List_empty = A._setArrayType(makeConstList([]), type$.JSArray_String);
@@ -74780,9 +74980,9 @@
     B.Quote_5 = new A.Quote(5, "RawDouble");
     B.Quote_6 = new A.Quote(6, "RawMultiLineSingle");
     B.Quote_7 = new A.Quote(7, "RawMultiLineDouble");
-    B.List_empty9 = A._setArrayType(makeConstList([]), type$.JSArray_DocDirectivePositionalArgument);
-    B.List_empty10 = A._setArrayType(makeConstList([]), type$.JSArray_DocDirectiveNamedArgument);
-    B.Record2_List_empty_List_empty = new A._Record_2(B.List_empty9, B.List_empty10);
+    B.List_empty10 = A._setArrayType(makeConstList([]), type$.JSArray_DocDirectivePositionalArgument);
+    B.List_empty11 = A._setArrayType(makeConstList([]), type$.JSArray_DocDirectiveNamedArgument);
+    B.Record2_List_empty_List_empty = new A._Record_2(B.List_empty10, B.List_empty11);
     B.RecordFieldDeclarationIdentifierContext_spY = new A.RecordFieldDeclarationIdentifierContext("recordFieldDeclaration", false, false, false, true, B.Template_EVU);
     B.ScannerConfiguration_false_false_false_false = new A.ScannerConfiguration(false, false, false, false);
     B.ScannerErrorCode_0uo = new A.ScannerErrorCode("UNTERMINATED_STRING_LITERAL", "ScannerErrorCode.UNTERMINATED_STRING_LITERAL", "Unterminated string literal.", null);
