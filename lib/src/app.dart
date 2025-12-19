@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:js_interop';
+import 'dart:typed_data';
+import 'package:archive/archive.dart';
 import 'package:web/web.dart' as web;
 import 'plugin.dart';
 import 'plugins/token_stream_plugin.dart';
@@ -54,9 +57,10 @@ class DartAnalyzerApp {
   String? _activePluginId;
   Timer? _analyzeDebounce;
 
-  late final List<FileNode> _fileTree;
+  List<FileNode> _fileTree = [];
   final Map<String, FileNode> _fileMap = {};
   String? _selectedFilePath;
+  bool _isLoadingFiles = false;
 
   DartAnalyzerApp() {
     plugins.register(TokenStreamPlugin());
@@ -64,124 +68,160 @@ class DartAnalyzerApp {
     plugins.register(AntlrTokenStreamPlugin());
     plugins.register(AntlrParseTreePlugin());
     plugins.register(GrammarViewerPlugin());
-    _initializeFileTree();
   }
 
-  void _initializeFileTree() {
-    _fileTree = [
-      FileNode(
-        name: 'lib',
-        path: 'lib',
-        isDirectory: true,
-        children: [
-          FileNode(
-            name: 'main.dart',
-            path: 'lib/main.dart',
-            content: '''void main() {
-  print('Hello, Dart!');
-  final result = add(2, 3);
-  print('2 + 3 = \$result');
-}
+  Future<void> _loadFilesFromZip() async {
+    if (_isLoadingFiles) return;
+    _isLoadingFiles = true;
 
-int add(int a, int b) => a + b;''',
-          ),
-          FileNode(
-            name: 'utils.dart',
-            path: 'lib/utils.dart',
-            content: '''String capitalize(String s) {
-  if (s.isEmpty) return s;
-  return s[0].toUpperCase() + s.substring(1);
-}
+    final treeContainer = web.document.getElementById('file-tree');
+    if (treeContainer != null) {
+      treeContainer.innerHTML = '<div class="tree-loading">Loading co19 test files...</div>'.toJS;
+    }
 
-bool isEven(int n) => n % 2 == 0;''',
-          ),
-          FileNode(
-            name: 'models',
-            path: 'lib/models',
-            isDirectory: true,
-            children: [
-              FileNode(
-                name: 'person.dart',
-                path: 'lib/models/person.dart',
-                content: '''class Person {
-  final String name;
-  final int age;
+    try {
+      _log('Fetching co19.zip...');
+      final bytes = await _fetchZipFile('co19.zip');
+      _log('Received ${bytes.length} bytes, extracting...');
 
-  Person(this.name, this.age);
+      final archive = ZipDecoder().decodeBytes(bytes);
+      _log('Extracted ${archive.files.length} files');
 
-  void greet() => print('Hi, I am \$name');
-}''',
-              ),
-              FileNode(
-                name: 'animal.dart',
-                path: 'lib/models/animal.dart',
-                content: '''abstract class Animal {
-  String get sound;
-  void speak() => print(sound);
-}
+      // Build file tree from archive using path lookup
+      _fileMap.clear();
 
-class Dog extends Animal {
-  @override
-  String get sound => 'Woof!';
-}
+      for (final file in archive.files) {
+        if (!file.name.endsWith('.dart')) continue;
 
-class Cat extends Animal {
-  @override
-  String get sound => 'Meow!';
-}''',
-              ),
-            ],
-          ),
-        ],
-      ),
-      FileNode(
-        name: 'test',
-        path: 'test',
-        isDirectory: true,
-        children: [
-          FileNode(
-            name: 'example_test.dart',
-            path: 'test/example_test.dart',
-            content: '''void main() {
-  test('addition works', () {
-    expect(2 + 2, equals(4));
-  });
-}''',
-          ),
-        ],
-      ),
-    ];
+        final parts = file.name.split('/');
+        if (parts.isEmpty) continue;
 
-    void buildMap(List<FileNode> nodes) {
-      for (final node in nodes) {
-        _fileMap[node.path] = node;
-        if (node.isDirectory) {
-          buildMap(node.children);
+        // Ensure all parent directories exist
+        for (var i = 0; i < parts.length - 1; i++) {
+          final dirPath = parts.sublist(0, i + 1).join('/');
+          if (!_fileMap.containsKey(dirPath)) {
+            _fileMap[dirPath] = FileNode(
+              name: parts[i],
+              path: dirPath,
+              isDirectory: true,
+              children: <FileNode>[],
+            );
+          }
+        }
+
+        // Create the file node
+        final filePath = file.name;
+        final content = file.isFile ? utf8.decode(file.content as List<int>, allowMalformed: true) : '';
+        _fileMap[filePath] = FileNode(
+          name: parts.last,
+          path: filePath,
+          isDirectory: false,
+          content: content,
+        );
+      }
+
+      // Now build parent-child relationships
+      for (final entry in _fileMap.entries) {
+        final path = entry.key;
+        final node = entry.value;
+        final parts = path.split('/');
+
+        if (parts.length > 1) {
+          final parentPath = parts.sublist(0, parts.length - 1).join('/');
+          final parent = _fileMap[parentPath];
+          if (parent != null && parent.isDirectory) {
+            final children = parent.children as List<FileNode>;
+            if (!children.any((c) => c.path == node.path)) {
+              children.add(node);
+            }
+          }
         }
       }
+
+      // Build root nodes (top-level directories)
+      final rootPaths = _fileMap.keys.where((p) => !p.contains('/')).toSet();
+      _fileTree = rootPaths.map((p) => _fileMap[p]!).toList()
+        ..sort((a, b) => a.name.compareTo(b.name));
+
+      // Sort children recursively
+      void sortChildren(FileNode node) {
+        if (node.isDirectory) {
+          (node.children as List<FileNode>).sort((a, b) {
+            // Directories first, then files
+            if (a.isDirectory != b.isDirectory) {
+              return a.isDirectory ? -1 : 1;
+            }
+            return a.name.compareTo(b.name);
+          });
+          for (final child in node.children) {
+            sortChildren(child);
+          }
+        }
+      }
+      for (final node in _fileTree) {
+        sortChildren(node);
+      }
+
+      _log('File tree built with ${_fileMap.length} entries');
+      _renderFileTree();
+
+    } catch (e) {
+      _log('Error loading zip: $e');
+      final treeContainer = web.document.getElementById('file-tree');
+      if (treeContainer != null) {
+        treeContainer.innerHTML = '<div class="tree-error">Error loading files: $e</div>'.toJS;
+      }
+    } finally {
+      _isLoadingFiles = false;
     }
-    buildMap(_fileTree);
+  }
+
+  Future<Uint8List> _fetchZipFile(String url) async {
+    final completer = Completer<Uint8List>();
+
+    final xhr = web.XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'arraybuffer';
+
+    xhr.onLoad.listen((_) {
+      if (xhr.status == 200) {
+        final arrayBuffer = xhr.response as JSArrayBuffer;
+        final bytes = arrayBuffer.toDart.asUint8List();
+        completer.complete(bytes);
+      } else {
+        completer.completeError('HTTP ${xhr.status}');
+      }
+    });
+
+    xhr.onError.listen((_) {
+      completer.completeError('Network error');
+    });
+
+    xhr.send();
+    return completer.future;
   }
 
   Future<void> init() async {
     _log('Initializing Dart Analyzer...');
     await _waitForMonaco();
     _createEditor();
-    _setupFileTree();
     _setupPluginTabs();
     _setupEventHandlers();
-    _scheduleAnalysis();
     _updateStatusBar();
+
+    // Load files asynchronously
+    await _loadFilesFromZip();
+
     _log('Initialization complete');
   }
 
-  void _setupFileTree() {
+  void _renderFileTree() {
     final treeContainer = web.document.getElementById('file-tree');
     if (treeContainer == null) return;
 
-    String renderNode(FileNode node, {bool expanded = true}) {
+    String renderNode(FileNode node, {bool expanded = false}) {
       if (node.isDirectory) {
-        final childrenHtml = node.children.map((c) => renderNode(c)).join('');
+        final childrenHtml = node.children.map((c) => renderNode(c, expanded: false)).join('');
         return '''
           <div class="tree-folder${expanded ? ' expanded' : ''}" data-path="${node.path}">
             <div class="tree-item">
@@ -203,7 +243,7 @@ class Cat extends Animal {
       }
     }
 
-    final html = _fileTree.map((n) => renderNode(n)).join('');
+    final html = _fileTree.map((n) => renderNode(n, expanded: true)).join('');
     treeContainer.innerHTML = html.toJS;
 
     _setupTreeInteractions();

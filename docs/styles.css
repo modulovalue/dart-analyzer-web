@@ -306,6 +306,16 @@ body {
     content: '📄';
 }
 
+.tree-loading, .tree-error {
+    padding: 16px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.tree-error {
+    color: var(--error-red);
+}
+
 /* Editor Panel */
 .editor-panel {
     flex: 1;
