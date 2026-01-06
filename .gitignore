@@ -7,6 +7,9 @@ pubspec.lock
 # FVM
 .fvm/
 
+# Claude
+.claude/
+
 # IDE
 .idea/
 *.iml
