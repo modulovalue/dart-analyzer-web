@@ -2,6 +2,8 @@
 
 A browser-based tool for exploring Dart code structure. View tokens, AST, and more - all running client-side using the Dart analyzer package compiled to JavaScript.
 
+![Screenshot](docs/images/screenshot.png)
+
 ## Features
 
 - **Monaco Editor** - Full-featured code editor with Dart syntax highlighting
