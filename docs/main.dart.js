@@ -74698,7 +74698,7 @@
     _token_stream_plugin$_generateHtml$1(tokens) {
       var t1, _i, t2, t3, token, cssClass;
       type$.List__TokenInfo_2._as(tokens);
-      for (t1 = tokens.length, _i = 0, t2 = '<div class="token-stream">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v6.4.1</span>\n</div>\n<table class="token-table">\n<thead><tr>\n<th>Line</th><th>Col</th><th>Type</th><th>Lexeme</th>\n</tr></thead>\n<tbody>\n'; t3 = tokens.length, _i < t3; tokens.length === t1 || (0, A.throwConcurrentModificationError)(tokens), ++_i) {
+      for (t1 = tokens.length, _i = 0, t2 = '<div class="token-stream">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v9.0.0</span>\n</div>\n<table class="token-table">\n<thead><tr>\n<th>Line</th><th>Col</th><th>Type</th><th>Lexeme</th>\n</tr></thead>\n<tbody>\n'; t3 = tokens.length, _i < t3; tokens.length === t1 || (0, A.throwConcurrentModificationError)(tokens), ++_i) {
         token = tokens[_i];
         cssClass = this._token_stream_plugin$_getCssClass$1(token);
         t3 = A.stringReplaceAllUnchecked(token.lexeme, "&", "&amp;");

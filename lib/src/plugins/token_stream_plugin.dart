@@ -3,7 +3,7 @@ import 'package:analyzer/dart/ast/token.dart';
 import '../plugin.dart';
 
 // Analyzer version - update when upgrading the analyzer package
-const _analyzerVersion = '6.4.1';
+const _analyzerVersion = '9.0.0';
 
 /// Plugin that displays the token stream from lexical analysis
 class TokenStreamPlugin extends Plugin {
