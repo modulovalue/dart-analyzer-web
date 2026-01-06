@@ -1,10 +1,8 @@
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
+import '../analyzer_version.dart';
 import '../plugin.dart';
-
-// Analyzer version - update when upgrading the analyzer package
-const _analyzerVersion = '9.0.0';
 
 /// Plugin that displays the Abstract Syntax Tree
 class AstPlugin extends Plugin {
@@ -45,7 +43,7 @@ class AstPlugin extends Plugin {
 
     buffer.writeln('<div class="plugin-header">');
     buffer.writeln('<span class="plugin-badge">Analyzer</span>');
-    buffer.writeln('<span class="version-info">v$_analyzerVersion</span>');
+    buffer.writeln('<span class="version-info">v$analyzerVersion</span>');
     buffer.writeln('</div>');
 
     // Show errors if any

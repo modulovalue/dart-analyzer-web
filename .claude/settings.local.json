@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.github.com)",
+      "Bash(find:*)",
+      "Bash(open -a \"IntelliJ IDEA\" /Users/modulovalue/Desktop/dart-analyzer-web)",
+      "Bash(open:*)",
+      "Bash(git checkout:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:dartpad.dev)",
+      "WebFetch(domain:pub.dev)",
+      "Bash(rm:*)",
+      "Bash(kill:*)"
+    ]
+  }
+}

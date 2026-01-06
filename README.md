@@ -15,7 +15,7 @@ Visit [https://modulovalue.github.io/dart-analyzer-web/](https://modulovalue.git
 ## Technology
 
 - Built with Dart, compiled to JavaScript using dart2js
-- Uses the official [analyzer](https://pub.dev/packages/analyzer) package (v9.0.0)
+- Uses the official [analyzer](https://pub.dev/packages/analyzer) package
 - Monaco Editor for code editing
 - No server required - everything runs in the browser
 
@@ -30,6 +30,9 @@ Visit [https://modulovalue.github.io/dart-analyzer-web/](https://modulovalue.git
 ```bash
 # Get dependencies
 fvm dart pub get
+
+# Update analyzer version (reads from pubspec.lock)
+fvm dart run tool/update_version.dart
 
 # Compile to JavaScript
 fvm dart compile js docs/main.dart -o docs/main.dart.js
