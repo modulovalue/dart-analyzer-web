@@ -3,11 +3,11 @@ description: Dart to WASM playground with plugin system
 version: 1.0.0
 
 environment:
-  sdk: ^3.0.0
+  sdk: ^3.6.0
 
 dependencies:
   web: ^1.0.0
-  analyzer: ^6.0.0
+  analyzer: ^9.0.0
   antlr4: ^4.13.2
   archive: ^3.6.1
 

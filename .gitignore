@@ -4,6 +4,9 @@
 build/
 pubspec.lock
 
+# FVM
+.fvm/
+
 # IDE
 .idea/
 *.iml

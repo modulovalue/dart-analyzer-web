@@ -4,7 +4,7 @@ import 'package:analyzer/dart/ast/visitor.dart';
 import '../plugin.dart';
 
 // Analyzer version - update when upgrading the analyzer package
-const _analyzerVersion = '6.4.1';
+const _analyzerVersion = '9.0.0';
 
 /// Plugin that displays the Abstract Syntax Tree
 class AstPlugin extends Plugin {
@@ -190,7 +190,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
   @override
   void visitLibraryDirective(LibraryDirective node) {
-    _current.children.add(_node('LibraryDirective', node, name: node.name2?.name));
+    _current.children.add(_node('LibraryDirective', node, name: node.name?.toSource()));
   }
 
   @override
@@ -199,7 +199,7 @@ class _AstTreeBuilder extends GeneralizingAstVisitor<void> {
 
     if (node.extendsClause != null) {
       _current.children.add(_node('ExtendsClause', node.extendsClause!,
-          value: node.extendsClause!.superclass.name2.lexeme));
+          value: node.extendsClause!.superclass.name.lexeme));
     }
 
     for (final member in node.members) {

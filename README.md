@@ -15,7 +15,7 @@ Visit [https://modulovalue.github.io/dart-analyzer-web/](https://modulovalue.git
 ## Technology
 
 - Built with Dart, compiled to JavaScript using dart2js
-- Uses the official [analyzer](https://pub.dev/packages/analyzer) package (v6.4.1)
+- Uses the official [analyzer](https://pub.dev/packages/analyzer) package (v9.0.0)
 - Monaco Editor for code editing
 - No server required - everything runs in the browser
 
@@ -23,16 +23,16 @@ Visit [https://modulovalue.github.io/dart-analyzer-web/](https://modulovalue.git
 
 ### Prerequisites
 
-- Dart SDK 3.0+
+- [FVM](https://fvm.app/) (Flutter Version Management)
 
 ### Build
 
 ```bash
 # Get dependencies
-dart pub get
+fvm dart pub get
 
 # Compile to JavaScript
-dart compile js docs/main.dart -o docs/main.dart.js
+fvm dart compile js docs/main.dart -o docs/main.dart.js
 
 # Serve locally (any static server works)
 cd docs && python3 -m http.server 8080
