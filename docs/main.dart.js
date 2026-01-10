@@ -763,9 +763,6 @@
       this.__internal$_source = t0;
       this.$ti = t1;
     },
-    Symbol: function Symbol(t0) {
-      this.__internal$_name = t0;
-    },
     ConstantSet__throwUnmodifiable() {
       throw A.wrapException(A.UnsupportedError$("Cannot modify constant Set"));
     },
@@ -799,12 +796,6 @@
         return "null";
       result = J.toString$0$(value);
       return result;
-    },
-    createUnmangledInvocationMirror(symbol, internalName, kind, $arguments, argumentNames, types) {
-      var t1;
-      A._asString(internalName);
-      t1 = type$.List_dynamic;
-      return new A.JSInvocationMirror(symbol, A._asInt(kind), t1._as($arguments), t1._as(argumentNames), A._asInt(types));
     },
     Primitives_objectHashCode(object) {
       var hash,
@@ -1729,10 +1720,6 @@
       this._0 = t0;
       this._1 = t1;
     },
-    ConstantMapView: function ConstantMapView(t0, t1) {
-      this._collection$_map = t0;
-      this.$ti = t1;
-    },
     ConstantMap: function ConstantMap() {
     },
     ConstantStringMap: function ConstantStringMap(t0, t1, t2) {
@@ -1758,14 +1745,6 @@
       this._jsIndex = t0;
       this.__js_helper$_length = t1;
       this.$ti = t2;
-    },
-    JSInvocationMirror: function JSInvocationMirror(t0, t1, t2, t3, t4) {
-      var _ = this;
-      _.__js_helper$_memberName = t0;
-      _.__js_helper$_kind = t1;
-      _._arguments = t2;
-      _._namedArgumentNames = t3;
-      _._typeArgumentCount = t4;
     },
     Primitives_initTicker_closure: function Primitives_initTicker_closure(t0) {
       this.performance = t0;
@@ -4203,17 +4182,9 @@
       this._box_0 = t0;
       this.result = t1;
     },
-    _UnmodifiableMapMixin: function _UnmodifiableMapMixin() {
-    },
-    MapView: function MapView() {
-    },
-    UnmodifiableMapView: function UnmodifiableMapView() {
-    },
     SetBase: function SetBase() {
     },
     _SetBase: function _SetBase() {
-    },
-    _UnmodifiableMapView_MapView__UnmodifiableMapMixin: function _UnmodifiableMapView_MapView__UnmodifiableMapMixin() {
     },
     _Utf8Decoder__makeNativeUint8List(codeUnits, start, end) {
       var bytes, t1, i, b,
@@ -4420,9 +4391,6 @@
           string = string + separator + A.S(iterator.get$current(iterator));
       }
       return string;
-    },
-    NoSuchMethodError_NoSuchMethodError$withInvocation(receiver, invocation) {
-      return new A.NoSuchMethodError(receiver, invocation.get$memberName(), invocation.get$positionalArguments(), invocation.get$namedArguments());
     },
     Uri_base() {
       var cachedUri, uri,
@@ -5830,10 +5798,6 @@
       }
       return result;
     },
-    NoSuchMethodError_toString_closure: function NoSuchMethodError_toString_closure(t0, t1) {
-      this._box_0 = t0;
-      this.sb = t1;
-    },
     Duration: function Duration(t0) {
       this._duration = t0;
     },
@@ -5869,13 +5833,6 @@
       _.invalidValue = t2;
       _.name = t3;
       _.message = t4;
-    },
-    NoSuchMethodError: function NoSuchMethodError(t0, t1, t2, t3) {
-      var _ = this;
-      _._core$_receiver = t0;
-      _._core$_memberName = t1;
-      _._core$_arguments = t2;
-      _._namedArguments = t3;
     },
     UnsupportedError: function UnsupportedError(t0) {
       this.message = t0;
@@ -6302,10 +6259,10 @@
     },
     Diagnostic_Diagnostic$tmp($arguments, contextMessages, diagnosticCode, $length, offset, source) {
       var message, correctionTemplate,
-        t1 = diagnosticCode.uniqueName;
-      B.Map_empty0.$index(0, t1);
+        t1 = diagnosticCode._uniqueName;
+      B.Map_empty0.$index(0, t1.toLowerCase());
       message = A.formatList(diagnosticCode._problemMessage, $arguments);
-      B.Map_empty0.$index(0, t1);
+      B.Map_empty0.$index(0, t1.toLowerCase());
       correctionTemplate = diagnosticCode._correctionMessage;
       if (correctionTemplate != null)
         A.formatList(correctionTemplate, $arguments);
@@ -6319,19 +6276,64 @@
       this.problemMessage = t1;
       this.source = t2;
     },
-    DiagnosticCodeWithExpectedTypes: function DiagnosticCodeWithExpectedTypes() {
-    },
     DiagnosticCode: function DiagnosticCode() {
     },
+    DiagnosticCodeImpl: function DiagnosticCodeImpl() {
+    },
+    DiagnosticCodeWithExpectedTypes: function DiagnosticCodeWithExpectedTypes(t0, t1, t2, t3, t4) {
+      var _ = this;
+      _.expectedTypes = t0;
+      _._errors0$_name = t1;
+      _._uniqueName = t2;
+      _._problemMessage = t3;
+      _._correctionMessage = t4;
+    },
+    DiagnosticSeverity: function DiagnosticSeverity(t0, t1) {
+      this.name = t0;
+      this.ordinal = t1;
+    },
+    DiagnosticType: function DiagnosticType(t0, t1) {
+      this.name = t0;
+      this.ordinal = t1;
+    },
+    DiagnosticWithArguments: function DiagnosticWithArguments(t0, t1, t2, t3, t4, t5, t6) {
+      var _ = this;
+      _.withArguments = t0;
+      _.expectedTypes = t1;
+      _._errors0$_name = t2;
+      _._uniqueName = t3;
+      _._problemMessage = t4;
+      _._correctionMessage = t5;
+      _.$ti = t6;
+    },
     DiagnosticWithoutArguments: function DiagnosticWithoutArguments() {
+    },
+    DiagnosticWithoutArgumentsImpl: function DiagnosticWithoutArgumentsImpl(t0, t1, t2, t3, t4) {
+      var _ = this;
+      _.expectedTypes = t0;
+      _._errors0$_name = t1;
+      _._uniqueName = t2;
+      _._problemMessage = t3;
+      _._correctionMessage = t4;
     },
     ExpectedType: function ExpectedType(t0, t1) {
       this.index = t0;
       this._name = t1;
     },
-    LocatableDiagnosticImpl: function LocatableDiagnosticImpl() {
+    LocatableDiagnosticImpl: function LocatableDiagnosticImpl(t0, t1) {
+      this.code = t0;
+      this.$arguments = t1;
+    },
+    LocatedDiagnostic: function LocatedDiagnostic(t0, t1, t2) {
+      this.locatableDiagnostic = t0;
+      this.offset = t1;
+      this.length = t2;
+    },
+    _DiagnosticWithoutArgumentsImpl_DiagnosticCodeWithExpectedTypes_DiagnosticWithoutArguments: function _DiagnosticWithoutArgumentsImpl_DiagnosticCodeWithExpectedTypes_DiagnosticWithoutArguments() {
     },
     Source: function Source() {
+    },
+    SyntacticEntity: function SyntacticEntity() {
     },
     ExperimentalFlag: function ExperimentalFlag(t0, t1, t2, t3, t4) {
       var _ = this;
@@ -6380,12 +6382,12 @@
     _withArgumentsOldBinaryOperatorWrittenOut(string, string2) {
       return A._withArgumentsBinaryOperatorWrittenOut(A._asString(string), A._asString(string2));
     },
-    _withArgumentsBuiltInIdentifierAsType(lexeme) {
+    _withArgumentsBuiltInIdentifierAsType0(lexeme) {
       type$.Token._as(lexeme);
       return new A.Message(B.Template_RdP, "The built-in identifier '" + lexeme.get$lexeme() + "' can't be used as a type.", null, A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldBuiltInIdentifierAsType(lexeme) {
-      return A._withArgumentsBuiltInIdentifierAsType(type$.Token._as(lexeme));
+      return A._withArgumentsBuiltInIdentifierAsType0(type$.Token._as(lexeme));
     },
     _withArgumentsBuiltInIdentifierInDeclaration(lexeme) {
       type$.Token._as(lexeme);
@@ -6449,6 +6451,19 @@
     },
     _withArgumentsOldExpectedButGot(string) {
       return A._withArgumentsExpectedButGot(A._asString(string));
+    },
+    _withArgumentsExpectedButGot2(string, string2) {
+      var _s18_ = "No string provided";
+      A._asString(string);
+      A._asString(string2);
+      if (string.length === 0)
+        A.throwExpression(_s18_);
+      if (string2.length === 0)
+        A.throwExpression(_s18_);
+      return new A.Message(B.Template_Mvq, "Expected '" + string + "' or '" + string2 + "' before this.", null, A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
+    },
+    _withArgumentsOldExpectedButGot2(string, string2) {
+      return A._withArgumentsExpectedButGot2(A._asString(string), A._asString(string2));
     },
     _withArgumentsExpectedClassMember(lexeme) {
       type$.Token._as(lexeme);
@@ -6561,7 +6576,7 @@
       var lexeme_0;
       type$.Token._as(lexeme);
       lexeme_0 = lexeme.get$lexeme();
-      return new A.Message(B.Template_Exj, "Can't have modifier '" + lexeme_0 + "' in an extension.", "Try removing '" + lexeme_0 + "'.", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_W5a, "Can't have modifier '" + lexeme_0 + "' in an extension.", "Try removing '" + lexeme_0 + "'.", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldExtraneousModifierInExtension(lexeme) {
       return A._withArgumentsExtraneousModifierInExtension(type$.Token._as(lexeme));
@@ -6595,21 +6610,21 @@
     },
     _withArgumentsIllegalPatternAssignmentVariableName(lexeme) {
       type$.Token._as(lexeme);
-      return new A.Message(B.Template_ZFv, "A variable assigned by a pattern assignment can't be named '" + lexeme.get$lexeme() + "'.", "Choose a different name.", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_BQE, "A variable assigned by a pattern assignment can't be named '" + lexeme.get$lexeme() + "'.", "Choose a different name.", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldIllegalPatternAssignmentVariableName(lexeme) {
       return A._withArgumentsIllegalPatternAssignmentVariableName(type$.Token._as(lexeme));
     },
     _withArgumentsIllegalPatternIdentifierName(lexeme) {
       type$.Token._as(lexeme);
-      return new A.Message(B.Template_LpK, "A pattern can't refer to an identifier named '" + lexeme.get$lexeme() + "'.", "Match the identifier using '==", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_W1q, "A pattern can't refer to an identifier named '" + lexeme.get$lexeme() + "'.", "Match the identifier using '==", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldIllegalPatternIdentifierName(lexeme) {
       return A._withArgumentsIllegalPatternIdentifierName(type$.Token._as(lexeme));
     },
     _withArgumentsIllegalPatternVariableName(lexeme) {
       type$.Token._as(lexeme);
-      return new A.Message(B.Template_m4T, "The variable declared by a variable pattern can't be named '" + lexeme.get$lexeme() + "'.", "Choose a different name.", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_KH8, "The variable declared by a variable pattern can't be named '" + lexeme.get$lexeme() + "'.", "Choose a different name.", A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldIllegalPatternVariableName(lexeme) {
       return A._withArgumentsIllegalPatternVariableName(type$.Token._as(lexeme));
@@ -6645,7 +6660,7 @@
       A._asString($name);
       if ($name.length === 0)
         A.throwExpression("No name provided");
-      return new A.Message(B.Template_5rc, "The binary operator " + A.demangleMixinApplicationName($name) + " is not supported as a constant pattern.", string$.Try_wrx2e, A.LinkedHashMap_LinkedHashMap$_literal(["name", $name], type$.String, type$.dynamic));
+      return new A.Message(B.Template_ipH, "The binary operator " + A.demangleMixinApplicationName($name) + " is not supported as a constant pattern.", string$.Try_wrx2e, A.LinkedHashMap_LinkedHashMap$_literal(["name", $name], type$.String, type$.dynamic));
     },
     _withArgumentsOldInvalidConstantPatternBinary($name) {
       return A._withArgumentsInvalidConstantPatternBinary(A._asString($name));
@@ -6654,14 +6669,14 @@
       A._asString($name);
       if ($name.length === 0)
         A.throwExpression("No name provided");
-      return new A.Message(B.Template_OCe, "The unary operator " + A.demangleMixinApplicationName($name) + " is not supported as a constant pattern.", string$.Try_wrx2e, A.LinkedHashMap_LinkedHashMap$_literal(["name", $name], type$.String, type$.dynamic));
+      return new A.Message(B.Template_TGj, "The unary operator " + A.demangleMixinApplicationName($name) + " is not supported as a constant pattern.", string$.Try_wrx2e, A.LinkedHashMap_LinkedHashMap$_literal(["name", $name], type$.String, type$.dynamic));
     },
     _withArgumentsOldInvalidConstantPatternUnary($name) {
       return A._withArgumentsInvalidConstantPatternUnary(A._asString($name));
     },
     _withArgumentsInvalidOperator(lexeme) {
       type$.Token._as(lexeme);
-      return new A.Message(B.Template_MOM, "The string '" + lexeme.get$lexeme() + "' isn't a user-definable operator.", null, A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_nuN, "The string '" + lexeme.get$lexeme() + "' isn't a user-definable operator.", null, A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldInvalidOperator(lexeme) {
       return A._withArgumentsInvalidOperator(type$.Token._as(lexeme));
@@ -6673,7 +6688,7 @@
       if (string.length === 0)
         A.throwExpression("No string provided");
       lexeme_0 = lexeme.get$lexeme();
-      return new A.Message(B.Template_QfC, "A " + string + " literal can't be prefixed by '" + lexeme_0 + "'.", "Try removing '" + lexeme_0 + "'", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_mPF, "A " + string + " literal can't be prefixed by '" + lexeme_0 + "'.", "Try removing '" + lexeme_0 + "'", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldLiteralWithClass(string, lexeme) {
       A._asString(string);
@@ -6686,7 +6701,7 @@
       if (string.length === 0)
         A.throwExpression("No string provided");
       lexeme_0 = lexeme.get$lexeme();
-      return new A.Message(B.Template_pu2, "A " + string + " literal can't be prefixed by 'new " + lexeme_0 + "'.", "Try removing 'new' and '" + lexeme_0 + "'", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_p9r, "A " + string + " literal can't be prefixed by 'new " + lexeme_0 + "'.", "Try removing 'new' and '" + lexeme_0 + "'", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldLiteralWithClassAndNew(string, lexeme) {
       A._asString(string);
@@ -6700,7 +6715,7 @@
         A.throwExpression(_s18_);
       if (string2.length === 0)
         A.throwExpression(_s18_);
-      return new A.Message(B.Template_XKE, "The modifier '" + string + "' should be before the modifier '" + string2 + "'.", "Try re-ordering the modifiers.", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
+      return new A.Message(B.Template_QjQ, "The modifier '" + string + "' should be before the modifier '" + string2 + "'.", "Try re-ordering the modifiers.", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
     },
     _withArgumentsOldModifierOutOfOrder(string, string2) {
       return A._withArgumentsModifierOutOfOrder(A._asString(string), A._asString(string2));
@@ -6713,7 +6728,7 @@
         A.throwExpression(_s18_);
       if (string2.length === 0)
         A.throwExpression(_s18_);
-      return new A.Message(B.Template_bvo, "Each '" + string + "' definition can have at most one '" + string2 + "' clause.", "Try combining all of the '" + string2 + "' clauses into a single clause.", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
+      return new A.Message(B.Template_H4z, "Each '" + string + "' definition can have at most one '" + string2 + "' clause.", "Try combining all of the '" + string2 + "' clauses into a single clause.", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
     },
     _withArgumentsOldMultipleClauses(string, string2) {
       return A._withArgumentsMultipleClauses(A._asString(string), A._asString(string2));
@@ -6743,7 +6758,7 @@
         A.throwExpression(_s18_);
       if (string2.length === 0)
         A.throwExpression(_s18_);
-      return new A.Message(B.Template_aUy, "The '" + string + "' clause must come before the '" + string2 + "' clause.", "Try moving the '" + string + "' clause before the '" + string2 + "' clause.", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
+      return new A.Message(B.Template_hkb, "The '" + string + "' clause must come before the '" + string2 + "' clause.", "Try moving the '" + string + "' clause before the '" + string2 + "' clause.", A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
     },
     _withArgumentsOldOutOfOrderClauses(string, string2) {
       return A._withArgumentsOutOfOrderClauses(A._asString(string), A._asString(string2));
@@ -6752,14 +6767,14 @@
       A._asString($name);
       if ($name.length === 0)
         A.throwExpression("No name provided");
-      return new A.Message(B.Template_Gp6, "Variable '" + A.demangleMixinApplicationName($name) + "' can't be declared in a pattern assignment.", string$.Try_usp, A.LinkedHashMap_LinkedHashMap$_literal(["name", $name], type$.String, type$.dynamic));
+      return new A.Message(B.Template_Sxm, "Variable '" + A.demangleMixinApplicationName($name) + "' can't be declared in a pattern assignment.", string$.Try_usp, A.LinkedHashMap_LinkedHashMap$_literal(["name", $name], type$.String, type$.dynamic));
     },
     _withArgumentsOldPatternAssignmentDeclaresVariable($name) {
       return A._withArgumentsPatternAssignmentDeclaresVariable(A._asString($name));
     },
     _withArgumentsUnexpectedToken(lexeme) {
       type$.Token._as(lexeme);
-      return new A.Message(B.Template_bKS, "Unexpected token '" + lexeme.get$lexeme() + "'.", null, A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_xFL, "Unexpected token '" + lexeme.get$lexeme() + "'.", null, A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldUnexpectedToken(lexeme) {
       return A._withArgumentsUnexpectedToken(type$.Token._as(lexeme));
@@ -6777,7 +6792,7 @@
     },
     _withArgumentsUnsupportedOperator(lexeme) {
       type$.Token._as(lexeme);
-      return new A.Message(B.Template_EoY, "The '" + lexeme.get$lexeme() + "' operator is not supported.", null, A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
+      return new A.Message(B.Template_GOY, "The '" + lexeme.get$lexeme() + "' operator is not supported.", null, A.LinkedHashMap_LinkedHashMap$_literal(["lexeme", lexeme], type$.String, type$.dynamic));
     },
     _withArgumentsOldUnsupportedOperator(lexeme) {
       return A._withArgumentsUnsupportedOperator(type$.Token._as(lexeme));
@@ -6790,7 +6805,7 @@
         A.throwExpression(_s18_);
       if (string2.length === 0)
         A.throwExpression(_s18_);
-      return new A.Message(B.Template_r02, "String starting with " + string + " must end with " + string2 + ".", null, A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
+      return new A.Message(B.Template_OBa, "String starting with " + string + " must end with " + string2 + ".", null, A.LinkedHashMap_LinkedHashMap$_literal(["string", string, "string2", string2], type$.String, type$.dynamic));
     },
     _withArgumentsOldUnterminatedString(string, string2) {
       return A._withArgumentsUnterminatedString(A._asString(string), A._asString(string2));
@@ -7340,23 +7355,27 @@
       _._afterFactory = false;
     },
     Parser$(listener, experimentalFeatures) {
-      var t4, t5,
+      var t4, t5, t6,
         t1 = experimentalFeatures._featureSet._flags,
         t2 = A.fromSharedExperimentalFlags(B.ExperimentalFlag_186).index,
         t3 = t1.length;
       if (!(t2 < t3))
         return A.ioore(t1, t2);
       t2 = t1[t2];
-      t4 = A.fromSharedExperimentalFlags(B.ExperimentalFlag_ZeW).index;
+      t4 = A.fromSharedExperimentalFlags(B.ExperimentalFlag_bDC).index;
       if (!(t4 < t3))
         return A.ioore(t1, t4);
       t4 = t1[t4];
-      t5 = A.fromSharedExperimentalFlags(B.ExperimentalFlag_8Mz).index;
+      t5 = A.fromSharedExperimentalFlags(B.ExperimentalFlag_x3b).index;
       if (!(t5 < t3))
         return A.ioore(t1, t5);
-      return new A.Parser(listener, B.AsyncModifier_0, B.LoopState_0, t2, t4, t1[t5]);
+      t5 = t1[t5];
+      t6 = A.fromSharedExperimentalFlags(B.ExperimentalFlag_dxK).index;
+      if (!(t6 < t3))
+        return A.ioore(t1, t6);
+      return new A.Parser(listener, B.AsyncModifier_0, B.LoopState_0, t2, t4, t5, t1[t6]);
     },
-    Parser: function Parser(t0, t1, t2, t3, t4, t5) {
+    Parser: function Parser(t0, t1, t2, t3, t4, t5, t6) {
       var _ = this;
       _.listener = t0;
       _.mayParseFunctionExpressions = true;
@@ -7365,7 +7384,8 @@
       _.cachedRewriter = null;
       _.isPatternsFeatureEnabled = t3;
       _._isEnhancedPartsFeatureEnabled = t4;
-      _._isDeclaringConstructorsFeatureEnabled = t5;
+      _._isPrimaryConstructorsFeatureEnabled = t5;
+      _._isAnonymousMethodsFeatureEnabled = t6;
       _.isLastPatternAllowedInsideUnaryPattern = false;
       _.expressionDepth = _.statementDepth = 0;
       _._currentlyRecovering = _._recoverAtPrecedenceLevel = false;
@@ -7512,7 +7532,7 @@
             ++i;
             if (t2 === i) {
               t1 = $location._typeAndOffset;
-              message = t5.length === 0 && B.MessageCode_odM.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_odM;
+              message = t5.length === 0 && B.MessageCode_LKi.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_LKi;
               t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, 1);
               return A.String_String$fromCharCodes(codeUnits, 0, _null);
             }
@@ -7534,7 +7554,7 @@
             else if (code === 120) {
               if (t2 <= i + 2) {
                 t1 = $location._typeAndOffset;
-                message = t5.length === 0 && B.MessageCode_zpJ.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_zpJ;
+                message = t5.length === 0 && B.MessageCode_Kh2.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_Kh2;
                 t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, t2 + 1 - i);
                 return A.String_String$fromCharCodes(codeUnits, 0, _null);
               }
@@ -7545,7 +7565,7 @@
                 digit = t1.charCodeAt(i0);
                 if (!A.isHexDigit(digit)) {
                   t1 = $location._typeAndOffset;
-                  message = t5.length === 0 && B.MessageCode_zpJ.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_zpJ;
+                  message = t5.length === 0 && B.MessageCode_Kh2.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_Kh2;
                   t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, i0 + 1 - i);
                   return A.String_String$fromCharCodes(codeUnits, 0, _null);
                 }
@@ -7556,7 +7576,7 @@
               t6 = i + 1;
               if (t2 === t6) {
                 t1 = $location._typeAndOffset;
-                message = t5.length === 0 && B.MessageCode_q3l.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_q3l;
+                message = t5.length === 0 && B.MessageCode_Ycr.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_Ycr;
                 t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, t2 + 1 - i);
                 return A.String_String$fromCharCodes(codeUnits, 0, _null);
               }
@@ -7567,7 +7587,7 @@
                   ++i0;
                   if (t2 === i0) {
                     t1 = $location._typeAndOffset;
-                    message = t5.length === 0 && B.MessageCode_emg.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_emg;
+                    message = t5.length === 0 && B.MessageCode_t7M.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_t7M;
                     t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, i0 + 1 - i);
                     return A.String_String$fromCharCodes(codeUnits, 0, _null);
                   }
@@ -7581,7 +7601,7 @@
                     break;
                   if (!A.isHexDigit(digit)) {
                     t1 = $location._typeAndOffset;
-                    message = t5.length === 0 && B.MessageCode_emg.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_emg;
+                    message = t5.length === 0 && B.MessageCode_t7M.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_t7M;
                     t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, i0 + 2 - i);
                     return A.String_String$fromCharCodes(codeUnits, 0, _null);
                   }
@@ -7589,13 +7609,13 @@
                 }
                 if (!foundEndBracket) {
                   t6 = $location._typeAndOffset;
-                  message = t5.length === 0 && B.MessageCode_emg.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_emg;
+                  message = t5.length === 0 && B.MessageCode_t7M.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_t7M;
                   t4.reportMessage$3(message, (t6 >>> 8) - 1 + i, i0 + 1 - i);
                 }
               } else {
                 if (t2 <= i + 4) {
                   t1 = $location._typeAndOffset;
-                  message = t5.length === 0 && B.MessageCode_IHW.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_IHW;
+                  message = t5.length === 0 && B.MessageCode_YM6.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_YM6;
                   t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, t2 + 1 - i);
                   return A.String_String$fromCharCodes(codeUnits, 0, _null);
                 }
@@ -7606,7 +7626,7 @@
                   digit = t1.charCodeAt(i0);
                   if (!A.isHexDigit(digit)) {
                     t1 = $location._typeAndOffset;
-                    message = t5.length === 0 && B.MessageCode_IHW.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_IHW;
+                    message = t5.length === 0 && B.MessageCode_YM6.get$code(0).pseudoSharedCode === B.PseudoSharedCode_42 ? B.MessageCode_TUE : B.MessageCode_YM6;
                     t4.reportMessage$3(message, (t1 >>> 8) - 1 + i, i0 + 1 - i);
                     return A.String_String$fromCharCodes(codeUnits, 0, _null);
                   }
@@ -8583,14 +8603,6 @@
     },
     LibraryLanguageVersion: function LibraryLanguageVersion() {
     },
-    DiagnosticOrErrorListenerExtension_onDiagnostic(_this, diagnostic) {
-      var t1;
-      $label0$0: {
-        t1 = _this.onDiagnostic$1(diagnostic);
-        break $label0$0;
-      }
-      return t1;
-    },
     RecordingDiagnosticListener: function RecordingDiagnosticListener() {
       this._diagnostics = null;
     },
@@ -8617,28 +8629,28 @@
       var t1;
       switch (flag.index) {
         case 0:
-          t1 = $.$get$ExperimentalFeatures_augmentations();
+          t1 = $.$get$ExperimentalFeatures_anonymous_methods();
           break;
         case 1:
-          t1 = $.$get$ExperimentalFeatures_class_modifiers();
+          t1 = $.$get$ExperimentalFeatures_augmentations();
           break;
         case 2:
-          t1 = $.$get$ExperimentalFeatures_const_functions();
+          t1 = $.$get$ExperimentalFeatures_class_modifiers();
           break;
         case 3:
-          t1 = $.$get$ExperimentalFeatures_constant_update_2018();
+          t1 = $.$get$ExperimentalFeatures_const_functions();
           break;
         case 4:
-          t1 = $.$get$ExperimentalFeatures_constructor_tearoffs();
+          t1 = $.$get$ExperimentalFeatures_constant_update_2018();
           break;
         case 5:
-          t1 = $.$get$ExperimentalFeatures_control_flow_collections();
+          t1 = $.$get$ExperimentalFeatures_constructor_tearoffs();
           break;
         case 6:
-          t1 = $.$get$ExperimentalFeatures_data_assets();
+          t1 = $.$get$ExperimentalFeatures_control_flow_collections();
           break;
         case 7:
-          t1 = $.$get$ExperimentalFeatures_declaring_constructors();
+          t1 = $.$get$ExperimentalFeatures_data_assets();
           break;
         case 8:
           t1 = $.$get$ExperimentalFeatures_digit_separators();
@@ -8701,48 +8713,51 @@
           t1 = $.$get$ExperimentalFeatures_patterns();
           break;
         case 28:
-          t1 = $.$get$ExperimentalFeatures_private_named_parameters();
+          t1 = $.$get$ExperimentalFeatures_primary_constructors();
           break;
         case 29:
-          t1 = $.$get$ExperimentalFeatures_record_use();
+          t1 = $.$get$ExperimentalFeatures_private_named_parameters();
           break;
         case 30:
-          t1 = $.$get$ExperimentalFeatures_records();
+          t1 = $.$get$ExperimentalFeatures_record_use();
           break;
         case 31:
-          t1 = $.$get$ExperimentalFeatures_sealed_class();
+          t1 = $.$get$ExperimentalFeatures_records();
           break;
         case 32:
-          t1 = $.$get$ExperimentalFeatures_set_literals();
+          t1 = $.$get$ExperimentalFeatures_sealed_class();
           break;
         case 33:
-          t1 = $.$get$ExperimentalFeatures_sound_flow_analysis();
+          t1 = $.$get$ExperimentalFeatures_set_literals();
           break;
         case 34:
-          t1 = $.$get$ExperimentalFeatures_spread_collections();
+          t1 = $.$get$ExperimentalFeatures_sound_flow_analysis();
           break;
         case 35:
-          t1 = $.$get$ExperimentalFeatures_static_extensions();
+          t1 = $.$get$ExperimentalFeatures_spread_collections();
           break;
         case 36:
-          t1 = $.$get$ExperimentalFeatures_super_parameters();
+          t1 = $.$get$ExperimentalFeatures_static_extensions();
           break;
         case 37:
-          t1 = $.$get$ExperimentalFeatures_test_experiment();
+          t1 = $.$get$ExperimentalFeatures_super_parameters();
           break;
         case 38:
-          t1 = $.$get$ExperimentalFeatures_triple_shift();
+          t1 = $.$get$ExperimentalFeatures_test_experiment();
           break;
         case 39:
-          t1 = $.$get$ExperimentalFeatures_unnamed_libraries();
+          t1 = $.$get$ExperimentalFeatures_triple_shift();
           break;
         case 40:
-          t1 = $.$get$ExperimentalFeatures_unquoted_imports();
+          t1 = $.$get$ExperimentalFeatures_unnamed_libraries();
           break;
         case 41:
-          t1 = $.$get$ExperimentalFeatures_variance();
+          t1 = $.$get$ExperimentalFeatures_unquoted_imports();
           break;
         case 42:
+          t1 = $.$get$ExperimentalFeatures_variance();
+          break;
+        case 43:
           t1 = $.$get$ExperimentalFeatures_wildcard_variables();
           break;
         default:
@@ -8866,6 +8881,12 @@
       t1._initialize$2(t2, $arguments);
       return t2;
     },
+    BlockClassBodyImpl$(leftBracket, members, rightBracket) {
+      var t1 = new A.NodeListImpl(type$.NodeListImpl_ClassMemberImpl),
+        t2 = new A.BlockClassBodyImpl(leftBracket, t1, rightBracket);
+      t1._initialize$2(t2, members);
+      return t2;
+    },
     BlockFunctionBodyImpl$(block, keyword, star) {
       var t1 = new A.BlockFunctionBodyImpl(keyword, star, block);
       t1._becomeParentOf$1$1(block, type$.BlockImpl);
@@ -8889,11 +8910,11 @@
       t1._becomeParentOf$1$1(expression, type$.CommentReferableExpressionImpl);
       return t1;
     },
-    ConstructorDeclarationImpl$(augmentKeyword, body, comment, constKeyword, externalKeyword, factoryKeyword, initializers, metadata, $name, parameters, period, redirectedConstructor, returnType, separator) {
+    ConstructorDeclarationImpl$(augmentKeyword, body, comment, constKeyword, externalKeyword, factoryKeyword, initializers, metadata, $name, newKeyword, parameters, period, redirectedConstructor, separator, typeName) {
       var t1 = new A.NodeListImpl(type$.NodeListImpl_ConstructorInitializerImpl),
-        t2 = new A.ConstructorDeclarationImpl(augmentKeyword, externalKeyword, constKeyword, factoryKeyword, returnType, period, $name, parameters, separator, t1, redirectedConstructor, body, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+        t2 = new A.ConstructorDeclarationImpl(augmentKeyword, externalKeyword, constKeyword, factoryKeyword, newKeyword, typeName, period, $name, parameters, separator, t1, redirectedConstructor, body, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
       t2._initializeCommentAndAnnotations$2(comment, metadata);
-      t2._becomeParentOf$1$1(returnType, type$.IdentifierImpl);
+      t2._becomeParentOf$1$1(typeName, type$.nullable_SimpleIdentifierImpl);
       t2._becomeParentOf$1$1(parameters, type$.FormalParameterListImpl);
       t1._initialize$2(t2, initializers);
       t2._becomeParentOf$1$1(redirectedConstructor, type$.nullable_ConstructorNameImpl);
@@ -8950,7 +8971,7 @@
       return t1;
     },
     FunctionDeclarationImpl$(augmentKeyword, comment, externalKeyword, functionExpression, metadata, $name, propertyKeyword, returnType) {
-      var t1 = new A.FunctionDeclarationImpl(augmentKeyword, externalKeyword, returnType, propertyKeyword, functionExpression, null, $name, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+      var t1 = new A.FunctionDeclarationImpl(augmentKeyword, externalKeyword, returnType, propertyKeyword, $name, functionExpression, null, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
       t1._initializeCommentAndAnnotations$2(comment, metadata);
       t1._becomeParentOf$1$1(returnType, type$.nullable_TypeAnnotationImpl);
       t1._becomeParentOf$1$1(functionExpression, type$.FunctionExpressionImpl);
@@ -8969,8 +8990,8 @@
       t1._becomeParentOf$1$1($function, type$.ExpressionImpl);
       return t1;
     },
-    FunctionTypedFormalParameterImpl$(comment, covariantKeyword, metadata, $name, parameters, question, requiredKeyword, returnType, typeParameters) {
-      var t1 = new A.FunctionTypedFormalParameterImpl(returnType, typeParameters, parameters, question, covariantKeyword, requiredKeyword, $name, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+    FunctionTypedFormalParameterImpl$(comment, covariantKeyword, keyword, metadata, $name, parameters, question, requiredKeyword, returnType, typeParameters) {
+      var t1 = new A.FunctionTypedFormalParameterImpl(keyword, returnType, typeParameters, parameters, question, covariantKeyword, requiredKeyword, $name, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
       t1._initializeCommentAndAnnotations$2(comment, metadata);
       t1._becomeParentOf$1$1(returnType, type$.nullable_TypeAnnotationImpl);
       t1._becomeParentOf$1$1(typeParameters, type$.nullable_TypeParameterListImpl);
@@ -9076,14 +9097,6 @@
       t1._becomeParentOf$1$1(constructorName, type$.nullable_SimpleIdentifierImpl);
       t1._becomeParentOf$1$1(argumentList, type$.ArgumentListImpl);
       return t1;
-    },
-    RepresentationDeclarationImpl$(constructorName, fieldMetadata, fieldName, fieldType, leftParenthesis, rightParenthesis) {
-      var t1 = new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl),
-        t2 = new A.RepresentationDeclarationImpl(constructorName, leftParenthesis, t1, fieldType, fieldName, rightParenthesis);
-      t2._becomeParentOf$1$1(constructorName, type$.nullable_RepresentationConstructorNameImpl);
-      t1._initialize$2(t2, fieldMetadata);
-      t2._becomeParentOf$1$1(fieldType, type$.TypeAnnotationImpl);
-      return t2;
     },
     SimpleFormalParameterImpl$(comment, covariantKeyword, keyword, metadata, $name, requiredKeyword, type) {
       var t1 = new A.SimpleFormalParameterImpl(keyword, type, covariantKeyword, requiredKeyword, $name, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
@@ -9231,7 +9244,12 @@
       _._rightOperand = t2;
       _._ast$_parent = null;
     },
-    BlockClassBodyImplStub: function BlockClassBodyImplStub() {
+    BlockClassBodyImpl: function BlockClassBodyImpl(t0, t1, t2) {
+      var _ = this;
+      _.leftBracket = t0;
+      _.members = t1;
+      _.rightBracket = t2;
+      _._ast$_parent = null;
     },
     BlockFunctionBodyImpl: function BlockFunctionBodyImpl(t0, t1, t2) {
       var _ = this;
@@ -9304,9 +9322,9 @@
     ChildEntity: function ChildEntity(t0) {
       this.value = t0;
     },
-    ClassBodyImplStub: function ClassBodyImplStub() {
+    ClassBodyImpl: function ClassBodyImpl() {
     },
-    ClassDeclarationImpl: function ClassDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21) {
+    ClassDeclarationImpl: function ClassDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16) {
       var _ = this;
       _.augmentKeyword = t0;
       _.abstractKeyword = t1;
@@ -9316,25 +9334,20 @@
       _.finalKeyword = t5;
       _.mixinKeyword = t6;
       _.classKeyword = t7;
-      _._extendsClause = t8;
-      _._withClause = t9;
-      _._implementsClause = t10;
-      _._nativeClause = t11;
-      _._namePart = t12;
-      _._typeParameters = t13;
-      _._body = t14;
-      _._leftBracket = t15;
-      _._members = t16;
-      _._rightBracket = t17;
-      _.AstNodeWithNameScopeMixin_nameScope = t18;
-      _.name = t19;
-      _._AnnotatedNodeMixin__documentationComment = t20;
-      _._AnnotatedNodeMixin__metadata = t21;
+      _._namePart = t8;
+      _._extendsClause = t9;
+      _._withClause = t10;
+      _._implementsClause = t11;
+      _._nativeClause = t12;
+      _._body = t13;
+      _.AstNodeWithNameScopeMixin_nameScope = t14;
+      _._AnnotatedNodeMixin__documentationComment = t15;
+      _._AnnotatedNodeMixin__metadata = t16;
       _._ast$_parent = null;
     },
     ClassMemberImpl: function ClassMemberImpl() {
     },
-    ClassNamePartImplStub: function ClassNamePartImplStub() {
+    ClassNamePartImpl: function ClassNamePartImpl() {
     },
     ClassTypeAliasImpl: function ClassTypeAliasImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16) {
       var _ = this;
@@ -9351,8 +9364,8 @@
       _._implementsClause = t10;
       _.augmentKeyword = t11;
       _.typedefKeyword = t12;
-      _.semicolon = t13;
-      _.name = t14;
+      _.name = t13;
+      _.semicolon = t14;
       _._AnnotatedNodeMixin__documentationComment = t15;
       _._AnnotatedNodeMixin__metadata = t16;
       _._ast$_parent = null;
@@ -9414,22 +9427,23 @@
       this._expression = t1;
       this._ast$_parent = null;
     },
-    ConstructorDeclarationImpl: function ConstructorDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13) {
+    ConstructorDeclarationImpl: function ConstructorDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14) {
       var _ = this;
       _.augmentKeyword = t0;
       _.externalKeyword = t1;
       _.constKeyword = t2;
       _.factoryKeyword = t3;
-      _._returnType = t4;
-      _.period = t5;
-      _.name = t6;
-      _._parameters = t7;
-      _.separator = t8;
-      _.initializers = t9;
-      _._redirectedConstructor = t10;
-      _._body = t11;
-      _._AnnotatedNodeMixin__documentationComment = t12;
-      _._AnnotatedNodeMixin__metadata = t13;
+      _.newKeyword = t4;
+      _._typeName = t5;
+      _.period = t6;
+      _.name = t7;
+      _._parameters = t8;
+      _.separator = t9;
+      _.initializers = t10;
+      _._redirectedConstructor = t11;
+      _._body = t12;
+      _._AnnotatedNodeMixin__documentationComment = t13;
+      _._AnnotatedNodeMixin__metadata = t14;
       _._ast$_parent = null;
     },
     ConstructorFieldInitializerImpl: function ConstructorFieldInitializerImpl(t0, t1, t2, t3, t4) {
@@ -9540,6 +9554,10 @@
       this.value = t1;
       this._ast$_parent = null;
     },
+    EmptyClassBodyImpl: function EmptyClassBodyImpl(t0) {
+      this.semicolon = t0;
+      this._ast$_parent = null;
+    },
     EmptyFunctionBodyImpl: function EmptyFunctionBodyImpl(t0) {
       this.semicolon = t0;
       this._ast$_parent = null;
@@ -9548,7 +9566,14 @@
       this.semicolon = t0;
       this._ast$_parent = null;
     },
-    EnumBodyImplStub: function EnumBodyImplStub() {
+    EnumBodyImpl: function EnumBodyImpl(t0, t1, t2, t3, t4) {
+      var _ = this;
+      _.leftBracket = t0;
+      _.constants = t1;
+      _.semicolon = t2;
+      _.members = t3;
+      _.rightBracket = t4;
+      _._ast$_parent = null;
     },
     EnumConstantArgumentsImpl: function EnumConstantArgumentsImpl(t0, t1, t2) {
       var _ = this;
@@ -9566,24 +9591,17 @@
       _._AnnotatedNodeMixin__metadata = t4;
       _._ast$_parent = null;
     },
-    EnumDeclarationImpl: function EnumDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15) {
+    EnumDeclarationImpl: function EnumDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8) {
       var _ = this;
       _.augmentKeyword = t0;
       _.enumKeyword = t1;
-      _._withClause = t2;
-      _._implementsClause = t3;
-      _._namePart = t4;
-      _._typeParameters = t5;
-      _._body = t6;
-      _._leftBracket = t7;
-      _._constants = t8;
-      _._semicolon = t9;
-      _._members = t10;
-      _._rightBracket = t11;
-      _.AstNodeWithNameScopeMixin_nameScope = t12;
-      _.name = t13;
-      _._AnnotatedNodeMixin__documentationComment = t14;
-      _._AnnotatedNodeMixin__metadata = t15;
+      _._namePart = t2;
+      _._withClause = t3;
+      _._implementsClause = t4;
+      _._body = t5;
+      _.AstNodeWithNameScopeMixin_nameScope = t6;
+      _._AnnotatedNodeMixin__documentationComment = t7;
+      _._AnnotatedNodeMixin__metadata = t8;
       _._ast$_parent = null;
     },
     ExportDirectiveImpl: function ExportDirectiveImpl(t0, t1, t2, t3, t4, t5, t6) {
@@ -9619,7 +9637,7 @@
       this._superclass = t1;
       this._ast$_parent = null;
     },
-    ExtensionDeclarationImpl: function ExtensionDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12) {
+    ExtensionDeclarationImpl: function ExtensionDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9) {
       var _ = this;
       _.augmentKeyword = t0;
       _.extensionKeyword = t1;
@@ -9628,12 +9646,9 @@
       _._typeParameters = t4;
       _._onClause = t5;
       _._body = t6;
-      _._leftBracket = t7;
-      _._members = t8;
-      _._rightBracket = t9;
-      _.AstNodeWithNameScopeMixin_nameScope = t10;
-      _._AnnotatedNodeMixin__documentationComment = t11;
-      _._AnnotatedNodeMixin__metadata = t12;
+      _.AstNodeWithNameScopeMixin_nameScope = t7;
+      _._AnnotatedNodeMixin__documentationComment = t8;
+      _._AnnotatedNodeMixin__metadata = t9;
       _._ast$_parent = null;
     },
     ExtensionOnClauseImpl: function ExtensionOnClauseImpl(t0, t1) {
@@ -9641,24 +9656,17 @@
       this._extendedType = t1;
       this._ast$_parent = null;
     },
-    ExtensionTypeDeclarationImpl: function ExtensionTypeDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15) {
+    ExtensionTypeDeclarationImpl: function ExtensionTypeDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8) {
       var _ = this;
       _.augmentKeyword = t0;
       _.extensionKeyword = t1;
       _.typeKeyword = t2;
-      _._implementsClause = t3;
-      _._namePart = t4;
-      _._constKeyword = t5;
-      _._typeParameters = t6;
-      _._representation = t7;
-      _._body = t8;
-      _._leftBracket = t9;
-      _._members = t10;
-      _._rightBracket = t11;
-      _.AstNodeWithNameScopeMixin_nameScope = t12;
-      _.name = t13;
-      _._AnnotatedNodeMixin__documentationComment = t14;
-      _._AnnotatedNodeMixin__metadata = t15;
+      _._primaryConstructor = t3;
+      _._implementsClause = t4;
+      _._body = t5;
+      _.AstNodeWithNameScopeMixin_nameScope = t6;
+      _._AnnotatedNodeMixin__documentationComment = t7;
+      _._AnnotatedNodeMixin__metadata = t8;
       _._ast$_parent = null;
     },
     FieldDeclarationImpl: function FieldDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8) {
@@ -9787,9 +9795,9 @@
       _.externalKeyword = t1;
       _._returnType = t2;
       _.propertyKeyword = t3;
-      _._functionExpression = t4;
-      _.AstNodeWithNameScopeMixin_nameScope = t5;
-      _.name = t6;
+      _.name = t4;
+      _._functionExpression = t5;
+      _.AstNodeWithNameScopeMixin_nameScope = t6;
       _._AnnotatedNodeMixin__documentationComment = t7;
       _._AnnotatedNodeMixin__metadata = t8;
       _._ast$_parent = null;
@@ -9826,23 +9834,24 @@
       _._parameters = t2;
       _.augmentKeyword = t3;
       _.typedefKeyword = t4;
-      _.semicolon = t5;
-      _.name = t6;
+      _.name = t5;
+      _.semicolon = t6;
       _._AnnotatedNodeMixin__documentationComment = t7;
       _._AnnotatedNodeMixin__metadata = t8;
       _._ast$_parent = null;
     },
-    FunctionTypedFormalParameterImpl: function FunctionTypedFormalParameterImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8) {
+    FunctionTypedFormalParameterImpl: function FunctionTypedFormalParameterImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9) {
       var _ = this;
-      _._returnType = t0;
-      _._typeParameters = t1;
-      _._parameters = t2;
-      _.question = t3;
-      _.covariantKeyword = t4;
-      _.requiredKeyword = t5;
-      _.name = t6;
-      _._AnnotatedNodeMixin__documentationComment = t7;
-      _._AnnotatedNodeMixin__metadata = t8;
+      _.keyword = t0;
+      _._returnType = t1;
+      _._typeParameters = t2;
+      _._parameters = t3;
+      _.question = t4;
+      _.covariantKeyword = t5;
+      _.requiredKeyword = t6;
+      _.name = t7;
+      _._AnnotatedNodeMixin__documentationComment = t8;
+      _._AnnotatedNodeMixin__metadata = t9;
       _._ast$_parent = null;
     },
     GenericFunctionTypeImpl: function GenericFunctionTypeImpl(t0, t1, t2, t3, t4, t5) {
@@ -9863,8 +9872,8 @@
       _.AstNodeWithNameScopeMixin_nameScope = t3;
       _.augmentKeyword = t4;
       _.typedefKeyword = t5;
-      _.semicolon = t6;
-      _.name = t7;
+      _.name = t6;
+      _.semicolon = t7;
       _._AnnotatedNodeMixin__documentationComment = t8;
       _._AnnotatedNodeMixin__metadata = t9;
       _._ast$_parent = null;
@@ -10083,22 +10092,19 @@
       _._typeArguments = t5;
       _._ast$_parent = null;
     },
-    MixinDeclarationImpl: function MixinDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13) {
+    MixinDeclarationImpl: function MixinDeclarationImpl(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) {
       var _ = this;
       _.augmentKeyword = t0;
       _.baseKeyword = t1;
       _.mixinKeyword = t2;
-      _._typeParameters = t3;
-      _._onClause = t4;
-      _._implementsClause = t5;
-      _._body = t6;
-      _._leftBracket = t7;
-      _._members = t8;
-      _._rightBracket = t9;
-      _.AstNodeWithNameScopeMixin_nameScope = t10;
-      _.name = t11;
-      _._AnnotatedNodeMixin__documentationComment = t12;
-      _._AnnotatedNodeMixin__metadata = t13;
+      _.name = t3;
+      _._typeParameters = t4;
+      _._onClause = t5;
+      _._implementsClause = t6;
+      _._body = t7;
+      _.AstNodeWithNameScopeMixin_nameScope = t8;
+      _._AnnotatedNodeMixin__documentationComment = t9;
+      _._AnnotatedNodeMixin__metadata = t10;
       _._ast$_parent = null;
     },
     MixinOnClauseImpl: function MixinOnClauseImpl(t0, t1) {
@@ -10122,6 +10128,11 @@
       _._ast$_parent = null;
     },
     NamespaceDirectiveImpl: function NamespaceDirectiveImpl() {
+    },
+    NameWithTypeParametersImpl: function NameWithTypeParametersImpl(t0, t1) {
+      this.typeName = t0;
+      this._typeParameters = t1;
+      this._ast$_parent = null;
     },
     NativeClauseImpl: function NativeClauseImpl(t0, t1) {
       this.nativeKeyword = t0;
@@ -10262,6 +10273,25 @@
       _.CompoundAssignmentExpressionImpl_writeType = t5;
       _._ast$_parent = null;
     },
+    PrimaryConstructorBodyImpl: function PrimaryConstructorBodyImpl(t0, t1, t2, t3, t4, t5) {
+      var _ = this;
+      _.thisKeyword = t0;
+      _.colon = t1;
+      _.initializers = t2;
+      _._body = t3;
+      _._AnnotatedNodeMixin__documentationComment = t4;
+      _._AnnotatedNodeMixin__metadata = t5;
+      _._ast$_parent = null;
+    },
+    PrimaryConstructorDeclarationImpl: function PrimaryConstructorDeclarationImpl(t0, t1, t2, t3, t4) {
+      var _ = this;
+      _.constKeyword = t0;
+      _.typeName = t1;
+      _._typeParameters = t2;
+      _._constructorName = t3;
+      _._formalParameters = t4;
+      _._ast$_parent = null;
+    },
     PrimaryConstructorNameImpl: function PrimaryConstructorNameImpl(t0, t1) {
       this.period = t0;
       this.name = t1;
@@ -10334,21 +10364,6 @@
       this.operator = t0;
       this._operand = t1;
       this._ast$_parent = null;
-    },
-    RepresentationConstructorNameImpl: function RepresentationConstructorNameImpl(t0, t1) {
-      this.period = t0;
-      this.name = t1;
-      this._ast$_parent = null;
-    },
-    RepresentationDeclarationImpl: function RepresentationDeclarationImpl(t0, t1, t2, t3, t4, t5) {
-      var _ = this;
-      _._constructorName = t0;
-      _.leftParenthesis = t1;
-      _.fieldMetadata = t2;
-      _._fieldType = t3;
-      _.fieldName = t4;
-      _.rightParenthesis = t5;
-      _._ast$_parent = null;
     },
     RestPatternElementImpl: function RestPatternElementImpl(t0, t1) {
       this.operator = t0;
@@ -10706,93 +10721,6 @@
     ToSourceVisitor: function ToSourceVisitor(t0) {
       this.sink = t0;
     },
-    ParserErrorCode__withArgumentsBinaryOperatorWrittenOut(string, string2) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsConflictingModifiers(string, string2) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsExpectedInstead(string) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsExpectedToken(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsExperimentNotEnabled(string, string2) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsExperimentNotEnabledOffByDefault(string) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsInvalidCodePoint(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsModifierOutOfOrder(string, string2) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsMultipleClauses(string, string2) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsOutOfOrderClauses(string, string2) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode__withArgumentsUnexpectedToken(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ScannerErrorCode__withArgumentsIllegalCharacter(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ScannerErrorCode__withArgumentsUnsupportedOperator(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    ParserErrorCode: function ParserErrorCode(t0, t1, t2, t3, t4) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-    },
-    ParserErrorTemplate: function ParserErrorTemplate(t0, t1, t2, t3, t4, t5) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-      _.$ti = t5;
-    },
-    ParserErrorWithoutArguments: function ParserErrorWithoutArguments(t0, t1, t2, t3, t4) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-    },
-    ScannerErrorCode: function ScannerErrorCode() {
-    },
-    ScannerErrorTemplate: function ScannerErrorTemplate(t0, t1, t2, t3, t4, t5) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-      _.$ti = t5;
-    },
-    ScannerErrorWithoutArguments: function ScannerErrorWithoutArguments(t0, t1, t2, t3, t4) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-    },
-    _ParserErrorWithoutArguments_ParserErrorCode_DiagnosticWithoutArguments: function _ParserErrorWithoutArguments_ParserErrorCode_DiagnosticWithoutArguments() {
-    },
-    _ScannerErrorWithoutArguments_ScannerErrorCode_DiagnosticWithoutArguments: function _ScannerErrorWithoutArguments_ScannerErrorCode_DiagnosticWithoutArguments() {
-    },
     Scanner_buildConfig(featureSet) {
       var t4,
         t1 = featureSet._flags,
@@ -10831,42 +10759,42 @@
       t3 = errorCode.pseudoSharedCode;
       switch (t3) {
         case B.PseudoSharedCode_10:
-          reportError.call$3(B.ScannerErrorWithoutArguments_dke, t1.charOffset, _null);
+          reportError.call$3(B.DiagnosticWithoutArgumentsImpl_lKb, t1.charOffset, _null);
+          return;
+        case B.PseudoSharedCode_56:
+          reportError.call$3(B.DiagnosticWithoutArgumentsImpl_cbK, endOffset - 1, _null);
           return;
         case B.PseudoSharedCode_55:
-          reportError.call$3(B.ScannerErrorWithoutArguments_EDR, endOffset - 1, _null);
-          return;
-        case B.PseudoSharedCode_54:
-          reportError.call$3(B.ScannerErrorWithoutArguments_WRp, endOffset - 1, _null);
+          reportError.call$3(B.DiagnosticWithoutArgumentsImpl_eaQ, endOffset - 1, _null);
           return;
         case B.PseudoSharedCode_30:
           t1.charOffset = endOffset - 1;
-          return t2.call$2(B.ScannerErrorWithoutArguments_hrw, _null);
+          return t2.call$2(B.DiagnosticWithoutArgumentsImpl_yhF, _null);
         case B.PseudoSharedCode_34:
           t1.charOffset = endOffset - 1;
-          return t2.call$2(B.ScannerErrorWithoutArguments_nVy, _null);
+          return t2.call$2(B.DiagnosticWithoutArgumentsImpl_3oZ, _null);
         case B.PseudoSharedCode_22:
           t1 = token.get$character();
           t1.toString;
-          return t2.call$2(B.ScannerErrorTemplate_xU1, A._setArrayType([t1], type$.JSArray_Object));
-        case B.PseudoSharedCode_50:
-          return t2.call$2(B.ScannerErrorWithoutArguments_9Ii, _null);
-        case B.PseudoSharedCode_53:
-          return t2.call$2(B.ScannerErrorTemplate_zPa, A._setArrayType([type$.UnsupportedOperator._as(token).token.get$lexeme()], type$.JSArray_Object));
+          return t2.call$2(B.DiagnosticWithArguments_X9O, A._setArrayType([t1], type$.JSArray_Object));
+        case B.PseudoSharedCode_51:
+          return t2.call$2(B.DiagnosticWithoutArgumentsImpl_3Lc, _null);
+        case B.PseudoSharedCode_54:
+          return t2.call$2(B.DiagnosticWithArguments_G7s, A._setArrayType([type$.UnsupportedOperator._as(token).token.get$lexeme()], type$.JSArray_Object));
         default:
           if (errorCode === B.Template_cSX) {
             t1.charOffset = (token.get$begin().endToken._typeAndOffset >>> 8) - 1;
             type = B.List_BvF[token.get$begin()._typeAndOffset & 255];
             if (type === B.TokenType_1C0 || type === B.TokenType_NLv)
-              return t2.call$2(B.ParserErrorTemplate_fwC, A._setArrayType(["}"], type$.JSArray_Object));
+              return t2.call$2(B.DiagnosticWithArguments_iNd, A._setArrayType(["}"], type$.JSArray_Object));
             if (type === B.TokenType_907)
-              return t2.call$2(B.ParserErrorTemplate_fwC, A._setArrayType(["]"], type$.JSArray_Object));
+              return t2.call$2(B.DiagnosticWithArguments_iNd, A._setArrayType(["]"], type$.JSArray_Object));
             if (type === B.TokenType_LQi)
-              return t2.call$2(B.ParserErrorTemplate_fwC, A._setArrayType([")"], type$.JSArray_Object));
+              return t2.call$2(B.DiagnosticWithArguments_iNd, A._setArrayType([")"], type$.JSArray_Object));
             if (type === B.TokenType_JCA)
-              return t2.call$2(B.ParserErrorTemplate_fwC, A._setArrayType([">"], type$.JSArray_Object));
-          } else if (errorCode === B.MessageCode_NTb)
-            return t2.call$2(B.ParserErrorWithoutArguments_cbm, _null);
+              return t2.call$2(B.DiagnosticWithArguments_iNd, A._setArrayType([">"], type$.JSArray_Object));
+          } else if (errorCode === B.MessageCode_ahz)
+            return t2.call$2(B.DiagnosticWithoutArgumentsImpl_P07, _null);
           throw A.wrapException(A.UnimplementedError$(errorCode.toString$0(0) + ' "' + A.S(t3) + '"'));
       }
     },
@@ -10886,72 +10814,6 @@
       this._box_0 = t0;
       this.token = t1;
       this.reportError = t2;
-    },
-    CompileTimeErrorCode__withArgumentsBuiltInIdentifierAsType(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    CompileTimeErrorCode__withArgumentsConstNotInitialized(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    CompileTimeErrorCode__withArgumentsFinalNotInitialized(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    WarningCode__withArgumentsDocDirectiveHasExtraArguments(p0, p1, p2) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    WarningCode__withArgumentsDocDirectiveMissingClosingTag(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    WarningCode__withArgumentsDocDirectiveMissingOpeningTag(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    WarningCode__withArgumentsDocDirectiveUnknown(p0) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    WarningCode__withArgumentsInvalidLanguageVersionOverrideGreater(p0, p1) {
-      return new A.LocatableDiagnosticImpl();
-    },
-    CompileTimeErrorCode: function CompileTimeErrorCode() {
-    },
-    CompileTimeErrorTemplate: function CompileTimeErrorTemplate(t0, t1, t2, t3, t4, t5) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-      _.$ti = t5;
-    },
-    CompileTimeErrorWithoutArguments: function CompileTimeErrorWithoutArguments(t0, t1, t2, t3, t4) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-    },
-    WarningCode: function WarningCode() {
-    },
-    WarningTemplate: function WarningTemplate(t0, t1, t2, t3, t4, t5) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-      _.$ti = t5;
-    },
-    WarningWithoutArguments: function WarningWithoutArguments(t0, t1, t2, t3, t4) {
-      var _ = this;
-      _.expectedTypes = t0;
-      _.name = t1;
-      _.uniqueName = t2;
-      _._problemMessage = t3;
-      _._correctionMessage = t4;
-    },
-    _CompileTimeErrorWithoutArguments_CompileTimeErrorCode_DiagnosticWithoutArguments: function _CompileTimeErrorWithoutArguments_CompileTimeErrorCode_DiagnosticWithoutArguments() {
-    },
-    _WarningWithoutArguments_WarningCode_DiagnosticWithoutArguments: function _WarningWithoutArguments_WarningCode_DiagnosticWithoutArguments() {
     },
     convertTypeNames($arguments, expectedTypes) {
       var t1, typeGroups, t2, i, messages, t3, t4, t5, typeToConvert, nameToElementMap, t6, t7, t8, $name, buffer, sourcePath;
@@ -11046,6 +10908,14 @@
         if (!t4)
           throw A.wrapException(error.read$0(0));
       }
+    },
+    LiterateDiagnosticReporter_report(_this, diagnostic) {
+      var locatableDiagnostic = diagnostic.locatableDiagnostic,
+        t1 = locatableDiagnostic.get$code(locatableDiagnostic),
+        t2 = locatableDiagnostic.get$$arguments(),
+        t3 = locatableDiagnostic.get$contextMessages();
+      t3 = A._setArrayType(t3.slice(0), A._arrayInstanceType(t3));
+      _this.reportError$1(_this._createDiagnostic$5$arguments$contextMessages$diagnosticCode$length$offset(t2, t3, t1, diagnostic.length, diagnostic.offset));
     },
     convertTypeNames_closure: function convertTypeNames_closure() {
     },
@@ -11199,6 +11069,7 @@
       _.comment = t14;
       _.metadata = t15;
       _.typeParameters = t16;
+      _.emptyClassBodySemicolon = null;
       _.leftBracket = t17;
       _.members = t18;
       _.rightBracket = t19;
@@ -11222,6 +11093,7 @@
       _.comment = t8;
       _.metadata = t9;
       _.typeParameters = t10;
+      _.emptyClassBodySemicolon = null;
       _.leftBracket = t11;
       _.members = t12;
       _.rightBracket = t13;
@@ -11234,6 +11106,7 @@
       _.comment = t3;
       _.metadata = t4;
       _.typeParameters = t5;
+      _.emptyClassBodySemicolon = null;
       _.leftBracket = t6;
       _.members = t7;
       _.rightBracket = t8;
@@ -11246,6 +11119,7 @@
       _.comment = t3;
       _.metadata = t4;
       _.typeParameters = t5;
+      _.emptyClassBodySemicolon = null;
       _.leftBracket = t6;
       _.members = t7;
       _.rightBracket = t8;
@@ -11261,13 +11135,14 @@
       _.comment = t6;
       _.metadata = t7;
       _.typeParameters = t8;
+      _.emptyClassBodySemicolon = null;
       _.leftBracket = t9;
       _.members = t10;
       _.rightBracket = t11;
     },
     _Modifiers: function _Modifiers() {
       var _ = this;
-      _.lateToken = _.requiredToken = _.covariantKeyword = _.staticKeyword = _.finalConstOrVarKeyword = _.externalKeyword = _.augmentKeyword = _.abstractKeyword = null;
+      _.lateToken = _.requiredToken = _.covariantKeyword = _.staticKeyword = _.newKeyword = _.finalConstOrVarKeyword = _.externalKeyword = _.augmentKeyword = _.abstractKeyword = null;
     },
     _ObjectPatternFields: function _ObjectPatternFields(t0, t1, t2) {
       this.leftParenthesis = t0;
@@ -15617,6 +15492,69 @@
       else
         throw A.wrapException(A.UnimplementedError$("(" + A.getRuntimeTypeOfDartObject(_this).toString$0(0) + ") " + _this.toString$0(0)));
     },
+    _withArgumentsBinaryOperatorWrittenOut0(string, string2) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_YlZ, A._setArrayType([string, string2], type$.JSArray_Object));
+    },
+    _withArgumentsBuiltInIdentifierAsType(token) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_8gr, A._setArrayType([token], type$.JSArray_Object));
+    },
+    _withArgumentsConflictingModifiers0(string, string2) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_UPH, A._setArrayType([string, string2], type$.JSArray_Object));
+    },
+    _withArgumentsConstNotInitialized($name) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_9ms, A._setArrayType([$name], type$.JSArray_Object));
+    },
+    _withArgumentsDocDirectiveHasExtraArguments(p0, p1, p2) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_4eA, A._setArrayType([p0, p1, p2], type$.JSArray_Object));
+    },
+    _withArgumentsDocDirectiveMissingClosingTag(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_K1w, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsDocDirectiveMissingOpeningTag(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_SmY, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsDocDirectiveUnknown(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_BT7, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsExpectedInstead0(string) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_ygW, A._setArrayType([string], type$.JSArray_Object));
+    },
+    _withArgumentsExpectedToken0(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_iNd, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsExperimentNotEnabled0(string, string2) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_27j, A._setArrayType([string, string2], type$.JSArray_Object));
+    },
+    _withArgumentsExperimentNotEnabledOffByDefault0(string) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_S5R, A._setArrayType([string], type$.JSArray_Object));
+    },
+    _withArgumentsFinalNotInitialized(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_Goi, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsIllegalCharacter(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_X9O, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsInvalidCodePoint(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_8r5, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsInvalidLanguageVersionOverrideGreater(p0, p1) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_Kun, A._setArrayType([p0, p1], type$.JSArray_Object));
+    },
+    _withArgumentsModifierOutOfOrder0(string, string2) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_7pl, A._setArrayType([string, string2], type$.JSArray_Object));
+    },
+    _withArgumentsMultipleClauses0(string, string2) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_REj, A._setArrayType([string, string2], type$.JSArray_Object));
+    },
+    _withArgumentsOutOfOrderClauses0(string, string2) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_Mfk, A._setArrayType([string, string2], type$.JSArray_Object));
+    },
+    _withArgumentsUnexpectedToken0(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_OI4, A._setArrayType([p0], type$.JSArray_Object));
+    },
+    _withArgumentsUnsupportedOperator0(p0) {
+      return new A.LocatableDiagnosticImpl(B.DiagnosticWithArguments_G7s, A._setArrayType([p0], type$.JSArray_Object));
+    },
     getBitCount(value) {
       var t1, bitCount, _i, v;
       for (t1 = value.length, bitCount = 0, _i = 0; _i < t1; ++_i) {
@@ -16065,8 +16003,8 @@
       return A.Iterable_iterableToFullString(receiver, "[", "]");
     },
     toList$1$growable(receiver, growable) {
-      var t1 = J.JSArray_JSArray$markFixed(receiver.slice(0), A._arrayInstanceType(receiver)._precomputed1);
-      return t1;
+      var t1 = A._arrayInstanceType(receiver);
+      return growable ? A._setArrayType(receiver.slice(0), t1) : J.JSArray_JSArray$markFixed(receiver.slice(0), t1._precomputed1);
     },
     get$iterator(receiver) {
       return new J.ArrayIterator(receiver, receiver.length, A._arrayInstanceType(receiver)._eval$1("ArrayIterator<1>"));
@@ -16772,29 +16710,9 @@
       return t2.elementAt$1(t1, t2.get$length(t1) - 1 - index);
     }
   };
-  A.Symbol.prototype = {
-    get$hashCode(_) {
-      var hash = this._hashCode;
-      if (hash != null)
-        return hash;
-      hash = 664597 * B.JSString_methods.get$hashCode(this.__internal$_name) & 536870911;
-      this._hashCode = hash;
-      return hash;
-    },
-    toString$0(_) {
-      return 'Symbol("' + this.__internal$_name + '")';
-    },
-    $eq(_, other) {
-      if (other == null)
-        return false;
-      return other instanceof A.Symbol && this.__internal$_name === other.__internal$_name;
-    },
-    $isSymbol0: 1
-  };
   A._Record_2.prototype = {$recipe: "+(1,2)", $shape: 1};
   A._Record_2_content_offset.prototype = {$recipe: "+content,offset(1,2)", $shape: 2};
   A._Record_2_offsetInDocImport_offsetInUnit.prototype = {$recipe: "+offsetInDocImport,offsetInUnit(1,2)", $shape: 3};
-  A.ConstantMapView.prototype = {};
   A.ConstantMap.prototype = {
     toString$0(_) {
       return A.MapBase_mapToString(this);
@@ -16890,52 +16808,11 @@
       return this._jsIndex.hasOwnProperty(key);
     }
   };
-  A.JSInvocationMirror.prototype = {
-    get$memberName() {
-      var t1 = this.__js_helper$_memberName;
-      if (t1 instanceof A.Symbol)
-        return t1;
-      return this.__js_helper$_memberName = new A.Symbol(A._asString(t1));
-    },
-    get$positionalArguments() {
-      var t1, t2, argumentCount, list, index, _this = this;
-      if (_this.__js_helper$_kind === 1)
-        return B.List_empty7;
-      t1 = _this._arguments;
-      t2 = J.getInterceptor$asx(t1);
-      argumentCount = t2.get$length(t1) - J.get$length$asx(_this._namedArgumentNames) - _this._typeArgumentCount;
-      if (argumentCount === 0)
-        return B.List_empty7;
-      list = [];
-      for (index = 0; index < argumentCount; ++index)
-        list.push(t2.$index(t1, index));
-      list.$flags = 3;
-      return list;
-    },
-    get$namedArguments() {
-      var t1, t2, namedArgumentCount, t3, t4, namedArgumentsStartIndex, map, i, _this = this;
-      if (_this.__js_helper$_kind !== 0)
-        return B.Map_empty1;
-      t1 = _this._namedArgumentNames;
-      t2 = J.getInterceptor$asx(t1);
-      namedArgumentCount = t2.get$length(t1);
-      t3 = _this._arguments;
-      t4 = J.getInterceptor$asx(t3);
-      namedArgumentsStartIndex = t4.get$length(t3) - namedArgumentCount - _this._typeArgumentCount;
-      if (namedArgumentCount === 0)
-        return B.Map_empty1;
-      map = new A.JsLinkedHashMap(type$.JsLinkedHashMap_Symbol_dynamic);
-      for (i = 0; i < namedArgumentCount; ++i)
-        map.$indexSet(0, new A.Symbol(A._asString(t2.$index(t1, i))), t4.$index(t3, namedArgumentsStartIndex + i));
-      return new A.ConstantMapView(map, type$.ConstantMapView_Symbol_dynamic);
-    },
-    $isInvocation: 1
-  };
   A.Primitives_initTicker_closure.prototype = {
     call$0() {
       return B.JSNumber_methods.floor$0(1000 * this.performance.now());
     },
-    $signature: 22
+    $signature: 23
   };
   A.SafeToStringHook.prototype = {};
   A.TypeErrorDecoder.prototype = {
@@ -17323,19 +17200,19 @@
     call$1(o) {
       return this.getTag(o);
     },
-    $signature: 55
+    $signature: 58
   };
   A.initHooks_closure0.prototype = {
     call$2(o, tag) {
       return this.getUnknownTag(o, tag);
     },
-    $signature: 45
+    $signature: 48
   };
   A.initHooks_closure1.prototype = {
     call$1(tag) {
       return this.prototypeForTag(A._asString(tag));
     },
-    $signature: 47
+    $signature: 54
   };
   A._Record.prototype = {
     get$runtimeType(_) {
@@ -17836,7 +17713,7 @@
       t1.storedCallback = null;
       f.call$0();
     },
-    $signature: 18
+    $signature: 19
   };
   A._AsyncRun__initializeScheduleImmediate_closure.prototype = {
     call$1(callback) {
@@ -17846,7 +17723,7 @@
       t2 = this.span;
       t1.firstChild ? t1.removeChild(t2) : t1.appendChild(t2);
     },
-    $signature: 41
+    $signature: 44
   };
   A._AsyncRun__scheduleImmediateJsOverride_internalCallback.prototype = {
     call$0() {
@@ -17922,13 +17799,13 @@
     call$2(error, stackTrace) {
       this.bodyFunction.call$2(1, new A.ExceptionAndStackTrace(error, type$.StackTrace._as(stackTrace)));
     },
-    $signature: 59
+    $signature: 68
   };
   A._wrapJsFunctionForAsync_closure.prototype = {
     call$2(errorCode, result) {
       this.$protected(A._asInt(errorCode), result);
     },
-    $signature: 69
+    $signature: 36
   };
   A.AsyncError.prototype = {
     toString$0(_) {
@@ -18252,7 +18129,7 @@
     call$1(__wc0_formal) {
       this.joinedResult._completeWithResultOf$1(this.originalSource);
     },
-    $signature: 18
+    $signature: 19
   };
   A._Future__propagateToListeners_handleWhenCompleteCallback_closure0.prototype = {
     call$2(e, s) {
@@ -18260,7 +18137,7 @@
       type$.StackTrace._as(s);
       this.joinedResult._completeErrorObject$1(new A.AsyncError(e, s));
     },
-    $signature: 37
+    $signature: 40
   };
   A._Future__propagateToListeners_handleValueCallback.prototype = {
     call$0() {
@@ -18623,7 +18500,7 @@
     call$1(v) {
       return this.K._is(v);
     },
-    $signature: 19
+    $signature: 20
   };
   A._HashMapKeyIterable.prototype = {
     get$length(_) {
@@ -18826,7 +18703,7 @@
     call$1(x) {
       return this.E._is(x);
     },
-    $signature: 19
+    $signature: 20
   };
   A._HashSetIterator.prototype = {
     get$current(_) {
@@ -19186,32 +19063,8 @@
       t2 = A.S(v);
       t1._contents += t2;
     },
-    $signature: 78
+    $signature: 46
   };
-  A._UnmodifiableMapMixin.prototype = {};
-  A.MapView.prototype = {
-    $index(_, key) {
-      return this._collection$_map.$index(0, key);
-    },
-    containsKey$1(_, key) {
-      return this._collection$_map.containsKey$1(0, key);
-    },
-    forEach$1(_, action) {
-      this._collection$_map.forEach$1(0, this.$ti._eval$1("~(1,2)")._as(action));
-    },
-    get$length(_) {
-      return this._collection$_map.__js_helper$_length;
-    },
-    toString$0(_) {
-      return A.MapBase_mapToString(this._collection$_map);
-    },
-    get$values(_) {
-      var t1 = this._collection$_map;
-      return new A.LinkedHashMapValuesIterable(t1, t1.$ti._eval$1("LinkedHashMapValuesIterable<2>"));
-    },
-    $isMap: 1
-  };
-  A.UnmodifiableMapView.prototype = {};
   A.SetBase.prototype = {
     addAll$1(_, elements) {
       var t1;
@@ -19226,7 +19079,6 @@
     $isSet: 1
   };
   A._SetBase.prototype = {};
-  A._UnmodifiableMapView_MapView__UnmodifiableMapMixin.prototype = {};
   A._Utf8Decoder__decoder_closure.prototype = {
     call$0() {
       var t1, exception;
@@ -19237,7 +19089,7 @@
       }
       return null;
     },
-    $signature: 20
+    $signature: 21
   };
   A._Utf8Decoder__decoderNonfatal_closure.prototype = {
     call$0() {
@@ -19249,7 +19101,7 @@
       }
       return null;
     },
-    $signature: 20
+    $signature: 21
   };
   A.Base64Codec.prototype = {
     normalize$3(_, source, start, end) {
@@ -19670,21 +19522,6 @@
       return t1.charCodeAt(0) == 0 ? t1 : t1;
     }
   };
-  A.NoSuchMethodError_toString_closure.prototype = {
-    call$2(key, value) {
-      var t1, t2, t3;
-      type$.Symbol._as(key);
-      t1 = this.sb;
-      t2 = this._box_0;
-      t3 = (t1._contents += t2.comma) + key.__internal$_name;
-      t1._contents = t3;
-      t1._contents = t3 + ": ";
-      t3 = A.Error_safeToString(value);
-      t1._contents += t3;
-      t2.comma = ", ";
-    },
-    $signature: 49
-  };
   A.Duration.prototype = {
     $eq(_, other) {
       if (other == null)
@@ -19795,25 +19632,6 @@
     },
     get$length(receiver) {
       return this.length;
-    }
-  };
-  A.NoSuchMethodError.prototype = {
-    toString$0(_) {
-      var $arguments, t1, _i, t2, t3, argument, receiverText, actualParameters, _this = this, _box_0 = {},
-        sb = new A.StringBuffer("");
-      _box_0.comma = "";
-      $arguments = _this._core$_arguments;
-      for (t1 = $arguments.length, _i = 0, t2 = "", t3 = ""; _i < t1; ++_i, t3 = ", ") {
-        argument = $arguments[_i];
-        sb._contents = t2 + t3;
-        t2 = A.Error_safeToString(argument);
-        t2 = sb._contents += t2;
-        _box_0.comma = ", ";
-      }
-      _this._namedArguments.forEach$1(0, new A.NoSuchMethodError_toString_closure(_box_0, sb));
-      receiverText = A.Error_safeToString(_this._core$_receiver);
-      actualParameters = sb.toString$0(0);
-      return "NoSuchMethodError: method not found: '" + _this._core$_memberName.__internal$_name + "'\nReceiver: " + receiverText + "\nArguments: [" + actualParameters + "]";
     }
   };
   A.UnsupportedError.prototype = {
@@ -20037,9 +19855,6 @@
     toString$0(_) {
       return "Instance of '" + A.Primitives_objectTypeName(this) + "'";
     },
-    noSuchMethod$1(_, invocation) {
-      throw A.wrapException(A.NoSuchMethodError_NoSuchMethodError$withInvocation(this, type$.Invocation._as(invocation)));
-    },
     get$runtimeType(_) {
       return A.getRuntimeTypeOfDartObject(this);
     },
@@ -20125,7 +19940,7 @@
     call$2(msg, position) {
       throw A.wrapException(A.FormatException$("Illegal IPv6 address, " + msg, this.host, position));
     },
-    $signature: 51
+    $signature: 50
   };
   A._Uri.prototype = {
     get$_core$_text() {
@@ -20406,7 +20221,7 @@
     call$1(s) {
       return A._Uri__uriEncode(64, A._asString(s), B.C_Utf8Codec, false);
     },
-    $signature: 21
+    $signature: 22
   };
   A.UriData.prototype = {
     get$uri() {
@@ -21345,7 +21160,7 @@
     call$2(k, v) {
       return B.JSArray_methods.add$1(this.keys, k);
     },
-    $signature: 60
+    $signature: 59
   };
   A.StyleSheet.prototype = {$isStyleSheet: 1};
   A.TextTrack.prototype = {$isTextTrack: 1};
@@ -22012,7 +21827,7 @@
         return A.ioore(t1, index);
       return J.toString$0$(t1[index]);
     },
-    $signature: 61
+    $signature: 60
   };
   A.Diagnostic.prototype = {
     get$hashCode(_) {
@@ -22051,20 +21866,73 @@
       return t1.charCodeAt(0) == 0 ? t1 : t1;
     }
   };
-  A.DiagnosticCodeWithExpectedTypes.prototype = {};
   A.DiagnosticCode.prototype = {
     toString$0(_) {
-      return this.uniqueName;
+      return this._uniqueName.toLowerCase();
     }
   };
-  A.DiagnosticWithoutArguments.prototype = {};
+  A.DiagnosticCodeImpl.prototype = {};
+  A.DiagnosticCodeWithExpectedTypes.prototype = {};
+  A.DiagnosticSeverity.prototype = {
+    get$hashCode(_) {
+      return this.ordinal;
+    },
+    toString$0(_) {
+      return this.name;
+    }
+  };
+  A.DiagnosticType.prototype = {
+    get$hashCode(_) {
+      return this.ordinal;
+    },
+    toString$0(_) {
+      return this.name;
+    }
+  };
+  A.DiagnosticWithArguments.prototype = {};
+  A.DiagnosticWithoutArguments.prototype = {
+    get$$arguments() {
+      return B.List_empty4;
+    },
+    get$code(_) {
+      return this;
+    },
+    get$contextMessages() {
+      return B.List_empty3;
+    },
+    atOffset$2$length$offset($length, offset) {
+      return new A.LocatedDiagnostic(this, offset, $length);
+    }
+  };
+  A.DiagnosticWithoutArgumentsImpl.prototype = {$isLocatableDiagnostic: 1};
   A.ExpectedType.prototype = {
     _enumToString$0() {
       return "ExpectedType." + this._name;
     }
   };
-  A.LocatableDiagnosticImpl.prototype = {$isLocatableDiagnostic: 1};
+  A.LocatableDiagnosticImpl.prototype = {
+    atOffset$2$length$offset($length, offset) {
+      return new A.LocatedDiagnostic(this, offset, $length);
+    },
+    $isLocatableDiagnostic: 1,
+    get$code(receiver) {
+      return this.code;
+    },
+    get$$arguments() {
+      return this.$arguments;
+    },
+    get$contextMessages() {
+      return B.List_empty3;
+    }
+  };
+  A.LocatedDiagnostic.prototype = {
+    get$length(receiver) {
+      return this.length;
+    }
+  };
+  A._DiagnosticWithoutArgumentsImpl_DiagnosticCodeWithExpectedTypes_DiagnosticWithoutArguments.prototype = {};
   A.Source.prototype = {};
+  A.SyntacticEntity.prototype = {};
   A.ExperimentalFlag.prototype = {
     _enumToString$0() {
       return "ExperimentalFlag." + this._name;
@@ -22203,7 +22071,7 @@
           break;
         case 4:
           token = A.findNonZeroLengthToken(token);
-          parser.listener.handleRecoverableError$3(B.MessageCode_To9, token, token);
+          parser.listener.handleRecoverableError$3(B.MessageCode_skW, token, token);
           break;
         case 5:
           if (_this.isEnhancedPartsFeatureEnabled)
@@ -22227,13 +22095,13 @@
       }
       if (t1 === B.DirectiveState_2) {
         token = A.findNonZeroLengthToken(token);
-        parser.listener.handleRecoverableError$3(B.MessageCode_VYF, token, token);
+        parser.listener.handleRecoverableError$3(B.MessageCode_uzS, token, token);
       } else if (t1 === B.DirectiveState_5) {
         token = A.findNonZeroLengthToken(token);
         parser.listener.handleRecoverableError$3(B.MessageCode_cx4, token, token);
       } else {
         token = A.findNonZeroLengthToken(token);
-        parser.listener.handleRecoverableError$3(B.MessageCode_2qD, token, token);
+        parser.listener.handleRecoverableError$3(B.MessageCode_WKM, token, token);
       }
     },
     checkPart$2(parser, token) {
@@ -22268,7 +22136,7 @@
       }
       if (t1 === B.DirectiveState_5) {
         token = A.findNonZeroLengthToken(token);
-        parser.listener.handleRecoverableError$3(B.MessageCode_rJJ, token, token);
+        parser.listener.handleRecoverableError$3(B.MessageCode_eLC, token, token);
       } else {
         token = A.findNonZeroLengthToken(token);
         parser.listener.handleRecoverableError$3(B.MessageCode_cx4, token, token);
@@ -22289,6 +22157,11 @@
     }
   };
   A.ForwardingListener.prototype = {
+    beginAnonymousMethodInvocation$1(token) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.beginAnonymousMethodInvocation$1(token);
+    },
     beginArguments$1(token) {
       var t1 = this.listener;
       if (t1 != null)
@@ -22389,6 +22262,11 @@
       if (t1 != null)
         t1.beginConstLiteral$1(token);
     },
+    beginConstructor$10(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, newToken, $name, enclosingDeclarationName) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.beginConstructor$10(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, newToken, $name, enclosingDeclarationName);
+    },
     beginConstructorReference$1(start) {
       var t1 = this.listener;
       if (t1 != null)
@@ -22409,10 +22287,15 @@
       if (t1 != null)
         t1.beginElseStatement$1(token);
     },
-    beginEnum$1(enumKeyword) {
+    beginEnumDeclaration$4(beginToken, augmentToken, enumKeyword, $name) {
       var t1 = this.listener;
       if (t1 != null)
-        t1.beginEnum$1(enumKeyword);
+        t1.beginEnumDeclaration$4(beginToken, augmentToken, enumKeyword, $name);
+    },
+    beginEnumDeclarationPrelude$1(enumKeyword) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.beginEnumDeclarationPrelude$1(enumKeyword);
     },
     beginExport$1(token) {
       var t1 = this.listener;
@@ -22434,10 +22317,10 @@
       if (t1 != null)
         t1.beginExtensionDeclaration$3(augmentToken, extensionKeyword, $name);
     },
-    beginFactoryMethod$4(declarationKind, lastConsumed, externalToken, constToken) {
+    beginFactory$4(declarationKind, lastConsumed, externalToken, constToken) {
       var t1 = this.listener;
       if (t1 != null)
-        t1.beginFactoryMethod$4(declarationKind, lastConsumed, externalToken, constToken);
+        t1.beginFactory$4(declarationKind, lastConsumed, externalToken, constToken);
     },
     beginFieldInitializer$1(token) {
       var t1 = this.listener;
@@ -22854,30 +22737,30 @@
       if (t1 != null)
         t1.endCatchClause$1(token);
     },
-    endClassConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
+    endConstructor$6(kind, beginToken, newToken, beginParam, beginInitializers, endToken) {
       var t1 = this.listener;
       if (t1 != null)
-        t1.endClassConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
+        t1.endConstructor$6(kind, beginToken, newToken, beginParam, beginInitializers, endToken);
     },
     endClassDeclaration$2(beginToken, endToken) {
       var t1 = this.listener;
       if (t1 != null)
         t1.endClassDeclaration$2(beginToken, endToken);
     },
-    endClassFactoryMethod$3(beginToken, factoryKeyword, endToken) {
+    endFactory$4(kind, beginToken, factoryKeyword, endToken) {
       var t1 = this.listener;
       if (t1 != null)
-        t1.endClassFactoryMethod$3(beginToken, factoryKeyword, endToken);
+        t1.endFactory$4(kind, beginToken, factoryKeyword, endToken);
     },
-    endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
+    endFields$11(kind, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
       var t1 = this.listener;
       if (t1 != null)
-        t1.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
+        t1.endFields$11(kind, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
     },
-    endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
+    endMethod$6(kind, getOrSet, beginToken, beginParam, beginInitializers, endToken) {
       var t1 = this.listener;
       if (t1 != null)
-        t1.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
+        t1.endMethod$6(kind, getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     endClassOrMixinOrExtensionBody$4(kind, memberCount, beginToken, endToken) {
       var t1 = this.listener;
@@ -22939,15 +22822,10 @@
       if (t1 != null)
         t1.endElseStatement$2(beginToken, endToken);
     },
-    endEnum$5(beginToken, enumKeyword, leftBrace, memberCount, endToken) {
+    endEnumDeclaration$5(beginToken, enumKeyword, leftBrace, memberCount, endToken) {
       var t1 = this.listener;
       if (t1 != null)
-        t1.endEnum$5(beginToken, enumKeyword, leftBrace, memberCount, endToken);
-    },
-    endEnumConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endEnumConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
+        t1.endEnumDeclaration$5(beginToken, enumKeyword, leftBrace, memberCount, endToken);
     },
     handleEnumElement$2(beginToken, augmentToken) {
       var t1 = this.listener;
@@ -22974,50 +22852,15 @@
       if (t1 != null)
         t1.endEnumBody$2(beginToken, endToken);
     },
-    endEnumFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endEnumFactoryMethod$3(beginToken, factoryKeyword, endToken);
-    },
-    endEnumFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endEnumMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endEnumMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
     endExport$2(exportKeyword, semicolon) {
       var t1 = this.listener;
       if (t1 != null)
         t1.endExport$2(exportKeyword, semicolon);
     },
-    endExtensionConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
     endExtensionDeclaration$4(beginToken, extensionKeyword, onKeyword, endToken) {
       var t1 = this.listener;
       if (t1 != null)
         t1.endExtensionDeclaration$4(beginToken, extensionKeyword, onKeyword, endToken);
-    },
-    endExtensionFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionFactoryMethod$3(beginToken, factoryKeyword, endToken);
-    },
-    endExtensionFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endExtensionMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     endFieldInitializer$2(assignment, endToken) {
       var t1 = this.listener;
@@ -23199,30 +23042,10 @@
       if (t1 != null)
         t1.endMetadataStar$1(count);
     },
-    endMixinConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endMixinConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
     endMixinDeclaration$2(beginToken, endToken) {
       var t1 = this.listener;
       if (t1 != null)
         t1.endMixinDeclaration$2(beginToken, endToken);
-    },
-    endMixinFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endMixinFactoryMethod$3(beginToken, factoryKeyword, endToken);
-    },
-    endMixinFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endMixinFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endMixinMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endMixinMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     endNamedFunctionExpression$1(endToken) {
       var t1 = this.listener;
@@ -23403,6 +23226,16 @@
       var t1 = this.listener;
       if (t1 != null)
         t1.handleAssignmentExpression$2(token, endToken);
+    },
+    endAnonymousMethodInvocation$4$isExpression(beginToken, functionDefinition, endToken, isExpression) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.endAnonymousMethodInvocation$4$isExpression(beginToken, functionDefinition, endToken, isExpression);
+    },
+    handleImplicitFormalParameters$1(token) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.handleImplicitFormalParameters$1(token);
     },
     handleAsyncModifier$2(asyncToken, starToken) {
       var t1 = this.listener;
@@ -23707,6 +23540,11 @@
       if (t1 != null)
         t1.handleNamedArgument$1(colon);
     },
+    handlePositionalArgument$1(token) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.handlePositionalArgument$1(token);
+    },
     handlePatternField$1(colon) {
       var t1 = this.listener;
       if (t1 != null)
@@ -23716,6 +23554,11 @@
       var t1 = this.listener;
       if (t1 != null)
         t1.handleNamedRecordField$1(colon);
+    },
+    handlePositionalRecordField$1(token) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.handlePositionalRecordField$1(token);
     },
     handleNamedMixinApplicationWithClause$1(withKeyword) {
       var t1 = this.listener;
@@ -23747,10 +23590,20 @@
       if (t1 != null)
         t1.handleNoArguments$1(token);
     },
+    handleNoClassBody$1(semicolonToken) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.handleNoClassBody$1(semicolonToken);
+    },
     handleNoConstructorReferenceContinuationAfterTypeArguments$1(token) {
       var t1 = this.listener;
       if (t1 != null)
         t1.handleNoConstructorReferenceContinuationAfterTypeArguments$1(token);
+    },
+    handleNoExtensionTypeBody$1(semicolonToken) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.handleNoExtensionTypeBody$1(semicolonToken);
     },
     handleNoFieldInitializer$1(token) {
       var t1 = this.listener;
@@ -23801,6 +23654,11 @@
       var t1 = this.listener;
       if (t1 != null)
         t1.handleWildcardPattern$2(keyword, wildcard);
+    },
+    handleNoIdentifier$2(token, identifierContext) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.handleNoIdentifier$2(token, identifierContext);
     },
     handleNoType$1(lastConsumed) {
       var t1 = this.listener;
@@ -24075,30 +23933,10 @@
       if (t1 != null)
         t1.beginExtensionTypeDeclaration$3(augmentToken, extensionKeyword, $name);
     },
-    endExtensionTypeConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionTypeConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
     endExtensionTypeDeclaration$5(beginToken, augmentToken, extensionKeyword, typeKeyword, endToken) {
       var t1 = this.listener;
       if (t1 != null)
         t1.endExtensionTypeDeclaration$5(beginToken, augmentToken, extensionKeyword, typeKeyword, endToken);
-    },
-    endExtensionTypeFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionTypeFactoryMethod$3(beginToken, factoryKeyword, endToken);
-    },
-    endExtensionTypeFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionTypeFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endExtensionTypeMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this.listener;
-      if (t1 != null)
-        t1.endExtensionTypeMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     beginPrimaryConstructor$1(beginToken) {
       var t1 = this.listener;
@@ -24134,6 +23972,16 @@
       var t1 = this.listener;
       if (t1 != null)
         t1.beginConstDotShorthand$1(token);
+    },
+    beginPrimaryConstructorBody$1(token) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.beginPrimaryConstructorBody$1(token);
+    },
+    endPrimaryConstructorBody$3(beginToken, beginInitializers, endToken) {
+      var t1 = this.listener;
+      if (t1 != null)
+        t1.endPrimaryConstructorBody$3(beginToken, beginInitializers, endToken);
     },
     $isListener: 1
   };
@@ -24344,7 +24192,7 @@
         identifier = token.next;
       if (identifier.get$isIdentifier()) {
         if (87 === (identifier._typeAndOffset & 255) && identifier.next.get$isIdentifier()) {
-          parser.reportRecoverableErrorWithToken$2(identifier, B.Template_bKS);
+          parser.reportRecoverableErrorWithToken$2(identifier, B.Template_xFL);
           t1 = identifier.next;
           t1.toString;
           return t1;
@@ -24674,7 +24522,7 @@
         return identifier;
       t1 = identifier._typeAndOffset & 255;
       if (B.List_BvF[t1].isUserDefinableOperator && !_this.isContinuation)
-        return parser.insertSyntheticIdentifier$4$message$messageOnToken(identifier, _this, B.MessageCode_ae0, identifier);
+        return parser.insertSyntheticIdentifier$4$message$messageOnToken(identifier, _this, B.MessageCode_gjw, identifier);
       else if (56 === t1 || 52 === t1 || 51 === t1 || 34 === t1 || 28 === t1 || 0 === t1 || A.looksLikeStartOfNextClassMember(identifier))
         return parser.insertSyntheticIdentifier$2(token, _this);
       else if (!identifier.get$isKeywordOrIdentifier())
@@ -24828,7 +24676,7 @@
             parser.reportRecoverableErrorWithToken$2(t1, B.Template_RdP);
         } else if (149 === (t1._typeAndOffset & 255)) {
           token = A.findNonZeroLengthToken(t1);
-          parser.listener.handleRecoverableError$3(B.MessageCode_HHG, token, token);
+          parser.listener.handleRecoverableError$3(B.MessageCode_W6o, token, token);
         } else
           parser.reportRecoverableErrorWithToken$2(t1, B.Template_NOF);
         return t1;
@@ -24929,6 +24777,12 @@
     endClassDeclaration$2(beginToken, endToken) {
       this.logEvent$1("ClassDeclaration");
     },
+    handleNoClassBody$1(semicolonToken) {
+      this.logEvent$1("NoClassBody");
+    },
+    handleNoExtensionTypeBody$1(semicolonToken) {
+      this.logEvent$1("NoExtensionTypeBody");
+    },
     beginMixinDeclaration$5(beginToken, augmentToken, baseToken, mixinKeyword, $name) {
     },
     handleMixinOn$2(onKeyword, typeCount) {
@@ -24965,6 +24819,11 @@
     },
     handleNoPrimaryConstructor$3(token, constKeyword, forExtensionType) {
     },
+    beginPrimaryConstructorBody$1(token) {
+    },
+    endPrimaryConstructorBody$3(beginToken, beginInitializers, endToken) {
+      this.logEvent$1("endPrimaryConstructorBody");
+    },
     beginCombinators$1(token) {
     },
     endCombinators$1(count) {
@@ -25000,13 +24859,12 @@
     endWhileStatementBody$1(endToken) {
       this.logEvent$1("WhileStatementBody");
     },
-    beginEnum$1(enumKeyword) {
+    beginEnumDeclarationPrelude$1(enumKeyword) {
     },
-    endEnum$5(beginToken, enumKeyword, leftBrace, memberCount, endToken) {
+    beginEnumDeclaration$4(beginToken, augmentToken, enumKeyword, $name) {
+    },
+    endEnumDeclaration$5(beginToken, enumKeyword, leftBrace, memberCount, endToken) {
       this.logEvent$1("Enum");
-    },
-    endEnumConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     handleEnumElements$2(elementsEndToken, elementsCount) {
       this.logEvent$1("EnumElements");
@@ -25021,9 +24879,6 @@
     handleEnumElement$2(beginToken, augmentToken) {
       this.logEvent$1("EnumElement");
     },
-    endEnumFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      this.endClassFactoryMethod$3(beginToken, factoryKeyword, endToken);
-    },
     beginExport$1(token) {
     },
     endExport$2(exportKeyword, semicolon) {
@@ -25032,19 +24887,10 @@
     handleExpressionStatement$2(beginToken, endToken) {
       this.logEvent$1("ExpressionStatement");
     },
-    beginFactoryMethod$4(declarationKind, lastConsumed, externalToken, constToken) {
+    beginFactory$4(declarationKind, lastConsumed, externalToken, constToken) {
     },
-    endClassFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      this.logEvent$1("ClassFactoryMethod");
-    },
-    endMixinFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      this.endClassFactoryMethod$3(beginToken, factoryKeyword, endToken);
-    },
-    endExtensionFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      this.endClassFactoryMethod$3(beginToken, factoryKeyword, endToken);
-    },
-    endExtensionTypeFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      this.endClassFactoryMethod$3(beginToken, factoryKeyword, endToken);
+    endFactory$4(kind, beginToken, factoryKeyword, endToken) {
+      this.logEvent$1("Factory");
     },
     beginFormalParameter$5(token, kind, requiredToken, covariantToken, varFinalOrConst) {
     },
@@ -25059,23 +24905,8 @@
     endFormalParameters$4(count, beginToken, endToken, kind) {
       this.logEvent$1("FormalParameters");
     },
-    endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
+    endFields$11(kind, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
       this.logEvent$1("Fields");
-    },
-    endMixinFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      this.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endExtensionFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      this.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endExtensionTypeFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      this.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endEnumFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      this.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endEnumMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     handleForInitializerEmptyStatement$1(token) {
       this.logEvent$1("ForInitializerEmptyStatement");
@@ -25305,29 +25136,13 @@
     },
     beginMethod$9(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, $name, enclosingDeclarationName) {
     },
-    endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.logEvent$1("ClassMethod");
+    endMethod$6(kind, getOrSet, beginToken, beginParam, beginInitializers, endToken) {
+      this.logEvent$1("Method");
     },
-    endMixinMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
+    beginConstructor$10(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, newToken, $name, enclosingDeclarationName) {
     },
-    endExtensionMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
-    endExtensionTypeMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
-    endClassConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
-    endMixinConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
-    endExtensionConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
-    endExtensionTypeConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
+    endConstructor$6(kind, beginToken, newToken, beginParam, beginInitializers, endToken) {
+      this.logEvent$1("ClassConstructor");
     },
     beginMetadataStar$1(token) {
     },
@@ -25547,6 +25362,14 @@
     handleAssignmentExpression$2(token, endToken) {
       this.logEvent$1("AssignmentExpression");
     },
+    beginAnonymousMethodInvocation$1(token) {
+    },
+    endAnonymousMethodInvocation$4$isExpression(beginToken, functionDefinition, endToken, isExpression) {
+      this.logEvent$1("AnonymousMethodInvocation");
+    },
+    handleImplicitFormalParameters$1(token) {
+      this.logEvent$1("ImplicitFormalParameters");
+    },
     beginBinaryExpression$1(token) {
     },
     endBinaryExpression$2(token, endToken) {
@@ -25675,11 +25498,15 @@
     handleNamedArgument$1(colon) {
       this.logEvent$1("NamedArgument");
     },
+    handlePositionalArgument$1(token) {
+    },
     handlePatternField$1(colon) {
       this.logEvent$1("PatternField");
     },
     handleNamedRecordField$1(colon) {
       this.logEvent$1("NamedRecordField");
+    },
+    handlePositionalRecordField$1(token) {
     },
     beginNewExpression$1(token) {
     },
@@ -25691,6 +25518,9 @@
     },
     handleNoConstructorReferenceContinuationAfterTypeArguments$1(token) {
       this.logEvent$1("NoConstructorReferenceContinuationAfterTypeArguments");
+    },
+    handleNoIdentifier$2(token, identifierContext) {
+      this.logEvent$1("NoIdentifier");
     },
     handleNoTypeNameInConstructorReference$1(token) {
       this.logEvent$1("NoTypeNameInConstructorReference");
@@ -26207,25 +26037,26 @@
           _this.parser.reportRecoverableErrorWithToken$2(t1, B.Template_kJs);
       }
       switch (memberKind.index) {
-        case 7:
         case 8:
+        case 9:
+        case 6:
           t1 = _this.covariantToken;
           if (t1 != null)
             _this.parser.reportRecoverableErrorWithToken$2(t1, B.Template_kJs);
           break;
-        case 9:
         case 10:
+        case 11:
           t1 = _this.covariantToken;
           if (t1 != null)
-            _this.parser.reportRecoverableErrorWithToken$2(t1, B.Template_Exj);
+            _this.parser.reportRecoverableErrorWithToken$2(t1, B.Template_W5a);
           break;
-        case 11:
         case 12:
+        case 13:
           t1 = _this.covariantToken;
           if (t1 != null)
             _this.parser.reportRecoverableErrorWithToken$2(t1, B.Template_Z6Y);
           break;
-        case 16:
+        case 17:
           t1 = _this.covariantToken;
           if (t1 != null)
             _this.parser.reportRecoverableErrorWithToken$2(t1, B.Template_Enc);
@@ -26236,10 +26067,10 @@
         case 3:
         case 4:
         case 5:
-        case 6:
-        case 13:
+        case 7:
         case 14:
         case 15:
+        case 16:
           break;
       }
       t1 = _this.constToken;
@@ -26250,7 +26081,7 @@
           t1 = _this.get$varFinalOrConst();
           t1.toString;
           token0 = A.findNonZeroLengthToken(t1);
-          _this.parser.listener.handleRecoverableError$3(B.MessageCode_7Oc, token0, token0);
+          _this.parser.listener.handleRecoverableError$3(B.MessageCode_ovB, token0, token0);
         }
       t1 = _this.abstractToken;
       if (t1 != null)
@@ -26528,7 +26359,7 @@
         _this.parser.listener.handleRecoverableError$3(B.MessageCode_JW4, token, token);
       } else if (_this.varToken != null) {
         token = A.findNonZeroLengthToken(t1);
-        _this.parser.listener.handleRecoverableError$3(B.MessageCode_1TH, token, token);
+        _this.parser.listener.handleRecoverableError$3(B.MessageCode_XKB, token, token);
       } else {
         t2 = _this.lateToken;
         if (t2 != null)
@@ -26645,7 +26476,7 @@
           _this.reportConflictingModifiers$2(t1, t2);
         else if (_this.finalToken != null) {
           token = A.findNonZeroLengthToken(t1);
-          _this.parser.listener.handleRecoverableError$3(B.MessageCode_1TH, token, token);
+          _this.parser.listener.handleRecoverableError$3(B.MessageCode_XKB, token, token);
         } else
           throw A.wrapException(string$.Intern + A.S(_this.get$varFinalOrConst()));
       }
@@ -26830,7 +26661,7 @@
       }
       if (B.List_BvF[t1].isOperator && 52 === (next0.next._typeAndOffset & 255)) {
         token = A.findNonZeroLengthToken(next0);
-        _this.listener.handleRecoverableError$3(B.MessageCode_Dos, token, token);
+        _this.listener.handleRecoverableError$3(B.MessageCode_JbG, token, token);
         _this.get$rewriter().insertSyntheticIdentifier$2(next0, "#synthetic_function_" + ((next0._typeAndOffset >>> 8) - 1));
         return _this.parseTopLevelMemberImpl$1(next0);
       }
@@ -26874,15 +26705,15 @@
         t1 = context.finalToken;
         if (t1 != null) {
           token = A.findNonZeroLengthToken(t1);
-          _this.listener.handleRecoverableError$3(B.MessageCode_hXw, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_MVP, token, token);
         }
         if (interfaceToken != null) {
           token = A.findNonZeroLengthToken(interfaceToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_Dl6, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_mXW, token, token);
         }
         if (sealedToken != null) {
           token = A.findNonZeroLengthToken(sealedToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_i6q, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_X2V, token, token);
         }
         return _this.parseEnum$3(beginToken, context.augmentToken, keyword);
       } else {
@@ -26985,15 +26816,15 @@
             t1 = context.finalToken;
             if (t1 != null) {
               token = A.findNonZeroLengthToken(t1);
-              _this.listener.handleRecoverableError$3(B.MessageCode_TbP, token, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_pjq, token, token);
             }
             if (interfaceToken != null) {
               token = A.findNonZeroLengthToken(interfaceToken);
-              _this.listener.handleRecoverableError$3(B.MessageCode_aj4, token, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_Owk, token, token);
             }
             if (sealedToken != null) {
               token = A.findNonZeroLengthToken(sealedToken);
-              _this.listener.handleRecoverableError$3(B.MessageCode_uHW, token, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_WqQ, token, token);
             }
             if (directiveState.state !== B.DirectiveState_5)
               directiveState.state = B.DirectiveState_6;
@@ -27077,15 +26908,15 @@
         t1 = context.finalToken;
         if (t1 != null) {
           token = A.findNonZeroLengthToken(t1);
-          _this.listener.handleRecoverableError$3(B.MessageCode_MpU, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_mJg, token, token);
         }
         if (interfaceToken != null) {
           token = A.findNonZeroLengthToken(interfaceToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_WWN, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_nkq, token, token);
         }
         if (sealedToken != null) {
           token = A.findNonZeroLengthToken(sealedToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_c0S, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_X05, token, token);
         }
       } else
         context.parseClassModifiers$2(modifierStart, classKeyword);
@@ -27184,7 +27015,7 @@
           } else {
             if (hasCombinator) {
               token0 = A.findNonZeroLengthToken(t2);
-              _this.listener.handleRecoverableError$3(B.MessageCode_CYJ, token0, token0);
+              _this.listener.handleRecoverableError$3(B.MessageCode_sbp, token0, token0);
             }
             hasPrefix = true;
           }
@@ -27199,7 +27030,7 @@
       } while (semicolon == null);
       if (firstDeferredKeyword != null && !hasPrefix) {
         token = A.findNonZeroLengthToken(firstDeferredKeyword);
-        _this.listener.handleRecoverableError$3(B.MessageCode_MbQ, token, token);
+        _this.listener.handleRecoverableError$3(B.MessageCode_SR1, token, token);
       }
       return semicolon;
     },
@@ -27236,9 +27067,9 @@
             t4 = _this.cachedRewriter;
             next = (t4 == null ? _this.cachedRewriter = new A.TokenStreamRewriterImpl() : t4).moveSynthetic$2(token, endGroup);
           } else {
-            t2._as(B.Template_bKS);
+            t2._as(B.Template_xFL);
             token = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.Template_bKS.withArgumentsOld.call$1(token), token, token);
+            _this.listener.handleRecoverableError$3(B.Template_xFL.withArgumentsOld.call$1(token), token, token);
             next = endGroup;
           }
         }
@@ -27513,11 +27344,11 @@
       return token;
     },
     parseRecordType$3(start, token, isQuestionMarkPartOfType) {
-      var t2, parameterCount, sawComma, hasNamedFields, illegalTrailingComma, next, t3, token0, t4, token1, questionMark, _this = this, _null = null,
+      var t2, parameterCount, sawComma, hasNamedFields, illegalTrailingComma, next, t3, token0, t4, token1, questionMark, _this = this,
         t1 = token.next;
       t1.toString;
       _this.listener.beginRecordType$1(start);
-      for (t2 = type$.Message, token = t1, parameterCount = 0, sawComma = false; hasNamedFields = false, illegalTrailingComma = _null, true;) {
+      for (t2 = type$.Message, token = t1, parameterCount = 0, sawComma = false; hasNamedFields = false, illegalTrailingComma = null, true;) {
         next = token.next;
         t3 = next._typeAndOffset & 255;
         if (29 === t3) {
@@ -27551,8 +27382,7 @@
             token = t2.moveSynthetic$2(token, t3);
           } else if (B.List_BvF[next._typeAndOffset & 255].kind === 97 && B.List_BvF[next.next._typeAndOffset & 255].kind === 97) {
             t3 = A._withArgumentsOldExpectedButGot(",");
-            token0 = new A.SyntheticToken(_null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-            token0._setCommentParent$1(_null);
+            token0 = A.SyntheticToken$(B.TokenType_VRW, (next._typeAndOffset >>> 8) - 1);
             t2._as(t3);
             t4 = token.next;
             t4.toString;
@@ -27582,13 +27412,13 @@
         _this.listener.handleRecoverableError$3(B.MessageCode_tWA, token0, token0);
       } else if (parameterCount === 1 && !hasNamedFields && !sawComma) {
         token0 = A.findNonZeroLengthToken(token);
-        _this.listener.handleRecoverableError$3(B.MessageCode_kn0, token0, token0);
+        _this.listener.handleRecoverableError$3(B.MessageCode_q0i, token0, token0);
       }
       questionMark = token.next;
       if (61 === (questionMark._typeAndOffset & 255) && isQuestionMarkPartOfType)
         token = questionMark;
       else
-        questionMark = _null;
+        questionMark = null;
       _this.listener.endRecordType$4(start, questionMark, parameterCount, hasNamedFields);
       return token;
     },
@@ -27687,8 +27517,7 @@
             token0 = t1.moveSynthetic$2(token0, t2);
           } else if (B.List_BvF[next._typeAndOffset & 255].kind === 97 && B.List_BvF[next.next._typeAndOffset & 255].kind === 97) {
             t2 = A._withArgumentsOldExpectedButGot(",");
-            token1 = new A.SyntheticToken(null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-            token1._setCommentParent$1(null);
+            token1 = A.SyntheticToken$(B.TokenType_VRW, (next._typeAndOffset >>> 8) - 1);
             t1._as(t2);
             t3 = token0.next;
             t3.toString;
@@ -27719,23 +27548,24 @@
       switch (kind.index) {
         case 2:
           return B.MessageCode_rsi;
-        case 7:
-        case 6:
-          return B.MessageCode_5db;
         case 8:
+        case 7:
+          return B.MessageCode_5db;
         case 9:
         case 10:
         case 11:
         case 12:
+        case 13:
         case 0:
         case 1:
         case 3:
         case 4:
         case 5:
-        case 13:
+        case 6:
         case 14:
         case 15:
         case 16:
+        case 17:
           return B.MessageCode_Opa;
       }
     },
@@ -27764,13 +27594,13 @@
         if (A.isModifier(next)) {
           if (95 === (next._typeAndOffset & 255))
             switch (memberKind.index) {
-              case 7:
               case 8:
               case 9:
               case 10:
               case 11:
               case 12:
-              case 16:
+              case 13:
+              case 17:
                 break;
               case 0:
               case 1:
@@ -27779,9 +27609,10 @@
               case 4:
               case 5:
               case 6:
-              case 13:
+              case 7:
               case 14:
               case 15:
+              case 16:
                 t2 = next.next;
                 t2.toString;
                 covariantToken = next;
@@ -27902,20 +27733,24 @@
         if (typeParam !== B.C_NoTypeParamOrArg) {
           closer = typeParam.skip$1(0, token0);
           if (52 === (closer.next._typeAndOffset & 255)) {
-            if (varFinalOrConst != null) {
-              token1 = A.findNonZeroLengthToken(varFinalOrConst);
-              _this.listener.handleRecoverableError$3(B.MessageCode_7Oc, token1, token1);
-            }
+            if (varFinalOrConst != null)
+              if (memberKind !== B.MemberKind_17) {
+                token1 = A.findNonZeroLengthToken(varFinalOrConst);
+                _this.listener.handleRecoverableError$3(B.MessageCode_ovB, token1, token1);
+              } else if (!_this._isPrimaryConstructorsFeatureEnabled)
+                _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_x3b, varFinalOrConst, varFinalOrConst);
             closer.next.get$endGroup().next.toString;
             beforeInlineFunctionType = token0;
           }
         }
       } else {
         if (52 === t2) {
-          if (varFinalOrConst != null) {
-            token1 = A.findNonZeroLengthToken(varFinalOrConst);
-            _this.listener.handleRecoverableError$3(B.MessageCode_7Oc, token1, token1);
-          }
+          if (varFinalOrConst != null)
+            if (memberKind !== B.MemberKind_17) {
+              token1 = A.findNonZeroLengthToken(varFinalOrConst);
+              _this.listener.handleRecoverableError$3(B.MessageCode_ovB, token1, token1);
+            } else if (!_this._isPrimaryConstructorsFeatureEnabled)
+              _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_x3b, varFinalOrConst, varFinalOrConst);
           next.get$endGroup().next.toString;
           beforeInlineFunctionType = token0;
         }
@@ -27925,11 +27760,11 @@
         t2 = varFinalOrConst._typeAndOffset & 255;
         if (149 === t2) {
           if (typeInfo !== B.C_NoType)
-            if (memberKind !== B.MemberKind_16) {
+            if (memberKind !== B.MemberKind_17) {
               token0 = A.findNonZeroLengthToken(varFinalOrConst);
-              _this.listener.handleRecoverableError$3(B.MessageCode_rrr, token0, token0);
-            } else if (!_this._isDeclaringConstructorsFeatureEnabled)
-              _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_8Mz, varFinalOrConst, varFinalOrConst);
+              _this.listener.handleRecoverableError$3(B.MessageCode_1ZU, token0, token0);
+            } else if (!_this._isPrimaryConstructorsFeatureEnabled)
+              _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_x3b, varFinalOrConst, varFinalOrConst);
           varOrFinal = varFinalOrConst;
         } else
           varOrFinal = 108 === t2 ? varFinalOrConst : _null;
@@ -27973,10 +27808,6 @@
         nameToken = t2;
       } else {
         token = _this.ensureIdentifier$2(token, nameContext);
-        if (isNamedParameter && B.JSString_methods.startsWith$1(token.get$lexeme(), "_")) {
-          token0 = A.findNonZeroLengthToken(token);
-          _this.listener.handleRecoverableError$3(B.MessageCode_3t2, token0, token0);
-        }
         nameToken = token;
       }
       if (endInlineFunctionType != null)
@@ -27999,7 +27830,7 @@
           _this.listener.handleRecoverableError$3(B.MessageCode_Hvq, token, token);
         } else if (B.FormalParameterKind_3 === parameterKind && ":" === value) {
           token = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_w5F, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_Ewe, token, token);
         } else if (!t1 || memberKind === B.MemberKind_2 || memberKind === B.MemberKind_3) {
           token = A.findNonZeroLengthToken(next);
           _this.listener.handleRecoverableError$3(B.MessageCode_BM3, token, token);
@@ -28109,8 +27940,8 @@
       return token;
     },
     parseEnum$3(beginToken, augmentToken, enumKeyword) {
-      var constToken, token, $name, leftBrace, memberCount, t1, elementCount, next, t2, token0, token1, t3, typeArg, hasTypeArgumentsOrDot, period, endGroup, _this = this;
-      _this.listener.beginUncategorizedTopLevelDeclaration$1(enumKeyword);
+      var constToken, token, $name, token0, leftBrace, memberCount, t1, elementCount, next, t2, token1, t3, typeArg, hasTypeArgumentsOrDot, period, endGroup, _this = this;
+      _this.listener.beginEnumDeclarationPrelude$1(enumKeyword);
       constToken = enumKeyword.next;
       if (93 === (constToken._typeAndOffset & 255))
         token = constToken;
@@ -28120,8 +27951,9 @@
       }
       token = _this.ensureIdentifier$2(token, B.EnumDeclarationIdentifierContext_Z4P);
       $name = token.get$lexeme();
-      _this.listener.beginEnum$1(enumKeyword);
-      token = _this.parseEnumHeaderOpt$2(_this.parsePrimaryConstructorOpt$3(A.computeTypeParamOrArg(token, true, true).parseVariables$2(token, _this), constToken, false), enumKeyword);
+      token0 = A.computeTypeParamOrArg(token, true, true).parseVariables$2(token, _this);
+      _this.listener.beginEnumDeclaration$4(beginToken, augmentToken, enumKeyword, token);
+      token = _this.parseEnumHeaderOpt$2(_this.parsePrimaryConstructorOpt$3(token0, constToken, false), enumKeyword);
       leftBrace = token.next;
       memberCount = 0;
       if (51 === (leftBrace._typeAndOffset & 255)) {
@@ -28221,7 +28053,7 @@
         _this.listener.endEnumBody$2(leftBrace, t1);
         token = t1;
       }
-      _this.listener.endEnum$5(beginToken, enumKeyword, leftBrace, memberCount, token);
+      _this.listener.endEnumDeclaration$5(beginToken, enumKeyword, leftBrace, memberCount, token);
       return token;
     },
     parseEnumHeaderOpt$2(token, enumKeyword) {
@@ -28328,14 +28160,14 @@
         } else {
           t1 = token.next;
           t1.toString;
-          this.listener.handleRecoverableError$3(B.MessageCode_iUe, t1, skipToken);
+          this.listener.handleRecoverableError$3(B.MessageCode_YAK, t1, skipToken);
         }
         return skipToken;
       }
       return null;
     },
     parseClassOrNamedMixinApplication$10(beginToken, abstractToken, macroToken, sealedToken, baseToken, interfaceToken, finalToken, augmentToken, mixinToken, classKeyword) {
-      var constToken, token, $name, token0, t1, withKeyword, t2, implementsKeyword, _this = this;
+      var constToken, token, $name, token0, t1, withKeyword, t2, implementsKeyword, token1, _this = this;
       _this.listener.beginClassOrMixinOrNamedMixinApplicationPrelude$1(beginToken);
       constToken = classKeyword.next;
       if (93 === (constToken._typeAndOffset & 255))
@@ -28389,12 +28221,21 @@
         _this.listener.beginClassDeclaration$10(beginToken, abstractToken, macroToken, sealedToken, baseToken, interfaceToken, finalToken, augmentToken, mixinToken, $name);
         t1 = $name.get$lexeme();
         token0 = _this.parseClassHeaderOpt$3(_this.parsePrimaryConstructorOpt$3(token, constToken, false), beginToken, classKeyword);
-        if (51 !== (token0.next._typeAndOffset & 255)) {
-          token = _this.parseDeclarationHeaderRecoveryInternal$4(token, beginToken, classKeyword, B.DeclarationHeaderKind_0);
-          _this.ensureBlock$2(token, B.BlockKind_reG);
-        } else
-          token = token0;
-        token = _this.parseClassOrMixinOrExtensionBody$3(token, B.DeclarationKind_1, t1);
+        token1 = token0.next;
+        t2 = token1._typeAndOffset & 255;
+        if (65 === t2) {
+          if (!_this._isPrimaryConstructorsFeatureEnabled)
+            _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_x3b, token1, token1);
+          _this.listener.handleNoClassBody$1(token1);
+          token = token1;
+        } else {
+          if (51 !== t2) {
+            token = _this.parseDeclarationHeaderRecoveryInternal$4(token, beginToken, classKeyword, B.DeclarationHeaderKind_0);
+            _this.ensureBlock$2(token, B.BlockKind_reG);
+          } else
+            token = token0;
+          token = _this.parseClassOrMixinOrExtensionBody$3(token, B.DeclarationKind_1, t1);
+        }
         _this.listener.endClassDeclaration$2(beginToken, token);
         return token;
       }
@@ -28448,14 +28289,14 @@
             case 0:
               if (hasExtends) {
                 token1 = A.findNonZeroLengthToken(t3);
-                _this.listener.handleRecoverableError$3(B.MessageCode_e9e, token1, token1);
+                _this.listener.handleRecoverableError$3(B.MessageCode_grV, token1, token1);
               } else {
                 if (hasWith) {
                   token1 = A.findNonZeroLengthToken(t3);
-                  _this.listener.handleRecoverableError$3(B.MessageCode_79k, token1, token1);
+                  _this.listener.handleRecoverableError$3(B.MessageCode_XiT, token1, token1);
                 } else if (hasImplements) {
                   token1 = A.findNonZeroLengthToken(t3);
-                  _this.listener.handleRecoverableError$3(B.MessageCode_Z2N, token1, token1);
+                  _this.listener.handleRecoverableError$3(B.MessageCode_mul, token1, token1);
                 }
                 hasExtends = true;
               }
@@ -28472,11 +28313,11 @@
             case 0:
               if (hasWith) {
                 token1 = A.findNonZeroLengthToken(t3);
-                _this.listener.handleRecoverableError$3(B.MessageCode_RMm, token1, token1);
+                _this.listener.handleRecoverableError$3(B.MessageCode_yvz, token1, token1);
               } else {
                 if (hasImplements) {
                   token1 = A.findNonZeroLengthToken(t3);
-                  _this.listener.handleRecoverableError$3(B.MessageCode_BcI, token1, token1);
+                  _this.listener.handleRecoverableError$3(B.MessageCode_4in, token1, token1);
                 }
                 hasWith = true;
               }
@@ -28523,7 +28364,7 @@
         switch (kind.index) {
           case 0:
             token0 = A.findNonZeroLengthToken(t1);
-            _this.listener.handleRecoverableError$3(B.MessageCode_e9e, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_grV, token0, token0);
             break;
           case 1:
             break;
@@ -28587,11 +28428,11 @@
         if (t2 != null)
           if (hasOn) {
             token1 = A.findNonZeroLengthToken(t2);
-            _this.listener.handleRecoverableError$3(B.MessageCode_lps, token1, token1);
+            _this.listener.handleRecoverableError$3(B.MessageCode_tX3, token1, token1);
           } else {
             if (hasImplements) {
               token1 = A.findNonZeroLengthToken(t2);
-              _this.listener.handleRecoverableError$3(B.MessageCode_mIO, token1, token1);
+              _this.listener.handleRecoverableError$3(B.MessageCode_tsq, token1, token1);
             }
             hasOn = true;
           }
@@ -28606,7 +28447,7 @@
         t2 = token0.next;
         if (153 === (t2._typeAndOffset & 255)) {
           token0 = A.findNonZeroLengthToken(t2);
-          _this.listener.handleRecoverableError$3(B.MessageCode_124, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_4Jy, token0, token0);
           token0 = _this.parseTypeList$1(t2);
           _this.listener.handleMixinWithClause$1(t2);
         }
@@ -28645,7 +28486,7 @@
       return token;
     },
     parseExtension$3(beginToken, augmentToken, extensionKeyword) {
-      var typeKeyword, constKeyword, token, $name, token0, _this = this;
+      var typeKeyword, constKeyword, token, $name, token0, token1, t1, _this = this;
       _this.listener.beginExtensionDeclarationPrelude$1(extensionKeyword);
       if (extensionKeyword.next.get$isIdentifier() && extensionKeyword.next.get$lexeme() === "type") {
         typeKeyword = extensionKeyword.next;
@@ -28666,12 +28507,21 @@
         _this.listener.beginExtensionTypeDeclaration$3(augmentToken, extensionKeyword, $name);
         token = _this.parsePrimaryConstructorOpt$3(token, constKeyword, true);
         token0 = _this.parseClassOrMixinOrEnumImplementsOpt$1(token);
-        if (51 !== (token0.next._typeAndOffset & 255)) {
-          token = _this.parseDeclarationHeaderRecoveryInternal$4(token, extensionKeyword, extensionKeyword, B.DeclarationHeaderKind_1);
-          _this.ensureBlock$2(token, B.BlockKind_vGE);
-        } else
-          token = token0;
-        token = _this.parseClassOrMixinOrExtensionBody$3(token, B.DeclarationKind_4, $name.get$lexeme());
+        token1 = token0.next;
+        t1 = token1._typeAndOffset & 255;
+        if (65 === t1) {
+          if (!_this._isPrimaryConstructorsFeatureEnabled)
+            _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_x3b, token1, token1);
+          _this.listener.handleNoExtensionTypeBody$1(token1);
+          token = token1;
+        } else {
+          if (51 !== t1) {
+            token = _this.parseDeclarationHeaderRecoveryInternal$4(token, extensionKeyword, extensionKeyword, B.DeclarationHeaderKind_1);
+            _this.ensureBlock$2(token, B.BlockKind_vGE);
+          } else
+            token = token0;
+          token = _this.parseClassOrMixinOrExtensionBody$3(token, B.DeclarationKind_4, $name.get$lexeme());
+        }
         _this.listener.endExtensionTypeDeclaration$5(beginToken, augmentToken, extensionKeyword, typeKeyword, token);
         return token;
       } else
@@ -28723,9 +28573,9 @@
       if (51 !== (next._typeAndOffset & 255)) {
         for (t1 = type$.Template_of_Message_Function_Token_and_Function; t2 = next._typeAndOffset & 255, B.List_BvF[t2] !== B.TokenType_ScO;)
           if (25 === t2 || 103 === t2 || 115 === t2 || 128 === t2 || 153 === t2) {
-            t1._as(B.Template_bKS);
+            t1._as(B.Template_xFL);
             token = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.Template_bKS.withArgumentsOld.call$1(token), token, token);
+            _this.listener.handleRecoverableError$3(B.Template_xFL.withArgumentsOld.call$1(token), token, token);
             next0 = next.next;
             if (next0.get$isIdentifier()) {
               t2 = next0.next;
@@ -28755,19 +28605,19 @@
           token = _this.ensureIdentifier$2(t1, B.MethodDeclarationIdentifierContext_iyt);
         t2 = token.next;
         if (52 === (t2._typeAndOffset & 255))
-          token = _this.parseFormalParametersRest$2(t2, B.MemberKind_16);
+          token = _this.parseFormalParametersRest$2(t2, B.MemberKind_17);
         else {
           if (forExtensionType) {
             token0 = A.findNonZeroLengthToken(token);
-            _this.listener.handleRecoverableError$3(B.MessageCode_5dN, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_Vpd, token0, token0);
           }
-          _this.listener.handleNoFormalParameters$2(token, B.MemberKind_16);
+          _this.listener.handleNoFormalParameters$2(token, B.MemberKind_17);
         }
         _this.listener.endPrimaryConstructor$4(t1, constKeyword, hasConstructorName, forExtensionType);
       } else {
         if (forExtensionType) {
           token0 = A.findNonZeroLengthToken(token);
-          _this.listener.handleRecoverableError$3(B.MessageCode_GO6, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_eFw, token0, token0);
         } else if (constKeyword != null) {
           token0 = A.findNonZeroLengthToken(constKeyword);
           _this.listener.handleRecoverableError$3(B.MessageCode_97u, token0, token0);
@@ -28940,12 +28790,12 @@
         lateToken = _null;
       t1 = varFinalOrConst == null;
       t2 = !t1;
-      if (t2) {
+      if (t2 && 93 !== (varFinalOrConst._typeAndOffset & 255)) {
         afterOuterPattern = _this.skipOuterPattern$1(token0);
         if (afterOuterPattern != null && 31 === (afterOuterPattern.next._typeAndOffset & 255)) {
           t1 = token0.next;
           t1.toString;
-          _this.listener.handleRecoverableError$3(B.MessageCode_IaC, t1, afterOuterPattern);
+          _this.listener.handleRecoverableError$3(B.MessageCode_vQF, t1, afterOuterPattern);
           syntheticName = _this.get$rewriter().insertSyntheticIdentifier$1(token0);
           t1 = _this.get$rewriter();
           t2 = afterOuterPattern.next;
@@ -28996,10 +28846,10 @@
           if (getOrSet == null && value !== "(" && value !== "{" && value !== "<" && value !== "=>" && value !== "=" && value !== ";" && value !== ",") {
             if (t1) {
               token = A.findNonZeroLengthToken(next);
-              _this.listener.handleRecoverableError$3(B.MessageCode_mTa, token, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_9C3, token, token);
             } else {
               token = A.findNonZeroLengthToken(next);
-              _this.listener.handleRecoverableError$3(B.MessageCode_Dos, token, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_JbG, token, token);
               next0 = next.next;
               if (B.List_BvF[next0._typeAndOffset & 255].isOperator) {
                 if (52 === (next0.next._typeAndOffset & 255))
@@ -29029,7 +28879,7 @@
         if (t2)
           if (149 === (varFinalOrConst._typeAndOffset & 255)) {
             token2 = A.findNonZeroLengthToken(varFinalOrConst);
-            _this.listener.handleRecoverableError$3(B.MessageCode_amd, token2, token2);
+            _this.listener.handleRecoverableError$3(B.MessageCode_b8v, token2, token2);
           } else
             _this.reportRecoverableErrorWithToken$2(varFinalOrConst, B.Template_kJs);
         else if (lateToken != null)
@@ -29049,7 +28899,7 @@
           t2.handleNoTypeVariables$1(t3);
           token0 = $name;
         }
-        token0 = _this.parseGetterOrFormalParameters$4(token0, $name, isGetter, B.MemberKind_8);
+        token0 = _this.parseGetterOrFormalParameters$4(token0, $name, isGetter, B.MemberKind_9);
         savedAsyncModifier = _this.asyncState;
         t2 = token0.next;
         t2.toString;
@@ -29078,22 +28928,22 @@
       return _this.parseFields$14(token, _null, augmentToken, externalToken, _null, _null, lateToken, varFinalOrConst, token0, typeInfo, t1, B.DeclarationKind_0, _null, nameIsRecovered);
     },
     parseFields$14(beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, $name, kind, enclosingDeclarationName, nameIsRecovered) {
-      var token, t1, context, fieldCount, token0, t2, name0, _this = this;
+      var token, t1, t2, context, fieldCount, token0, t3, name0, _this = this;
       _this.listener.beginFields$9(kind, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeStart);
       if (covariantToken != null && lateToken == null)
         if (varFinalOrConst != null && 108 === (varFinalOrConst._typeAndOffset & 255)) {
           token = A.findNonZeroLengthToken(covariantToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_YaP, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_tLt, token, token);
           covariantToken = null;
         }
       if (typeInfo === B.C_NoType) {
         if (varFinalOrConst == null) {
           token = A.findNonZeroLengthToken($name);
-          _this.listener.handleRecoverableError$3(B.MessageCode_pGG, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_qzU, token, token);
         }
       } else if (varFinalOrConst != null && 149 === (varFinalOrConst._typeAndOffset & 255)) {
         token = A.findNonZeroLengthToken(varFinalOrConst);
-        _this.listener.handleRecoverableError$3(B.MessageCode_rrr, token, token);
+        _this.listener.handleRecoverableError$3(B.MessageCode_1ZU, token, token);
       }
       t1 = abstractToken != null;
       if (t1 && externalToken != null) {
@@ -29101,40 +28951,29 @@
         _this.listener.handleRecoverableError$3(B.MessageCode_ShS, token, token);
       }
       token = typeInfo.parseType$2(beforeType, _this);
-      context = kind === B.DeclarationKind_0 ? B.TopLevelDeclarationIdentifierContext_7Ma : B.FieldDeclarationIdentifierContext_sOX;
+      t2 = kind === B.DeclarationKind_0;
+      context = t2 ? B.TopLevelDeclarationIdentifierContext_7Ma : B.FieldDeclarationIdentifierContext_sOX;
       $name = _this.ensureIdentifierPotentiallyRecovered$3(token, context, nameIsRecovered);
       if (covariantToken != null && lateToken != null)
         if (varFinalOrConst != null && 108 === (varFinalOrConst._typeAndOffset & 255))
           if (31 === ($name.next._typeAndOffset & 255)) {
             token = A.findNonZeroLengthToken(covariantToken);
-            _this.listener.handleRecoverableError$3(B.MessageCode_tA9, token, token);
+            _this.listener.handleRecoverableError$3(B.MessageCode_f68, token, token);
             covariantToken = null;
           }
       token = _this.parseFieldInitializerOpt$9($name, $name, lateToken, abstractToken, augmentToken, externalToken, varFinalOrConst, kind, enclosingDeclarationName);
-      for (fieldCount = 1; token0 = token.next, t2 = token0._typeAndOffset & 255, 25 === t2;) {
+      for (fieldCount = 1; token0 = token.next, t3 = token0._typeAndOffset & 255, 25 === t3;) {
         name0 = _this.ensureIdentifier$2(token0, context);
         token = _this.parseFieldInitializerOpt$9(name0, name0, lateToken, abstractToken, augmentToken, externalToken, varFinalOrConst, kind, enclosingDeclarationName);
         ++fieldCount;
       }
-      token = 65 === t2 ? token0 : _this.ensureSemicolon$1(token);
+      token = 65 === t3 ? token0 : _this.ensureSemicolon$1(token);
       switch (kind.index) {
         case 0:
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endTopLevelFields$9(augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t2, token);
           break;
         case 1:
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t2, token);
-          break;
         case 2:
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endMixinFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t2, token);
+        case 5:
           break;
         case 3:
           if (t1) {
@@ -29145,27 +28984,22 @@
             token0 = A.findNonZeroLengthToken($name);
             _this.listener.handleRecoverableError$3(B.MessageCode_QSt, token0, token0);
           }
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endExtensionFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t2, token);
           break;
         case 4:
           if (staticToken == null && externalToken == null) {
             token0 = A.findNonZeroLengthToken($name);
             _this.listener.handleRecoverableError$3(B.MessageCode_Bdk, token0, token0);
           }
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endExtensionTypeFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t2, token);
           break;
-        case 5:
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endEnumFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t2, token);
-          break;
+      }
+      t1 = _this.listener;
+      t3 = beforeStart.next;
+      if (t2) {
+        t3.toString;
+        t1.endTopLevelFields$9(augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t3, token);
+      } else {
+        t3.toString;
+        t1.endFields$11(kind, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, fieldCount, t3, token);
       }
       return token;
     },
@@ -29173,7 +29007,7 @@
       var t1, token, token0, _this = this,
         name0 = $name.next;
       if (17 === (name0._typeAndOffset & 255)) {
-        _this.reportRecoverableErrorWithToken$2(name0, B.Template_bKS);
+        _this.reportRecoverableErrorWithToken$2(name0, B.Template_xFL);
         $name = name0;
       }
       t1 = $name.next;
@@ -29184,7 +29018,7 @@
       token = A.computeTypeParamOrArg($name, true, false).parseVariables$2($name, _this);
       token0 = token.next;
       if (31 === (token0._typeAndOffset & 255)) {
-        _this.reportRecoverableErrorWithToken$2(token0, B.Template_bKS);
+        _this.reportRecoverableErrorWithToken$2(token0, B.Template_xFL);
         token = token0;
       }
       return token;
@@ -29193,7 +29027,7 @@
       var token0, next, t1, t2, _this = this;
       if ($name.get$lexeme() === enclosingDeclarationName) {
         token0 = A.findNonZeroLengthToken($name);
-        _this.listener.handleRecoverableError$3(B.MessageCode_G2L, token0, token0);
+        _this.listener.handleRecoverableError$3(B.MessageCode_XC8, token0, token0);
       }
       next = token.next;
       if (31 === (next._typeAndOffset & 255)) {
@@ -29270,8 +29104,7 @@
           t3 = _this.cachedRewriter;
           if (t3 == null)
             t3 = _this.cachedRewriter = new A.TokenStreamRewriterImpl();
-          next = new A.SyntheticToken(null, ((token0.next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-          next._setCommentParent$1(null);
+          next = A.SyntheticToken$(B.TokenType_VRW, (token0.next._typeAndOffset >>> 8) - 1);
           t4 = token0._typeAndOffset;
           if (!(B.List_BvF[t4 & 255] !== B.TokenType_ScO || (t4 >>> 8) - 1 < 0))
             A.throwExpression("Internal Error: Rewriting at eof.");
@@ -29321,7 +29154,7 @@
           if (31 === t1) {
             if (141 !== (token0._typeAndOffset & 255)) {
               token0 = A.findNonZeroLengthToken(token0);
-              _this.listener.handleRecoverableError$3(B.MessageCode_L7K, token0, token0);
+              _this.listener.handleRecoverableError$3(B.MessageCode_QhF, token0, token0);
             }
           } else if (52 !== t1) {
             t1 = type$.Message._as(A._withArgumentsOldExpectedAfterButGot("("));
@@ -29350,7 +29183,7 @@
           t1 = next._typeAndOffset & 255;
           if (51 === t1 || 34 === t1) {
             token0 = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_h9S, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_kll, token0, token0);
           }
           return token;
         }
@@ -29369,16 +29202,16 @@
         if (31 === t2)
           return _this.parseInitializerExpressionRest$1(token);
         if (!B.List_BvF[t2].isOperator && 56 !== t2) {
-          _this.insertSyntheticIdentifier$4$message$messageOnToken(_this.get$rewriter().insertToken$2(t1, A.SyntheticToken$(B.TokenType_K4l, (t1.next._typeAndOffset >>> 8) - 1)), B.ExpressionIdentifierContext_8BF, B.MessageCode_Kd8, t1);
+          _this.insertSyntheticIdentifier$4$message$messageOnToken(_this.get$rewriter().insertToken$2(t1, A.SyntheticToken$(B.TokenType_K4l, (t1.next._typeAndOffset >>> 8) - 1)), B.ExpressionIdentifierContext_8BF, B.MessageCode_o6W, t1);
           return _this.parseInitializerExpressionRest$1(token);
         }
       } else {
-        token0 = _this.insertSyntheticIdentifier$4$message$messageOnToken(token, B.FieldInitializerIdentifierContext_cIS, B.MessageCode_z2b, token);
+        token0 = _this.insertSyntheticIdentifier$4$message$messageOnToken(token, B.FieldInitializerIdentifierContext_cIS, B.MessageCode_mdl, token);
         token0 = _this.get$rewriter().insertToken$2(token0, A.SyntheticToken$(B.TokenType_K4l, (token0.next._typeAndOffset >>> 8) - 1));
         _this.get$rewriter().insertSyntheticIdentifier$1(token0);
         return _this.parseInitializerExpressionRest$1(token);
       }
-      token0 = _this.insertSyntheticIdentifier$3$message(token, B.FieldInitializerIdentifierContext_cIS, B.MessageCode_Kd8);
+      token0 = _this.insertSyntheticIdentifier$3$message(token, B.FieldInitializerIdentifierContext_cIS, B.MessageCode_o6W);
       _this.get$rewriter().insertToken$2(token0, A.SyntheticToken$(B.TokenType_K4l, (token0.next._typeAndOffset >>> 8) - 1));
       return _this.parseInitializerExpressionRest$1(token);
     },
@@ -29498,9 +29331,9 @@
         nextValue = B.List_BvF[next.next._typeAndOffset & 255].stringValue;
         for (t1 = expectedNext.length, _i = 0; _i < t1; ++_i)
           if (nextValue === expectedNext[_i]) {
-            type$.Template_of_Message_Function_Token_and_Function._as(B.Template_bKS);
+            type$.Template_of_Message_Function_Token_and_Function._as(B.Template_xFL);
             token = A.findNonZeroLengthToken(next);
-            this.listener.handleRecoverableError$3(B.Template_bKS.withArgumentsOld.call$1(token), token, token);
+            this.listener.handleRecoverableError$3(B.Template_xFL.withArgumentsOld.call$1(token), token, token);
             return next;
           }
       }
@@ -29513,7 +29346,7 @@
       token0 = hasName ? this.parseLiteralString$1(token) : token;
       this.listener.handleNativeClause$2(token, hasName);
       token = A.findNonZeroLengthToken(token);
-      this.listener.handleRecoverableError$3(B.MessageCode_JvH, token, token);
+      this.listener.handleRecoverableError$3(B.MessageCode_X6S, token, token);
       return token0;
     },
     parseClassOrMixinOrExtensionBody$3(token, kind, enclosingDeclarationName) {
@@ -29549,7 +29382,7 @@
       return false;
     },
     parseClassOrMixinOrExtensionOrEnumMemberImpl$3(token, kind, enclosingDeclarationName) {
-      var t1, covariantToken, abstractToken, augmentToken, externalToken, lateToken, staticToken, varFinalOrConst, t2, next, token0, next0, context, afterOuterPattern, syntheticName, typeInfo, token1, getOrSet, nameIsRecovered, value, next2, typeParam, t3, t4, token2, _this = this, _null = null;
+      var t1, covariantToken, abstractToken, augmentToken, externalToken, lateToken, staticToken, varFinalOrConst, t2, next, token0, next0, context, afterOuterPattern, syntheticName, typeInfo, token1, t3, getOrSet, nameIsRecovered, newToken, value, next2, typeParam, t4, token2, _this = this, _null = null;
       token = _this.parseMetadataStar$1(token);
       t1 = token.next;
       t1.toString;
@@ -29664,12 +29497,13 @@
         lateToken = _null;
       _this.listener.beginMember$0();
       t1 = varFinalOrConst == null;
-      if (!t1) {
+      t2 = !t1;
+      if (t2 && 93 !== (varFinalOrConst._typeAndOffset & 255)) {
         afterOuterPattern = _this.skipOuterPattern$1(token0);
         if (afterOuterPattern != null && 31 === (afterOuterPattern.next._typeAndOffset & 255)) {
           t1 = token0.next;
           t1.toString;
-          _this.listener.handleRecoverableError$3(B.MessageCode_IaC, t1, afterOuterPattern);
+          _this.listener.handleRecoverableError$3(B.MessageCode_vQF, t1, afterOuterPattern);
           syntheticName = _this.get$rewriter().insertSyntheticIdentifier$1(token0);
           t1 = _this.get$rewriter();
           t2 = afterOuterPattern.next;
@@ -29683,120 +29517,156 @@
       typeInfo = A.computeType(token0, false, true, false);
       token1 = typeInfo.skipType$1(token0);
       next = token1.next;
-      t2 = B.List_BvF[next._typeAndOffset & 255];
+      t3 = next._typeAndOffset & 255;
       getOrSet = _null;
       nameIsRecovered = false;
-      if (t2 !== B.TokenType_w7x) {
-        value = t2.stringValue;
-        if (value === "get" || value === "set")
-          if (next.next.get$isIdentifier()) {
-            t1 = next.next;
-            t1.toString;
-            getOrSet = next;
-            next = t1;
-            token1 = getOrSet;
-          } else {
-            t1 = next.next;
-            t1.toString;
-            if (_this.isReservedKeyword$1(t1)) {
-              t1 = next.next.next;
-              t1.toString;
-              nameIsRecovered = _this.indicatesMethodOrField$1(t1);
-            }
-            if (nameIsRecovered) {
+      if (125 === t3) {
+        if (!_this._isPrimaryConstructorsFeatureEnabled)
+          _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_x3b, next, next);
+        newToken = next;
+      } else {
+        t3 = B.List_BvF[t3];
+        if (t3 !== B.TokenType_w7x) {
+          value = t3.stringValue;
+          if (value === "get" || value === "set")
+            if (next.next.get$isIdentifier()) {
               t1 = next.next;
               t1.toString;
               getOrSet = next;
               next = t1;
               token1 = getOrSet;
+            } else {
+              t1 = next.next;
+              t1.toString;
+              if (_this.isReservedKeyword$1(t1)) {
+                t1 = next.next.next;
+                t1.toString;
+                nameIsRecovered = _this.indicatesMethodOrField$1(t1);
+              }
+              if (nameIsRecovered) {
+                t1 = next.next;
+                t1.toString;
+                getOrSet = next;
+                next = t1;
+                token1 = getOrSet;
+              }
             }
-          }
-        else if (value === "factory") {
-          next2 = next.next;
-          if (next2.get$isIdentifier() || B.List_BvF[next2._typeAndOffset & 255].isModifier) {
-            if (token0 !== token1) {
-              token0 = A.findNonZeroLengthToken(token1);
-              _this.listener.handleRecoverableError$3(B.MessageCode_PDS, token0, token0);
+          else if (value === "factory") {
+            next2 = next.next;
+            if (!next2.get$isIdentifier()) {
+              t1 = next2._typeAndOffset & 255;
+              t1 = B.List_BvF[t1].isModifier || 125 === t1;
+            } else
+              t1 = true;
+            if (t1) {
+              if (token0 !== token1) {
+                token0 = A.findNonZeroLengthToken(token1);
+                _this.listener.handleRecoverableError$3(B.MessageCode_GhC, token0, token0);
+              }
+              if (abstractToken != null) {
+                token0 = A.findNonZeroLengthToken(abstractToken);
+                _this.listener.handleRecoverableError$3(B.MessageCode_ZSs, token0, token0);
+              }
+              token = _this.parseFactoryMethod$7(token1, kind, token, externalToken, staticToken == null ? covariantToken : staticToken, varFinalOrConst, true);
+              _this.listener.endMember$0();
+              return token;
+            } else if (_this._isPrimaryConstructorsFeatureEnabled && 52 === (next2._typeAndOffset & 255)) {
+              t1 = false;
+              if (typeInfo === B.C_NoType)
+                if (covariantToken == null)
+                  if (lateToken == null)
+                    if (staticToken == null)
+                      t1 = (!t2 || 93 === (varFinalOrConst._typeAndOffset & 255)) && abstractToken == null;
+              if (t1) {
+                token = _this.parseFactoryMethod$7(token1, kind, token, externalToken, staticToken == null ? covariantToken : staticToken, varFinalOrConst, false);
+                _this.listener.endMember$0();
+                return token;
+              }
             }
-            if (abstractToken != null) {
-              token0 = A.findNonZeroLengthToken(abstractToken);
-              _this.listener.handleRecoverableError$3(B.MessageCode_ZSs, token0, token0);
-            }
-            token = _this.parseFactoryMethod$6(token1, kind, token, externalToken, staticToken == null ? covariantToken : staticToken, varFinalOrConst);
-            _this.listener.endMember$0();
-            return token;
-          }
-        } else if (value === "operator") {
-          t1 = next.next;
-          t1.toString;
-          typeParam = A.computeTypeParamOrArg(next, false, false);
-          t2 = t1._typeAndOffset & 255;
-          t3 = B.List_BvF[t2];
-          if (t3.isUserDefinableOperator && typeParam === B.C_NoTypeParamOrArg) {
-            t1 = token1.next;
+          } else if (value === "operator") {
+            t1 = next.next;
             t1.toString;
-            token = _this.parseMethod$15(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, _null, t1, kind, enclosingDeclarationName, false);
-            _this.listener.endMember$0();
-            return token;
-          } else {
-            t4 = true;
-            if (33 !== t2)
-              if (19 !== t2)
-                t2 = t3.isOperator && 31 !== t2 && 44 !== t2;
-              else
-                t2 = t4;
-            else
-              t2 = t4;
-            if (t2)
-              return _this.parseInvalidOperatorDeclaration$11(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, kind, enclosingDeclarationName);
-            else if (_this.isUnaryMinus$1(t1)) {
+            typeParam = A.computeTypeParamOrArg(next, false, false);
+            t2 = t1._typeAndOffset & 255;
+            t3 = B.List_BvF[t2];
+            if (t3.isUserDefinableOperator && typeParam === B.C_NoTypeParamOrArg) {
               t1 = token1.next;
               t1.toString;
-              token = _this.parseMethod$15(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, _null, t1, kind, enclosingDeclarationName, false);
+              token = _this.parseMethod$16(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, _null, _null, t1, kind, enclosingDeclarationName, false);
+              _this.listener.endMember$0();
+              return token;
+            } else {
+              t4 = true;
+              if (33 !== t2)
+                if (19 !== t2)
+                  t2 = t3.isOperator && 31 !== t2 && 44 !== t2;
+                else
+                  t2 = t4;
+              else
+                t2 = t4;
+              if (t2)
+                return _this.parseInvalidOperatorDeclaration$11(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, kind, enclosingDeclarationName);
+              else if (_this.isUnaryMinus$1(t1)) {
+                t1 = token1.next;
+                t1.toString;
+                token = _this.parseMethod$16(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, _null, _null, t1, kind, enclosingDeclarationName, false);
+                _this.listener.endMember$0();
+                return token;
+              }
+            }
+          } else if (value === "this") {
+            t1 = next.next._typeAndOffset & 255;
+            if (24 === t1 || 65 === t1 || 51 === t1) {
+              if (!_this._isPrimaryConstructorsFeatureEnabled)
+                _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_x3b, next, next);
+              _this.listener.beginPrimaryConstructorBody$1(next);
+              token = _this.parseFunctionBody$3(_this.parseAsyncModifierOpt$1(_this.parseInitializersOpt$1(next)), false, _this.asyncState === B.AsyncModifier_0);
+              _this.listener.endPrimaryConstructorBody$3(next, next, token);
               _this.listener.endMember$0();
               return token;
             }
-          }
-        } else {
-          if (next.get$isIdentifier())
-            t1 = value === "typedef" && token1 === token && next.next.get$isIdentifier();
-          else
-            t1 = true;
-          if (t1) {
-            if (abstractToken != null) {
-              token2 = A.findNonZeroLengthToken(abstractToken);
-              _this.listener.handleRecoverableError$3(B.MessageCode_ZSs, token2, token2);
+          } else {
+            if (next.get$isIdentifier())
+              t1 = value === "typedef" && token1 === token && next.next.get$isIdentifier();
+            else
+              t1 = true;
+            if (t1) {
+              if (abstractToken != null) {
+                token2 = A.findNonZeroLengthToken(abstractToken);
+                _this.listener.handleRecoverableError$3(B.MessageCode_ZSs, token2, token2);
+              }
+              return _this.recoverFromInvalidMember$15(token1, token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, _null, _null, kind, enclosingDeclarationName);
             }
-            return _this.recoverFromInvalidMember$14(token1, token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, _null, kind, enclosingDeclarationName);
+          }
+        } else if (typeInfo === B.C_NoType && t1) {
+          next2 = next.next;
+          if (B.List_BvF[next2._typeAndOffset & 255].isUserDefinableOperator && next2.get$endGroup() == null) {
+            value = B.List_BvF[next2.next._typeAndOffset & 255].stringValue;
+            if (value === "(" || value === "{" || value === "=>")
+              return _this.parseInvalidOperatorDeclaration$11(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, kind, enclosingDeclarationName);
+          } else {
+            if (_this.isReservedKeyword$1(next2)) {
+              t1 = next2.next;
+              t1.toString;
+              nameIsRecovered = _this.indicatesMethodOrField$1(t1);
+            }
+            if (nameIsRecovered) {
+              typeInfo = A.computeType(token1, true, true, false);
+              token1 = typeInfo.skipType$1(token1);
+              t1 = token1.next;
+              t1.toString;
+              next = t1;
+            }
           }
         }
-      } else if (typeInfo === B.C_NoType && t1) {
-        next2 = next.next;
-        if (B.List_BvF[next2._typeAndOffset & 255].isUserDefinableOperator && next2.get$endGroup() == null) {
-          value = B.List_BvF[next2.next._typeAndOffset & 255].stringValue;
-          if (value === "(" || value === "{" || value === "=>")
-            return _this.parseInvalidOperatorDeclaration$11(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, kind, enclosingDeclarationName);
-        } else {
-          if (_this.isReservedKeyword$1(next2)) {
-            t1 = next2.next;
-            t1.toString;
-            nameIsRecovered = _this.indicatesMethodOrField$1(t1);
-          }
-          if (nameIsRecovered) {
-            typeInfo = A.computeType(token1, true, true, false);
-            token1 = typeInfo.skipType$1(token1);
-            t1 = token1.next;
-            t1.toString;
-            next = t1;
-          }
-        }
+        newToken = _null;
       }
       value = B.List_BvF[next.next._typeAndOffset & 255].stringValue;
       t1 = getOrSet == null;
-      if (!t1 || value === "(" || value === "{" || value === "<" || value === "." || value === "=>") {
+      if (!t1 || newToken != null || value === "(" || value === "{" || value === "<" || value === "." || value === "=>") {
         t1 = token1.next;
         t1.toString;
-        token = _this.parseMethod$15(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, getOrSet, t1, kind, enclosingDeclarationName, nameIsRecovered);
+        token = _this.parseMethod$16(token, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, token0, typeInfo, getOrSet, newToken, t1, kind, enclosingDeclarationName, nameIsRecovered);
       } else {
         if (!t1)
           _this.reportRecoverableErrorWithToken$2(getOrSet, B.Template_kJs);
@@ -29807,69 +29677,146 @@
       _this.listener.endMember$0();
       return token;
     },
-    parseMethod$15(beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, getOrSet, $name, kind, enclosingDeclarationName, nameIsRecovered) {
-      var token, isConstructor, operator, t1, isOperator, varFinalOrConst0, hasQualifiedName, qualified, isConsideredGetter, isConsideredGetter0, t2, memberKind, beforeInitializers, token0, savedAsyncModifier, t3, token1, t4, t5, _this = this, _null = null;
+    _isConstructor$5($name, getOrSet, newToken, enclosingDeclarationName, isOperator) {
+      var t1, afterName;
+      if (newToken != null)
+        return true;
+      if ($name.get$isKeywordOrIdentifier()) {
+        t1 = $name.next;
+        t1.toString;
+        afterName = t1;
+      } else
+        afterName = $name;
+      t1 = afterName._typeAndOffset & 255;
+      if (56 === t1)
+        return true;
+      if (isOperator)
+        if (B.List_BvF[t1].isOperator) {
+          t1 = afterName.next;
+          t1.toString;
+          afterName = t1;
+        } else if (this.isUnaryMinus$1(afterName)) {
+          t1 = afterName.next.next;
+          t1.toString;
+          afterName = t1;
+        }
+      if (17 === (afterName._typeAndOffset & 255)) {
+        t1 = afterName.next;
+        t1.toString;
+        afterName = t1;
+      }
+      if (44 === (afterName._typeAndOffset & 255))
+        if (afterName.get$endGroup() != null) {
+          afterName = afterName.get$endGroup().next;
+          if (31 === (afterName._typeAndOffset & 255)) {
+            t1 = afterName.next;
+            t1.toString;
+            afterName = t1;
+          }
+        }
+      t1 = afterName._typeAndOffset & 255;
+      if (52 === t1) {
+        if (24 === (afterName.get$endGroup().next._typeAndOffset & 255))
+          return true;
+      } else if (24 === t1)
+        return true;
+      if (getOrSet != null)
+        return false;
+      if ($name.get$lexeme() === enclosingDeclarationName)
+        return true;
+      return false;
+    },
+    parseMethod$16(beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, getOrSet, newToken, $name, kind, enclosingDeclarationName, nameIsRecovered) {
+      var token, t1, operator, t2, isOperator, isConstructor, varFinalOrConst0, hasQualifiedName, qualified, token0, isConsideredGetter, isConsideredGetter0, t3, memberKind, beforeInitializers, savedAsyncModifier, token1, t4, t5, _this = this, _null = null;
       if (abstractToken != null) {
         token = A.findNonZeroLengthToken(abstractToken);
         _this.listener.handleRecoverableError$3(B.MessageCode_ZSs, token, token);
       }
       if (lateToken != null)
         _this.reportRecoverableErrorWithToken$2(lateToken, B.Template_kJs);
-      isConstructor = getOrSet == null;
-      if (isConstructor && 129 === ($name._typeAndOffset & 255)) {
+      t1 = getOrSet == null;
+      if (t1 && 129 === ($name._typeAndOffset & 255)) {
         operator = $name.next;
-        t1 = B.List_BvF[operator._typeAndOffset & 255];
-        if (!t1.isOperator) {
-          t1 = t1.kind;
-          isOperator = t1 === 134 || t1 === 142 || _this.isUnaryMinus$1(operator);
+        t2 = B.List_BvF[operator._typeAndOffset & 255];
+        if (!t2.isOperator) {
+          t2 = t2.kind;
+          isOperator = t2 === 134 || t2 === 142 || _this.isUnaryMinus$1(operator);
         } else
           isOperator = true;
         if (isOperator) {
-          t1 = operator._typeAndOffset;
-          if (37 === (t1 & 255) && 35 === (operator.next._typeAndOffset & 255) && (t1 >>> 8) - 1 + operator.get$length(operator) === (operator.next._typeAndOffset >>> 8) - 1) {
-            t1 = operator.next;
-            t1.toString;
-            _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_PJS, operator, t1);
+          t2 = operator._typeAndOffset;
+          if (37 === (t2 & 255) && 35 === (operator.next._typeAndOffset & 255) && (t2 >>> 8) - 1 + operator.get$length(operator) === (operator.next._typeAndOffset >>> 8) - 1) {
+            t2 = operator.next;
+            t2.toString;
+            _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_yGf, operator, t2);
             _this.get$rewriter().replaceNextTokensWithSyntheticToken$3($name, 2, B.TokenType_QWD);
           }
         }
       } else
         isOperator = false;
+      isConstructor = _this._isConstructor$5($name, getOrSet, newToken, enclosingDeclarationName, isOperator);
       if (staticToken != null) {
         if (isOperator) {
           token = A.findNonZeroLengthToken(staticToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_6QJ, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_d61, token, token);
           staticToken = _null;
         }
       } else if (covariantToken != null)
-        if (isConstructor || 112 === (getOrSet._typeAndOffset & 255)) {
+        if (t1 || 112 === (getOrSet._typeAndOffset & 255)) {
           token = A.findNonZeroLengthToken(covariantToken);
           _this.listener.handleRecoverableError$3(B.MessageCode_p6P, token, token);
           covariantToken = _null;
         }
       if (varFinalOrConst != null) {
-        t1 = varFinalOrConst._typeAndOffset & 255;
+        t2 = varFinalOrConst._typeAndOffset & 255;
         varFinalOrConst0 = _null;
-        if (93 === t1) {
-          if (!isConstructor) {
+        if (93 === t2) {
+          if (!t1) {
             _this.reportRecoverableErrorWithToken$2(varFinalOrConst, B.Template_kJs);
             varFinalOrConst = varFinalOrConst0;
           }
         } else {
-          if (149 === t1) {
+          if (149 === t2) {
             token = A.findNonZeroLengthToken(varFinalOrConst);
-            _this.listener.handleRecoverableError$3(B.MessageCode_amd, token, token);
+            _this.listener.handleRecoverableError$3(B.MessageCode_b8v, token, token);
           } else
             _this.reportRecoverableErrorWithToken$2(varFinalOrConst, B.Template_kJs);
           varFinalOrConst = varFinalOrConst0;
         }
       }
-      _this.listener.beginMethod$9(kind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, $name, enclosingDeclarationName);
+      t2 = _this.listener;
+      if (isConstructor)
+        t2.beginConstructor$10(kind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, newToken, $name, enclosingDeclarationName);
+      else
+        t2.beginMethod$9(kind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, $name, enclosingDeclarationName);
       token = typeInfo.parseType$2(beforeType, _this);
-      token = isConstructor ? token : getOrSet;
-      if (isOperator) {
+      token = t1 ? token : getOrSet;
+      hasQualifiedName = false;
+      if (isOperator)
         token = _this.parseOperatorName$1(token);
-        hasQualifiedName = false;
+      else if (newToken != null) {
+        token = token.next;
+        if (token.next.get$isIdentifier()) {
+          t2 = token.next;
+          t2.toString;
+          _this.listener.handleIdentifier$2(t2, B.MethodDeclarationIdentifierContext_8mQ);
+          qualified = _this.parseQualifiedRestOpt$2(t2, B.MethodDeclarationIdentifierContext_dFE);
+          hasQualifiedName = t2 !== qualified;
+          if (hasQualifiedName) {
+            token = A.findNonZeroLengthToken(t2);
+            _this.listener.handleRecoverableError$3(B.MessageCode_raE, token, token);
+          }
+          token = qualified;
+        } else {
+          token0 = token.next;
+          if (125 === (token0._typeAndOffset & 255)) {
+            token = A.findNonZeroLengthToken(token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_NAv, token, token);
+            _this.listener.handleIdentifier$2(token0, B.MethodDeclarationIdentifierContext_8mQ);
+            token = token0;
+          } else
+            _this.listener.handleNoIdentifier$2(token, B.MethodDeclarationIdentifierContext_8mQ);
+        }
       } else {
         token = _this.ensureIdentifierPotentiallyRecovered$3(token, B.MethodDeclarationIdentifierContext_8mQ, nameIsRecovered);
         qualified = _this.parseQualifiedRestOpt$2(token, B.MethodDeclarationIdentifierContext_dFE);
@@ -29877,14 +29824,14 @@
         token = qualified;
       }
       isConsideredGetter = false;
-      if (isConstructor)
+      if (t1)
         token = _this.parseMethodTypeVar$1(token);
       else {
         isConsideredGetter0 = 112 === (getOrSet._typeAndOffset & 255);
-        t1 = _this.listener;
-        t2 = token.next;
-        t2.toString;
-        t1.handleNoTypeVariables$1(t2);
+        t2 = _this.listener;
+        t3 = token.next;
+        t3.toString;
+        t2.handleNoTypeVariables$1(t3);
         if (!hasQualifiedName)
           if (!(isConsideredGetter0 && 24 === (token.next._typeAndOffset & 255))) {
             if (isConsideredGetter0)
@@ -29892,19 +29839,19 @@
             isConsideredGetter = isConsideredGetter0;
           }
       }
-      t1 = kind.index;
-      switch (t1) {
+      t2 = kind.index;
+      switch (t2) {
         case 0:
         case 1:
         case 2:
         case 5:
-          memberKind = staticToken != null ? B.MemberKind_7 : B.MemberKind_6;
+          memberKind = staticToken != null ? B.MemberKind_8 : B.MemberKind_7;
           break;
         case 3:
-          memberKind = staticToken != null ? B.MemberKind_10 : B.MemberKind_9;
+          memberKind = staticToken != null ? B.MemberKind_11 : B.MemberKind_10;
           break;
         case 4:
-          memberKind = staticToken != null ? B.MemberKind_12 : B.MemberKind_11;
+          memberKind = staticToken != null ? B.MemberKind_13 : B.MemberKind_12;
           break;
         default:
           memberKind = _null;
@@ -29914,141 +29861,98 @@
       if (token0 === beforeInitializers)
         beforeInitializers = _null;
       savedAsyncModifier = _this.asyncState;
-      t2 = token0.next;
-      t2.toString;
+      t3 = token0.next;
+      t3.toString;
       token0 = _this.parseAsyncModifierOpt$1(token0);
-      t3 = !isConstructor;
-      if (t3 && _this.asyncState !== B.AsyncModifier_0 && 137 === (getOrSet._typeAndOffset & 255)) {
-        token1 = A.findNonZeroLengthToken(t2);
+      t1 = !t1;
+      if (t1 && _this.asyncState !== B.AsyncModifier_0 && 137 === (getOrSet._typeAndOffset & 255)) {
+        token1 = A.findNonZeroLengthToken(t3);
         _this.listener.handleRecoverableError$3(B.MessageCode_S1u, token1, token1);
       }
-      t2 = token0.next;
-      t2.toString;
+      t3 = token0.next;
+      t3.toString;
       t4 = externalToken == null;
       t5 = !t4;
       if (t5)
-        if (65 !== (t2._typeAndOffset & 255)) {
-          token1 = A.findNonZeroLengthToken(t2);
+        if (65 !== (t3._typeAndOffset & 255)) {
+          token1 = A.findNonZeroLengthToken(t3);
           _this.listener.handleRecoverableError$3(B.MessageCode_aNL, token1, token1);
         }
-      if (31 === (t2._typeAndOffset & 255)) {
-        token1 = A.findNonZeroLengthToken(t2);
-        _this.listener.handleRecoverableError$3(B.MessageCode_niK, token1, token1);
+      if (31 === (t3._typeAndOffset & 255)) {
+        token1 = A.findNonZeroLengthToken(t3);
+        _this.listener.handleRecoverableError$3(B.MessageCode_DI1, token1, token1);
         token0 = _this.parseRedirectingFactoryBody$1(token0);
       } else
         token0 = _this.parseFunctionBody$3(token0, false, (staticToken == null || t5) && _this.asyncState === B.AsyncModifier_0);
       _this.asyncState = savedAsyncModifier;
-      if (56 === ($name.next._typeAndOffset & 255) || beforeInitializers != null)
-        isConstructor = true;
-      else if ($name.get$lexeme() === enclosingDeclarationName) {
-        if (t3) {
-          token1 = A.findNonZeroLengthToken($name);
-          _this.listener.handleRecoverableError$3(B.MessageCode_G2L, token1, token1);
-        }
-      } else
-        isConstructor = false;
       if (isConstructor) {
-        if ($name.get$lexeme() !== enclosingDeclarationName) {
+        if (newToken == null && $name.get$lexeme() !== enclosingDeclarationName) {
           token1 = A.findNonZeroLengthToken($name);
-          _this.listener.handleRecoverableError$3(B.MessageCode_XHS, token1, token1);
+          _this.listener.handleRecoverableError$3(B.MessageCode_3Cs, token1, token1);
         }
         if (staticToken != null) {
           token1 = A.findNonZeroLengthToken(staticToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_GZA, token1, token1);
+          _this.listener.handleRecoverableError$3(B.MessageCode_E1I, token1, token1);
         }
-        if (t3)
+        if (t1)
           if (112 === (getOrSet._typeAndOffset & 255)) {
             token1 = A.findNonZeroLengthToken(getOrSet);
-            _this.listener.handleRecoverableError$3(B.MessageCode_E0F, token1, token1);
+            _this.listener.handleRecoverableError$3(B.MessageCode_ePr, token1, token1);
           } else {
             token1 = A.findNonZeroLengthToken(getOrSet);
-            _this.listener.handleRecoverableError$3(B.MessageCode_ahx, token1, token1);
+            _this.listener.handleRecoverableError$3(B.MessageCode_5MZ, token1, token1);
           }
         if (typeInfo !== B.C_NoType) {
-          t2 = beforeType.next;
-          t2.toString;
-          token1 = A.findNonZeroLengthToken(t2);
+          t1 = beforeType.next;
+          t1.toString;
+          token1 = A.findNonZeroLengthToken(t1);
           _this.listener.handleRecoverableError$3(B.MessageCode_5DF, token1, token1);
         }
-        t2 = beforeInitializers == null;
-        if (!t2 && t5) {
+        t1 = beforeInitializers == null;
+        if (!t1 && t5) {
           t3 = beforeInitializers.next;
           t3.toString;
           token1 = A.findNonZeroLengthToken(t3);
           _this.listener.handleRecoverableError$3(B.MessageCode_8xn, token1, token1);
         }
-        switch (t1) {
-          case 1:
-            t1 = _this.listener;
-            t3 = beforeStart.next;
-            t3.toString;
-            t4 = token.next;
-            t4.toString;
-            t1.endClassConstructor$5(getOrSet, t3, t4, t2 ? _null : beforeInitializers.next, token0);
-            break;
+        switch (t2) {
           case 2:
             token1 = A.findNonZeroLengthToken($name);
-            _this.listener.handleRecoverableError$3(B.MessageCode_zMr, token1, token1);
-            t1 = _this.listener;
-            t3 = beforeStart.next;
-            t3.toString;
-            t4 = token.next;
-            t4.toString;
-            t1.endMixinConstructor$5(getOrSet, t3, t4, t2 ? _null : beforeInitializers.next, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_ZOS, token1, token1);
             break;
           case 3:
             token1 = A.findNonZeroLengthToken($name);
             _this.listener.handleRecoverableError$3(B.MessageCode_FU2, token1, token1);
-            t1 = _this.listener;
-            t3 = beforeStart.next;
-            t3.toString;
-            t4 = token.next;
-            t4.toString;
-            t1.endExtensionConstructor$5(getOrSet, t3, t4, t2 ? _null : beforeInitializers.next, token0);
             break;
+          case 1:
           case 4:
-            t1 = _this.listener;
-            t3 = beforeStart.next;
-            t3.toString;
-            t4 = token.next;
-            t4.toString;
-            t1.endExtensionTypeConstructor$5(getOrSet, t3, t4, t2 ? _null : beforeInitializers.next, token0);
+          case 5:
             break;
           case 0:
             throw A.wrapException("Internal error: TopLevel constructor.");
-          case 5:
-            t1 = _this.listener;
-            t3 = beforeStart.next;
-            t3.toString;
-            t4 = token.next;
-            t4.toString;
-            t1.endEnumConstructor$5(getOrSet, t3, t4, t2 ? _null : beforeInitializers.next, token0);
-            break;
         }
+        t2 = _this.listener;
+        t3 = beforeStart.next;
+        t3.toString;
+        t4 = token.next;
+        t4.toString;
+        t2.endConstructor$6(kind, t3, newToken, t4, t1 ? _null : beforeInitializers.next, token0);
       } else {
+        if ($name.get$lexeme() === enclosingDeclarationName && t1) {
+          token1 = A.findNonZeroLengthToken($name);
+          _this.listener.handleRecoverableError$3(B.MessageCode_XC8, token1, token1);
+        }
         if (varFinalOrConst != null) {
           token1 = A.findNonZeroLengthToken(varFinalOrConst);
           _this.listener.handleRecoverableError$3(B.MessageCode_sXM, token1, token1);
         }
-        switch (t1) {
+        switch (t2) {
           case 1:
-            t1 = _this.listener;
-            t2 = beforeStart.next;
-            t2.toString;
-            t3 = token.next;
-            t3.toString;
-            t1.endClassMethod$5(getOrSet, t2, t3, beforeInitializers == null ? _null : beforeInitializers.next, token0);
-            break;
           case 2:
-            t1 = _this.listener;
-            t2 = beforeStart.next;
-            t2.toString;
-            t3 = token.next;
-            t3.toString;
-            t1.endMixinMethod$5(getOrSet, t2, t3, beforeInitializers == null ? _null : beforeInitializers.next, token0);
+          case 5:
             break;
           case 3:
-            if (65 === (t2._typeAndOffset & 255) && t4) {
+            if (65 === (t3._typeAndOffset & 255) && t4) {
               if (isOperator) {
                 t1 = $name.next;
                 t1.toString;
@@ -30057,15 +29961,9 @@
               token1 = A.findNonZeroLengthToken(t1);
               _this.listener.handleRecoverableError$3(B.MessageCode_hku, token1, token1);
             }
-            t1 = _this.listener;
-            t2 = beforeStart.next;
-            t2.toString;
-            t3 = token.next;
-            t3.toString;
-            t1.endExtensionMethod$5(getOrSet, t2, t3, beforeInitializers == null ? _null : beforeInitializers.next, token0);
             break;
           case 4:
-            if (65 === (t2._typeAndOffset & 255) && t4) {
+            if (65 === (t3._typeAndOffset & 255) && t4) {
               if (isOperator) {
                 t1 = $name.next;
                 t1.toString;
@@ -30074,28 +29972,20 @@
               token1 = A.findNonZeroLengthToken(t1);
               _this.listener.handleRecoverableError$3(B.MessageCode_x04, token1, token1);
             }
-            t1 = _this.listener;
-            t2 = beforeStart.next;
-            t2.toString;
-            t3 = token.next;
-            t3.toString;
-            t1.endExtensionTypeMethod$5(getOrSet, t2, t3, beforeInitializers == null ? _null : beforeInitializers.next, token0);
             break;
           case 0:
             throw A.wrapException("Internal error: TopLevel method.");
-          case 5:
-            t1 = _this.listener;
-            t2 = beforeStart.next;
-            t2.toString;
-            t3 = token.next;
-            t3.toString;
-            t1.endEnumMethod$5(getOrSet, t2, t3, beforeInitializers == null ? _null : beforeInitializers.next, token0);
-            break;
         }
+        t1 = _this.listener;
+        t2 = beforeStart.next;
+        t2.toString;
+        t3 = token.next;
+        t3.toString;
+        t1.endMethod$6(kind, getOrSet, t2, t3, beforeInitializers == null ? _null : beforeInitializers.next, token0);
       }
       return token0;
     },
-    parseFactoryMethod$6(token, kind, beforeStart, externalToken, staticOrCovariant, varFinalOrConst) {
+    parseFactoryMethod$7(token, kind, beforeStart, externalToken, staticOrCovariant, varFinalOrConst, hasName) {
       var t1, context, token0, token1, t2, _this = this;
       token = token.next;
       t1 = token.next;
@@ -30139,8 +30029,20 @@
         _this.reportRecoverableErrorWithToken$2(varFinalOrConst, B.Template_kJs);
         varFinalOrConst = null;
       }
-      _this.listener.beginFactoryMethod$4(kind, beforeStart, externalToken, varFinalOrConst);
-      token0 = _this.parseFormalParametersRequiredOpt$2(_this.parseMethodTypeVar$1(_this.parseQualifiedRestOpt$2(_this.ensureIdentifier$2(token0, B.MethodDeclarationIdentifierContext_8mQ), B.MethodDeclarationIdentifierContext_dFE)), B.MemberKind_1);
+      _this.listener.beginFactory$4(kind, beforeStart, externalToken, varFinalOrConst);
+      if (!hasName)
+        _this.listener.handleNoIdentifier$2(token0, B.MethodDeclarationIdentifierContext_8mQ);
+      else {
+        token1 = token0.next;
+        if (125 === (token1._typeAndOffset & 255) && 56 !== (token1.next._typeAndOffset & 255)) {
+          token0 = A.findNonZeroLengthToken(token1);
+          _this.listener.handleRecoverableError$3(B.MessageCode_QFH, token0, token0);
+          _this.listener.handleIdentifier$2(token1, B.MethodDeclarationIdentifierContext_8mQ);
+          token0 = token1;
+        } else
+          token0 = _this.parseQualifiedRestOpt$2(_this.ensureIdentifier$2(token0, B.MethodDeclarationIdentifierContext_8mQ), B.MethodDeclarationIdentifierContext_dFE);
+      }
+      token0 = _this.parseFormalParametersRequiredOpt$2(_this.parseMethodTypeVar$1(token0), B.MemberKind_1);
       t1 = token0.next;
       t1.toString;
       token0 = _this.parseAsyncModifierOpt$1(token0);
@@ -30171,42 +30073,24 @@
       }
       switch (kind.index) {
         case 1:
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endClassFactoryMethod$3(t2, token, token0);
+        case 5:
+        case 4:
           break;
         case 2:
           token1 = A.findNonZeroLengthToken(token);
-          _this.listener.handleRecoverableError$3(B.MessageCode_zMr, token1, token1);
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endMixinFactoryMethod$3(t2, token, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_ZOS, token1, token1);
           break;
         case 3:
           token1 = A.findNonZeroLengthToken(token);
           _this.listener.handleRecoverableError$3(B.MessageCode_FU2, token1, token1);
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endExtensionFactoryMethod$3(t2, token, token0);
-          break;
-        case 4:
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endExtensionTypeFactoryMethod$3(t2, token, token0);
           break;
         case 0:
           throw A.wrapException("Internal error: TopLevel factory.");
-        case 5:
-          t1 = _this.listener;
-          t2 = beforeStart.next;
-          t2.toString;
-          t1.endEnumFactoryMethod$3(t2, token, token0);
-          break;
       }
+      t1 = _this.listener;
+      t2 = beforeStart.next;
+      t2.toString;
+      t1.endFactory$4(kind, t2, token, token0);
       return token0;
     },
     parseOperatorName$1(token) {
@@ -30227,7 +30111,7 @@
       } else if (52 === t1)
         return _this.ensureIdentifier$2(token, B.MethodDeclarationIdentifierContext_dFE);
       else if (_this.isUnaryMinus$1(next)) {
-        _this.reportRecoverableErrorWithToken$2(next, B.Template_bKS);
+        _this.reportRecoverableErrorWithToken$2(next, B.Template_xFL);
         t1 = next.next;
         t1.toString;
         _this.listener.handleOperatorName$2(token0, t1);
@@ -30235,7 +30119,7 @@
       } else {
         t1 = B.List_BvF[next._typeAndOffset & 255];
         if (t1 !== B.TokenType_Am1 && t1 !== B.TokenType_Pcm)
-          _this.reportRecoverableErrorWithToken$2(next, B.Template_MOM);
+          _this.reportRecoverableErrorWithToken$2(next, B.Template_nuN);
         _this.listener.handleInvalidOperatorName$2(token0, next);
         return next;
       }
@@ -30350,13 +30234,13 @@
           return _this.parseExpressionFunctionBody$2(_this.get$rewriter().insertToken$2(next, A.SyntheticToken$(B.TokenType_foG, (next.next._typeAndOffset >>> 8) - 1)), ofFunctionExpression);
         }
         if (next.get$isKeywordOrIdentifier() && 34 === (next.next._typeAndOffset & 255)) {
-          _this.reportRecoverableErrorWithToken$2(next, B.Template_bKS);
+          _this.reportRecoverableErrorWithToken$2(next, B.Template_xFL);
           t1 = next.next;
           t1.toString;
           return _this.parseExpressionFunctionBody$2(t1, ofFunctionExpression);
         }
         if (next.get$isKeywordOrIdentifier() && 51 === (next.next._typeAndOffset & 255)) {
-          _this.reportRecoverableErrorWithToken$2(next, B.Template_bKS);
+          _this.reportRecoverableErrorWithToken$2(next, B.Template_xFL);
           t1 = next.next;
           t1.toString;
         } else {
@@ -30408,7 +30292,7 @@
         _this.listener.handleExpressionFunctionBody$2(token, null);
       t1 = _this.asyncState;
       if (t1 === B.AsyncModifier_3 || t1 === B.AsyncModifier_1)
-        _this.listener.handleInvalidStatement$2(token, B.MessageCode_kx2);
+        _this.listener.handleInvalidStatement$2(token, B.MessageCode_9R8);
       return token0;
     },
     parseAsyncModifierOpt$1(token) {
@@ -30621,7 +30505,7 @@
         } else if (value === "set" && token0.next.get$isIdentifier()) {
           t1 = token.next;
           t1.toString;
-          _this.reportRecoverableErrorWithToken$2(t1, B.Template_bKS);
+          _this.reportRecoverableErrorWithToken$2(t1, B.Template_xFL);
           t1 = token.next;
           t1.toString;
           return _this.parseStatementX$1(t1);
@@ -30651,8 +30535,8 @@
         _this.listener.endYieldStatement$3(t1, starToken, token);
       else {
         token0 = A.findNonZeroLengthToken(t1);
-        _this.listener.handleRecoverableError$3(B.MessageCode_yPb, token0, token0);
-        _this.listener.endInvalidYieldStatement$4(t1, starToken, token, B.MessageCode_yPb);
+        _this.listener.handleRecoverableError$3(B.MessageCode_MFA, token0, token0);
+        _this.listener.endInvalidYieldStatement$4(t1, starToken, token, B.MessageCode_MFA);
       }
       return token;
     },
@@ -30670,7 +30554,7 @@
       _this.listener.endReturnStatement$3(true, t1, token);
       t2 = _this.asyncState;
       if (t2 === B.AsyncModifier_3 || t2 === B.AsyncModifier_1)
-        _this.listener.handleInvalidStatement$2(t1, B.MessageCode_kx2);
+        _this.listener.handleInvalidStatement$2(t1, B.MessageCode_9R8);
       return token;
     },
     parseLabel$1(token) {
@@ -30706,7 +30590,7 @@
         t1 = token.next;
         t1.toString;
         token0 = A.findNonZeroLengthToken(t1);
-        _this.listener.handleRecoverableError$3(B.MessageCode_un5, token0, token0);
+        _this.listener.handleRecoverableError$3(B.MessageCode_v0n, token0, token0);
         endGroup = t1.get$endGroup();
         if (endGroup != null) {
           next = t1;
@@ -30801,7 +30685,7 @@
             t1 = bangToken.next;
             t1.toString;
             token0 = A.findNonZeroLengthToken(t1);
-            _this.listener.handleRecoverableError$3(B.MessageCode_e5c, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_F6b, token0, token0);
           }
           t1 = _this.listener;
           t2 = bangToken.next;
@@ -30824,7 +30708,7 @@
       return _this._parsePrecedenceExpressionLoop$5(precedence, allowCascades, typeArg, token, constantPatternContext);
     },
     _parsePrecedenceExpressionLoop$6$isDotShorthand(precedence, allowCascades, typeArg, token, constantPatternContext, isDotShorthand) {
-      var token0, t2, t3, level, lastBinaryExpressionLevel, lastCascade, next0, t4, operator, t5, bangToken, not, colon, _this = this,
+      var token0, t2, t3, t4, level, lastBinaryExpressionLevel, lastCascade, next0, t5, operator, t6, dot, bangToken, not, colon, _this = this,
         next = token.next,
         type = B.List_BvF[next._typeAndOffset & 255],
         tokenLevel = _this._computePrecedence$2$forPattern(next, false),
@@ -30840,7 +30724,7 @@
       if (t1 && precedence <= tokenLevel && tokenLevel < 17) {
         if (constantPatternContext === B.ConstantPatternContext_2) {
           token0 = A.findNonZeroLengthToken(token);
-          _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token0, token0);
         } else if (tokenLevel <= 14) {
           t1 = type$.Message._as(A._withArgumentsOldInvalidConstantPatternBinary(type.lexeme));
           token0 = A.findNonZeroLengthToken(next);
@@ -30854,23 +30738,23 @@
             return _this._parsePrecedenceExpressionLoop$5(precedence, allowCascades, typeArg, token, B.ConstantPatternContext_0);
         return token;
       }
-      for (t1 = constantPatternContext !== B.ConstantPatternContext_0, t2 = type$.Template_of_Message_Function_Token_and_Function, t3 = !allowCascades, level = tokenLevel, lastBinaryExpressionLevel = -1, lastCascade = null;; level = tokenLevel) {
+      for (t1 = constantPatternContext !== B.ConstantPatternContext_0, t2 = type$.Template_of_Message_Function_Token_and_Function, t3 = _this._isAnonymousMethodsFeatureEnabled, t4 = !allowCascades, level = tokenLevel, lastBinaryExpressionLevel = -1, lastCascade = null;; level = tokenLevel) {
         if (tokenLevel === 2) {
-          if (t3)
+          if (t4)
             return token;
           else if (lastCascade != null && 79 === (next._typeAndOffset & 255)) {
             token0 = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_Q45, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_eyg, token0, token0);
           }
           token = _this.parseCascadeExpression$1(token);
           lastCascade = next;
         } else if (tokenLevel === 1) {
           next0 = token.next;
-          t4 = next0.next;
-          if (36 === (t4._typeAndOffset & 255)) {
-            _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_PJS, next0, t4);
-            t4 = _this.cachedRewriter;
-            next = (t4 == null ? _this.cachedRewriter = new A.TokenStreamRewriterImpl() : t4).replaceNextTokensWithSyntheticToken$3(token, 2, B.TokenType_PYP);
+          t5 = next0.next;
+          if (36 === (t5._typeAndOffset & 255)) {
+            _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_yGf, next0, t5);
+            t5 = _this.cachedRewriter;
+            next = (t5 == null ? _this.cachedRewriter = new A.TokenStreamRewriterImpl() : t5).replaceNextTokensWithSyntheticToken$3(token, 2, B.TokenType_PYP);
             operator = next;
           } else {
             operator = next;
@@ -30880,10 +30764,10 @@
           _this.listener.handleAssignmentExpression$2(operator, token);
         } else if (tokenLevel === 16) {
           if (type === B.TokenType_NeN || type === B.TokenType_Q4o) {
-            t4 = _this.listener;
-            t5 = token.next;
-            t5.toString;
-            t4.handleUnaryPostfixAssignmentExpression$1(t5);
+            t5 = _this.listener;
+            t6 = token.next;
+            t6.toString;
+            t5.handleUnaryPostfixAssignmentExpression$1(t6);
             token = next;
           } else if (type === B.TokenType_YxY) {
             _this.listener.handleNonNullAssertExpression$1(next);
@@ -30891,35 +30775,40 @@
           }
         } else if (tokenLevel === 17)
           if (type === B.TokenType_4Px || type === B.TokenType_YK4) {
-            t4 = token.next;
-            t4.toString;
-            token = _this.parsePrimary$3(t4, B.ExpressionIdentifierContext_ofe, constantPatternContext);
-            t5 = _this.listener;
-            if (isDotShorthand) {
-              t5.handleDotShorthandHead$1(t4);
-              isDotShorthand = false;
-            } else
-              t5.handleDotAccess$3(next, token, type === B.TokenType_YK4);
-            bangToken = token.next;
-            bangToken = 17 === (bangToken._typeAndOffset & 255) ? bangToken : token;
-            typeArg = A.computeTypeParamOrArg(bangToken, false, false);
-            typeArg = B.List_ok4[typeArg.skip$1(0, bangToken).next._typeAndOffset & 255] && !typeArg.get$recovered() ? typeArg : B.C_NoTypeParamOrArg;
-            if (typeArg !== B.C_NoTypeParamOrArg) {
-              if (17 === (bangToken._typeAndOffset & 255))
-                _this.listener.handleNonNullAssertExpression$1(bangToken);
-              token = typeArg.parseArguments$2(bangToken, _this);
-              if (52 !== (token.next._typeAndOffset & 255)) {
-                if (t1) {
-                  t4 = bangToken.next;
-                  t4.toString;
-                  token0 = A.findNonZeroLengthToken(t4);
-                  _this.listener.handleRecoverableError$3(B.MessageCode_e5c, token0, token0);
+            dot = token.next;
+            t5 = dot.next;
+            t5.toString;
+            if (t3 && _this._beginsAnonymousMethod$1(t5))
+              token = _this._parseAnonymousMethod$2(dot, t5);
+            else {
+              token = _this.parsePrimary$3(dot, B.ExpressionIdentifierContext_ofe, constantPatternContext);
+              t5 = _this.listener;
+              if (isDotShorthand) {
+                t5.handleDotShorthandHead$1(dot);
+                isDotShorthand = false;
+              } else
+                t5.handleDotAccess$3(next, token, type === B.TokenType_YK4);
+              bangToken = token.next;
+              bangToken = 17 === (bangToken._typeAndOffset & 255) ? bangToken : token;
+              typeArg = A.computeTypeParamOrArg(bangToken, false, false);
+              typeArg = B.List_ok4[typeArg.skip$1(0, bangToken).next._typeAndOffset & 255] && !typeArg.get$recovered() ? typeArg : B.C_NoTypeParamOrArg;
+              if (typeArg !== B.C_NoTypeParamOrArg) {
+                if (17 === (bangToken._typeAndOffset & 255))
+                  _this.listener.handleNonNullAssertExpression$1(bangToken);
+                token = typeArg.parseArguments$2(bangToken, _this);
+                if (52 !== (token.next._typeAndOffset & 255)) {
+                  if (t1) {
+                    t5 = bangToken.next;
+                    t5.toString;
+                    token0 = A.findNonZeroLengthToken(t5);
+                    _this.listener.handleRecoverableError$3(B.MessageCode_F6b, token0, token0);
+                  }
+                  t5 = _this.listener;
+                  t6 = bangToken.next;
+                  t6.toString;
+                  t5.handleTypeArgumentApplication$1(t6);
+                  typeArg = B.C_NoTypeParamOrArg;
                 }
-                t4 = _this.listener;
-                t5 = bangToken.next;
-                t5.toString;
-                t4.handleTypeArgumentApplication$1(t5);
-                typeArg = B.C_NoTypeParamOrArg;
               }
             }
           } else if (type === B.TokenType_LQi || type === B.TokenType_907)
@@ -30930,16 +30819,16 @@
             _this.rewriteSquareBrackets$1(token);
             token = _this.parseArgumentOrIndexStar$3(token, B.C_NoTypeParamOrArg, false);
           } else {
-            t4 = token.next;
+            t5 = token.next;
             if (type === B.TokenType_YxY) {
-              t5 = _this.listener;
-              t4.toString;
-              t5.handleNonNullAssertExpression$1(t4);
+              t6 = _this.listener;
+              t5.toString;
+              t6.handleNonNullAssertExpression$1(t5);
             } else {
-              t4.toString;
-              t2._as(B.Template_bKS);
-              token = A.findNonZeroLengthToken(t4);
-              _this.listener.handleRecoverableError$3(B.Template_bKS.withArgumentsOld.call$1(token), token, token);
+              t5.toString;
+              t2._as(B.Template_xFL);
+              token = A.findNonZeroLengthToken(t5);
+              _this.listener.handleRecoverableError$3(B.Template_xFL.withArgumentsOld.call$1(token), token, token);
             }
             token = next;
           }
@@ -30958,21 +30847,21 @@
           _this.listener.handleIsOperator$2(token, not);
           token = _this.skipChainedAsIsOperators$1(token0);
         } else if (type === B.Keyword_bMK) {
-          t4 = token.next;
-          t4.toString;
-          _this.listener.beginAsOperatorType$1(t4);
-          token = _this.computeTypeAfterIsOrAs$1(t4).ensureTypeNotVoid$2(t4, _this);
-          _this.listener.endAsOperatorType$1(t4);
-          _this.listener.handleAsOperator$1(t4);
+          t5 = token.next;
+          t5.toString;
+          _this.listener.beginAsOperatorType$1(t5);
+          token = _this.computeTypeAfterIsOrAs$1(t5).ensureTypeNotVoid$2(t5, _this);
+          _this.listener.endAsOperatorType$1(t5);
+          _this.listener.handleAsOperator$1(t5);
           token = _this.skipChainedAsIsOperators$1(token);
         } else if (type === B.TokenType_4Vc) {
-          t4 = token.next;
-          t4.toString;
-          _this.listener.beginConditionalExpression$1(t4);
-          colon = _this.ensureColon$1(145 === (t4.next._typeAndOffset & 255) ? _this.parseThrowExpression$2(t4, false) : _this.parsePrecedenceExpression$4(t4, 1, false, B.ConstantPatternContext_0));
+          t5 = token.next;
+          t5.toString;
+          _this.listener.beginConditionalExpression$1(t5);
+          colon = _this.ensureColon$1(145 === (t5.next._typeAndOffset & 255) ? _this.parseThrowExpression$2(t5, false) : _this.parsePrecedenceExpression$4(t5, 1, false, B.ConstantPatternContext_0));
           _this.listener.handleConditionalExpressionColon$0();
           token = 145 === (colon.next._typeAndOffset & 255) ? _this.parseThrowExpression$2(colon, false) : _this.parsePrecedenceExpression$4(colon, 1, false, B.ConstantPatternContext_0);
-          _this.listener.endConditionalExpression$3(t4, colon, token);
+          _this.listener.endConditionalExpression$3(t5, colon, token);
         } else {
           if (level === 7 || level === 8)
             if (lastBinaryExpressionLevel === level) {
@@ -30980,22 +30869,22 @@
               _this.listener.handleRecoverableError$3(B.MessageCode_xa3, token0, token0);
             } else
               lastBinaryExpressionLevel = level;
-          t4 = next._typeAndOffset;
-          if (37 === (t4 & 255) && (t4 >>> 8) - 1 + next.get$length(next) === (next.next._typeAndOffset >>> 8) - 1) {
-            t4 = next.next;
-            if (35 === (t4._typeAndOffset & 255)) {
-              _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_PJS, next, t4);
-              t4 = _this.cachedRewriter;
-              next = (t4 == null ? _this.cachedRewriter = new A.TokenStreamRewriterImpl() : t4).replaceNextTokensWithSyntheticToken$3(token, 2, B.TokenType_QWD);
+          t5 = next._typeAndOffset;
+          if (37 === (t5 & 255) && (t5 >>> 8) - 1 + next.get$length(next) === (next.next._typeAndOffset >>> 8) - 1) {
+            t5 = next.next;
+            if (35 === (t5._typeAndOffset & 255)) {
+              _this.listener.handleExperimentNotEnabled$3(B.ExperimentalFlag_yGf, next, t5);
+              t5 = _this.cachedRewriter;
+              next = (t5 == null ? _this.cachedRewriter = new A.TokenStreamRewriterImpl() : t5).replaceNextTokensWithSyntheticToken$3(token, 2, B.TokenType_QWD);
               operator = next;
             } else
               operator = next;
           } else
             operator = next;
           _this.listener.beginBinaryExpression$1(next);
-          t4 = token.next;
-          t4.toString;
-          token = _this.parsePrecedenceExpression$4(t4, level + 1, allowCascades, B.ConstantPatternContext_0);
+          t5 = token.next;
+          t5.toString;
+          token = _this.parsePrecedenceExpression$4(t5, level + 1, allowCascades, B.ConstantPatternContext_0);
           _this.listener.endBinaryExpression$2(operator, token);
         }
         next = token.next;
@@ -31025,6 +30914,56 @@
     },
     _parsePrecedenceExpressionLoop$5(precedence, allowCascades, typeArg, token, constantPatternContext) {
       return this._parsePrecedenceExpressionLoop$6$isDotShorthand(precedence, allowCascades, typeArg, token, constantPatternContext, false);
+    },
+    _beginsAnonymousMethod$1(token) {
+      var matchingParenthesis, afterMatch,
+        t1 = token._typeAndOffset & 255;
+      if (51 === t1 || 34 === t1)
+        return true;
+      if (52 === t1) {
+        matchingParenthesis = token.get$endGroup();
+        if (matchingParenthesis != null) {
+          afterMatch = matchingParenthesis.next;
+          if (afterMatch != null) {
+            t1 = afterMatch._typeAndOffset & 255;
+            t1 = 51 === t1 || 34 === t1;
+          } else
+            t1 = false;
+          if (t1)
+            return true;
+        }
+      }
+      return false;
+    },
+    _parseAnonymousMethod$2(punctuation, afterPunctuation) {
+      var t1, currentToken, afterParameters, t2, functionDefinition, token, _this = this;
+      _this.listener.beginAnonymousMethodInvocation$1(punctuation);
+      if (52 === (afterPunctuation._typeAndOffset & 255)) {
+        t1 = punctuation.next;
+        t1.toString;
+        currentToken = _this.parseFormalParametersRest$2(t1, B.MemberKind_6);
+      } else {
+        _this.listener.handleImplicitFormalParameters$1(punctuation);
+        currentToken = punctuation;
+      }
+      afterParameters = currentToken.next;
+      t1 = afterParameters._typeAndOffset & 255;
+      t2 = 51 === t1;
+      if (t2) {
+        currentToken = _this.parseBlock$2(currentToken, B.BlockKind_C5P);
+        functionDefinition = null;
+      } else if (34 === t1) {
+        currentToken = _this.parseExpressionWithoutCascade$1(afterParameters);
+        functionDefinition = afterParameters;
+      } else {
+        t1 = type$.Message._as(A._withArgumentsOldExpectedButGot2("{", "=>"));
+        token = A.findNonZeroLengthToken(afterParameters);
+        _this.listener.handleRecoverableError$3(t1, token, token);
+        functionDefinition = _this.get$rewriter().insertToken$2(currentToken, A.SyntheticToken$(B.TokenType_foG, (currentToken.next._typeAndOffset >>> 8) - 1));
+        currentToken = _this.parseExpressionWithoutCascade$1(functionDefinition);
+      }
+      _this.listener.endAnonymousMethodInvocation$4$isExpression(punctuation, functionDefinition, currentToken, !t2);
+      return currentToken;
     },
     _attemptPrecedenceLevelRecovery$5(token, precedence, currentLevel, allowCascades, typeArg) {
       var replacements, t1, t2, t3, i, replacement, originalListener, originalRewriter, nullListener, undoableTokenStreamRewriter, t4, replacement0, afterExpression, t5, acceptRecovery, token0, _this = this,
@@ -31153,27 +31092,37 @@
       return type.precedence;
     },
     parseCascadeExpression$1(token) {
-      var next, token0, t2, typeArg, _this = this,
+      var afterDots, t2, next, t3, token0, typeArg, _this = this,
         t1 = token.next;
       t1.toString;
       _this.listener.beginCascade$1(t1);
-      if (53 === (t1.next._typeAndOffset & 255))
+      afterDots = t1.next;
+      if (53 === (afterDots._typeAndOffset & 255))
         token = _this.parseArgumentOrIndexStar$3(t1, B.C_NoTypeParamOrArg, false);
+      else if (_this._isAnonymousMethodsFeatureEnabled && _this._beginsAnonymousMethod$1(afterDots))
+        token = _this._parseAnonymousMethod$2(t1, afterDots);
       else {
         token = _this.parseSend$3(t1, B.ExpressionIdentifierContext_ofe, B.ConstantPatternContext_0);
         _this.listener.handleCascadeAccess$3(t1, token, 79 === (t1._typeAndOffset & 255));
       }
       t1 = token.next;
       t1.toString;
+      t2 = _this._isAnonymousMethodsFeatureEnabled;
       next = t1;
       do {
         t1 = next._typeAndOffset & 255;
         if (56 === t1 || 62 === t1) {
-          token0 = _this.parseSend$3(next, B.ExpressionIdentifierContext_ofe, B.ConstantPatternContext_0);
-          t2 = token0.next;
-          t2.toString;
-          _this.listener.handleDotAccess$3(next, token0, 62 === t1);
-          next = t2;
+          t3 = next.next;
+          t3.toString;
+          if (t2 && _this._beginsAnonymousMethod$1(t3))
+            token0 = _this._parseAnonymousMethod$2(next, t3);
+          else {
+            token0 = _this.parseSend$3(next, B.ExpressionIdentifierContext_ofe, B.ConstantPatternContext_0);
+            t3 = token0.next;
+            t3.toString;
+            _this.listener.handleDotAccess$3(next, token0, 62 === t1);
+            next = t3;
+          }
         } else if (17 === t1) {
           _this.listener.handleNonNullAssertExpression$1(next);
           t1 = next.next;
@@ -31249,7 +31198,7 @@
       } else if (value === "-") {
         if (constantPatternContext === B.ConstantPatternContext_2) {
           token = A.findNonZeroLengthToken(t1);
-          _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token, token);
           constantPatternContext = B.ConstantPatternContext_0;
         }
         token = _this.parsePrecedenceExpression$4(t1, 16, allowCascades, constantPatternContext !== B.ConstantPatternContext_0 ? B.ConstantPatternContext_3 : B.ConstantPatternContext_0);
@@ -31398,13 +31347,13 @@
       if (kind === 97) {
         if (constantPatternContext === B.ConstantPatternContext_3) {
           token0 = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_Pfc, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_HRa, token0, token0);
         }
         return _this.parseSendOrFunctionLiteral$3(token, context, constantPatternContext);
       } else if (kind === 105 || kind === 120) {
         if (constantPatternContext === B.ConstantPatternContext_2) {
           token0 = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token0, token0);
         }
         t1 = B.List_BvF[next._typeAndOffset & 255];
         t1 = t1 === B.TokenType_W2d || t1 === B.TokenType_JSv;
@@ -31422,7 +31371,7 @@
       } else if (kind === 100) {
         if (constantPatternContext === B.ConstantPatternContext_2) {
           token0 = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token0, token0);
         }
         t1 = B.List_BvF[next._typeAndOffset & 255];
         t2 = token.next;
@@ -31439,19 +31388,19 @@
       } else if (kind === 39) {
         if (constantPatternContext === B.ConstantPatternContext_2) {
           token0 = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token0, token0);
         } else if (constantPatternContext === B.ConstantPatternContext_3) {
           token0 = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_Pfc, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_HRa, token0, token0);
         }
         return _this.parseLiteralString$1(token);
       } else if (kind === 35) {
         if (constantPatternContext === B.ConstantPatternContext_2) {
           token0 = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token0, token0);
         } else if (constantPatternContext === B.ConstantPatternContext_3) {
           token0 = A.findNonZeroLengthToken(next);
-          _this.listener.handleRecoverableError$3(B.MessageCode_Pfc, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_HRa, token0, token0);
         }
         return _this.parseLiteralSymbol$1(token);
       } else if (kind === 107) {
@@ -31459,10 +31408,10 @@
         if (value === "true" || value === "false") {
           if (constantPatternContext === B.ConstantPatternContext_2) {
             token0 = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token0, token0);
           } else if (constantPatternContext === B.ConstantPatternContext_3) {
             token0 = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_Pfc, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_HRa, token0, token0);
           }
           t1 = token.next;
           t1.toString;
@@ -31471,10 +31420,10 @@
         } else if (value === "null") {
           if (constantPatternContext === B.ConstantPatternContext_2) {
             token0 = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token0, token0);
           } else if (constantPatternContext === B.ConstantPatternContext_3) {
             token0 = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_Pfc, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_HRa, token0, token0);
           }
           t1 = token.next;
           t1.toString;
@@ -31505,7 +31454,7 @@
           } else {
             if (62 === t1) {
               token = A.findNonZeroLengthToken(next0);
-              _this.listener.handleRecoverableError$3(B.MessageCode_oIz, token, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_Py4, token, token);
             }
             token = next;
           }
@@ -31529,7 +31478,7 @@
         else if (value === "const") {
           if (constantPatternContext === B.ConstantPatternContext_2) {
             token0 = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_On5, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_jAj, token0, token0);
           }
           return _this.parseConstExpression$1(token);
         } else if (value === "void")
@@ -31547,13 +31496,13 @@
             else if (next.get$isIdentifier()) {
               if (constantPatternContext === B.ConstantPatternContext_3) {
                 token0 = A.findNonZeroLengthToken(next);
-                _this.listener.handleRecoverableError$3(B.MessageCode_Pfc, token0, token0);
+                _this.listener.handleRecoverableError$3(B.MessageCode_HRa, token0, token0);
               }
               return _this.parseSendOrFunctionLiteral$3(token, context, constantPatternContext);
             } else if (value === "return") {
               t1 = token.next;
               t1.toString;
-              _this.reportRecoverableErrorWithToken$2(t1, B.Template_bKS);
+              _this.reportRecoverableErrorWithToken$2(t1, B.Template_xFL);
               return _this.parsePrimary$3(t1, context, B.ConstantPatternContext_0);
             }
         }
@@ -31630,7 +31579,7 @@
       return token;
     },
     parseParenthesizedExpressionOrRecordLiteral$3(token, constKeywordForRecord, constantPatternContext) {
-      var wasRecord, count, wasValidRecord, wasRecord0, illegalTrailingComma, next, t2, colon, token0, _this = this,
+      var wasRecord, count, wasValidRecord, wasRecord0, illegalTrailingComma, next, t2, colon, token0, t3, t4, _this = this,
         t1 = token.next;
       t1.toString;
       _this.listener.beginParenthesizedExpressionOrRecordLiteral$1(t1);
@@ -31657,14 +31606,22 @@
           wasValidRecord = true;
         } else
           colon = null;
-        token = _this.parseExpression$1(token);
-        t2 = token.next;
+        token0 = _this.parseExpression$1(token);
+        t2 = token0.next;
         t2.toString;
+        t3 = _this.listener;
         if (colon != null)
-          _this.listener.handleNamedRecordField$1(colon);
+          t3.handleNamedRecordField$1(colon);
+        else {
+          t4 = token.next;
+          t4.toString;
+          t3.handlePositionalRecordField$1(t4);
+        }
         ++count;
-        if (25 !== (t2._typeAndOffset & 255))
+        if (25 !== (t2._typeAndOffset & 255)) {
+          token = token0;
           break;
+        }
       }
       token = _this.ensureCloseParen$2(token, t1);
       if (wasRecord) {
@@ -31674,10 +31631,10 @@
           _this.listener.handleRecoverableError$3(B.MessageCode_hrB, token0, token0);
         } else if (count === 1 && !wasValidRecord) {
           token0 = A.findNonZeroLengthToken(token);
-          _this.listener.handleRecoverableError$3(B.MessageCode_dfQ, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_we7, token0, token0);
         } else if (t2 && constantPatternContext !== B.ConstantPatternContext_0) {
           token0 = A.findNonZeroLengthToken(t1);
-          _this.listener.handleRecoverableError$3(B.MessageCode_IkE, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_59S, token0, token0);
         }
         _this.listener.endRecordLiteral$3(t1, count, constKeywordForRecord);
       } else
@@ -31751,8 +31708,7 @@
             }
             break;
           }
-          comma = new A.SyntheticToken(null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-          comma._setCommentParent$1(null);
+          comma = A.SyntheticToken$(B.TokenType_VRW, (next._typeAndOffset >>> 8) - 1);
           message = ifCount > 0 ? B.MessageCode_ES6 : A._withArgumentsOldExpectedButGot(",");
           t1 = token.next;
           t1.toString;
@@ -31871,8 +31827,7 @@
         }
         if (comma == null) {
           if (A.looksLikeLiteralEntry(next)) {
-            comma = new A.SyntheticToken(_null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-            comma._setCommentParent$1(_null);
+            comma = A.SyntheticToken$(B.TokenType_VRW, (next._typeAndOffset >>> 8) - 1);
             message = ifCount > 0 ? B.MessageCode_ES6 : A._withArgumentsOldExpectedButGot(",");
             t1 = token0.next;
             t1.toString;
@@ -31914,7 +31869,7 @@
         typeParamOrArg = A.computeTypeParamOrArg(start, true, false);
       if (52 === (typeParamOrArg.skip$1(0, start).next._typeAndOffset & 255)) {
         if (constKeyword != null)
-          _this.reportRecoverableErrorWithToken$2(constKeyword, B.Template_bKS);
+          _this.reportRecoverableErrorWithToken$2(constKeyword, B.Template_xFL);
         token = typeParamOrArg.parseVariables$2(start, _this);
         next = token.next.get$endGroup().next;
         t1 = next._typeAndOffset & 255;
@@ -31931,7 +31886,7 @@
         else
           t1 = t2;
         if (t1)
-          _this.reportRecoverableErrorWithToken$2(next, B.Template_bKS);
+          _this.reportRecoverableErrorWithToken$2(next, B.Template_xFL);
         return _this.parseFunctionExpression$1(token);
       }
       token = typeParamOrArg.parseArguments$2(start, _this);
@@ -31941,7 +31896,7 @@
         if (typeParamOrArg.get$typeArgumentCount() > 2) {
           t1 = start.next;
           t1.toString;
-          _this.listener.handleRecoverableError$3(B.MessageCode_Xur, t1, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_X20, t1, token);
         }
         return _this.parseLiteralSetOrMapSuffix$2(token, constKeyword);
       }
@@ -32033,12 +31988,12 @@
           t1 = potentialTypeArg.skip$1(0, newKeyword).next._typeAndOffset & 255;
           if (51 === t1 || 53 === t1 || 42 === t1) {
             token = A.findNonZeroLengthToken(newKeyword);
-            _this.listener.handleRecoverableError$3(B.MessageCode_vkt, token, token);
+            _this.listener.handleRecoverableError$3(B.MessageCode_oYt, token, token);
             return _this.parsePrimary$3(newKeyword, B.ExpressionIdentifierContext_8BF, B.ConstantPatternContext_0);
           }
         } else if (value === "{" || value === "[" || value === "[]") {
           token = A.findNonZeroLengthToken(newKeyword);
-          _this.listener.handleRecoverableError$3(B.MessageCode_vkt, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_oYt, token, token);
           return _this.parsePrimary$3(newKeyword, B.ExpressionIdentifierContext_8BF, B.ConstantPatternContext_0);
         }
       }
@@ -32295,7 +32250,7 @@
         t1 = false;
       if (t1) {
         token1 = A.findNonZeroLengthToken(token0);
-        _this.listener.handleRecoverableError$3(B.MessageCode_ePM, token1, token1);
+        _this.listener.handleRecoverableError$3(B.MessageCode_aQt, token1, token1);
       }
       token0 = _this.parseArgumentsOpt$1(token0);
       _this.listener.handleSend$2(token, token0);
@@ -32340,7 +32295,7 @@
         return this.parseArgumentsRest$1(next);
     },
     parseArgumentsRest$1(token) {
-      var old, t1, token0, argumentCount, next, t2, colon, next1, expressionHandled, next2, next3, next4, t3, token1, _this = this;
+      var old, t1, token0, argumentCount, next, t2, colon, next1, expressionHandled, next2, token1, next3, next4, t3, t4, _this = this;
       _this.listener.beginArguments$1(token);
       old = _this.mayParseFunctionExpressions;
       _this.mayParseFunctionExpressions = true;
@@ -32369,7 +32324,7 @@
             _this.listener.handleNoTypeArguments$1(next2);
             _this.listener.handleNoArguments$1(next2);
             _this.listener.handleSend$2(next1, next1);
-            token0 = next1;
+            token1 = next1;
             expressionHandled = true;
           } else if (56 === t2) {
             next3 = next2.next;
@@ -32387,10 +32342,13 @@
                 _this.listener.handleNoArguments$1(next4);
                 _this.listener.handleSend$2(next3, next3);
                 _this.listener.handleDotAccess$3(next2, next3, false);
-                token0 = next3;
-              }
-            }
-          }
+                token1 = next3;
+              } else
+                token1 = token0;
+            } else
+              token1 = token0;
+          } else
+            token1 = token0;
         } else if (11 === t2) {
           next2 = next1.next;
           t2 = next2._typeAndOffset & 255;
@@ -32398,15 +32356,23 @@
           if (expressionHandled) {
             _this.listener.beginLiteralString$1(next1);
             _this.listener.endLiteralString$2(0, next2);
-            token0 = next1;
-          }
-        }
+            token1 = next1;
+          } else
+            token1 = token0;
+        } else
+          token1 = token0;
         if (!expressionHandled)
-          token0 = _this.parseExpression$1(token0);
-        t2 = token0.next;
+          token1 = _this.parseExpression$1(token1);
+        t2 = token1.next;
         t2.toString;
+        t3 = _this.listener;
         if (colon != null)
-          _this.listener.handleNamedArgument$1(colon);
+          t3.handleNamedArgument$1(colon);
+        else {
+          t4 = token0.next;
+          t4.toString;
+          t3.handlePositionalArgument$1(t4);
+        }
         ++argumentCount;
         t3 = t2._typeAndOffset & 255;
         if (25 !== t3) {
@@ -32416,24 +32382,23 @@
           }
           if (A.looksLikeExpressionStart(t2)) {
             t3 = A._withArgumentsOldExpectedButGot(",");
-            next = new A.SyntheticToken(null, ((t2._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-            next._setCommentParent$1(null);
+            next = A.SyntheticToken$(B.TokenType_VRW, (t2._typeAndOffset >>> 8) - 1);
             t1._as(t3);
-            t2 = token0.next;
+            t2 = token1.next;
             t2.toString;
-            token1 = A.findNonZeroLengthToken(t2);
-            _this.listener.handleRecoverableError$3(t3, token1, token1);
+            token0 = A.findNonZeroLengthToken(t2);
+            _this.listener.handleRecoverableError$3(t3, token0, token0);
             t3 = _this.cachedRewriter;
             t2 = t3 == null ? _this.cachedRewriter = new A.TokenStreamRewriterImpl() : t3;
-            t3 = token0._typeAndOffset;
+            t3 = token1._typeAndOffset;
             if (!(B.List_BvF[t3 & 255] !== B.TokenType_ScO || (t3 >>> 8) - 1 < 0))
               A.throwExpression("Internal Error: Rewriting at eof.");
-            t3 = token0.next;
+            t3 = token1.next;
             t3.toString;
             t2._setNext$2(next, t3);
-            t2._setNext$2(token0, next);
+            t2._setNext$2(token1, next);
           } else {
-            token0 = _this.ensureCloseParen$2(token0, token);
+            token0 = _this.ensureCloseParen$2(token1, token);
             break;
           }
         } else
@@ -32465,9 +32430,9 @@
         value = B.List_BvF[next._typeAndOffset & 255].stringValue;
         if (value !== "is" && value !== "as")
           return token;
-        t1._as(B.Template_bKS);
+        t1._as(B.Template_xFL);
         token = A.findNonZeroLengthToken(next);
-        this.listener.handleRecoverableError$3(B.Template_bKS.withArgumentsOld.call$1(token), token, token);
+        this.listener.handleRecoverableError$3(B.Template_xFL.withArgumentsOld.call$1(token), token, token);
         next0 = next.next;
         if (17 === (next0._typeAndOffset & 255))
           next = next0;
@@ -32616,7 +32581,7 @@
         if (t1) {
           if (lateToken != null) {
             token = A.findNonZeroLengthToken(lateToken);
-            _this.listener.handleRecoverableError$3(B.MessageCode_r9u, token, token);
+            _this.listener.handleRecoverableError$3(B.MessageCode_P1N, token, token);
           }
           t1 = start.next;
           if (16 !== (t1._typeAndOffset & 255)) {
@@ -32731,12 +32696,12 @@
         if (varFinalOrConst == null) {
           if (typeInfo === B.C_NoType) {
             token = A.findNonZeroLengthToken(next);
-            _this.listener.handleRecoverableError$3(B.MessageCode_pGG, token, token);
+            _this.listener.handleRecoverableError$3(B.MessageCode_qzU, token, token);
           }
         } else if (149 === (varFinalOrConst._typeAndOffset & 255))
           if (typeInfo !== B.C_NoType) {
             token = A.findNonZeroLengthToken(varFinalOrConst);
-            _this.listener.handleRecoverableError$3(B.MessageCode_rrr, token, token);
+            _this.listener.handleRecoverableError$3(B.MessageCode_1ZU, token, token);
           }
       t1 = start.next;
       if (16 !== (t1._typeAndOffset & 255)) {
@@ -32875,7 +32840,7 @@
       if (65 === t1) {
         if (awaitToken != null) {
           token0 = A.findNonZeroLengthToken(awaitToken);
-          _this.listener.handleRecoverableError$3(B.MessageCode_emP, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_IWB, token0, token0);
         }
       } else if (117 !== t1)
         if (24 === t1) {
@@ -32924,7 +32889,7 @@
           break;
       }
       if (token0 !== t1.get$endGroup()) {
-        _this.reportRecoverableErrorWithToken$2(token0, B.Template_bKS);
+        _this.reportRecoverableErrorWithToken$2(token0, B.Template_xFL);
         t2 = t1.get$endGroup();
         t2.toString;
         token0 = t2;
@@ -32967,9 +32932,9 @@
           t2 = identifier.next;
           if (31 === (t2._typeAndOffset & 255)) {
             token = A.findNonZeroLengthToken(t2);
-            _this.listener.handleRecoverableError$3(B.MessageCode_785, token, token);
+            _this.listener.handleRecoverableError$3(B.MessageCode_4GP, token, token);
           } else
-            _this.reportRecoverableErrorWithToken$2(t2, B.Template_bKS);
+            _this.reportRecoverableErrorWithToken$2(t2, B.Template_xFL);
         }
       t2 = _this.listener;
       t3 = t1.next;
@@ -33049,7 +33014,7 @@
         t1 = throwToken.next;
       if (65 === (t1._typeAndOffset & 255)) {
         token = A.findNonZeroLengthToken(t1);
-        _this.listener.handleRecoverableError$3(B.MessageCode_8v2, token, token);
+        _this.listener.handleRecoverableError$3(B.MessageCode_56B, token, token);
         _this.get$rewriter().insertToken$2(throwToken, A.SyntheticStringToken$(B.TokenType_jcb, '""', (throwToken.next._typeAndOffset >>> 8) - 1, 0));
       }
       token = allowCascades ? _this.parseExpression$1(throwToken) : _this.parseExpressionWithoutCascade$1(throwToken);
@@ -33110,8 +33075,7 @@
                 t2.moveSynthetic$2(exceptionName, t3);
               } else {
                 t2 = t3 == null ? _this.cachedRewriter = new A.TokenStreamRewriterImpl() : t3;
-                comma = new A.SyntheticToken(_null, ((exceptionName.next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-                comma._setCommentParent$1(_null);
+                comma = A.SyntheticToken$(B.TokenType_VRW, (exceptionName.next._typeAndOffset >>> 8) - 1);
                 t3 = exceptionName._typeAndOffset;
                 if (!(B.List_BvF[t3 & 255] !== B.TokenType_ScO || (t3 >>> 8) - 1 < 0))
                   A.throwExpression("Internal Error: Rewriting at eof.");
@@ -33169,7 +33133,7 @@
       } else {
         if (catchCount === 0) {
           token = A.findNonZeroLengthToken(t1);
-          _this.listener.handleRecoverableError$3(B.MessageCode_r1O, token, token);
+          _this.listener.handleRecoverableError$3(B.MessageCode_Whl, token, token);
         }
         finallyKeyword = _null;
       }
@@ -33208,7 +33172,7 @@
             }
             if (t4) {
               token1 = A.findNonZeroLengthToken(t5);
-              _this.listener.handleRecoverableError$3(B.MessageCode_3Bh, token1, token1);
+              _this.listener.handleRecoverableError$3(B.MessageCode_9dY, token1, token1);
             }
             t4 = token0.next;
             t4.toString;
@@ -33233,7 +33197,7 @@
             }
             if (t4) {
               token0 = A.findNonZeroLengthToken(t5);
-              _this.listener.handleRecoverableError$3(B.MessageCode_Lsv, token0, token0);
+              _this.listener.handleRecoverableError$3(B.MessageCode_V4x, token0, token0);
             }
             _this.listener.beginCaseExpression$1(t5);
             token0 = t1 ? _this.parsePattern$2(t5, B.PatternContext_true_1_matching) : _this.parseExpression$1(t5);
@@ -33355,7 +33319,7 @@
       else {
         t3 = token.next;
         t3.toString;
-        _this.reportRecoverableErrorWithToken$2(t3, B.Template_bKS);
+        _this.reportRecoverableErrorWithToken$2(t3, B.Template_xFL);
         token = t2;
       }
       _this.mayParseFunctionExpressions = old;
@@ -33390,7 +33354,7 @@
         } else
           operator = next;
         token = A.findNonZeroLengthToken(operator);
-        _this.listener.handleRecoverableError$3(B.MessageCode_ae0, token, token);
+        _this.listener.handleRecoverableError$3(B.MessageCode_gjw, token, token);
         _this.get$rewriter().insertToken$2(beforeName, A.SyntheticKeywordToken$(B.Keyword_4U3, (beforeName.next._typeAndOffset >>> 8) - 1));
         typeInfo = A.computeType(beforeStart, true, true, false);
         beforeName = typeInfo.skipType$1(beforeType);
@@ -33401,11 +33365,11 @@
       }
       t1 = beforeName.next;
       t1.toString;
-      token = _this.parseMethod$15(beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, null, t1, kind, enclosingDeclarationName, false);
+      token = _this.parseMethod$16(beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, null, null, t1, kind, enclosingDeclarationName, false);
       _this.listener.endMember$0();
       return token;
     },
-    recoverFromInvalidMember$14(token, beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, getOrSet, kind, enclosingDeclarationName) {
+    recoverFromInvalidMember$15(token, beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, getOrSet, newToken, kind, enclosingDeclarationName) {
       var next0, _this = this,
         next = token.next,
         t1 = B.List_BvF[next._typeAndOffset & 255],
@@ -33446,7 +33410,7 @@
         return token;
       } else if (value === "typedef") {
         token = A.findNonZeroLengthToken(next);
-        _this.listener.handleRecoverableError$3(B.MessageCode_j6O, token, token);
+        _this.listener.handleRecoverableError$3(B.MessageCode_6HA, token, token);
         _this.listener.handleInvalidMember$1(next);
         _this.listener.endMember$0();
         return next;
@@ -33455,7 +33419,7 @@
       if (value === "(" || value === "=>" || value === "{") {
         t1 = token.next;
         t1.toString;
-        token = _this.parseMethod$15(beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, getOrSet, t1, kind, enclosingDeclarationName, false);
+        token = _this.parseMethod$16(beforeStart, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, beforeType, typeInfo, getOrSet, newToken, t1, kind, enclosingDeclarationName, false);
       } else if (token === beforeStart) {
         _this.reportRecoverableErrorWithToken$2(next, B.Template_MpL);
         _this.listener.handleInvalidMember$1(next);
@@ -33474,7 +33438,7 @@
         t1 = token.next;
       t1.toString;
       token0 = A.findNonZeroLengthToken(t1);
-      this.listener.handleRecoverableError$3(B.MessageCode_un5, token0, token0);
+      this.listener.handleRecoverableError$3(B.MessageCode_v0n, token0, token0);
       next = this.get$rewriter().insertToken$2(token, A.SyntheticToken$(B.TokenType_39Z, (token.next._typeAndOffset >>> 8) - 1));
       this.listener.handleEmptyStatement$1(next);
       for (;;) {
@@ -33513,7 +33477,7 @@
     parseInvalidTopLevelDeclaration$1(token) {
       var t1, originalListener, t2, _this = this,
         next = token.next;
-      _this.reportRecoverableErrorWithToken$2(next, 65 === (next._typeAndOffset & 255) ? B.Template_bKS : B.Template_m2G);
+      _this.reportRecoverableErrorWithToken$2(next, 65 === (next._typeAndOffset & 255) ? B.Template_xFL : B.Template_m2G);
       if (51 === (next._typeAndOffset & 255)) {
         t1 = token.next;
         t1.toString;
@@ -33573,7 +33537,7 @@
         switch (t2.get$lexeme()) {
           case "as":
             if (!_this.isLastPatternAllowedInsideUnaryPattern)
-              _this.listener.handleRecoverableError$3(B.MessageCode_mcU, t1, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_IBJ, t1, token);
             _this.listener.beginAsOperatorType$1(t2);
             token = _this.computeTypeAfterIsOrAs$1(t2).ensureTypeNotVoid$2(t2, _this);
             _this.listener.endAsOperatorType$1(t2);
@@ -33581,13 +33545,13 @@
             break;
           case "!":
             if (!_this.isLastPatternAllowedInsideUnaryPattern)
-              _this.listener.handleRecoverableError$3(B.MessageCode_mcU, t1, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_IBJ, t1, token);
             _this.listener.handleNullAssertPattern$1(t2);
             token = t2;
             break;
           case "?":
             if (!_this.isLastPatternAllowedInsideUnaryPattern)
-              _this.listener.handleRecoverableError$3(B.MessageCode_mcU, t1, token);
+              _this.listener.handleRecoverableError$3(B.MessageCode_IBJ, t1, token);
             _this.listener.handleNullCheckPattern$1(t2);
             token = t2;
             break;
@@ -33731,13 +33695,13 @@
         case 0:
           if (keyword != null) {
             token0 = A.findNonZeroLengthToken(keyword);
-            _this.listener.handleRecoverableError$3(B.MessageCode_Yh0, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_Z2o, token0, token0);
           }
           break;
         case 1:
           if (typeInfo !== B.C_NoType && keyword != null && 149 === (keyword._typeAndOffset & 255)) {
             token0 = A.findNonZeroLengthToken(keyword);
-            _this.listener.handleRecoverableError$3(B.MessageCode_rrr, token0, token0);
+            _this.listener.handleRecoverableError$3(B.MessageCode_1ZU, token0, token0);
           }
           break;
         case 2:
@@ -33837,8 +33801,7 @@
             }
             break;
           }
-          comma = new A.SyntheticToken(null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-          comma._setCommentParent$1(null);
+          comma = A.SyntheticToken$(B.TokenType_VRW, (next._typeAndOffset >>> 8) - 1);
           message = A._withArgumentsOldExpectedButGot(",");
           t1 = token.next;
           t1.toString;
@@ -33862,7 +33825,7 @@
       return token;
     },
     parseMapPatternSuffix$2(token, patternContext) {
-      var next, old, t1, token0, count, t2, hasSubPattern, colon, t3, token1, comma, message, _this = this, _null = null,
+      var next, old, t1, token0, count, t2, hasSubPattern, colon, t3, token1, comma, message, _this = this,
         _s33_ = "Internal Error: Rewriting at eof.";
       token = token.next;
       next = token.next;
@@ -33884,8 +33847,7 @@
           colon = token0.next;
           if (24 !== (colon._typeAndOffset & 255)) {
             t2 = A._withArgumentsOldExpectedButGot(":");
-            colon = new A.SyntheticToken(_null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 24) >>> 0);
-            colon._setCommentParent$1(_null);
+            colon = A.SyntheticToken$(B.TokenType_2s6, (next._typeAndOffset >>> 8) - 1);
             t1._as(t2);
             t3 = token0.next;
             t3.toString;
@@ -33922,13 +33884,12 @@
           next = t2;
           token0 = comma;
         } else
-          comma = _null;
+          comma = null;
         if (28 === (next._typeAndOffset & 255))
           break;
         if (comma == null) {
           if (A.looksLikeLiteralEntry(next)) {
-            comma = new A.SyntheticToken(_null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-            comma._setCommentParent$1(_null);
+            comma = A.SyntheticToken$(B.TokenType_VRW, (next._typeAndOffset >>> 8) - 1);
             message = A._withArgumentsOldExpectedButGot(",");
             t2 = token0.next;
             t2.toString;
@@ -34005,7 +33966,7 @@
       if (wasRecord) {
         if (count === 1 && !wasValidRecord) {
           token0 = A.findNonZeroLengthToken(token);
-          _this.listener.handleRecoverableError$3(B.MessageCode_dfQ, token0, token0);
+          _this.listener.handleRecoverableError$3(B.MessageCode_we7, token0, token0);
         }
         _this.listener.handleRecordPattern$2(t1, count);
       } else
@@ -34050,8 +34011,7 @@
           }
           if (A.looksLikeExpressionStart(t3)) {
             t4 = A._withArgumentsOldExpectedButGot(",");
-            next = new A.SyntheticToken(null, ((t3._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-            next._setCommentParent$1(null);
+            next = A.SyntheticToken$(B.TokenType_VRW, (t3._typeAndOffset >>> 8) - 1);
             t2._as(t4);
             t3 = token.next;
             t3.toString;
@@ -34116,7 +34076,7 @@
       return next.get$endGroup();
     },
     parseSwitchExpression$1(token) {
-      var old, next, caseCount, t2, token0, t3, next0, when, arrow, t4, comma, message, token1, t5, _this = this, _null = null,
+      var old, next, caseCount, t2, token0, t3, next0, when, arrow, t4, comma, message, token1, t5, _this = this,
         t1 = token.next;
       t1.toString;
       old = _this.mayParseFunctionExpressions;
@@ -34136,7 +34096,7 @@
             token0 = A.findNonZeroLengthToken(next);
             _this.listener.handleRecoverableError$3(B.MessageCode_h0d, token0, token0);
             _this.listener.handleNoType$1(next);
-            _this.listener.handleWildcardPattern$2(_null, next);
+            _this.listener.handleWildcardPattern$2(null, next);
             token0 = next;
           } else {
             if (90 === t3) {
@@ -34153,7 +34113,7 @@
             token0 = _this.parseExpression$1(next0);
             when = next0;
           } else
-            when = _null;
+            when = null;
           if (24 === (next0._typeAndOffset & 255)) {
             t3 = t2._as(A._withArgumentsOldExpectedButGot("=>"));
             token0 = A.findNonZeroLengthToken(next0);
@@ -34184,13 +34144,12 @@
             next = t4;
             token0 = comma;
           } else
-            comma = _null;
+            comma = null;
           if (28 === (next._typeAndOffset & 255))
             break;
           if (comma == null)
             if (A.looksLikePatternStart(next)) {
-              comma = new A.SyntheticToken(_null, ((next._typeAndOffset >>> 8) - 1 + 1 << 8 | 25) >>> 0);
-              comma._setCommentParent$1(_null);
+              comma = A.SyntheticToken$(B.TokenType_VRW, (next._typeAndOffset >>> 8) - 1);
               message = A._withArgumentsOldExpectedButGot(",");
               t4 = token0.next;
               t4.toString;
@@ -34257,7 +34216,7 @@
       var t1 = token._typeAndOffset & 255;
       return 51 === t1 || 115 === t1;
     },
-    $signature: 62
+    $signature: 61
   };
   A.AwaitOrYieldContext.prototype = {
     _enumToString$0() {
@@ -34373,6 +34332,14 @@
     endCompilationUnit$2(count, token) {
       this.checkEmpty$1((token._typeAndOffset >>> 8) - 1);
     },
+    handleImplicitFormalParameters$1(token) {
+      this.push$1(B.NullValue_FormalParameters);
+    },
+    endAnonymousMethodInvocation$4$isExpression(beginToken, functionDefinition, endToken, isExpression) {
+      var t1 = this.stack;
+      t1.pop$1(null);
+      t1.pop$1(null);
+    },
     handleClassExtends$2(extendsKeyword, typeCount) {
     },
     handleMixinOn$2(onKeyword, typeCount) {
@@ -34444,7 +34411,7 @@
       this.addProblem$3(message, (startToken._typeAndOffset >>> 8) - 1, A.lengthOfSpan(startToken, endToken));
     },
     isIgnoredError$2(code, token) {
-      if (code === B.MessageCode_JvH)
+      if (code === B.MessageCode_X6S)
         return true;
       else if (code === B.MessageCode_TRH)
         return true;
@@ -34460,14 +34427,23 @@
     get$length(_) {
       return this.arrayLength;
     },
-    get$last(_) {
-      var value,
-        t1 = this.array,
-        t2 = this.arrayLength - 1;
-      if (!(t2 >= 0 && t2 < t1.length))
-        return A.ioore(t1, t2);
-      value = t1[t2];
-      return value instanceof A.NullValue ? null : value;
+    peek$1(nullValue) {
+      var t2, value,
+        t1 = this.arrayLength;
+      if (t1 > 0) {
+        t2 = this.array;
+        --t1;
+        if (!(t1 < t2.length))
+          return A.ioore(t2, t1);
+        value = t2[t1];
+        if (value instanceof A.NullValue)
+          value = null;
+        if (!(value instanceof A.NullValue))
+          return value;
+        else
+          return null;
+      } else
+        return null;
     },
     pop$1(nullValue) {
       var value,
@@ -34989,7 +34965,7 @@
           t1 = token.next;
           t1.toString;
           token0 = A.findNonZeroLengthToken(t1);
-          parser.listener.handleRecoverableError$3(B.MessageCode_L2M, token0, token0);
+          parser.listener.handleRecoverableError$3(B.MessageCode_8hr, token0, token0);
           token0 = typeParam.parseArguments$2(token, parser);
         } else
           token0 = token;
@@ -35677,7 +35653,7 @@
             if (!t3)
               break;
             token = A.findNonZeroLengthToken(identifier);
-            parser.listener.handleRecoverableError$3(B.MessageCode_AG2, token, token);
+            parser.listener.handleRecoverableError$3(B.MessageCode_hCn, token, token);
             t3 = variance.next;
             t3.toString;
             t4 = identifier.next;
@@ -36686,12 +36662,12 @@
           continue;
         } else if (next === 101 || next === 69) {
           if (previousWasSeparator)
-            _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+            _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
           return _this.tokenizeFractionPart$3(next, start, hasSeparators);
         } else {
           if (next === 46) {
             if (previousWasSeparator)
-              _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+              _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
             nextnext = _this.peek$0();
             if (48 <= nextnext && nextnext <= 57) {
               _this.advance$0(0);
@@ -36703,7 +36679,7 @@
             }
           }
           if (previousWasSeparator)
-            _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+            _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
           tokenType = hasSeparators ? B.TokenType_W2d : B.TokenType_S1D;
           _this.appendToken$1(A.StringTokenImpl$fromSubstring(tokenType, _this._string_scanner$_string, start, _this.scanOffset, _this.get$tokenStart(), true, true, _this.comments));
           return next;
@@ -36731,7 +36707,7 @@
         else {
           if (next === 95) {
             if (!hasDigits)
-              _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+              _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
           } else {
             if (!hasDigits) {
               _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_ZMP, start, _this.scanOffset));
@@ -36739,7 +36715,7 @@
               return next;
             }
             if (previousWasSeparator)
-              _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+              _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
             tokenType = hasSeparators ? B.TokenType_JSv : B.TokenType_cmk;
             _this.appendToken$1(A.StringTokenImpl$fromSubstring(tokenType, _this._string_scanner$_string, start, _this.scanOffset, _this.get$tokenStart(), true, true, _this.comments));
             return next;
@@ -36786,10 +36762,10 @@
             previousWasSeparator0 = false;
             if (101 === next || 69 === next) {
               if (previousWasSeparator)
-                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
               next = _this.advance$0(0);
               for (previousWasSeparator = previousWasSeparator0; next === 95; hasSeparators = hasSeparators0, previousWasSeparator = true) {
-                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
                 next = _this.advance$0(0);
               }
               if (next === 43 || next === 45) {
@@ -36803,7 +36779,7 @@
                 else {
                   if (next === 95) {
                     if (!hasExponentDigits)
-                      _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+                      _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
                   } else {
                     if (!hasExponentDigits) {
                       _this.appendToken$1(_this.createSyntheticSubstringToken$4(hasSeparators ? B.TokenType_A5E : B.TokenType_9pX, start, true, "0"));
@@ -36818,12 +36794,12 @@
                 next = _this.advance$0(0);
               }
               if (previousWasSeparator)
-                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
               done = done0;
               continue;
             } else {
               if (previousWasSeparator)
-                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_K73, start, _this.scanOffset));
+                _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_bRc, start, _this.scanOffset));
               done = done0;
               continue;
             }
@@ -36957,7 +36933,7 @@
           break;
         }
         if (-1 === next0) {
-          _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_8nl, _this.get$tokenStart(), _this.scanOffset));
+          _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_TwP, _this.get$tokenStart(), _this.scanOffset));
           _this.advanceAfterError$0();
           next = next0;
           break;
@@ -37174,7 +37150,7 @@
         } else {
           _this.tokenStart = t2;
           _this.appendToken$1(_this.createSyntheticSubstringToken$4(B.TokenType_w7x, t2, true, ""));
-          _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_NTb, _this.get$tokenStart(), _this.scanOffset));
+          _this.prependErrorToken$1(A.UnterminatedToken$(B.MessageCode_ahz, _this.get$tokenStart(), _this.scanOffset));
         }
         _this.tokenStart = _this.scanOffset;
         return next;
@@ -37781,7 +37757,6 @@
       for (t1 = type$.nullable_CommentToken; comment != null;)
         comment = t1._as(comment.next);
     },
-    $isSyntacticEntity: 1,
     $isToken: 1
   };
   A.StringToken.prototype = {
@@ -38154,6 +38129,10 @@
       node.visitChildren$1(this);
       return null;
     },
+    visitBlockClassBody$1(node) {
+      node.visitChildren$1(this);
+      return null;
+    },
     visitBreakStatement$1(node) {
       node.visitChildren$1(this);
       return null;
@@ -38242,11 +38221,19 @@
       node.visitChildren$1(this);
       return null;
     },
+    visitEmptyClassBody$1(node) {
+      node.visitChildren$1(this);
+      return null;
+    },
     visitEmptyFunctionBody$1(node) {
       node.visitChildren$1(this);
       return null;
     },
     visitEmptyStatement$1(node) {
+      node.visitChildren$1(this);
+      return null;
+    },
+    visitEnumBody$1(node) {
       node.visitChildren$1(this);
       return null;
     },
@@ -38410,6 +38397,10 @@
       node.visitChildren$1(this);
       return null;
     },
+    visitNameWithTypeParameters$1(node) {
+      node.visitChildren$1(this);
+      return null;
+    },
     visitNativeClause$1(node) {
       node.visitChildren$1(this);
       return null;
@@ -38470,6 +38461,14 @@
       node.visitChildren$1(this);
       return null;
     },
+    visitPrimaryConstructorBody$1(node) {
+      node.visitChildren$1(this);
+      return null;
+    },
+    visitPrimaryConstructorDeclaration$1(node) {
+      node.visitChildren$1(this);
+      return null;
+    },
     visitPrimaryConstructorName$1(node) {
       node.visitChildren$1(this);
       return null;
@@ -38503,14 +38502,6 @@
       return null;
     },
     visitRelationalPattern$1(node) {
-      node.visitChildren$1(this);
-      return null;
-    },
-    visitRepresentationConstructorName$1(node) {
-      node.visitChildren$1(this);
-      return null;
-    },
-    visitRepresentationDeclaration$1(node) {
       node.visitChildren$1(this);
       return null;
     },
@@ -38641,8 +38632,7 @@
       var t1 = this._diagnostics;
       (t1 == null ? this._diagnostics = A.LinkedHashSet_LinkedHashSet$_empty(type$.Diagnostic) : t1).add$1(0, diagnostic);
     },
-    $isDiagnosticListener: 1,
-    $isDiagnosticOrErrorListener: 1
+    $isDiagnosticListener: 1
   };
   A.LineInfo.prototype = {};
   A.ExperimentalFeaturesStatus.prototype = {$isExperimentalFeatures: 1};
@@ -38893,7 +38883,7 @@
       t1._as(second);
       return first.get$offset(first) - second.get$offset(second);
     },
-    $signature: 63
+    $signature: 62
   };
   A.AstNodeImpl.prototype = {
     get$length(_) {
@@ -38917,13 +38907,9 @@
       A.checkTypeBound($T, type$.nullable_AstNodeImpl, "T", "_becomeParentOf");
       $T._as(child);
       if (child != null)
-        child.set$_ast$_parent(this);
+        child._ast$_parent = this;
       return child;
     },
-    set$_ast$_parent(_parent) {
-      this._ast$_parent = type$.nullable_AstNode._as(_parent);
-    },
-    $isSyntacticEntity: 1,
     $isAstNode: 1
   };
   A.AstNodeWithNameScopeMixin.prototype = {};
@@ -38957,37 +38943,20 @@
     },
     $isBinaryExpression: 1
   };
-  A.BlockClassBodyImplStub.prototype = {
-    _becomeParentOf$1$1(child, $T) {
-      A.checkTypeBound($T, type$.nullable_AstNodeImpl, "T", "_becomeParentOf");
-      return $T._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol__becomeParentOf, "_becomeParentOf$1$1", 0, [$T._as(child), $T], [], 1)));
-    },
-    set$_ast$_parent(value) {
-      this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_GZ9, "set$_parent_", 2, [value], [], 0));
-    },
-    accept$1$1(_, visitor, $E) {
-      return $E._eval$1("0?")._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_accept, "accept$1$1", 0, [$E._eval$1("AstVisitor<0>")._as(visitor), $E], [], 1)));
-    },
+  A.BlockClassBodyImpl.prototype = {
     get$beginToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_beginToken, "get$beginToken", 1, [], [], 0));
+      return this.leftBracket;
     },
     get$endToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_endToken, "get$endToken", 1, [], [], 0));
+      return this.rightBracket;
     },
-    get$length(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_length, "get$length", 1, [], [], 0));
+    accept$1$1(_, visitor, $E) {
+      return $E._eval$1("AstVisitor<0>")._as(visitor).visitBlockClassBody$1(this);
     },
-    get$offset(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_offset, "get$offset", 1, [], [], 0));
+    visitChildren$1(visitor) {
+      this.members.accept$1(0, visitor);
     },
-    noSuchMethod$1(_, invocation) {
-      return this.super$Object$noSuchMethod(0, type$.Invocation._as(invocation));
-    },
-    $isSyntacticEntity: 1,
-    $isAstNode: 1,
-    $isAstNodeImpl: 1,
-    $isBlockClassBodyImpl: 1,
-    $isClassBodyImpl: 1
+    $isBlockClassBody: 1
   };
   A.BlockFunctionBodyImpl.prototype = {
     get$beginToken() {
@@ -39169,17 +39138,17 @@
   };
   A.ChildEntities.prototype = {
     get$syntacticEntities() {
-      var t1, t2, t3, t4, _i, entityValue, t5, t6, needsSorting, lastOffset, entity,
+      var t1, t2, t3, _i, entityValue, t4, t5, needsSorting, lastOffset, entity,
         result = A._setArrayType([], type$.JSArray_SyntacticEntity);
-      for (t1 = this.entities, t2 = t1.length, t3 = type$.List_Object, t4 = type$.SyntacticEntity, _i = 0; _i < t1.length; t1.length === t2 || (0, A.throwConcurrentModificationError)(t1), ++_i) {
+      for (t1 = this.entities, t2 = t1.length, t3 = type$.List_Object, _i = 0; _i < t1.length; t1.length === t2 || (0, A.throwConcurrentModificationError)(t1), ++_i) {
         entityValue = t1[_i].value;
-        if (t4._is(entityValue))
+        if (entityValue instanceof A.SyntacticEntity)
           B.JSArray_methods.add$1(result, entityValue);
         else if (t3._is(entityValue))
-          for (t5 = J.get$iterator$ax(entityValue); t5.moveNext$0();) {
-            t6 = t5.get$current(t5);
-            if (t4._is(t6))
-              B.JSArray_methods.add$1(result, t6);
+          for (t4 = J.get$iterator$ax(entityValue); t4.moveNext$0();) {
+            t5 = t4.get$current(t4);
+            if (t5 instanceof A.SyntacticEntity)
+              B.JSArray_methods.add$1(result, t5);
           }
       }
       t1 = result.length;
@@ -39211,43 +39180,13 @@
       t1._as(b);
       return a.get$offset(a) - b.get$offset(b);
     },
-    $signature: 64
+    $signature: 63
   };
   A.ChildEntity.prototype = {};
-  A.ClassBodyImplStub.prototype = {
-    _becomeParentOf$1$1(child, $T) {
-      A.checkTypeBound($T, type$.nullable_AstNodeImpl, "T", "_becomeParentOf");
-      return $T._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol__becomeParentOf, "_becomeParentOf$1$1", 0, [$T._as(child), $T], [], 1)));
-    },
-    set$_ast$_parent(value) {
-      this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_GZ9, "set$_parent_", 2, [value], [], 0));
-    },
-    accept$1$1(_, visitor, $E) {
-      return $E._eval$1("0?")._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_accept, "accept$1$1", 0, [$E._eval$1("AstVisitor<0>")._as(visitor), $E], [], 1)));
-    },
-    get$beginToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_beginToken, "get$beginToken", 1, [], [], 0));
-    },
-    get$endToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_endToken, "get$endToken", 1, [], [], 0));
-    },
-    get$length(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_length, "get$length", 1, [], [], 0));
-    },
-    get$offset(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_offset, "get$offset", 1, [], [], 0));
-    },
-    noSuchMethod$1(_, invocation) {
-      return this.super$Object$noSuchMethod(0, type$.Invocation._as(invocation));
-    },
-    $isSyntacticEntity: 1,
-    $isAstNode: 1,
-    $isAstNodeImpl: 1,
-    $isClassBodyImpl: 1
-  };
+  A.ClassBodyImpl.prototype = {$isClassBody: 1};
   A.ClassDeclarationImpl.prototype = {
     get$endToken() {
-      return this._rightBracket;
+      return this._body.get$endToken();
     },
     get$firstTokenAfterCommentAndMetadata() {
       var _1_0, _2_0, _3_0, _4_0, _5_0, _6_0, _this = this,
@@ -39279,38 +39218,8 @@
     },
     $isClassDeclaration: 1
   };
-  A.ClassMemberImpl.prototype = {};
-  A.ClassNamePartImplStub.prototype = {
-    _becomeParentOf$1$1(child, $T) {
-      A.checkTypeBound($T, type$.nullable_AstNodeImpl, "T", "_becomeParentOf");
-      return $T._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol__becomeParentOf, "_becomeParentOf$1$1", 0, [$T._as(child), $T], [], 1)));
-    },
-    set$_ast$_parent(value) {
-      this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_GZ9, "set$_parent_", 2, [value], [], 0));
-    },
-    accept$1$1(_, visitor, $E) {
-      return $E._eval$1("0?")._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_accept, "accept$1$1", 0, [$E._eval$1("AstVisitor<0>")._as(visitor), $E], [], 1)));
-    },
-    get$beginToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_beginToken, "get$beginToken", 1, [], [], 0));
-    },
-    get$endToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_endToken, "get$endToken", 1, [], [], 0));
-    },
-    get$length(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_length, "get$length", 1, [], [], 0));
-    },
-    get$offset(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_offset, "get$offset", 1, [], [], 0));
-    },
-    noSuchMethod$1(_, invocation) {
-      return this.super$Object$noSuchMethod(0, type$.Invocation._as(invocation));
-    },
-    $isSyntacticEntity: 1,
-    $isAstNode: 1,
-    $isAstNodeImpl: 1,
-    $isClassNamePartImpl: 1
-  };
+  A.ClassMemberImpl.prototype = {$isClassMember: 1};
+  A.ClassNamePartImpl.prototype = {$isClassNamePart: 1};
   A.ClassTypeAliasImpl.prototype = {
     get$endToken() {
       return this.semicolon;
@@ -39485,11 +39394,20 @@
       return this._body.get$endToken();
     },
     get$firstTokenAfterCommentAndMetadata() {
-      var _this = this,
-        _0_0 = A.Token_lexicallyFirst(_this.augmentKeyword, _this.externalKeyword, _this.constKeyword, _this.factoryKeyword, null);
+      var _1_0, _2_0, _3_0, _this = this,
+        _0_0 = A.Token_lexicallyFirst(_this.augmentKeyword, _this.externalKeyword, _this.constKeyword, _this.factoryKeyword, _this.newKeyword);
       if (_0_0 != null)
         return _0_0;
-      return _this._returnType.token;
+      _1_0 = _this._typeName;
+      if (_1_0 != null)
+        return _1_0.token;
+      _2_0 = _this.period;
+      if (_2_0 != null)
+        return _2_0;
+      _3_0 = _this.name;
+      if (_3_0 != null)
+        return _3_0;
+      return _this._parameters.leftParenthesis;
     },
     accept$1$1(_, visitor, $E) {
       return $E._eval$1("AstVisitor<0>")._as(visitor).visitConstructorDeclaration$1(this);
@@ -39772,6 +39690,20 @@
     },
     $isDoubleLiteral: 1
   };
+  A.EmptyClassBodyImpl.prototype = {
+    get$beginToken() {
+      return this.semicolon;
+    },
+    get$endToken() {
+      return this.semicolon;
+    },
+    accept$1$1(_, visitor, $E) {
+      return $E._eval$1("AstVisitor<0>")._as(visitor).visitEmptyClassBody$1(this);
+    },
+    visitChildren$1(visitor) {
+    },
+    $isEmptyClassBody: 1
+  };
   A.EmptyFunctionBodyImpl.prototype = {
     get$beginToken() {
       return this.semicolon;
@@ -39800,37 +39732,21 @@
     },
     $isEmptyStatement: 1
   };
-  A.EnumBodyImplStub.prototype = {
-    _becomeParentOf$1$1(child, $T) {
-      A.checkTypeBound($T, type$.nullable_AstNodeImpl, "T", "_becomeParentOf");
-      return $T._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol__becomeParentOf, "_becomeParentOf$1$1", 0, [$T._as(child), $T], [], 1)));
-    },
-    set$_ast$_parent(value) {
-      this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_GZ9, "set$_parent_", 2, [value], [], 0));
-    },
-    accept$1$1(_, visitor, $E) {
-      return $E._eval$1("0?")._as(this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_accept, "accept$1$1", 0, [$E._eval$1("AstVisitor<0>")._as(visitor), $E], [], 1)));
-    },
+  A.EnumBodyImpl.prototype = {
     get$beginToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_beginToken, "get$beginToken", 1, [], [], 0));
+      return this.leftBracket;
     },
     get$endToken() {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_endToken, "get$endToken", 1, [], [], 0));
+      return this.rightBracket;
     },
-    get$length(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_length, "get$length", 1, [], [], 0));
+    accept$1$1(_, visitor, $E) {
+      return $E._eval$1("AstVisitor<0>")._as(visitor).visitEnumBody$1(this);
     },
-    get$offset(_) {
-      return this.noSuchMethod$1(0, A.createUnmangledInvocationMirror(B.Symbol_offset, "get$offset", 1, [], [], 0));
+    visitChildren$1(visitor) {
+      this.constants.accept$1(0, visitor);
+      this.members.accept$1(0, visitor);
     },
-    noSuchMethod$1(_, invocation) {
-      return this.super$Object$noSuchMethod(0, type$.Invocation._as(invocation));
-    },
-    $isSyntacticEntity: 1,
-    $isAstNode: 1,
-    $isAstNodeImpl: 1,
-    $isClassBodyImpl: 1,
-    $isEnumBodyImpl: 1
+    $isEnumBody: 1
   };
   A.EnumConstantArgumentsImpl.prototype = {
     get$beginToken() {
@@ -39887,7 +39803,7 @@
   };
   A.EnumDeclarationImpl.prototype = {
     get$endToken() {
-      return this._rightBracket;
+      return this._body.rightBracket;
     },
     get$firstTokenAfterCommentAndMetadata() {
       var _0_0 = this.augmentKeyword;
@@ -39901,17 +39817,14 @@
     visitChildren$1(visitor) {
       var t1, _this = this;
       _this.super$AnnotatedNodeImpl$visitChildren(visitor);
-      t1 = _this._typeParameters;
-      if (t1 != null)
-        visitor.visitTypeParameterList$1(t1);
+      _this._namePart.accept$1$1(0, visitor, type$.dynamic);
       t1 = _this._withClause;
       if (t1 != null)
         visitor.visitWithClause$1(t1);
       t1 = _this._implementsClause;
       if (t1 != null)
         visitor.visitImplementsClause$1(t1);
-      _this._constants.accept$1(0, visitor);
-      _this._members.accept$1(0, visitor);
+      visitor.visitEnumBody$1(_this._body);
     },
     $isEnumDeclaration: 1
   };
@@ -39984,7 +39897,7 @@
   };
   A.ExtensionDeclarationImpl.prototype = {
     get$endToken() {
-      return this._rightBracket;
+      return this._body.rightBracket;
     },
     get$firstTokenAfterCommentAndMetadata() {
       var _0_0 = this.augmentKeyword;
@@ -40004,7 +39917,7 @@
       t1 = _this._onClause;
       if (t1 != null)
         visitor.visitExtensionOnClause$1(t1);
-      _this._members.accept$1(0, visitor);
+      visitor.visitBlockClassBody$1(_this._body);
     },
     $isExtensionDeclaration: 1
   };
@@ -40025,7 +39938,7 @@
   };
   A.ExtensionTypeDeclarationImpl.prototype = {
     get$endToken() {
-      return this._rightBracket;
+      return this._body.get$endToken();
     },
     get$firstTokenAfterCommentAndMetadata() {
       var _0_0 = this.augmentKeyword;
@@ -40039,14 +39952,11 @@
     visitChildren$1(visitor) {
       var t1, _this = this;
       _this.super$AnnotatedNodeImpl$visitChildren(visitor);
-      t1 = _this._typeParameters;
-      if (t1 != null)
-        visitor.visitTypeParameterList$1(t1);
-      _this._representation.accept$1$1(0, visitor, type$.dynamic);
+      visitor.visitPrimaryConstructorDeclaration$1(_this._primaryConstructor);
       t1 = _this._implementsClause;
       if (t1 != null)
         visitor.visitImplementsClause$1(t1);
-      _this._members.accept$1(0, visitor);
+      _this._body.accept$1$1(0, visitor, type$.dynamic);
     },
     $isExtensionTypeDeclaration: 1
   };
@@ -40444,16 +40354,19 @@
       return this._parameters.rightParenthesis;
     },
     get$firstTokenAfterCommentAndMetadata() {
-      var _1_0, _2_0, t1, _this = this,
+      var _1_0, _2_0, _3_0, t1, _this = this,
         _0_0 = _this.covariantKeyword;
       if (_0_0 != null)
         return _0_0;
       _1_0 = _this.requiredKeyword;
       if (_1_0 != null)
         return _1_0;
-      _2_0 = _this._returnType;
+      _2_0 = _this.keyword;
       if (_2_0 != null)
-        return _2_0.get$beginToken();
+        return _2_0;
+      _3_0 = _this._returnType;
+      if (_3_0 != null)
+        return _3_0.get$beginToken();
       t1 = _this.name;
       t1.toString;
       return t1;
@@ -41062,7 +40975,7 @@
   };
   A.MixinDeclarationImpl.prototype = {
     get$endToken() {
-      return this._rightBracket;
+      return this._body.rightBracket;
     },
     get$firstTokenAfterCommentAndMetadata() {
       var _1_0,
@@ -41089,7 +41002,7 @@
       t1 = _this._implementsClause;
       if (t1 != null)
         visitor.visitImplementsClause$1(t1);
-      _this._members.accept$1(0, visitor);
+      visitor.visitBlockClassBody$1(_this._body);
     },
     $isMixinDeclaration: 1
   };
@@ -41165,6 +41078,29 @@
     },
     get$endToken() {
       return this.semicolon;
+    }
+  };
+  A.NameWithTypeParametersImpl.prototype = {
+    get$beginToken() {
+      return this.typeName;
+    },
+    get$endToken() {
+      var _0_0 = this._typeParameters;
+      if (_0_0 != null)
+        return _0_0.rightBracket;
+      return this.typeName;
+    },
+    accept$1$1(_, visitor, $E) {
+      return $E._eval$1("AstVisitor<0>")._as(visitor).visitNameWithTypeParameters$1(this);
+    },
+    visitChildren$1(visitor) {
+      var t1 = this._typeParameters;
+      if (t1 != null)
+        visitor.visitTypeParameterList$1(t1);
+    },
+    $isNameWithTypeParameters: 1,
+    get$typeName() {
+      return this.typeName;
     }
   };
   A.NativeClauseImpl.prototype = {
@@ -41293,7 +41229,7 @@
       throw A.wrapException(A.UnsupportedError$("Cannot resize NodeList."));
     },
     _initialize$2(owner, elements) {
-      var t2, $length, i, _this = this,
+      var t2, $length, t3, i, node, _this = this,
         _s9_ = "_elements",
         t1 = _this.$ti;
       t1._eval$1("List<1>?")._as(elements);
@@ -41311,8 +41247,11 @@
         _this.__NodeListImpl__elements_F !== $ && A.throwLateFieldAI(_s9_);
         _this.__NodeListImpl__elements_F = t1;
         $length = t2.get$length(elements);
-        for (t1 = type$.AstNodeImpl, i = 0; i < $length; ++i)
-          owner._becomeParentOf$1$1(t2.$index(elements, i), t1);
+        for (t1 = type$.AstNodeImpl, t3 = type$.nullable_AstNodeImpl, i = 0; i < $length; ++i) {
+          node = t2.$index(elements, i);
+          A.checkTypeBound(t1, t3, "T", "_becomeParentOf");
+          node._ast$_parent = owner;
+        }
       }
     },
     $isEfficientLengthIterable: 1,
@@ -41621,6 +41560,50 @@
     },
     $isPrefixExpression: 1
   };
+  A.PrimaryConstructorBodyImpl.prototype = {
+    get$endToken() {
+      return this._body.get$endToken();
+    },
+    get$firstTokenAfterCommentAndMetadata() {
+      return this.thisKeyword;
+    },
+    accept$1$1(_, visitor, $E) {
+      return $E._eval$1("AstVisitor<0>")._as(visitor).visitPrimaryConstructorBody$1(this);
+    },
+    visitChildren$1(visitor) {
+      this.super$AnnotatedNodeImpl$visitChildren(visitor);
+      this.initializers.accept$1(0, visitor);
+      this._body.accept$1$1(0, visitor, type$.dynamic);
+    },
+    $isPrimaryConstructorBody: 1
+  };
+  A.PrimaryConstructorDeclarationImpl.prototype = {
+    get$beginToken() {
+      var _0_0 = this.constKeyword;
+      if (_0_0 != null)
+        return _0_0;
+      return this.typeName;
+    },
+    get$endToken() {
+      return this._formalParameters.rightParenthesis;
+    },
+    accept$1$1(_, visitor, $E) {
+      return $E._eval$1("AstVisitor<0>")._as(visitor).visitPrimaryConstructorDeclaration$1(this);
+    },
+    visitChildren$1(visitor) {
+      var t1 = this._typeParameters;
+      if (t1 != null)
+        visitor.visitTypeParameterList$1(t1);
+      t1 = this._constructorName;
+      if (t1 != null)
+        visitor.visitPrimaryConstructorName$1(t1);
+      visitor.visitFormalParameterList$1(this._formalParameters);
+    },
+    $isPrimaryConstructorDeclaration: 1,
+    get$typeName() {
+      return this.typeName;
+    }
+  };
   A.PrimaryConstructorNameImpl.prototype = {
     get$beginToken() {
       return this.period;
@@ -41821,45 +41804,6 @@
       this._operand.accept$1$1(0, visitor, type$.dynamic);
     },
     $isRelationalPattern: 1
-  };
-  A.RepresentationConstructorNameImpl.prototype = {
-    get$beginToken() {
-      return this.period;
-    },
-    get$endToken() {
-      return this.name;
-    },
-    accept$1$1(_, visitor, $E) {
-      return $E._eval$1("AstVisitor<0>")._as(visitor).visitRepresentationConstructorName$1(this);
-    },
-    visitChildren$1(visitor) {
-    },
-    $isRepresentationConstructorName: 1
-  };
-  A.RepresentationDeclarationImpl.prototype = {
-    get$beginToken() {
-      var _0_0 = this._constructorName;
-      if (_0_0 != null)
-        return _0_0.period;
-      return this.leftParenthesis;
-    },
-    get$endToken() {
-      return this.rightParenthesis;
-    },
-    accept$1$1(_, visitor, $E) {
-      return $E._eval$1("AstVisitor<0>")._as(visitor).visitRepresentationDeclaration$1(this);
-    },
-    visitChildren$1(visitor) {
-      var t1 = this._constructorName;
-      if (t1 != null)
-        visitor.visitRepresentationConstructorName$1(t1);
-      this.fieldMetadata.accept$1(0, visitor);
-      this._fieldType.accept$1$1(0, visitor, type$.dynamic);
-    },
-    $isRepresentationDeclaration: 1,
-    get$fieldName() {
-      return this.fieldName;
-    }
   };
   A.RestPatternElementImpl.prototype = {
     get$beginToken() {
@@ -42834,6 +42778,12 @@
       this._visitNodeList$2$separator(node.statements, " ");
       t1._contents += "}";
     },
+    visitBlockClassBody$1(node) {
+      var t1 = this.sink;
+      t1._contents += " {";
+      this._visitNodeList$2$separator(node.members, " ");
+      t1._contents += "}";
+    },
     visitBlockFunctionBody$1(node) {
       var t1, t2,
         keyword = node.keyword;
@@ -42889,7 +42839,7 @@
       this._visitToken$1(node.name);
     },
     visitClassDeclaration$1(node) {
-      var t1, _this = this, _s1_ = " ";
+      var _this = this, _s1_ = " ";
       _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, _s1_, _s1_);
       _this._visitToken$2$suffix(node.augmentKeyword, _s1_);
       _this._visitToken$2$suffix(node.abstractKeyword, _s1_);
@@ -42898,16 +42848,12 @@
       _this._visitToken$2$suffix(node.interfaceKeyword, _s1_);
       _this._visitToken$2$suffix(node.finalKeyword, _s1_);
       _this._visitToken$2$suffix(node.mixinKeyword, _s1_);
-      t1 = _this.sink;
-      t1._contents += "class ";
-      _this._visitToken$1(node.name);
-      _this._visitNode$1(node._typeParameters);
+      _this.sink._contents += "class ";
+      _this._visitNode$1(node._namePart);
       _this._visitNode$2$prefix(node._extendsClause, _s1_);
       _this._visitNode$2$prefix(node._withClause, _s1_);
       _this._visitNode$2$prefix(node._implementsClause, _s1_);
-      t1._contents += " {";
-      _this._visitNodeList$2$separator(node._members, _s1_);
-      t1._contents += "}";
+      _this._visitNode$1(node._body);
     },
     visitClassTypeAlias$1(node) {
       var t1, _this = this, _s1_ = " ";
@@ -42973,14 +42919,20 @@
       this._visitNode$1(node._expression);
     },
     visitConstructorDeclaration$1(node) {
-      var _this = this, _s1_ = " ";
+      var t1, t2, _this = this, _s1_ = " ";
       _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, _s1_, _s1_);
       _this._visitToken$2$suffix(node.augmentKeyword, _s1_);
       _this._visitToken$2$suffix(node.externalKeyword, _s1_);
       _this._visitToken$2$suffix(node.constKeyword, _s1_);
       _this._visitToken$2$suffix(node.factoryKeyword, _s1_);
-      _this._visitNode$1(node._returnType);
-      _this._visitToken$2$prefix(node.name, ".");
+      _this._visitToken$2$suffix(node.newKeyword, _s1_);
+      t1 = node._typeName;
+      t2 = node.name;
+      if (t1 != null) {
+        _this._visitNode$1(t1);
+        _this._visitToken$2$prefix(t2, ".");
+      } else
+        _this._visitToken$1(t2);
       _this._visitNode$1(node._parameters);
       _this._visitNodeList$3$prefix$separator(node.initializers, " : ", ", ");
       _this._visitNode$2$prefix(node._redirectedConstructor, " = ");
@@ -43070,11 +43022,23 @@
         t2 = node.literal.get$lexeme();
       t1._contents += t2;
     },
+    visitEmptyClassBody$1(node) {
+      this.sink._contents += ";";
+    },
     visitEmptyFunctionBody$1(node) {
       this.sink._contents += ";";
     },
     visitEmptyStatement$1(node) {
       this.sink._contents += ";";
+    },
+    visitEnumBody$1(node) {
+      var _this = this,
+        t1 = _this.sink;
+      t1._contents += " {";
+      _this._visitNodeList$2$separator(node.constants, ", ");
+      _this._visitToken$1(node.semicolon);
+      _this._visitNodeList$3$prefix$separator(node.members, " ", " ");
+      t1._contents += "}";
     },
     visitEnumConstantArguments$1(node) {
       this._visitNode$1(node._typeArguments);
@@ -43087,19 +43051,13 @@
       this._visitNode$1(node._ast$_arguments);
     },
     visitEnumDeclaration$1(node) {
-      var t1, _this = this, _s1_ = " ";
-      _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, _s1_, _s1_);
-      t1 = _this.sink;
-      t1._contents += "enum ";
-      _this._visitToken$1(node.name);
-      _this._visitNode$1(node._typeParameters);
-      _this._visitNode$2$prefix(node._withClause, _s1_);
-      _this._visitNode$2$prefix(node._implementsClause, _s1_);
-      t1._contents += " {";
-      _this._visitNodeList$2$separator(node._constants, ", ");
-      _this._visitToken$1(node._semicolon);
-      _this._visitNodeList$3$prefix$separator(node._members, _s1_, _s1_);
-      t1._contents += "}";
+      var _this = this;
+      _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, " ", " ");
+      _this.sink._contents += "enum ";
+      _this._visitNode$1(node._namePart);
+      _this._visitNode$2$prefix(node._withClause, " ");
+      _this._visitNode$2$prefix(node._implementsClause, " ");
+      _this._visitNode$1(node._body);
     },
     visitExportDirective$1(node) {
       var t1, _this = this, _s1_ = " ";
@@ -43143,29 +43101,21 @@
       _this._visitToken$2$suffix(node.typeKeyword, _s1_);
       _this._visitToken$1(node.name);
       _this._visitNode$1(node._typeParameters);
-      _this.sink._contents += " ";
-      _this._visitNode$2$suffix(node._onClause, _s1_);
-      _this._visitToken$1(node._leftBracket);
-      _this._visitNodeList$2$separator(node._members, _s1_);
-      _this._visitToken$1(node._rightBracket);
+      _this._visitNode$2$prefix(node._onClause, _s1_);
+      _this._visitNode$1(node._body);
     },
     visitExtensionOnClause$1(node) {
       this.sink._contents += "on ";
       this._visitNode$1(node._extendedType);
     },
     visitExtensionTypeDeclaration$1(node) {
-      var _this = this, _s1_ = " ";
-      _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, _s1_, _s1_);
-      _this._visitToken$2$suffix(node.extensionKeyword, _s1_);
-      _this._visitToken$2$suffix(node.typeKeyword, _s1_);
-      _this._visitToken$2$suffix(node._constKeyword, _s1_);
-      _this._visitToken$1(node.name);
-      _this._visitNode$1(node._typeParameters);
-      _this._visitNode$2$suffix(node._representation, _s1_);
-      _this._visitNode$2$suffix(node._implementsClause, _s1_);
-      _this._visitToken$1(node._leftBracket);
-      _this._visitNodeList$2$separator(node._members, _s1_);
-      _this._visitToken$1(node._rightBracket);
+      var _this = this;
+      _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, " ", " ");
+      _this._visitToken$2$suffix(node.extensionKeyword, " ");
+      _this._visitToken$2$suffix(node.typeKeyword, " ");
+      _this._visitNode$1(node._primaryConstructor);
+      _this._visitNode$2$prefix(node._implementsClause, " ");
+      _this._visitNode$1(node._body);
     },
     visitFieldDeclaration$1(node) {
       var _this = this, _s1_ = " ";
@@ -43321,11 +43271,12 @@
       t1._contents += ";";
     },
     visitFunctionTypedFormalParameter$1(node) {
-      var t1, _this = this;
-      _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, " ", " ");
-      _this._visitToken$2$suffix(node.requiredKeyword, " ");
-      _this._visitToken$2$suffix(node.covariantKeyword, " ");
-      _this._visitNode$2$suffix(node._returnType, " ");
+      var t1, _this = this, _s1_ = " ";
+      _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, _s1_, _s1_);
+      _this._visitToken$2$suffix(node.requiredKeyword, _s1_);
+      _this._visitToken$2$suffix(node.covariantKeyword, _s1_);
+      _this._visitToken$2$suffix(node.keyword, _s1_);
+      _this._visitNode$2$suffix(node._returnType, _s1_);
       t1 = node.name;
       t1.toString;
       _this._visitToken$1(t1);
@@ -43557,19 +43508,16 @@
       _this._visitNode$1(node._argumentList);
     },
     visitMixinDeclaration$1(node) {
-      var t1, _this = this, _s1_ = " ";
+      var _this = this, _s1_ = " ";
       _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, _s1_, _s1_);
       _this._visitToken$2$suffix(node.augmentKeyword, _s1_);
       _this._visitToken$2$suffix(node.baseKeyword, _s1_);
-      t1 = _this.sink;
-      t1._contents += "mixin ";
+      _this.sink._contents += "mixin ";
       _this._visitToken$1(node.name);
       _this._visitNode$1(node._typeParameters);
       _this._visitNode$2$prefix(node._onClause, _s1_);
       _this._visitNode$2$prefix(node._implementsClause, _s1_);
-      t1._contents += " {";
-      _this._visitNodeList$2$separator(node._members, _s1_);
-      t1._contents += "}";
+      _this._visitNode$1(node._body);
     },
     visitMixinOnClause$1(node) {
       this.sink._contents += "on ";
@@ -43586,6 +43534,10 @@
       _this._visitNode$1(node._typeArguments);
       if (node.question != null)
         _this.sink._contents += "?";
+    },
+    visitNameWithTypeParameters$1(node) {
+      this._visitToken$1(node.typeName);
+      this._visitNode$1(node._typeParameters);
     },
     visitNativeClause$1(node) {
       this.sink._contents += "native ";
@@ -43702,6 +43654,25 @@
       t1._contents += t2;
       this._writeOperand$2(node, node._operand);
     },
+    visitPrimaryConstructorBody$1(node) {
+      var t1, _this = this;
+      _this._visitNodeList$3$separator$suffix(node._AnnotatedNodeMixin__metadata, " ", " ");
+      _this._visitToken$1(node.thisKeyword);
+      t1 = node.initializers;
+      if (t1.get$length(0) !== 0) {
+        _this._visitToken$3$prefix$suffix(node.colon, " ", " ");
+        _this._visitNodeList$2$separator(t1, ", ");
+      }
+      _this._visitFunctionBody$1(node._body);
+    },
+    visitPrimaryConstructorDeclaration$1(node) {
+      var _this = this;
+      _this._visitToken$2$suffix(node.constKeyword, " ");
+      _this._visitToken$1(node.typeName);
+      _this._visitNode$1(node._typeParameters);
+      _this._visitNode$1(node._constructorName);
+      _this._visitNode$1(node._formalParameters);
+    },
     visitPrimaryConstructorName$1(node) {
       this._visitToken$1(node.period);
       this._visitToken$1(node.name);
@@ -43790,19 +43761,6 @@
         t2 = node.operator.get$lexeme();
       t1._contents = (t1._contents += t2) + " ";
       this._visitNode$1(node._operand);
-    },
-    visitRepresentationConstructorName$1(node) {
-      this._visitToken$1(node.period);
-      this._visitToken$1(node.name);
-    },
-    visitRepresentationDeclaration$1(node) {
-      var _this = this;
-      _this._visitNode$1(node._constructorName);
-      _this._visitToken$1(node.leftParenthesis);
-      _this._visitNodeList$3$separator$suffix(node.fieldMetadata, " ", " ");
-      _this._visitNode$2$suffix(node._fieldType, " ");
-      _this._visitToken$1(node.fieldName);
-      _this._visitToken$1(node.rightParenthesis);
     },
     visitRestPatternElement$1(node) {
       var t1 = this.sink,
@@ -44127,18 +44085,10 @@
     },
     $isAstVisitor: 1
   };
-  A.ParserErrorCode.prototype = {};
-  A.ParserErrorTemplate.prototype = {};
-  A.ParserErrorWithoutArguments.prototype = {$isLocatableDiagnostic: 1};
-  A.ScannerErrorCode.prototype = {};
-  A.ScannerErrorTemplate.prototype = {};
-  A.ScannerErrorWithoutArguments.prototype = {$isLocatableDiagnostic: 1};
-  A._ParserErrorWithoutArguments_ParserErrorCode_DiagnosticWithoutArguments.prototype = {};
-  A._ScannerErrorWithoutArguments_ScannerErrorCode_DiagnosticWithoutArguments.prototype = {};
   A.Scanner.prototype = {
-    reportError$3(errorCode, offset, $arguments) {
-      var t1 = $arguments == null ? B.List_empty9 : $arguments;
-      this._scanner$_diagnosticListener.onDiagnostic$1(A.Diagnostic_Diagnostic$tmp(t1, B.List_empty3, errorCode, 1, offset, this.source));
+    reportError$3(diagnosticCode, offset, $arguments) {
+      var t1 = $arguments == null ? B.List_empty8 : $arguments;
+      this._scanner$_diagnosticListener.onDiagnostic$1(A.Diagnostic_Diagnostic$tmp(t1, B.List_empty3, diagnosticCode, 1, offset, this.source));
     },
     tokenize$0() {
       var result, t2, t3, list, token, delta, token0, _this = this,
@@ -44191,7 +44141,7 @@
       latestVersion = $.$get$ExperimentStatus_currentVersion();
       if (overrideVersion.compareTo$1(0, latestVersion) > 0) {
         t1 = versionToken._typeAndOffset;
-        _this._scanner$_diagnosticListener.onDiagnostic$1(A.Diagnostic_Diagnostic$tmp([latestVersion.major, latestVersion.minor], B.List_empty3, B.WarningTemplate_lB9, versionToken.get$lexeme().length, (t1 >>> 8) - 1, _this.source));
+        _this._scanner$_diagnosticListener.onDiagnostic$1(A.Diagnostic_Diagnostic$tmp([latestVersion.major, latestVersion.minor], B.List_empty3, B.DiagnosticWithArguments_Kun, versionToken.get$lexeme().length, (t1 >>> 8) - 1, _this.source));
         _this._overrideVersion = null;
       } else {
         t1 = _this.__Scanner__featureSetForOverriding_F;
@@ -44206,29 +44156,21 @@
     }
   };
   A.translateErrorToken_makeError.prototype = {
-    call$2(errorCode, $arguments) {
+    call$2(code, $arguments) {
       var t1;
       type$.nullable_List_Object._as($arguments);
       t1 = this._box_0;
       if (A._isAtEnd(this.token, t1.charOffset))
         --t1.charOffset;
-      this.reportError.call$3(errorCode, t1.charOffset, $arguments);
+      this.reportError.call$3(code, t1.charOffset, $arguments);
     },
-    $signature: 29
+    $signature: 67
   };
-  A.CompileTimeErrorCode.prototype = {};
-  A.CompileTimeErrorTemplate.prototype = {};
-  A.CompileTimeErrorWithoutArguments.prototype = {$isLocatableDiagnostic: 1};
-  A.WarningCode.prototype = {};
-  A.WarningTemplate.prototype = {};
-  A.WarningWithoutArguments.prototype = {$isLocatableDiagnostic: 1};
-  A._CompileTimeErrorWithoutArguments_CompileTimeErrorCode_DiagnosticWithoutArguments.prototype = {};
-  A._WarningWithoutArguments_WarningCode_DiagnosticWithoutArguments.prototype = {};
   A.convertTypeNames_closure.prototype = {
     call$0() {
       return A.LinkedHashSet_LinkedHashSet$_empty(type$.Element);
     },
-    $signature: 73
+    $signature: 29
   };
   A._checkTypes_closure.prototype = {
     call$0() {
@@ -44238,20 +44180,15 @@
       t1 = A.List_List$_of(new A.MappedListIterable(t1, t2._eval$1("Type(1)")._as(new A._checkTypes__closure()), t3), t3._eval$1("ListIterable.E"));
       return new A.StateError("Unexpected types supplied during diagnostic message substitution.\nActual types: " + A.S(t1) + "\nExpected types: " + A.S(this.expectedTypes));
     },
-    $signature: 74
+    $signature: 72
   };
   A._checkTypes__closure.prototype = {
     call$1(a) {
       return J.get$runtimeType$(a);
     },
-    $signature: 75
+    $signature: 76
   };
   A.DiagnosticReporter.prototype = {
-    atNode$2(node, diagnosticCode) {
-      var t1 = node.get$beginToken()._typeAndOffset,
-        t2 = node.get$endToken();
-      return this.atOffset$5$arguments$contextMessages$diagnosticCode$length$offset(null, null, diagnosticCode, (t2._typeAndOffset >>> 8) - 1 + t2.get$length(t2) - node.get$offset(0), (t1 >>> 8) - 1);
-    },
     atOffset$5$arguments$contextMessages$diagnosticCode$length$offset($arguments, contextMessages, diagnosticCode, $length, offset) {
       var t1, t2, invalid, diagnostic;
       type$.nullable_List_Object._as($arguments);
@@ -44266,32 +44203,31 @@
       }
       t1 = t1 ? B.List_empty4 : $arguments;
       t2 = A._setArrayType([], type$.JSArray_DiagnosticMessage);
-      type$.List_Object._as(t1);
-      type$.List_DiagnosticMessage._as(t2);
-      B.JSArray_methods.addAll$1(t2, A.convertTypeNames(t1, diagnosticCode.expectedTypes));
-      diagnostic = A.Diagnostic_Diagnostic$tmp(t1, t2, diagnosticCode, $length, offset, this._listener$_source);
+      diagnostic = this._createDiagnostic$5$arguments$contextMessages$diagnosticCode$length$offset(t1, t2, diagnosticCode, $length, offset);
       this.reportError$1(diagnostic);
       return diagnostic;
-    },
-    atOffset$3$diagnosticCode$length$offset(diagnosticCode, $length, offset) {
-      return this.atOffset$5$arguments$contextMessages$diagnosticCode$length$offset(null, null, diagnosticCode, $length, offset);
     },
     atOffset$4$arguments$diagnosticCode$length$offset($arguments, diagnosticCode, $length, offset) {
       return this.atOffset$5$arguments$contextMessages$diagnosticCode$length$offset($arguments, null, diagnosticCode, $length, offset);
     },
-    atToken$2(token, diagnosticCode) {
-      var t1 = token._typeAndOffset;
-      return this.atOffset$5$arguments$contextMessages$diagnosticCode$length$offset(null, null, diagnosticCode, token.get$length(token), (t1 >>> 8) - 1);
+    atOffset$3$diagnosticCode$length$offset(diagnosticCode, $length, offset) {
+      return this.atOffset$5$arguments$contextMessages$diagnosticCode$length$offset(null, null, diagnosticCode, $length, offset);
     },
     reportError$1(diagnostic) {
-      A.DiagnosticOrErrorListenerExtension_onDiagnostic(this._diagnosticListener, diagnostic);
+      this._diagnosticListener.onDiagnostic$1(diagnostic);
+    },
+    _createDiagnostic$5$arguments$contextMessages$diagnosticCode$length$offset($arguments, contextMessages, diagnosticCode, $length, offset) {
+      type$.List_Object._as($arguments);
+      type$.List_DiagnosticMessage._as(contextMessages);
+      B.JSArray_methods.addAll$1(contextMessages, A.convertTypeNames($arguments, diagnosticCode.expectedTypes));
+      return A.Diagnostic_Diagnostic$tmp($arguments, contextMessages, diagnosticCode, $length, offset, this._listener$_source);
     }
   };
   A.DiagnosticReporter_atOffset_closure.prototype = {
     call$1(e) {
       return J.get$runtimeType$(A._asObject(e));
     },
-    $signature: 30
+    $signature: 77
   };
   A.AstBuilder.prototype = {
     get$isDartLibrary() {
@@ -44361,7 +44297,12 @@
     },
     beginConstantPattern$1(constKeyword) {
     },
-    beginEnum$1(enumKeyword) {
+    beginConstructor$10(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, newToken, $name, enclosingDeclarationName) {
+      this._beginMethod$10(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, newToken, getOrSet, $name, enclosingDeclarationName);
+    },
+    beginEnumDeclaration$4(beginToken, augmentToken, enumKeyword, $name) {
+    },
+    beginEnumDeclarationPrelude$1(enumKeyword) {
     },
     beginExtensionDeclaration$3(augmentKeyword, extensionKeyword, nameToken) {
       var t2, _null = null,
@@ -44383,7 +44324,7 @@
       t2 = A.SimpleToken$(B.TokenType_Ad8, 0, _null);
       this._classLikeBuilder = new A._ExtensionTypeDeclarationBuilder(augmentKeyword, extensionKeyword, $name, comment, metadata, typeParameters, t1, A._setArrayType([], type$.JSArray_ClassMemberImpl), t2);
     },
-    beginFactoryMethod$4(declarationKind, lastConsumed, externalToken, constToken) {
+    beginFactory$4(declarationKind, lastConsumed, externalToken, constToken) {
       var t1 = new A._Modifiers();
       t1.externalKeyword = externalToken;
       t1.finalConstOrVarKeyword = constToken;
@@ -44411,22 +44352,7 @@
     beginMetadataStar$1(token) {
     },
     beginMethod$9(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, getOrSet, $name, enclosingDeclarationName) {
-      var builder,
-        modifiers = new A._Modifiers();
-      if (augmentToken != null)
-        modifiers.augmentKeyword = augmentToken;
-      if (externalToken != null)
-        modifiers.externalKeyword = externalToken;
-      if (staticToken != null) {
-        builder = this._classLikeBuilder;
-        if (!(builder instanceof A._ClassDeclarationBuilder) || builder.name.get$lexeme() !== $name.get$lexeme() || getOrSet != null)
-          modifiers.staticKeyword = staticToken;
-      }
-      if (covariantToken != null)
-        modifiers.covariantKeyword = covariantToken;
-      if (varFinalOrConst != null)
-        modifiers.finalConstOrVarKeyword = varFinalOrConst;
-      this.push$1(modifiers);
+      this._beginMethod$10(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, null, getOrSet, $name, enclosingDeclarationName);
     },
     beginMixinDeclaration$5(beginToken, augmentToken, baseToken, mixinKeyword, $name) {
       var _this = this;
@@ -44484,6 +44410,8 @@
     beginPatternGuard$1(when) {
     },
     beginPrimaryConstructor$1(beginToken) {
+    },
+    beginPrimaryConstructorBody$1(beginToken) {
     },
     beginSwitchCaseWhenClause$1(when) {
     },
@@ -44588,11 +44516,11 @@
         }
       if (target instanceof A.SuperExpressionImpl) {
         t1 = target.superKeyword;
-        _this.handleRecoverableError$3(B.MessageCode_6iC, t1, t1);
+        _this.handleRecoverableError$3(B.MessageCode_3ih, t1, t1);
         return A.SuperConstructorInvocationImpl$(argumentList == null ? _this._syntheticArgumentList$1(t1) : argumentList, _null, _null, t1);
       } else if (target instanceof A.ThisExpressionImpl) {
         t1 = target.thisKeyword;
-        _this.handleRecoverableError$3(B.MessageCode_7nk, t1, t1);
+        _this.handleRecoverableError$3(B.MessageCode_cYk, t1, t1);
         return A.RedirectingConstructorInvocationImpl$(argumentList == null ? _this._syntheticArgumentList$1(t1) : argumentList, _null, _null, t1);
       }
       return _null;
@@ -44638,7 +44566,7 @@
         expression = expressions[_i];
         if (expression instanceof A.SuperExpressionImpl) {
           t2 = expression.superKeyword;
-          _this.handleRecoverableError$3(B.MessageCode_6qA, t2, t2);
+          _this.handleRecoverableError$3(B.MessageCode_ClO, t2, t2);
         }
       }
       $arguments = A.ArgumentListImpl$(expressions, leftParenthesis, rightParenthesis);
@@ -44773,117 +44701,25 @@
       } else
         _this.push$1(A.SwitchCaseImpl$(colon, type$.ExpressionImpl._as(t5.pop$1(_null)), caseKeyword, A._setArrayType([], t3), A._setArrayType([], t4)));
     },
-    endClassConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t1 = this._classLikeBuilder;
-      if (t1 != null)
-        B.JSArray_methods.add$1(t1.members, this._buildConstructorDeclaration$2$beginToken$endToken(beginToken, endToken));
-    },
     endClassDeclaration$2(beginToken, endToken) {
       var builder = type$._ClassDeclarationBuilder._as(this._classLikeBuilder),
-        t1 = builder.name,
-        t2 = builder.buildClassNamePart$2$primaryConstructorBuilder$typeName(builder.primaryConstructorBuilder, t1),
-        t3 = builder.typeParameters,
-        t4 = builder.extendsClause,
-        t5 = builder.withClause,
-        t6 = builder.implementsClause,
-        t7 = builder.nativeClause,
-        t8 = new A.NodeListImpl(type$.NodeListImpl_ClassMemberImpl);
-      t1 = new A.ClassDeclarationImpl(builder.augmentKeyword, builder.abstractKeyword, builder.sealedKeyword, builder.baseKeyword, builder.interfaceKeyword, builder.finalKeyword, builder.mixinKeyword, builder.classKeyword, t4, t5, t6, t7, t2, t3, new A.ClassBodyImplStub(), builder.leftBracket, t8, builder.rightBracket, null, t1, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
-      t1._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
-      t1._becomeParentOf$1$1(t3, type$.nullable_TypeParameterListImpl);
-      t1._becomeParentOf$1$1(t4, type$.nullable_ExtendsClauseImpl);
-      t1._becomeParentOf$1$1(t5, type$.nullable_WithClauseImpl);
-      t1._becomeParentOf$1$1(t6, type$.nullable_ImplementsClauseImpl);
-      t1._becomeParentOf$1$1(t7, type$.nullable_NativeClauseImpl);
-      t8._initialize$2(t1, builder.members);
-      B.JSArray_methods.add$1(this.declarations, t1);
+        _0_0 = builder.emptyClassBodySemicolon,
+        body = _0_0 != null ? new A.EmptyClassBodyImpl(_0_0) : A.BlockClassBodyImpl$(builder.leftBracket, builder.members, builder.rightBracket),
+        t1 = builder.buildClassNamePart$2$primaryConstructorBuilder$typeName(builder.primaryConstructorBuilder, builder.name),
+        t2 = builder.extendsClause,
+        t3 = builder.withClause,
+        t4 = builder.implementsClause,
+        t5 = builder.nativeClause,
+        t6 = new A.ClassDeclarationImpl(builder.augmentKeyword, builder.abstractKeyword, builder.sealedKeyword, builder.baseKeyword, builder.interfaceKeyword, builder.finalKeyword, builder.mixinKeyword, builder.classKeyword, t1, t2, t3, t4, t5, body, null, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+      t6._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
+      t6._becomeParentOf$1$1(t1, type$.ClassNamePartImpl);
+      t6._becomeParentOf$1$1(t2, type$.nullable_ExtendsClauseImpl);
+      t6._becomeParentOf$1$1(t3, type$.nullable_WithClauseImpl);
+      t6._becomeParentOf$1$1(t4, type$.nullable_ImplementsClauseImpl);
+      t6._becomeParentOf$1$1(t5, type$.nullable_NativeClauseImpl);
+      t6._becomeParentOf$1$1(body, type$.ClassBodyImpl);
+      B.JSArray_methods.add$1(this.declarations, t6);
       this._classLikeBuilder = null;
-    },
-    endClassFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      var t1 = this._classLikeBuilder;
-      if (t1 != null)
-        B.JSArray_methods.add$1(t1.members, this._buildFactoryConstructorDeclaration$3$beginToken$endToken$factoryKeyword(beginToken, endToken, factoryKeyword));
-    },
-    endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, semicolon) {
-      var variables, t1, variableList, metadata, comment, t2, _this = this, _null = null;
-      if (abstractToken != null) {
-        if (staticToken != null)
-          _this.handleRecoverableError$3(B.MessageCode_XUm, abstractToken, abstractToken);
-        if (lateToken != null)
-          _this.handleRecoverableError$3(B.MessageCode_ID6, abstractToken, abstractToken);
-      }
-      if (externalToken != null)
-        if (lateToken != null)
-          _this.handleRecoverableError$3(B.MessageCode_uEu, externalToken, externalToken);
-      variables = _this.popTypedList2$1$1(count, type$.VariableDeclarationImpl);
-      t1 = _this.stack;
-      variableList = A.VariableDeclarationListImpl$(_null, varFinalOrConst, lateToken, _null, type$.nullable_TypeAnnotationImpl._as(t1.pop$1(_null)), variables);
-      metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
-      comment = _this._findComment$2(metadata, beginToken);
-      t1 = _this._classLikeBuilder;
-      if (t1 != null) {
-        t1 = t1.members;
-        t2 = new A.FieldDeclarationImpl(abstractToken, augmentToken, covariantToken, externalToken, staticToken, variableList, semicolon, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
-        t2._initializeCommentAndAnnotations$2(comment, metadata);
-        t2._becomeParentOf$1$1(variableList, type$.VariableDeclarationListImpl);
-        B.JSArray_methods.add$1(t1, t2);
-      }
-    },
-    endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      var t2, formalParameters, t3, typeParameters, $name, t4, returnType, modifiers, metadata, comment, nameId, operatorKeyword, body, t5, t6, t7, t8, _this = this, _null = null,
-        t1 = _this.stack,
-        bodyObject = t1.pop$1(_null);
-      t1.pop$1(_null);
-      t1.pop$1(_null);
-      t2 = type$.nullable_FormalParameterListImpl;
-      formalParameters = t2._as(t1.pop$1(_null));
-      t3 = type$.nullable_TypeParameterListImpl;
-      typeParameters = t3._as(t1.pop$1(_null));
-      $name = t1.pop$1(_null);
-      t4 = type$.nullable_TypeAnnotationImpl;
-      returnType = t4._as(t1.pop$1(_null));
-      modifiers = type$.nullable__Modifiers._as(t1.pop$1(_null));
-      metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
-      comment = _this._findComment$2(metadata, beginToken);
-      if ($name instanceof A.SimpleIdentifierImpl) {
-        nameId = $name;
-        operatorKeyword = _null;
-      } else if ($name instanceof A._OperatorName) {
-        operatorKeyword = $name.operatorKeyword;
-        nameId = $name.name;
-        if (typeParameters != null)
-          _this.handleRecoverableError$3(B.MessageCode_5lV, typeParameters.leftBracket, typeParameters.rightBracket);
-      } else
-        throw A.wrapException(A.UnimplementedError$("name is an instance of " + J.get$runtimeType$($name).toString$0(0) + " in endClassMethod"));
-      if ((getOrSet == null ? _null : getOrSet.get$keyword()) === B.Keyword_bXa)
-        formalParameters = _this._ensureSetterFormalParameter$2(nameId, formalParameters);
-      if (bodyObject instanceof A.FunctionBodyImpl)
-        body = bodyObject;
-      else if (bodyObject instanceof A._RedirectingFactoryBody)
-        body = new A.EmptyFunctionBodyImpl(endToken);
-      else {
-        _this.internalProblem$3(A._withArgumentsOldInternalProblemUnhandled(J.get$runtimeType$(bodyObject).toString$0(0), "bodyObject"), (beginToken._typeAndOffset >>> 8) - 1, _this.uri);
-        body = _null;
-      }
-      t1 = _this._classLikeBuilder;
-      if (t1 != null) {
-        t1 = t1.members;
-        t5 = modifiers == null;
-        t6 = t5 ? _null : modifiers.augmentKeyword;
-        t7 = t5 ? _null : modifiers.externalKeyword;
-        t8 = t5 ? _null : modifiers.abstractKeyword;
-        if (t8 == null)
-          t5 = t5 ? _null : modifiers.staticKeyword;
-        else
-          t5 = t8;
-        t5 = new A.MethodDeclarationImpl(t6, t7, t5, returnType, getOrSet, operatorKeyword, nameId.token, typeParameters, formalParameters, body, _null, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
-        t5._initializeCommentAndAnnotations$2(comment, metadata);
-        t5._becomeParentOf$1$1(returnType, t4);
-        t5._becomeParentOf$1$1(typeParameters, t3);
-        t5._becomeParentOf$1$1(formalParameters, t2);
-        t5._becomeParentOf$1$1(body, type$.FunctionBodyImpl);
-        B.JSArray_methods.add$1(t1, t5);
-      }
     },
     endClassOrMixinOrExtensionBody$4(kind, memberCount, leftBracket, rightBracket) {
       var builder = this._classLikeBuilder;
@@ -44982,6 +44818,24 @@
     },
     endConstLiteral$1(endToken) {
     },
+    endConstructor$6(kind, beginToken, newToken, beginParam, beginInitializers, endToken) {
+      var t1, _this = this;
+      switch (kind.index) {
+        case 1:
+        case 4:
+        case 5:
+          t1 = _this._classLikeBuilder;
+          if (t1 != null)
+            B.JSArray_methods.add$1(t1.members, _this._buildConstructorDeclaration$2$beginToken$endToken(beginToken, endToken));
+          break;
+        case 2:
+        case 3:
+          B.JSArray_methods.add$1(_this.invalidNodes, _this._buildConstructorDeclaration$2$beginToken$endToken(beginToken, endToken));
+          break;
+        case 0:
+          throw A.wrapException(A.UnsupportedError$("Unexpected constructor kind " + kind.toString$0(0) + "."));
+      }
+    },
     endConstructorReference$4(start, periodBeforeName, endToken, constructorReferenceContext) {
       var t3, _null = null,
         t1 = this.stack,
@@ -45013,26 +44867,25 @@
     },
     endElseStatement$2(beginToken, endToken) {
     },
-    endEnum$5(beginToken, enumKeyword, leftBrace, memberCount, endToken) {
-      var builder = type$._EnumDeclarationBuilder._as(this._classLikeBuilder),
-        t1 = builder.name,
-        t2 = builder.typeParameters,
-        t3 = builder.withClause,
-        t4 = builder.implementsClause,
-        t5 = new A.NodeListImpl(type$.NodeListImpl_EnumConstantDeclarationImpl),
-        t6 = new A.NodeListImpl(type$.NodeListImpl_ClassMemberImpl);
-      t1 = new A.EnumDeclarationImpl(builder.augmentKeyword, builder.enumKeyword, t3, t4, builder.buildClassNamePart$2$primaryConstructorBuilder$typeName(builder.primaryConstructorBuilder, t1), t2, new A.EnumBodyImplStub(), builder.leftBracket, t5, builder.semicolon, t6, builder.rightBracket, null, t1, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
-      t1._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
-      t1._becomeParentOf$1$1(t2, type$.nullable_TypeParameterListImpl);
-      t1._becomeParentOf$1$1(t3, type$.nullable_WithClauseImpl);
-      t1._becomeParentOf$1$1(t4, type$.nullable_ImplementsClauseImpl);
-      t5._initialize$2(t1, builder.constants);
-      t6._initialize$2(t1, builder.members);
-      B.JSArray_methods.add$1(this.declarations, t1);
+    endEnumDeclaration$5(beginToken, enumKeyword, leftBrace, memberCount, endToken) {
+      var t3, t4,
+        builder = type$._EnumDeclarationBuilder._as(this._classLikeBuilder),
+        t1 = new A.NodeListImpl(type$.NodeListImpl_EnumConstantDeclarationImpl),
+        t2 = new A.NodeListImpl(type$.NodeListImpl_ClassMemberImpl),
+        body = new A.EnumBodyImpl(builder.leftBracket, t1, builder.semicolon, t2, builder.rightBracket);
+      t1._initialize$2(body, builder.constants);
+      t2._initialize$2(body, builder.members);
+      t2 = builder.buildClassNamePart$2$primaryConstructorBuilder$typeName(builder.primaryConstructorBuilder, builder.name);
+      t1 = builder.withClause;
+      t3 = builder.implementsClause;
+      t4 = new A.EnumDeclarationImpl(builder.augmentKeyword, builder.enumKeyword, t2, t1, t3, body, null, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+      t4._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
+      t4._becomeParentOf$1$1(t2, type$.ClassNamePartImpl);
+      t4._becomeParentOf$1$1(t1, type$.nullable_WithClauseImpl);
+      t4._becomeParentOf$1$1(t3, type$.nullable_ImplementsClauseImpl);
+      t4._becomeParentOf$1$1(body, type$.EnumBodyImpl);
+      B.JSArray_methods.add$1(this.declarations, t4);
       this._classLikeBuilder = null;
-    },
-    endEnumConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     endExport$2(exportKeyword, semicolon) {
       var _null = null,
@@ -45049,11 +44902,8 @@
       t1.NamespaceDirectiveImpl$6$combinators$comment$configurations$metadata$semicolon$uri(combinators, comment, configurations, metadata, semicolon, uri);
       B.JSArray_methods.add$1(this.directives, t1);
     },
-    endExtensionConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      B.JSArray_methods.add$1(this.invalidNodes, this._buildConstructorDeclaration$2$beginToken$endToken(beginToken, endToken));
-    },
     endExtensionDeclaration$4(beginToken, extensionKeyword, onKeyword, token) {
-      var t1, extendedType, onClause, t2, t3, _this = this, _null = null,
+      var t1, extendedType, onClause, body, t2, _this = this, _null = null,
         builder = type$._ExtensionDeclarationBuilder._as(_this._classLikeBuilder);
       if (onKeyword != null) {
         t1 = type$.TypeAnnotationImpl;
@@ -45062,61 +44912,57 @@
         onClause._becomeParentOf$1$1(extendedType, t1);
       } else
         onClause = _null;
+      body = A.BlockClassBodyImpl$(builder.leftBracket, builder.members, builder.rightBracket);
       t1 = builder.typeParameters;
-      t2 = new A.NodeListImpl(type$.NodeListImpl_ClassMemberImpl);
-      t3 = new A.ExtensionDeclarationImpl(builder.augmentKeyword, builder.extensionKeyword, _null, builder.name, t1, onClause, new A.BlockClassBodyImplStub(), builder.leftBracket, t2, builder.rightBracket, _null, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
-      t3._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
-      t3._becomeParentOf$1$1(t1, type$.nullable_TypeParameterListImpl);
-      t3._becomeParentOf$1$1(onClause, type$.nullable_ExtensionOnClauseImpl);
-      t2._initialize$2(t3, builder.members);
-      B.JSArray_methods.add$1(_this.declarations, t3);
+      t2 = new A.ExtensionDeclarationImpl(builder.augmentKeyword, builder.extensionKeyword, _null, builder.name, t1, onClause, body, _null, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+      t2._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
+      t2._becomeParentOf$1$1(t1, type$.nullable_TypeParameterListImpl);
+      t2._becomeParentOf$1$1(onClause, type$.nullable_ExtensionOnClauseImpl);
+      t2._becomeParentOf$1$1(body, type$.BlockClassBodyImpl);
+      B.JSArray_methods.add$1(_this.declarations, t2);
       _this._classLikeBuilder = null;
     },
-    endExtensionFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      B.JSArray_methods.add$1(this.invalidNodes, this._buildFactoryConstructorDeclaration$3$beginToken$endToken$factoryKeyword(beginToken, endToken, factoryKeyword));
-    },
-    endExtensionFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      this.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endExtensionMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
-    },
     endExtensionTypeDeclaration$5(beginToken, augmentToken, extensionKeyword, typeKeyword, endToken) {
-      var builder, leftParenthesis, t3, fieldName, representationName, t4, _this = this, _null = null,
+      var builder, _0_0, body, primaryConstructor, _this = this, _null = null,
         t1 = _this.stack,
         t2 = type$.nullable_ImplementsClauseImpl,
         implementsClause = t2._as(t1.pop$1(B.NullValue_IdentifierList)),
-        representation = type$.nullable_RepresentationDeclarationImpl._as(t1.pop$1(B.NullValue_RepresentationDeclarationImpl)),
-        constKeyword = type$.nullable_Token._as(t1.pop$1(_null));
+        primaryConstructorBuilder = type$.nullable__PrimaryConstructorBuilder._as(t1.pop$1(B.NullValue_PrimaryConstructor));
+      type$.nullable_Token._as(t1.pop$1(_null));
       if (_this.enableInlineClass) {
         builder = type$._ExtensionTypeDeclarationBuilder._as(_this._classLikeBuilder);
-        if (representation == null) {
-          t1 = _this.__AstBuilder_parser_A;
-          t1 === $ && A.throwLateFieldNI("parser");
-          leftParenthesis = t1.get$rewriter().insertParens$2(builder.name, true);
-          t1 = leftParenthesis.next;
-          t1.toString;
-          t3 = leftParenthesis.endToken;
-          t3.toString;
-          fieldName = _this.__AstBuilder_parser_A.get$rewriter().insertSyntheticIdentifier$1(t1);
-          representation = A.RepresentationDeclarationImpl$(_null, A._setArrayType([], type$.JSArray_AnnotationImpl), fieldName, A.NamedTypeImpl$(_null, t1, _null, _null), leftParenthesis, t3);
-        }
-        representationName = representation.get$fieldName();
-        t1 = builder.name;
-        if (representationName.get$lexeme() === t1.get$lexeme())
-          _this.diagnosticReporter.diagnosticReporter.atToken$2(representationName, B.ParserErrorWithoutArguments_mKt);
-        t3 = builder.typeParameters;
-        t4 = new A.NodeListImpl(type$.NodeListImpl_ClassMemberImpl);
-        t1 = new A.ExtensionTypeDeclarationImpl(builder.augmentKeyword, builder.extensionKeyword, typeKeyword, implementsClause, new A.ClassNamePartImplStub(), constKeyword, t3, representation, new A.ClassBodyImplStub(), builder.leftBracket, t4, builder.rightBracket, _null, t1, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+        if (primaryConstructorBuilder == null)
+          primaryConstructorBuilder = new A._PrimaryConstructorBuilder(_null, _null, _this._syntheticFormalParameterList$1(builder.name));
+        _0_0 = builder.emptyClassBodySemicolon;
+        body = _0_0 != null ? new A.EmptyClassBodyImpl(_0_0) : A.BlockClassBodyImpl$(builder.leftBracket, builder.members, builder.rightBracket);
+        primaryConstructor = primaryConstructorBuilder.build$2$typeName$typeParameters(builder.name, builder.typeParameters);
+        t1 = new A.ExtensionTypeDeclarationImpl(builder.augmentKeyword, builder.extensionKeyword, typeKeyword, primaryConstructor, implementsClause, body, _null, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
         t1._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
-        t1._becomeParentOf$1$1(t3, type$.nullable_TypeParameterListImpl);
-        t1._becomeParentOf$1$1(representation, type$.RepresentationDeclarationImpl);
+        t1._becomeParentOf$1$1(primaryConstructor, type$.PrimaryConstructorDeclarationImpl);
         t1._becomeParentOf$1$1(implementsClause, t2);
-        t4._initialize$2(t1, builder.members);
+        t1._becomeParentOf$1$1(body, type$.ClassBodyImpl);
         B.JSArray_methods.add$1(_this.declarations, t1);
       } else
         _this._reportFeatureNotEnabled$2$feature$startToken($.$get$ExperimentalFeatures_inline_class(), typeKeyword);
       _this._classLikeBuilder = null;
+    },
+    endFactory$4(kind, beginToken, factoryKeyword, endToken) {
+      var t1, _this = this;
+      switch (kind.index) {
+        case 1:
+        case 5:
+        case 4:
+          t1 = _this._classLikeBuilder;
+          if (t1 != null)
+            B.JSArray_methods.add$1(t1.members, _this._buildFactoryConstructorDeclaration$3$beginToken$endToken$factoryKeyword(beginToken, endToken, factoryKeyword));
+          break;
+        case 2:
+        case 3:
+          B.JSArray_methods.add$1(_this.invalidNodes, _this._buildFactoryConstructorDeclaration$3$beginToken$endToken$factoryKeyword(beginToken, endToken, factoryKeyword));
+          break;
+        case 0:
+          throw A.wrapException(A.UnsupportedError$("Unexpected factory kind " + kind.toString$0(0) + "."));
+      }
     },
     endFieldInitializer$2(equals, endToken) {
       var t1 = this.stack,
@@ -45124,6 +44970,31 @@
         $name = type$.SimpleIdentifierImpl._as(t1.pop$1(null));
       this.reportErrorIfSuper$1(initializer);
       this.push$1(A.VariableDeclarationImpl$(null, equals, initializer, A._setArrayType([], type$.JSArray_AnnotationImpl), $name.token));
+    },
+    endFields$11(kind, abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
+      var variables, t1, variableList, metadata, comment, t2, _this = this, _null = null;
+      if (abstractToken != null) {
+        if (staticToken != null)
+          _this.handleRecoverableError$3(B.MessageCode_XUm, abstractToken, abstractToken);
+        if (lateToken != null)
+          _this.handleRecoverableError$3(B.MessageCode_ID6, abstractToken, abstractToken);
+      }
+      if (externalToken != null)
+        if (lateToken != null)
+          _this.handleRecoverableError$3(B.MessageCode_uEu, externalToken, externalToken);
+      variables = _this.popTypedList2$1$1(count, type$.VariableDeclarationImpl);
+      t1 = _this.stack;
+      variableList = A.VariableDeclarationListImpl$(_null, varFinalOrConst, lateToken, _null, type$.nullable_TypeAnnotationImpl._as(t1.pop$1(_null)), variables);
+      metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
+      comment = _this._findComment$2(metadata, beginToken);
+      t1 = _this._classLikeBuilder;
+      if (t1 != null) {
+        t1 = t1.members;
+        t2 = new A.FieldDeclarationImpl(abstractToken, augmentToken, covariantToken, externalToken, staticToken, variableList, endToken, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+        t2._initializeCommentAndAnnotations$2(comment, metadata);
+        t2._becomeParentOf$1$1(variableList, type$.VariableDeclarationListImpl);
+        B.JSArray_methods.add$1(t1, t2);
+      }
     },
     endForControlFlow$1(token) {
       var _null = null,
@@ -45205,7 +45076,7 @@
             periodAfterThisOrSuper.toString;
             node = A.FieldFormalParameterImpl$(comment, covariantKeyword, keyword, metadata, t2, t4, periodAfterThisOrSuper, t5, requiredKeyword, thisKeyword, t1, t3);
           } else
-            node = A.FunctionTypedFormalParameterImpl$(comment, covariantKeyword, metadata, $name.token, t4, t5, requiredKeyword, t1, t3);
+            node = A.FunctionTypedFormalParameterImpl$(comment, covariantKeyword, varOrFinal, metadata, $name.token, t4, t5, requiredKeyword, t1, t3);
         }
       else {
         type$.nullable_TypeAnnotationImpl._as(typeOrFunctionTypedParameter);
@@ -45293,7 +45164,7 @@
         formalParameters = type$.FormalParameterListImpl._as(t1.pop$1(_null)),
         returnType = type$.nullable_TypeAnnotationImpl._as(t1.pop$1(_null)),
         typeParameters = type$.nullable_TypeParameterListImpl._as(t1.pop$1(_null));
-      this.push$1(A.FunctionTypedFormalParameterImpl$(_null, _null, _null, A.StringToken$(B.TokenType_w7x, "", 0), formalParameters, question, _null, returnType, typeParameters));
+      this.push$1(A.FunctionTypedFormalParameterImpl$(_null, _null, _null, _null, A.StringToken$(B.TokenType_w7x, "", 0), formalParameters, question, _null, returnType, typeParameters));
     },
     endHide$1(hideKeyword) {
       var t1 = new A.NodeListImpl(type$.NodeListImpl_SimpleIdentifierImpl),
@@ -45382,21 +45253,21 @@
       _this.push$1(variable);
     },
     endInitializers$3(count, colon, endToken) {
-      var initializers, t1, t2, _i, initializerObject, initializer, t3, t4, _this = this,
+      var initializers, t1, _i, initializerObject, initializer, t2, t3, _this = this,
         initializerObjects = _this.popTypedList$1$1(count, type$.Object);
       if (initializerObjects == null)
         initializerObjects = B.List_empty4;
       _this.push$1(colon);
       initializers = A._setArrayType([], type$.JSArray_ConstructorInitializerImpl);
-      for (t1 = initializerObjects.length, t2 = type$.AstNodeImpl, _i = 0; _i < initializerObjects.length; initializerObjects.length === t1 || (0, A.throwConcurrentModificationError)(initializerObjects), ++_i) {
+      for (t1 = initializerObjects.length, _i = 0; _i < initializerObjects.length; initializerObjects.length === t1 || (0, A.throwConcurrentModificationError)(initializerObjects), ++_i) {
         initializerObject = initializerObjects[_i];
         initializer = _this.buildInitializer$1(initializerObject);
         if (initializer != null)
           B.JSArray_methods.add$1(initializers, initializer);
         else {
-          t3 = t2._is(initializerObject);
-          t4 = t3 ? initializerObject.get$beginToken() : colon;
-          _this.handleRecoverableError$3(B.MessageCode_nDE, t4, t3 ? initializerObject.get$endToken() : colon);
+          t2 = initializerObject instanceof A.AstNodeImpl;
+          t3 = t2 ? initializerObject.get$beginToken() : colon;
+          _this.handleRecoverableError$3(B.MessageCode_0ES, t3, t2 ? initializerObject.get$endToken() : colon);
         }
       }
       _this.push$1(initializers);
@@ -45524,32 +45395,78 @@
       var t1 = this.popTypedList$1$1(count, type$.AnnotationImpl);
       this.push$1(t1 == null ? B.NullValue_Metadata : t1);
     },
-    endMixinConstructor$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      B.JSArray_methods.add$1(this.invalidNodes, this._buildConstructorDeclaration$2$beginToken$endToken(beginToken, endToken));
+    endMethod$6(kind, getOrSet, beginToken, beginParam, beginInitializers, endToken) {
+      var t2, formalParameters, t3, typeParameters, $name, t4, returnType, modifiers, metadata, comment, operatorKeyword, nameId, body, t5, t6, t7, t8, _this = this, _null = null,
+        t1 = _this.stack,
+        bodyObject = t1.pop$1(_null);
+      t1.pop$1(_null);
+      t1.pop$1(_null);
+      t2 = type$.nullable_FormalParameterListImpl;
+      formalParameters = t2._as(t1.pop$1(_null));
+      t3 = type$.nullable_TypeParameterListImpl;
+      typeParameters = t3._as(t1.pop$1(_null));
+      $name = t1.pop$1(_null);
+      t4 = type$.nullable_TypeAnnotationImpl;
+      returnType = t4._as(t1.pop$1(_null));
+      modifiers = type$.nullable__Modifiers._as(t1.pop$1(_null));
+      metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
+      comment = _this._findComment$2(metadata, beginToken);
+      operatorKeyword = _null;
+      if ($name instanceof A.SimpleIdentifierImpl)
+        nameId = $name;
+      else if ($name instanceof A._OperatorName) {
+        operatorKeyword = $name.operatorKeyword;
+        nameId = $name.name;
+        if (typeParameters != null)
+          _this.handleRecoverableError$3(B.MessageCode_lCF, typeParameters.leftBracket, typeParameters.rightBracket);
+      } else {
+        A.throwExpression(A.UnimplementedError$("name is an instance of " + J.get$runtimeType$($name).toString$0(0) + " in endClassMethod"));
+        nameId = _null;
+      }
+      if ((getOrSet == null ? _null : getOrSet.get$keyword()) === B.Keyword_bXa)
+        formalParameters = _this._ensureSetterFormalParameter$2(nameId, formalParameters);
+      if (bodyObject instanceof A.FunctionBodyImpl)
+        body = bodyObject;
+      else if (bodyObject instanceof A._RedirectingFactoryBody)
+        body = new A.EmptyFunctionBodyImpl(endToken);
+      else {
+        _this.internalProblem$3(A._withArgumentsOldInternalProblemUnhandled(J.get$runtimeType$(bodyObject).toString$0(0), "bodyObject"), (beginToken._typeAndOffset >>> 8) - 1, _this.uri);
+        body = _null;
+      }
+      t1 = _this._classLikeBuilder;
+      if (t1 != null) {
+        t1 = t1.members;
+        t5 = modifiers == null;
+        t6 = t5 ? _null : modifiers.augmentKeyword;
+        t7 = t5 ? _null : modifiers.externalKeyword;
+        t8 = t5 ? _null : modifiers.abstractKeyword;
+        if (t8 == null)
+          t5 = t5 ? _null : modifiers.staticKeyword;
+        else
+          t5 = t8;
+        t5 = new A.MethodDeclarationImpl(t6, t7, t5, returnType, getOrSet, operatorKeyword, nameId.token, typeParameters, formalParameters, body, _null, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+        t5._initializeCommentAndAnnotations$2(comment, metadata);
+        t5._becomeParentOf$1$1(returnType, t4);
+        t5._becomeParentOf$1$1(typeParameters, t3);
+        t5._becomeParentOf$1$1(formalParameters, t2);
+        t5._becomeParentOf$1$1(body, type$.FunctionBodyImpl);
+        B.JSArray_methods.add$1(t1, t5);
+      }
     },
     endMixinDeclaration$2(beginToken, endToken) {
       var builder = type$._MixinDeclarationBuilder._as(this._classLikeBuilder),
+        body = A.BlockClassBodyImpl$(builder.leftBracket, builder.members, builder.rightBracket),
         t1 = builder.typeParameters,
         t2 = builder.onClause,
         t3 = builder.implementsClause,
-        t4 = new A.NodeListImpl(type$.NodeListImpl_ClassMemberImpl),
-        t5 = new A.MixinDeclarationImpl(builder.augmentKeyword, builder.baseKeyword, builder.mixinKeyword, t1, t2, t3, new A.ClassBodyImplStub(), builder.leftBracket, t4, builder.rightBracket, null, builder.name, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
-      t5._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
-      t5._becomeParentOf$1$1(t1, type$.nullable_TypeParameterListImpl);
-      t5._becomeParentOf$1$1(t2, type$.nullable_MixinOnClauseImpl);
-      t5._becomeParentOf$1$1(t3, type$.nullable_ImplementsClauseImpl);
-      t4._initialize$2(t5, builder.members);
-      B.JSArray_methods.add$1(this.declarations, t5);
+        t4 = new A.MixinDeclarationImpl(builder.augmentKeyword, builder.baseKeyword, builder.mixinKeyword, builder.name, t1, t2, t3, body, null, null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+      t4._initializeCommentAndAnnotations$2(builder.comment, builder.metadata);
+      t4._becomeParentOf$1$1(t1, type$.nullable_TypeParameterListImpl);
+      t4._becomeParentOf$1$1(t2, type$.nullable_MixinOnClauseImpl);
+      t4._becomeParentOf$1$1(t3, type$.nullable_ImplementsClauseImpl);
+      t4._becomeParentOf$1$1(body, type$.BlockClassBodyImpl);
+      B.JSArray_methods.add$1(this.declarations, t4);
       this._classLikeBuilder = null;
-    },
-    endMixinFactoryMethod$3(beginToken, factoryKeyword, endToken) {
-      B.JSArray_methods.add$1(this.invalidNodes, this._buildFactoryConstructorDeclaration$3$beginToken$endToken$factoryKeyword(beginToken, endToken, factoryKeyword));
-    },
-    endMixinFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken) {
-      this.endClassFields$10(abstractToken, augmentToken, externalToken, staticToken, covariantToken, lateToken, varFinalOrConst, count, beginToken, endToken);
-    },
-    endMixinMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken) {
-      this.endClassMethod$5(getOrSet, beginToken, beginParam, beginInitializers, endToken);
     },
     endNamedFunctionExpression$1(endToken) {
       var parameters, _null = null,
@@ -45564,13 +45481,13 @@
     },
     endNamedMixinApplication$5(beginToken, classKeyword, equalsToken, implementsKeyword, semicolon) {
       var beginToken0, endToken, currentToken, count, t3, t4, mixinKeyword, augmentKeyword, finalKeyword, interfaceKeyword, baseKeyword, sealedKeyword, modifiers, typeParameters, $name, abstractKeyword, metadata, _this = this, _null = null,
-        implementsClause = implementsKeyword != null ? A.ImplementsClauseImpl$(implementsKeyword, _this._popNamedTypeList$1$code(B.ParserErrorWithoutArguments_K0R)) : _null,
+        implementsClause = implementsKeyword != null ? A.ImplementsClauseImpl$(implementsKeyword, _this._popNamedTypeList$1$code(B.DiagnosticWithoutArgumentsImpl_ouI)) : _null,
         t1 = _this.stack,
         t2 = type$.WithClauseImpl,
         withClause = t2._as(t1.pop$1(B.NullValue_WithClause)),
         superclass = type$.TypeAnnotationImpl._as(t1.pop$1(_null));
       if (!(superclass instanceof A.NamedTypeImpl)) {
-        _this.diagnosticReporter.diagnosticReporter.atNode$2(superclass, B.ParserErrorWithoutArguments_GPi);
+        A.LiterateDiagnosticReporter_report(_this.diagnosticReporter.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_KEF, superclass.get$offset(0), superclass.get$length(0)));
         beginToken0 = superclass.get$beginToken();
         endToken = superclass.get$endToken();
         for (currentToken = beginToken0, count = 1; currentToken !== endToken; currentToken = t3) {
@@ -45599,7 +45516,7 @@
       $name = type$.SimpleIdentifierImpl._as(t1.pop$1(_null));
       abstractKeyword = modifiers == null ? _null : modifiers.abstractKeyword;
       metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
-      t1 = new A.ClassTypeAliasImpl(abstractKeyword, sealedKeyword, baseKeyword, interfaceKeyword, finalKeyword, mixinKeyword, typeParameters, equalsToken, superclass, withClause, implementsClause, augmentKeyword, classKeyword, semicolon, $name.token, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+      t1 = new A.ClassTypeAliasImpl(abstractKeyword, sealedKeyword, baseKeyword, interfaceKeyword, finalKeyword, mixinKeyword, typeParameters, equalsToken, superclass, withClause, implementsClause, augmentKeyword, classKeyword, $name.token, semicolon, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
       t1._initializeCommentAndAnnotations$2(_this._findComment$2(metadata, beginToken), metadata);
       t1._becomeParentOf$1$1(typeParameters, t3);
       t1._becomeParentOf$1$1(superclass, type$.NamedTypeImpl);
@@ -45645,7 +45562,7 @@
         if (!(t3 < t2.length))
           return A.ioore(t2, t3);
         if (t2[t3])
-          _this.diagnosticReporter.diagnosticReporter.atNode$2($name, B.ParserErrorWithoutArguments_6bT);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_hUb, $name.get$offset(0), $name.get$length(0)));
         uri = _null;
       }
       metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
@@ -45661,82 +45578,45 @@
       this.push$1(A.WhenClauseImpl$(type$.ExpressionImpl._as(this.stack.pop$1(null)), when));
     },
     endPrimaryConstructor$4(beginToken, constKeyword, hasConstructorName, forExtensionType) {
-      var t2, t3, left, leftParenthesis, constructorName, firstFormalParameter, fieldMetadata, _0_0, formalParameterType, fieldType, _1_0, maybeComma, fieldName, typeNameToken, t4, _this = this, _null = null, _s6_ = "parser",
+      var t2, t3, t4, constructorName, _this = this,
         t1 = _this.stack,
-        formalParameterList = type$.nullable_FormalParameterListImpl._as(t1.pop$1(_null));
+        formalParameterList = type$.nullable_FormalParameterListImpl._as(t1.pop$1(null));
       if (formalParameterList == null) {
         t2 = beginToken.previous;
         t2.toString;
-        t3 = _this.__AstBuilder_parser_A;
-        t3 === $ && A.throwLateFieldNI(_s6_);
-        left = t3.get$rewriter().insertParens$2(t2, false);
-        t2 = left.endToken;
-        t2.toString;
-        formalParameterList = A.FormalParameterListImpl$(_null, left, A._setArrayType([], type$.JSArray_FormalParameterImpl), _null, t2);
+        formalParameterList = _this._syntheticFormalParameterList$1(t2);
       }
-      if (forExtensionType) {
-        leftParenthesis = formalParameterList.leftParenthesis;
-        constructorName = hasConstructorName ? new A.RepresentationConstructorNameImpl(beginToken, type$.SimpleIdentifierImpl._as(t1.pop$1(_null)).token) : _null;
-        t1 = formalParameterList.parameters;
-        firstFormalParameter = A.IterableExtension_get_firstOrNull(t1, type$.FormalParameterImpl);
-        if (firstFormalParameter instanceof A.SimpleFormalParameterImpl) {
-          fieldMetadata = firstFormalParameter._AnnotatedNodeMixin__metadata;
-          $label0$0: {
-            _0_0 = firstFormalParameter._type;
-            t2 = _0_0 != null;
-            formalParameterType = t2 ? _0_0 : _null;
-            if (t2) {
-              fieldType = formalParameterType;
-              break $label0$0;
-            }
-            t2 = leftParenthesis.next;
-            t2.toString;
-            _this.diagnosticReporter.diagnosticReporter.atToken$2(t2, B.ParserErrorWithoutArguments_iNN);
-            t2 = _this.__AstBuilder_parser_A;
-            t2 === $ && A.throwLateFieldNI(_s6_);
-            fieldType = A.NamedTypeImpl$(_null, t2.get$rewriter().insertSyntheticIdentifier$1(leftParenthesis), _null, _null);
-          }
-          _1_0 = firstFormalParameter.keyword;
-          if (_1_0 != null)
-            if (_1_0.get$keyword() !== B.Keyword_rin)
-              _this.diagnosticReporter.diagnosticReporter.atToken$2(_1_0, B.ParserErrorWithoutArguments_xfS);
-          t2 = firstFormalParameter.name;
-          t2.toString;
-          maybeComma = firstFormalParameter.get$endToken().next;
-          if (maybeComma != null && B.List_BvF[maybeComma._typeAndOffset & 255] === B.TokenType_VRW) {
-            t1 = t1.__NodeListImpl__elements_F;
-            t1 === $ && A.throwLateFieldNI("_elements");
-            t3 = _this.diagnosticReporter.diagnosticReporter;
-            if (t1.length === 1)
-              t3.atToken$2(maybeComma, B.ParserErrorWithoutArguments_HWm);
-            else
-              t3.atToken$2(maybeComma, B.ParserErrorWithoutArguments_wt5);
-          }
-          fieldName = t2;
-        } else {
-          t1 = leftParenthesis.next;
-          t1.toString;
-          _this.diagnosticReporter.diagnosticReporter.atToken$2(t1, B.ParserErrorWithoutArguments_PRy);
-          fieldMetadata = A._setArrayType([], type$.JSArray_AnnotationImpl);
-          t1 = _this.__AstBuilder_parser_A;
-          t1 === $ && A.throwLateFieldNI(_s6_);
-          typeNameToken = t1.get$rewriter().insertSyntheticIdentifier$1(leftParenthesis);
-          fieldType = A.NamedTypeImpl$(_null, typeNameToken, _null, _null);
-          fieldName = _this.__AstBuilder_parser_A.get$rewriter().insertSyntheticIdentifier$1(typeNameToken);
-        }
-        _this.push$1(constKeyword == null ? B.NullValue_Token : constKeyword);
-        _this.push$1(A.RepresentationDeclarationImpl$(constructorName, fieldMetadata, fieldName, fieldType, leftParenthesis, formalParameterList.rightParenthesis));
-      } else {
-        t2 = $.$get$Feature_declaring_constructors();
+      if (!forExtensionType) {
+        t2 = $.$get$Feature_primary_constructors();
         t3 = _this._ast_builder$_featureSet._flags;
         t4 = t2.index;
         if (!(t4 < t3.length))
           return A.ioore(t3, t4);
         if (!t3[t4])
           _this._reportFeatureNotEnabled$2$feature$startToken(t2, beginToken);
-        _this.push$1(new A._PrimaryConstructorBuilder(constKeyword, hasConstructorName ? new A.PrimaryConstructorNameImpl(beginToken, type$.SimpleIdentifierImpl._as(t1.pop$1(_null)).token) : _null, formalParameterList));
-        return;
       }
+      constructorName = hasConstructorName ? new A.PrimaryConstructorNameImpl(beginToken, type$.SimpleIdentifierImpl._as(t1.pop$1(null)).token) : null;
+      _this.push$1(constKeyword == null ? B.NullValue_Token : constKeyword);
+      _this.push$1(new A._PrimaryConstructorBuilder(constKeyword, constructorName, formalParameterList));
+    },
+    endPrimaryConstructorBody$3(beginToken, beginInitializers, endToken) {
+      var colon, metadata, comment, t3, t4, _null = null,
+        t1 = this.stack,
+        t2 = type$.FunctionBodyImpl,
+        body = t2._as(t1.pop$1(_null)),
+        initializers = type$.nullable_List_ConstructorInitializerImpl._as(t1.pop$1(_null));
+      if (initializers == null)
+        initializers = B.List_empty7;
+      colon = type$.nullable_Token._as(t1.pop$1(_null));
+      metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
+      comment = this._findComment$2(metadata, beginToken);
+      t1 = this._classLikeBuilder.members;
+      t3 = new A.NodeListImpl(type$.NodeListImpl_ConstructorInitializerImpl);
+      t4 = new A.PrimaryConstructorBodyImpl(beginToken, colon, t3, body, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+      t4._initializeCommentAndAnnotations$2(comment, metadata);
+      t3._initialize$2(t4, initializers);
+      t4._becomeParentOf$1$1(body, t2);
+      B.JSArray_methods.add$1(t1, t4);
     },
     endRecordLiteral$3(leftParenthesis, count, constKeyword) {
       var t2, expression, _this = this,
@@ -46021,7 +45901,7 @@
         t2 = type$.nullable_TypeAnnotationImpl;
         returnType = t2._as(t4.pop$1(_null));
         metadata = t3._as(t4.pop$1(_null));
-        t4 = new A.FunctionTypeAliasImpl(returnType, typeParameters, parameters, augmentToken, typedefKeyword, semicolon, $name.token, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+        t4 = new A.FunctionTypeAliasImpl(returnType, typeParameters, parameters, augmentToken, typedefKeyword, $name.token, semicolon, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
         t4._initializeCommentAndAnnotations$2(_this._findComment$2(metadata, typedefKeyword), metadata);
         t4._becomeParentOf$1$1(returnType, t2);
         t4._becomeParentOf$1$1(typeParameters, t1);
@@ -46036,7 +45916,7 @@
         comment = _this._findComment$2(metadata, typedefKeyword);
         if (!(type instanceof A.GenericFunctionTypeImpl) && !_this.enableNonFunctionTypeAliases)
           _this._reportFeatureNotEnabled$2$feature$startToken($.$get$ExperimentalFeatures_nonfunction_type_aliases(), equals);
-        t2 = new A.GenericTypeAliasImpl(codeParameters, equals, type, _null, augmentToken, typedefKeyword, semicolon, $name.token, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
+        t2 = new A.GenericTypeAliasImpl(codeParameters, equals, type, _null, augmentToken, typedefKeyword, $name.token, semicolon, _null, new A.NodeListImpl(type$.NodeListImpl_AnnotationImpl));
         t2._initializeCommentAndAnnotations$2(comment, metadata);
         t2._becomeParentOf$1$1(codeParameters, t1);
         t2._becomeParentOf$1$1(type, t5);
@@ -46051,12 +45931,11 @@
       var t1, t2, bound;
       if (!this.enableVariance)
         if (variance != null)
-          this.handleRecoverableError$3(A.getExperimentNotEnabledMessage(B.ExperimentalFlag_Vlu), variance, variance);
+          this.handleRecoverableError$3(A.getExperimentNotEnabledMessage(B.ExperimentalFlag_aqQ), variance, variance);
       t1 = this.stack;
       t2 = type$.nullable_TypeAnnotationImpl;
       bound = t2._as(t1.pop$1(null));
-      t1 = t1.arrayLength > 0 ? t1.get$last(0) : null;
-      t1 = J.$index$asx(type$.List_TypeParameterImpl._as(t1), index);
+      t1 = J.$index$asx(type$.List_TypeParameterImpl._as(t1.peek$1(null)), index);
       t1.extendsKeyword = extendsOrSuper;
       t1._bound = t1._becomeParentOf$1$1(bound, t2);
       t1.varianceKeyword = variance;
@@ -46177,7 +46056,7 @@
         rhs = t2._as(t1.pop$1(_null)),
         lhs = t2._as(t1.pop$1(_null));
       if (!lhs.get$isAssignable())
-        _this.handleRecoverableError$3(B.MessageCode_6qA, lhs.get$beginToken(), lhs.get$endToken());
+        _this.handleRecoverableError$3(B.MessageCode_ClO, lhs.get$beginToken(), lhs.get$endToken());
       _this.reportErrorIfSuper$1(rhs);
       t1 = new A.AssignmentExpressionImpl(lhs, token, rhs, _null, _null, _null, _null);
       t1._becomeParentOf$1$1(lhs, t2);
@@ -46265,7 +46144,7 @@
       } else {
         _this.push$1(B.NullValue_ExtendsClause);
         if (supertype != null)
-          _this.diagnosticReporter.diagnosticReporter.atNode$2(supertype, B.ParserErrorWithoutArguments_GPi);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_KEF, supertype.get$offset(0), supertype.get$length(0)));
       }
     },
     handleClassHeader$3(begin, classKeyword, nativeToken) {
@@ -46282,6 +46161,7 @@
       extendsClause = type$.nullable_ExtendsClauseImpl._as(t1.pop$1(B.NullValue_ExtendsClause));
       primaryConstructorBuilder = type$.nullable__PrimaryConstructorBuilder._as(t1.pop$1(B.NullValue_PrimaryConstructor));
       t2 = type$.nullable_Token;
+      t2._as(t1.pop$1(_null));
       mixinKeyword = t2._as(t1.pop$1(B.NullValue_Token));
       augmentKeyword = t2._as(t1.pop$1(B.NullValue_Token));
       finalKeyword = t2._as(t1.pop$1(B.NullValue_Token));
@@ -46303,7 +46183,7 @@
       this.push$1(B.NullValue_WithClause);
     },
     handleClassWithClause$1(withKeyword) {
-      this.push$1(A.WithClauseImpl$(this._popNamedTypeList$1$code(B.ParserErrorWithoutArguments_CyI), withKeyword));
+      this.push$1(A.WithClauseImpl$(this._popNamedTypeList$1$code(B.DiagnosticWithoutArgumentsImpl_uE3), withKeyword));
     },
     handleConstFactory$1(constKeyword) {
       this.handleRecoverableError$3(B.MessageCode_jQJ, constKeyword, constKeyword);
@@ -46421,15 +46301,16 @@
         _this._reportFeatureNotEnabled$2$feature$startToken($.$get$ExperimentalFeatures_enhanced_enums(), elementsEndToken);
     },
     handleEnumHeader$3(augmentToken, enumKeyword, leftBrace) {
-      var token, _this = this, _null = null,
+      var typeParameters, $name, metadata, comment, token, _this = this, _null = null,
         t1 = _this.stack,
         implementsClause = type$.nullable_ImplementsClauseImpl._as(t1.pop$1(B.NullValue_IdentifierList)),
         withClause = type$.nullable_WithClauseImpl._as(t1.pop$1(B.NullValue_WithClause)),
-        primaryConstructorBuilder = type$.nullable__PrimaryConstructorBuilder._as(t1.pop$1(B.NullValue_PrimaryConstructor)),
-        typeParameters = type$.nullable_TypeParameterListImpl._as(t1.pop$1(_null)),
-        $name = type$.SimpleIdentifierImpl._as(t1.pop$1(_null)),
-        metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null)),
-        comment = _this._findComment$2(metadata, enumKeyword);
+        primaryConstructorBuilder = type$.nullable__PrimaryConstructorBuilder._as(t1.pop$1(B.NullValue_PrimaryConstructor));
+      type$.nullable_Token._as(t1.pop$1(_null));
+      typeParameters = type$.nullable_TypeParameterListImpl._as(t1.pop$1(_null));
+      $name = type$.SimpleIdentifierImpl._as(t1.pop$1(_null));
+      metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
+      comment = _this._findComment$2(metadata, enumKeyword);
       if (!_this.enableEnhancedEnums)
         t1 = withClause != null || implementsClause != null || typeParameters != null;
       else
@@ -46449,7 +46330,7 @@
       this.push$1(B.NullValue_WithClause);
     },
     handleEnumWithClause$1(withKeyword) {
-      this.push$1(A.WithClauseImpl$(this._popNamedTypeList$1$code(B.ParserErrorWithoutArguments_CyI), withKeyword));
+      this.push$1(A.WithClauseImpl$(this._popNamedTypeList$1$code(B.DiagnosticWithoutArgumentsImpl_uE3), withKeyword));
     },
     handleErrorToken$1(token) {
       A.translateErrorToken(token, this.diagnosticReporter.get$reportScannerError());
@@ -46483,12 +46364,12 @@
         t1 = false;
       if (t1) {
         t1 = expression.token;
-        _this.handleRecoverableError$3(B.MessageCode_HPz, t1, t1);
+        _this.handleRecoverableError$3(B.MessageCode_6Ed, t1, t1);
       }
       if (expression instanceof A.AssignmentExpressionImpl) {
         t1 = expression._leftHandSide;
         if (!t1.get$isAssignable())
-          _this.handleRecoverableError$3(B.MessageCode_s5f, t1.get$beginToken(), t1.get$endToken());
+          _this.handleRecoverableError$3(B.MessageCode_528, t1.get$beginToken(), t1.get$endToken());
       }
       _this.push$1(A.ExpressionStatementImpl$(expression, semicolon));
     },
@@ -46568,7 +46449,7 @@
         update = updates[_i];
         if (update instanceof A.SuperExpressionImpl) {
           t2 = update.superKeyword;
-          _this.handleRecoverableError$3(B.MessageCode_6qA, t2, t2);
+          _this.handleRecoverableError$3(B.MessageCode_ClO, t2, t2);
         }
       }
       if (conditionStatement instanceof A.ExpressionStatementImpl) {
@@ -46632,7 +46513,7 @@
       var _this = this;
       if (implementsKeyword != null) {
         _this.endTypeList$1(interfacesCount);
-        _this.push$1(A.ImplementsClauseImpl$(implementsKeyword, _this._popNamedTypeList$1$code(B.ParserErrorWithoutArguments_K0R)));
+        _this.push$1(A.ImplementsClauseImpl$(implementsKeyword, _this._popNamedTypeList$1$code(B.DiagnosticWithoutArgumentsImpl_ouI)));
       } else
         _this.push$1(B.NullValue_IdentifierList);
     },
@@ -46646,17 +46527,16 @@
       _this.push$1(deferredKeyword == null ? B.NullValue_Deferred : deferredKeyword);
     },
     handleIndexedExpression$3(question, leftBracket, rightBracket) {
-      var receiver, _this = this, _null = null,
+      var receiver, token, _this = this, _null = null,
         t1 = _this.stack,
         index = type$.ExpressionImpl._as(t1.pop$1(_null)),
         target = type$.nullable_ExpressionImpl._as(t1.pop$1(_null));
       _this.reportErrorIfSuper$1(index);
       if (target == null) {
         receiver = type$.CascadeExpressionImpl._as(t1.pop$1(_null));
-        t1 = t1.arrayLength > 0 ? t1.get$last(0) : _null;
-        type$.Token._as(t1);
+        token = type$.Token._as(t1.peek$1(_null));
         _this.push$1(receiver);
-        _this.push$1(A.IndexExpressionImpl$(index, leftBracket, t1, question, rightBracket, _null));
+        _this.push$1(A.IndexExpressionImpl$(index, leftBracket, token, question, rightBracket, _null));
       } else
         _this.push$1(A.IndexExpressionImpl$(index, leftBracket, _null, question, rightBracket, target));
     },
@@ -46838,12 +46718,12 @@
       var _this = this;
       if (onKeyword != null) {
         _this.endTypeList$1(typeCount);
-        _this.push$1(A.MixinOnClauseImpl$(onKeyword, _this._popNamedTypeList$1$code(B.ParserErrorWithoutArguments_Mwi)));
+        _this.push$1(A.MixinOnClauseImpl$(onKeyword, _this._popNamedTypeList$1$code(B.DiagnosticWithoutArgumentsImpl_PIu)));
       } else
         _this.push$1(B.NullValue_IdentifierList);
     },
     handleMixinWithClause$1(withKeyword) {
-      this._popNamedTypeList$1$code(B.ParserErrorWithoutArguments_CyI);
+      this._popNamedTypeList$1$code(B.DiagnosticWithoutArgumentsImpl_uE3);
     },
     handleNamedArgument$1(colon) {
       var t3,
@@ -46857,7 +46737,7 @@
       this.push$1(t3);
     },
     handleNamedMixinApplicationWithClause$1(withKeyword) {
-      this.push$1(A.WithClauseImpl$(this._popNamedTypeList$1$code(B.ParserErrorWithoutArguments_CyI), withKeyword));
+      this.push$1(A.WithClauseImpl$(this._popNamedTypeList$1$code(B.DiagnosticWithoutArgumentsImpl_uE3), withKeyword));
     },
     handleNamedRecordField$1(colon) {
       return this.handleNamedArgument$1(colon);
@@ -46882,13 +46762,26 @@
       if (!this.enableConstructorTearoffs)
         this._reportFeatureNotEnabled$2$feature$startToken($.$get$ExperimentalFeatures_constructor_tearoffs(), token);
     },
+    handleNoClassBody$1(semicolonToken) {
+      var builder = this._classLikeBuilder;
+      if (builder != null)
+        builder.emptyClassBodySemicolon = semicolonToken;
+    },
     handleNoConstructorReferenceContinuationAfterTypeArguments$1(token) {
       this.push$1(B.NullValue_902);
+    },
+    handleNoExtensionTypeBody$1(semicolonToken) {
+      var builder = this._classLikeBuilder;
+      if (builder != null)
+        builder.emptyClassBodySemicolon = semicolonToken;
     },
     handleNoFieldInitializer$1(token) {
       var _null = null,
         $name = type$.SimpleIdentifierImpl._as(this.stack.pop$1(_null));
       this.push$1(A.VariableDeclarationImpl$(_null, _null, _null, A._setArrayType([], type$.JSArray_AnnotationImpl), $name.token));
+    },
+    handleNoIdentifier$2(token, context) {
+      this.push$1(B.NullValue_Identifier);
     },
     handleNoInitializers$0() {
       this.push$1(B.NullValue_d3B);
@@ -46898,11 +46791,8 @@
       this.push$1(A.PostfixExpressionImpl$(type$.ExpressionImpl._as(this.stack.pop$1(null)), bang));
     },
     handleNoPrimaryConstructor$3(token, constKeyword, forExtensionType) {
-      if (forExtensionType) {
-        this.push$1(constKeyword == null ? B.NullValue_Token : constKeyword);
-        this.push$1(B.NullValue_RepresentationDeclarationImpl);
-      } else
-        this.push$1(B.NullValue_PrimaryConstructor);
+      this.push$1(constKeyword == null ? B.NullValue_Token : constKeyword);
+      this.push$1(B.NullValue_PrimaryConstructor);
     },
     handleNoTypeNameInConstructorReference$1(token) {
       this.push$1(new A.SimpleIdentifierImpl(type$._EnumDeclarationBuilder._as(this._classLikeBuilder).name));
@@ -47047,7 +46937,7 @@
     },
     handleRecoverableError$3(message, startToken, endToken) {
       var offset, _this = this;
-      if (message === B.MessageCode_JvH && _this.allowNativeClause)
+      if (message === B.MessageCode_X6S && _this.allowNativeClause)
         return;
       else if (message.get$code(message) === B.Template_Utp)
         if (_this.get$isDartLibrary())
@@ -47244,13 +47134,13 @@
     handleUnaryPostfixAssignmentExpression$1(operator) {
       var expression = type$.ExpressionImpl._as(this.stack.pop$1(null));
       if (!expression.get$isAssignable())
-        this.handleRecoverableError$3(B.MessageCode_s5f, operator, operator);
+        this.handleRecoverableError$3(B.MessageCode_528, operator, operator);
       this.push$1(A.PostfixExpressionImpl$(expression, operator));
     },
     handleUnaryPrefixAssignmentExpression$1(operator) {
       var expression = type$.ExpressionImpl._as(this.stack.pop$1(null));
       if (!expression.get$isAssignable())
-        this.handleRecoverableError$3(B.MessageCode_6qA, expression.get$endToken(), expression.get$endToken());
+        this.handleRecoverableError$3(B.MessageCode_ClO, expression.get$endToken(), expression.get$endToken());
       this.push$1(A.PrefixExpressionImpl$(expression, operator));
     },
     handleUnaryPrefixExpression$1(operator) {
@@ -47318,20 +47208,40 @@
       var t1;
       if (expression instanceof A.SuperExpressionImpl) {
         t1 = expression.superKeyword;
-        this.handleRecoverableError$3(B.MessageCode_6qA, t1, t1);
+        this.handleRecoverableError$3(B.MessageCode_ClO, t1, t1);
       }
     },
+    _beginMethod$10(declarationKind, augmentToken, externalToken, staticToken, covariantToken, varFinalOrConst, newKeyword, getOrSet, $name, enclosingDeclarationName) {
+      var builder,
+        modifiers = new A._Modifiers();
+      if (augmentToken != null)
+        modifiers.augmentKeyword = augmentToken;
+      if (externalToken != null)
+        modifiers.externalKeyword = externalToken;
+      if (staticToken != null) {
+        builder = this._classLikeBuilder;
+        if (!(builder instanceof A._ClassDeclarationBuilder) || builder.name.get$lexeme() !== $name.get$lexeme() || getOrSet != null)
+          modifiers.staticKeyword = staticToken;
+      }
+      if (covariantToken != null)
+        modifiers.covariantKeyword = covariantToken;
+      if (varFinalOrConst != null)
+        modifiers.finalConstOrVarKeyword = varFinalOrConst;
+      if (newKeyword != null)
+        modifiers.newKeyword = newKeyword;
+      this.push$1(modifiers);
+    },
     _buildConstructorDeclaration$2$beginToken$endToken(beginToken, endToken) {
-      var separator, parameters, typeParameters, $name, modifiers, metadata, comment, redirectedConstructor, body, period, nameOrNull, prefixOrName, t2, bodyToken, t3, t4, t5, notDefault, t6, _this = this, _null = null,
+      var separator, parameters, typeParameters, preliminaryName, modifiers, metadata, comment, redirectedConstructor, body, newKeyword, typeNameIdentifier, period, constructorNameToken, t2, bodyToken, t3, t4, t5, t6, t7, notDefault, t8, t9, t10, t11, _this = this, _null = null,
         t1 = _this.stack,
         bodyObject = t1.pop$1(_null),
         initializers = type$.nullable_List_ConstructorInitializerImpl._as(t1.pop$1(_null));
       if (initializers == null)
-        initializers = B.List_empty8;
+        initializers = B.List_empty7;
       separator = type$.nullable_Token._as(t1.pop$1(_null));
       parameters = type$.FormalParameterListImpl._as(t1.pop$1(_null));
       typeParameters = type$.nullable_TypeParameterListImpl._as(t1.pop$1(_null));
-      $name = t1.pop$1(_null);
+      preliminaryName = t1.pop$1(_null);
       t1.pop$1(_null);
       modifiers = type$.nullable__Modifiers._as(t1.pop$1(_null));
       metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
@@ -47347,21 +47257,35 @@
         _this.internalProblem$3(A._withArgumentsOldInternalProblemUnhandled(J.get$runtimeType$(bodyObject).toString$0(0), "bodyObject"), (beginToken._typeAndOffset >>> 8) - 1, _this.uri);
         body = _null;
       }
-      period = _null;
-      nameOrNull = _null;
-      if ($name instanceof A.SimpleIdentifierImpl)
-        prefixOrName = $name;
-      else if ($name instanceof A.PrefixedIdentifierImpl) {
-        prefixOrName = $name._prefix;
-        period = $name.period;
-        nameOrNull = $name._identifier;
-      } else if ($name instanceof A._OperatorName)
-        prefixOrName = $name.name;
-      else
-        throw A.wrapException(A.UnimplementedError$("name is an instance of " + J.get$runtimeType$($name).toString$0(0) + " in endClassConstructor"));
-      if (typeParameters != null)
-        _this.handleRecoverableError$3(B.MessageCode_bFJ, typeParameters.leftBracket, typeParameters.rightBracket);
       t1 = modifiers == null;
+      newKeyword = t1 ? _null : modifiers.newKeyword;
+      $label0$0: {
+        typeNameIdentifier = _null;
+        period = _null;
+        constructorNameToken = _null;
+        if (preliminaryName == null)
+          break $label0$0;
+        if (preliminaryName instanceof A.SimpleIdentifierImpl) {
+          if (newKeyword != null)
+            constructorNameToken = preliminaryName.token;
+          else
+            typeNameIdentifier = preliminaryName;
+          break $label0$0;
+        }
+        if (preliminaryName instanceof A.PrefixedIdentifierImpl) {
+          typeNameIdentifier = preliminaryName._prefix;
+          period = preliminaryName.period;
+          constructorNameToken = preliminaryName._identifier.token;
+          break $label0$0;
+        }
+        if (preliminaryName instanceof A._OperatorName) {
+          typeNameIdentifier = preliminaryName.name;
+          break $label0$0;
+        }
+        throw A.wrapException(A.UnimplementedError$("name is an instance of " + J.get$runtimeType$(preliminaryName).toString$0(0) + " in endClassConstructor"));
+      }
+      if (typeParameters != null)
+        _this.handleRecoverableError$3(B.MessageCode_xsm, typeParameters.leftBracket, typeParameters.rightBracket);
       if (t1)
         t2 = _null;
       else {
@@ -47378,23 +47302,30 @@
         _this.handleRecoverableError$3(B.MessageCode_K4k, bodyToken, bodyToken);
       }
       if ((t1 ? _null : modifiers.externalKeyword) != null)
-        for (t2 = parameters.parameters, t3 = t2.$ti, t2 = new A.ListIterator(t2, t2.get$length(0), t3._eval$1("ListIterator<ListBase.E>")), t3 = t3._eval$1("ListBase.E"), t4 = _this.diagnosticReporter.diagnosticReporter; t2.moveNext$0();) {
-          t5 = t2.__internal$_current;
-          notDefault = A.FormalParameterImplExtension_get_notDefault(t5 == null ? t3._as(t5) : t5);
+        for (t2 = parameters.parameters, t3 = t2.$ti, t2 = new A.ListIterator(t2, t2.get$length(0), t3._eval$1("ListIterator<ListBase.E>")), t3 = t3._eval$1("ListBase.E"), t4 = type$.List_Object, t5 = type$.List_DiagnosticMessage, t6 = _this.diagnosticReporter.diagnosticReporter; t2.moveNext$0();) {
+          t7 = t2.__internal$_current;
+          notDefault = A.FormalParameterImplExtension_get_notDefault(t7 == null ? t3._as(t7) : t7);
           if (notDefault instanceof A.FieldFormalParameterImpl) {
-            t5 = notDefault.thisKeyword;
-            t6 = t5._typeAndOffset;
-            t4.atOffset$5$arguments$contextMessages$diagnosticCode$length$offset(_null, _null, B.ParserErrorWithoutArguments_ldz, t5.get$length(t5), (t6 >>> 8) - 1);
+            t7 = notDefault.thisKeyword;
+            t8 = t7.get$offset(0);
+            t7 = t7.get$length(t7);
+            t9 = B.DiagnosticWithoutArgumentsImpl_P2H.get$code(0);
+            t10 = B.DiagnosticWithoutArgumentsImpl_P2H.get$$arguments();
+            t11 = B.DiagnosticWithoutArgumentsImpl_P2H.get$contextMessages();
+            t11 = A._setArrayType(t11.slice(0), A._arrayInstanceType(t11));
+            t4._as(t10);
+            t11 = t5._as(t11);
+            B.JSArray_methods.addAll$1(t11, A.convertTypeNames(t10, t9.expectedTypes));
+            t6.reportError$1(A.Diagnostic_Diagnostic$tmp(t10, t11, t9, t7, t8, t6._listener$_source));
           }
         }
       t2 = t1 ? _null : modifiers.augmentKeyword;
       t3 = t1 ? _null : modifiers.externalKeyword;
-      t1 = t1 ? _null : modifiers.finalConstOrVarKeyword;
-      t4 = nameOrNull == null ? _null : nameOrNull.token;
-      return A.ConstructorDeclarationImpl$(t2, body, comment, t1, t3, _null, initializers, metadata, t4, parameters, period, redirectedConstructor, new A.SimpleIdentifierImpl(prefixOrName.token), separator);
+      t4 = t1 ? _null : modifiers.finalConstOrVarKeyword;
+      return A.ConstructorDeclarationImpl$(t2, body, comment, t4, t3, _null, initializers, metadata, constructorNameToken, t1 ? _null : modifiers.newKeyword, parameters, period, redirectedConstructor, separator, typeNameIdentifier);
     },
     _buildFactoryConstructorDeclaration$3$beginToken$endToken$factoryKeyword(beginToken, endToken, factoryKeyword) {
-      var body, parameters, typeParameters, constructorName, modifiers, metadata, comment, nameToken, period, returnType, t2, t3, _this = this, _null = null,
+      var body, parameters, typeParameters, preliminaryName, modifiers, metadata, comment, typeNameIdentifier, period, constructorNameToken, t2, enclosingClassName, constructorNameToken0, t3, _this = this, _null = null,
         t1 = _this.stack,
         bodyObject = t1.pop$1(_null),
         separator = _null,
@@ -47411,27 +47342,49 @@
       }
       parameters = type$.FormalParameterListImpl._as(t1.pop$1(_null));
       typeParameters = type$.nullable_TypeParameterListImpl._as(t1.pop$1(_null));
-      constructorName = type$.IdentifierImpl._as(t1.pop$1(_null));
+      preliminaryName = type$.nullable_IdentifierImpl._as(t1.pop$1(_null));
       modifiers = type$.nullable__Modifiers._as(t1.pop$1(_null));
       metadata = type$.nullable_List_AnnotationImpl._as(t1.pop$1(_null));
       comment = _this._findComment$2(metadata, beginToken);
       if (typeParameters != null)
-        _this.handleRecoverableError$3(B.MessageCode_bFJ, typeParameters.leftBracket, typeParameters.rightBracket);
-      if (constructorName instanceof A.SimpleIdentifierImpl) {
-        nameToken = _null;
-        period = nameToken;
-        returnType = constructorName;
-      } else if (constructorName instanceof A.PrefixedIdentifierImpl) {
-        returnType = constructorName._prefix;
-        period = constructorName.period;
-        nameToken = constructorName._identifier.token;
-      } else
+        _this.handleRecoverableError$3(B.MessageCode_xsm, typeParameters.leftBracket, typeParameters.rightBracket);
+      $label0$0: {
+        typeNameIdentifier = _null;
+        period = _null;
+        constructorNameToken = _null;
+        if (preliminaryName == null)
+          break $label0$0;
+        if (preliminaryName instanceof A.SimpleIdentifierImpl) {
+          t1 = _this._ast_builder$_featureSet._flags;
+          t2 = $.$get$Feature_primary_constructors().index;
+          if (!(t2 < t1.length))
+            return A.ioore(t1, t2);
+          if (t1[t2]) {
+            t1 = _this._classLikeBuilder;
+            enclosingClassName = t1 == null ? _null : t1.get$name(t1);
+            t1 = enclosingClassName == null ? _null : enclosingClassName.get$lexeme();
+            constructorNameToken0 = preliminaryName.token;
+            if (t1 === constructorNameToken0.get$lexeme())
+              typeNameIdentifier = preliminaryName;
+            else
+              constructorNameToken = constructorNameToken0;
+          } else
+            typeNameIdentifier = preliminaryName;
+          break $label0$0;
+        }
+        if (preliminaryName instanceof A.PrefixedIdentifierImpl) {
+          typeNameIdentifier = preliminaryName._prefix;
+          period = preliminaryName.period;
+          constructorNameToken = preliminaryName._identifier.token;
+          break $label0$0;
+        }
         throw A.wrapException(A.UnimplementedError$(_null));
+      }
       t1 = modifiers == null;
       t2 = t1 ? _null : modifiers.augmentKeyword;
       t3 = t1 ? _null : modifiers.externalKeyword;
       t1 = t1 ? _null : modifiers.finalConstOrVarKeyword;
-      return A.ConstructorDeclarationImpl$(t2, body, comment, t1, t3, factoryKeyword, A._setArrayType([], type$.JSArray_ConstructorInitializerImpl), metadata, nameToken, parameters, period, redirectedConstructor, new A.SimpleIdentifierImpl(returnType.token), separator);
+      return A.ConstructorDeclarationImpl$(t2, body, comment, t1, t3, factoryKeyword, A._setArrayType([], type$.JSArray_ConstructorInitializerImpl), metadata, constructorNameToken, _null, parameters, period, redirectedConstructor, separator, typeNameIdentifier);
     },
     _ensureSetterFormalParameter$2(setterName, formalParameters) {
       var t1, valueFormalParameter, t2, _null = null;
@@ -47441,8 +47394,10 @@
       valueFormalParameter = A.IterableExtension_get_firstOrNull(t1, type$.FormalParameterImpl);
       if (valueFormalParameter == null) {
         t1 = formalParameters.leftParenthesis;
-        if (!t1.get$isSynthetic())
-          this.diagnosticReporter.diagnosticReporter.atToken$2(setterName.token, B.ParserErrorWithoutArguments_UBn);
+        if (!t1.get$isSynthetic()) {
+          t2 = setterName.token;
+          A.LiterateDiagnosticReporter_report(this.diagnosticReporter.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_ieM, t2.get$offset(0), t2.get$length(t2)));
+        }
         t2 = this.__AstBuilder_parser_A;
         t2 === $ && A.throwLateFieldNI("parser");
         return A.FormalParameterListImpl$(_null, t1, A._setArrayType([A.SimpleFormalParameterImpl$(_null, _null, _null, _null, t2.get$rewriter().insertSyntheticIdentifier$1(t1), _null, _null)], type$.JSArray_FormalParameterImpl), _null, formalParameters.rightParenthesis);
@@ -47455,7 +47410,8 @@
         t1 = false;
       if (t1)
         return formalParameters;
-      this.diagnosticReporter.diagnosticReporter.atToken$2(setterName.token, B.ParserErrorWithoutArguments_UBn);
+      t1 = setterName.token;
+      A.LiterateDiagnosticReporter_report(this.diagnosticReporter.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_ieM, t1.get$offset(0), t1.get$length(t1)));
       return A.FormalParameterListImpl$(_null, formalParameters.leftParenthesis, A._setArrayType([A.FormalParameterImplExtension_get_notDefault(valueFormalParameter)], type$.JSArray_FormalParameterImpl), _null, formalParameters.rightParenthesis);
     },
     _findComment$2(metadata, tokenAfterMetadata) {
@@ -47543,6 +47499,15 @@
       t1.toString;
       return A.ArgumentListImpl$(A._setArrayType([], type$.JSArray_ExpressionImpl), left, t1);
     },
+    _syntheticFormalParameterList$1(precedingToken) {
+      var left,
+        t1 = this.__AstBuilder_parser_A;
+      t1 === $ && A.throwLateFieldNI("parser");
+      left = t1.get$rewriter().insertParens$2(precedingToken, false);
+      t1 = left.endToken;
+      t1.toString;
+      return A.FormalParameterListImpl$(null, left, A._setArrayType([], type$.JSArray_FormalParameterImpl), null, t1);
+    },
     _toAnalyzerParameterKind$1(type) {
       switch (type.index) {
         case 0:
@@ -47558,30 +47523,15 @@
   };
   A.AstBuilder_endSwitchCase_popLabels.prototype = {
     call$0() {
-      var t4, t5, value,
-        labels = A._setArrayType([], type$.JSArray_LabelImpl),
-        t1 = this.$this.stack,
-        t2 = type$.LabelImpl,
-        t3 = this._box_0;
-      for (;;) {
-        t4 = t1.arrayLength;
-        if (t4 > 0) {
-          t5 = t1.array;
-          --t4;
-          if (!(t4 < t5.length))
-            return A.ioore(t5, t4);
-          value = t5[t4];
-          t4 = value instanceof A.NullValue ? null : value;
-        } else
-          t4 = null;
-        if (!(t4 instanceof A.LabelImpl))
-          break;
+      var t1, t2, t3,
+        labels = A._setArrayType([], type$.JSArray_LabelImpl);
+      for (t1 = this.$this.stack, t2 = type$.LabelImpl, t3 = this._box_0; t1.peek$1(null) instanceof A.LabelImpl;) {
         B.JSArray_methods.insert$2(labels, 0, t2._as(t1.pop$1(null)));
         --t3.labelCount;
       }
       return labels;
     },
-    $signature: 31
+    $signature: 30
   };
   A.AstBuilder_endSwitchCase_updateSwitchMember.prototype = {
     call$3$labels$member$statements(labels, member, statements) {
@@ -47609,26 +47559,64 @@
     call$2$member$statements(member, statements) {
       return this.call$3$labels$member$statements(null, member, statements);
     },
-    $signature: 32
+    $signature: 31
   };
-  A._ClassDeclarationBuilder.prototype = {};
+  A._ClassDeclarationBuilder.prototype = {
+    get$name(receiver) {
+      return this.name;
+    }
+  };
   A._ClassLikeDeclarationBuilder.prototype = {
     buildClassNamePart$2$primaryConstructorBuilder$typeName(primaryConstructorBuilder, typeName) {
-      return new A.ClassNamePartImplStub();
+      var t2,
+        t1 = this.typeParameters;
+      if (primaryConstructorBuilder != null)
+        return primaryConstructorBuilder.build$2$typeName$typeParameters(typeName, t1);
+      else {
+        t2 = new A.NameWithTypeParametersImpl(typeName, t1);
+        t2._becomeParentOf$1$1(t1, type$.nullable_TypeParameterListImpl);
+        return t2;
+      }
     }
   };
   A._ConstructorNameWithInvalidTypeArgs.prototype = {};
-  A._EnumDeclarationBuilder.prototype = {};
-  A._ExtensionDeclarationBuilder.prototype = {};
-  A._ExtensionTypeDeclarationBuilder.prototype = {};
-  A._MixinDeclarationBuilder.prototype = {};
+  A._EnumDeclarationBuilder.prototype = {
+    get$name(receiver) {
+      return this.name;
+    }
+  };
+  A._ExtensionDeclarationBuilder.prototype = {
+    get$name(receiver) {
+      return this.name;
+    }
+  };
+  A._ExtensionTypeDeclarationBuilder.prototype = {
+    get$name(receiver) {
+      return this.name;
+    }
+  };
+  A._MixinDeclarationBuilder.prototype = {
+    get$name(receiver) {
+      return this.name;
+    }
+  };
   A._Modifiers.prototype = {};
   A._ObjectPatternFields.prototype = {};
   A._OperatorName.prototype = {};
   A._OptionalFormalParameters.prototype = {};
   A._ParameterDefaultValue.prototype = {};
   A._ParenthesizedCondition.prototype = {};
-  A._PrimaryConstructorBuilder.prototype = {};
+  A._PrimaryConstructorBuilder.prototype = {
+    build$2$typeName$typeParameters(typeName, typeParameters) {
+      var t1 = this.constructorName,
+        t2 = this.formalParameterList,
+        t3 = new A.PrimaryConstructorDeclarationImpl(this.constKeyword, typeName, typeParameters, t1, t2);
+      t3._becomeParentOf$1$1(typeParameters, type$.nullable_TypeParameterListImpl);
+      t3._becomeParentOf$1$1(t1, type$.nullable_PrimaryConstructorNameImpl);
+      t3._becomeParentOf$1$1(t2, type$.FormalParameterListImpl);
+      return t3;
+    }
+  };
   A._RedirectingFactoryBody.prototype = {};
   A.DocCommentBuilder.prototype = {
     build$0() {
@@ -47679,7 +47667,7 @@
               t7 = openingTag.end;
               t8 = openingTag.type.opposingName;
               t8.toString;
-              t4.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t8], t3), B.WarningTemplate_lvC, t7 - t6, t6);
+              t4.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t8], t3), B.DiagnosticWithArguments_K1w, t7 - t6, t6);
             }
             if (t5)
               A.throwExpression(A.StateError$(_s62_));
@@ -47691,7 +47679,7 @@
         }
       }
       t3 = closingTag.offset;
-      this._diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t2], type$.JSArray_Object), B.WarningTemplate_gnA, closingTag.end - t3, t3);
+      this._diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t2], type$.JSArray_Object), B.DiagnosticWithArguments_SmY, closingTag.end - t3, t3);
       B.JSArray_methods.add$1(B.JSArray_methods.get$last(t1).innerDocDirectives, new A.SimpleDocDirective());
     },
     _fencedCodeBlockDelimiter$2$minimumTickCount($content, minimumTickCount) {
@@ -47748,7 +47736,7 @@
           t5 = openingTag.end;
           t6 = openingTag.type.opposingName;
           t6.toString;
-          t3.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t6], t1), B.WarningTemplate_lvC, t5 - t4, t4);
+          t3.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t6], t1), B.DiagnosticWithArguments_K1w, t5 - t4, t4);
         }
         _this._pushBlockDocDirectiveAndInnerDirectives$1(builder);
       }
@@ -47822,7 +47810,7 @@
           return true;
       }
       t1 = t1.get$_doc_comment_builder$_offset();
-      t3.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([$name], type$.JSArray_Object), B.WarningTemplate_0KU, index1 - index0, t1 + index0);
+      t3.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([$name], type$.JSArray_Object), B.DiagnosticWithArguments_BT7, index1 - index0, t1 + index0);
       return false;
     },
     _parseDocImport$2$content$index($content, index) {
@@ -48254,11 +48242,11 @@
       }
       t1 = _this._doc_comment_builder$_offset + t4;
       _this._end = t1;
-      _this._diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.WarningWithoutArguments_vh2, 1, t1 - 1);
+      A.LiterateDiagnosticReporter_report(_this._diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_bmp, t1 - 1, 1));
       return new A._Record_2(positionalArguments, namedArguments);
     },
     _readClosingCurlyBrace$0() {
-      var t1, t2, t3, t4, t5, extraArgumentsOffset, _this = this;
+      var t1, t2, t3, t4, t5, extraArgumentsOffset, t6, _this = this;
       if (_this._end != null)
         return;
       t1 = _this.index;
@@ -48286,11 +48274,19 @@
           break;
         t1 = _this.index = t1 + 1;
         if (t1 === t2) {
-          _this._diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.WarningWithoutArguments_vh2, 1, t5 + t1 - 1);
+          t2 = _this._diagnosticReporter;
+          t3 = B.DiagnosticWithoutArgumentsImpl_bmp.get$code(0);
+          t4 = B.DiagnosticWithoutArgumentsImpl_bmp.get$$arguments();
+          t6 = B.DiagnosticWithoutArgumentsImpl_bmp.get$contextMessages();
+          t6 = A._setArrayType(t6.slice(0), A._arrayInstanceType(t6));
+          type$.List_Object._as(t4);
+          t6 = type$.List_DiagnosticMessage._as(t6);
+          B.JSArray_methods.addAll$1(t6, A.convertTypeNames(t4, t3.expectedTypes));
+          t2.reportError$1(A.Diagnostic_Diagnostic$tmp(t4, t6, t3, 1, t5 + t1 - 1, t2._listener$_source));
           break;
         }
       }
-      _this._diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.WarningTemplate_X2I, t5 + _this.index - extraArgumentsOffset, extraArgumentsOffset);
+      _this._diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.DiagnosticWithArguments_4eA, t5 + _this.index - extraArgumentsOffset, extraArgumentsOffset);
       _this._end = t5 + _this.index;
     }
   };
@@ -48301,137 +48297,141 @@
         lexeme = new A.FastaErrorReporter_reportByCode_lexeme($arguments);
       switch (pseudoSharedCode) {
         case B.PseudoSharedCode_2:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.CompileTimeErrorWithoutArguments_PJl, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_XrN, offset, $length));
           return;
         case B.PseudoSharedCode_3:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_GmL, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_GTJ, offset, $length));
           return;
         case B.PseudoSharedCode_4:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.CompileTimeErrorWithoutArguments_WN1, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_a9v, offset, $length));
           return;
         case B.PseudoSharedCode_5:
-          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([lexeme.call$0()], type$.JSArray_Object), B.CompileTimeErrorTemplate_h3I, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, A._withArgumentsBuiltInIdentifierAsType(lexeme.call$0()).atOffset$2$length$offset($length, offset));
           return;
         case B.PseudoSharedCode_7:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_CCa, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_eyo, offset, $length));
           return;
         case B.PseudoSharedCode_8:
-          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([A._asString($arguments.$index(0, "name"))], type$.JSArray_Object), B.CompileTimeErrorTemplate_axY, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, A._withArgumentsConstNotInitialized(A._asString($arguments.$index(0, "name"))).atOffset$2$length$offset($length, offset));
           return;
         case B.PseudoSharedCode_9:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_YZL, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_XWY, offset, $length));
           return;
         case B.PseudoSharedCode_11:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_1QZ, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_e5m, offset, $length));
           return;
         case B.PseudoSharedCode_12:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_ViY, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_YFc, offset, $length));
           return;
         case B.PseudoSharedCode_13:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_f5r, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_tEf, offset, $length));
           return;
         case B.PseudoSharedCode_14:
           t1 = $arguments.$index(0, "string");
-          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t1 == null ? A._asObject(t1) : t1], type$.JSArray_Object), B.ParserErrorTemplate_fwC, $length, offset);
+          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([t1 == null ? A._asObject(t1) : t1], type$.JSArray_Object), B.DiagnosticWithArguments_iNd, $length, offset);
           return;
         case B.PseudoSharedCode_15:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_F0V, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_zlv, offset, $length));
           return;
         case B.PseudoSharedCode_16:
           return;
         case B.PseudoSharedCode_20:
-          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([A._asString($arguments.$index(0, "name"))], type$.JSArray_Object), B.CompileTimeErrorTemplate_KtO, $length, offset);
+          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([A._asString($arguments.$index(0, "name"))], type$.JSArray_Object), B.DiagnosticWithArguments_Goi, $length, offset);
           return;
         case B.PseudoSharedCode_21:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_kMf, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_j6x, offset, $length));
           return;
         case B.PseudoSharedCode_22:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ScannerErrorTemplate_xU1, $length, offset);
+          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.DiagnosticWithArguments_X9O, $length, offset);
           return;
         case B.PseudoSharedCode_27:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.CompileTimeErrorWithoutArguments_fOx, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_7ab, offset, $length));
           return;
         case B.PseudoSharedCode_28:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_j79, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_Nfz, offset, $length));
           return;
         case B.PseudoSharedCode_26:
-          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType(["\\u{...}"], type$.JSArray_Object), B.ParserErrorTemplate_gzW, $length, offset);
+          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType(["\\u{...}"], type$.JSArray_Object), B.DiagnosticWithArguments_8r5, $length, offset);
           return;
         case B.PseudoSharedCode_29:
           t1 = _this.diagnosticReporter;
           t2 = message.get$$arguments();
           t2 = t2.get$values(t2);
           t2 = A.List_List$_of(t2, A._instanceType(t2)._eval$1("Iterable.E"));
-          t1.reportError$1(A.Diagnostic_Diagnostic$tmp(t2, B.List_empty3, B.CompileTimeErrorWithoutArguments_TYw, $length, offset, t1._listener$_source));
+          t1.reportError$1(A.Diagnostic_Diagnostic$tmp(t2, B.List_empty3, B.DiagnosticWithoutArgumentsImpl_YKL, $length, offset, t1._listener$_source));
           return;
         case B.PseudoSharedCode_30:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ScannerErrorWithoutArguments_hrw, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_yhF, offset, $length));
           return;
         case B.PseudoSharedCode_31:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_Swm, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_y54, offset, $length));
           return;
         case B.PseudoSharedCode_32:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_1pM, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_0jM, offset, $length));
           return;
         case B.PseudoSharedCode_33:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_A9c, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_YzJ, offset, $length));
           return;
         case B.PseudoSharedCode_34:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ScannerErrorWithoutArguments_nVy, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_3oZ, offset, $length));
           return;
         case B.PseudoSharedCode_35:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_cbm, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_P07, offset, $length));
           return;
         case B.PseudoSharedCode_36:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_lWQ, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_Ei6, offset, $length));
           return;
         case B.PseudoSharedCode_37:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_Ha9, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_Voh, offset, $length));
           return;
         case B.PseudoSharedCode_38:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_9ar, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_foq, offset, $length));
           return;
         case B.PseudoSharedCode_39:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_k4O, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_RWF, offset, $length));
           return;
         case B.PseudoSharedCode_40:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_lfe, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_Rlf, offset, $length));
           return;
         case B.PseudoSharedCode_41:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_4HU, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_ead, offset, $length));
           return;
         case B.PseudoSharedCode_42:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_Eeh, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_ntl, offset, $length));
           return;
         case B.PseudoSharedCode_44:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.CompileTimeErrorWithoutArguments_vhm, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_0pO, offset, $length));
           return;
         case B.PseudoSharedCode_45:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_J37, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_LAu, offset, $length));
           return;
-        case B.PseudoSharedCode_47:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.CompileTimeErrorWithoutArguments_2j7, $length, offset);
+        case B.PseudoSharedCode_48:
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_KcT, offset, $length));
           return;
-        case B.PseudoSharedCode_49:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ScannerErrorWithoutArguments_Eat, $length, offset);
+        case B.PseudoSharedCode_50:
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_etx, offset, $length));
           return;
-        case B.PseudoSharedCode_51:
-          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([lexeme.call$0()], type$.JSArray_Object), B.ParserErrorTemplate_HFR, $length, offset);
-          return;
-        case B.PseudoSharedCode_54:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ScannerErrorWithoutArguments_WRp, $length, offset);
+        case B.PseudoSharedCode_52:
+          _this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(A._setArrayType([lexeme.call$0()], type$.JSArray_Object), B.DiagnosticWithArguments_OI4, $length, offset);
           return;
         case B.PseudoSharedCode_55:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ScannerErrorWithoutArguments_EDR, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_eaQ, offset, $length));
           return;
         case B.PseudoSharedCode_56:
-          _this.diagnosticReporter.atOffset$3$diagnosticCode$length$offset(B.ParserErrorWithoutArguments_5G6, $length, offset);
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_cbK, offset, $length));
           return;
         case B.PseudoSharedCode_57:
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_V7L, offset, $length));
+          return;
+        case B.PseudoSharedCode_58:
           return;
         case B.PseudoSharedCode_6:
           return;
+        case B.PseudoSharedCode_47:
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_XDo, offset, $length));
+          return;
         case B.PseudoSharedCode_46:
+          A.LiterateDiagnosticReporter_report(_this.diagnosticReporter, new A.LocatedDiagnostic(B.DiagnosticWithoutArgumentsImpl_SNH, offset, $length));
           return;
         case B.PseudoSharedCode_43:
           return;
@@ -48442,10 +48442,10 @@
         case B.PseudoSharedCode_17:
           return;
         case B.PseudoSharedCode_10:
-        case B.PseudoSharedCode_50:
-        case B.PseudoSharedCode_53:
+        case B.PseudoSharedCode_51:
+        case B.PseudoSharedCode_54:
           return;
-        case B.PseudoSharedCode_48:
+        case B.PseudoSharedCode_49:
           return;
         case B.PseudoSharedCode_1:
           return;
@@ -48453,42 +48453,42 @@
         case B.PseudoSharedCode_23:
         case B.PseudoSharedCode_24:
         case B.PseudoSharedCode_25:
-        case B.PseudoSharedCode_52:
+        case B.PseudoSharedCode_53:
         case null:
         case void 0:
           break;
       }
     },
     reportMessage$3(message, offset, $length) {
-      var t1, errorCode, t2,
+      var t1, diagnosticCode, t2,
         code = message.get$code(message),
         _0_0 = code.sharedCode;
       if (_0_0 != null) {
         t1 = _0_0.index;
-        if (!(t1 < 177))
+        if (!(t1 < 180))
           return A.ioore($.sharedAnalyzerCodes, t1);
-        errorCode = $.sharedAnalyzerCodes[t1];
+        diagnosticCode = $.sharedAnalyzerCodes[t1];
         t1 = this.diagnosticReporter;
         t2 = message.get$$arguments();
         t2 = t2.get$values(t2);
         t2 = A.List_List$_of(t2, A._instanceType(t2)._eval$1("Iterable.E"));
-        t1.reportError$1(A.Diagnostic_Diagnostic$tmp(t2, B.List_empty3, errorCode, $length, offset, t1._listener$_source));
+        t1.reportError$1(A.Diagnostic_Diagnostic$tmp(t2, B.List_empty3, diagnosticCode, $length, offset, t1._listener$_source));
         return;
       }
       this.reportByCode$4(code.pseudoSharedCode, offset, $length, message);
     },
-    reportScannerError$3(errorCode, offset, $arguments) {
+    reportScannerError$3(code, offset, $arguments) {
       var t1;
       type$.nullable_List_Object._as($arguments);
       t1 = $arguments == null ? B.List_empty4 : $arguments;
-      this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(t1, errorCode, 1, offset);
+      this.diagnosticReporter.atOffset$4$arguments$diagnosticCode$length$offset(t1, code, 1, offset);
     }
   };
   A.FastaErrorReporter_reportByCode_lexeme.prototype = {
     call$0() {
       return type$.Token._as(this.$arguments.$index(0, "lexeme")).get$lexeme();
     },
-    $signature: 34
+    $signature: 33
   };
   A.Parser0.prototype = {};
   A.ParameterKind.prototype = {
@@ -48654,7 +48654,7 @@
     call$0() {
       return A.HashSet_HashSet(new A.defaultConfigLookup__closure(), new A.defaultConfigLookup__closure0(), type$.ATNConfig);
     },
-    $signature: 35
+    $signature: 34
   };
   A.defaultConfigLookup__closure.prototype = {
     call$2(a, b) {
@@ -48663,7 +48663,7 @@
       t1._as(b);
       return a.state.stateNumber === b.state.stateNumber && a.alt === b.alt && a.semanticContext.$eq(0, b.semanticContext);
     },
-    $signature: 36
+    $signature: 35
   };
   A.defaultConfigLookup__closure0.prototype = {
     call$1(o) {
@@ -48672,7 +48672,7 @@
       t1 = o.semanticContext;
       return 31 * (31 * (217 + o.state.stateNumber) + o.alt) + t1.get$hashCode(t1);
     },
-    $signature: 23
+    $signature: 24
   };
   A.ATNConfigSet.prototype = {
     set$readOnly(_, readOnly) {
@@ -49327,7 +49327,7 @@
         return A.ioore(B.List_Oq5, t2);
       return t1.lexerActionFactory$3(B.List_Oq5[t2], t1.readInt$0(), t1.readInt$0());
     },
-    $signature: 38
+    $signature: 37
   };
   A.ATNSimulator.prototype = {
     getCachedContext$1(context) {
@@ -50894,14 +50894,14 @@
         return false;
       return a.state.stateNumber === b.state.stateNumber && J.$eq$(a.context, b.context);
     },
-    $signature: 39
+    $signature: 38
   };
   A.PredictionModeExtension_getConflictingAltSubsets_closure0.prototype = {
     call$1(o) {
       type$.ATNConfig._as(o);
       return A.MurmurHash_finish(A.MurmurHash_update(A.MurmurHash_update(7, o.state.stateNumber), o.context), 2);
     },
-    $signature: 23
+    $signature: 24
   };
   A.SemanticContext.prototype = {
     evalPrecedence$2(parser, parserCallStack) {
@@ -50913,7 +50913,7 @@
     call$1(e) {
       return !(type$.SemanticContext._as(e) instanceof A.PrecedencePredicate);
     },
-    $signature: 40
+    $signature: 39
   };
   A.Predicate.prototype = {
     eval$2(parser, parserCallStack) {
@@ -51058,7 +51058,7 @@
       t1._as(b);
       return a.precedence - b.precedence <= 0 ? a : b;
     },
-    $signature: 24
+    $signature: 25
   };
   A.OR.prototype = {
     OR$2(a, b) {
@@ -51159,7 +51159,7 @@
       t1._as(b);
       return a.precedence - b.precedence >= 0 ? a : b;
     },
-    $signature: 24
+    $signature: 25
   };
   A.TransitionType.prototype = {
     _enumToString$0() {
@@ -51376,7 +51376,7 @@
       t1._as(o2);
       return o1.stateNumber - o2.stateNumber;
     },
-    $signature: 42
+    $signature: 41
   };
   A.DFASerializer.prototype = {
     toString$0(_) {
@@ -52103,7 +52103,7 @@
       }
       return buf;
     },
-    $signature: 43
+    $signature: 42
   };
   A.Lexer.prototype = {
     nextToken$0() {
@@ -73342,7 +73342,7 @@
     call$1(c) {
       return type$.FileNode._as(c).path === this.node.path;
     },
-    $signature: 44
+    $signature: 43
   };
   A.DartAnalyzerApp__loadFilesFromZip_closure0.prototype = {
     call$1(p) {
@@ -73356,14 +73356,14 @@
       t1.toString;
       return t1;
     },
-    $signature: 46
+    $signature: 45
   };
   A.DartAnalyzerApp__loadFilesFromZip_closure2.prototype = {
     call$2(a, b) {
       var t1 = type$.FileNode;
       return B.JSString_methods.compareTo$1(t1._as(a).name, t1._as(b).name);
     },
-    $signature: 25
+    $signature: 26
   };
   A.DartAnalyzerApp__loadFilesFromZip_sortChildren.prototype = {
     call$1(node) {
@@ -73377,7 +73377,7 @@
         }
       }
     },
-    $signature: 48
+    $signature: 47
   };
   A.DartAnalyzerApp__loadFilesFromZip_sortChildren_closure.prototype = {
     call$2(a, b) {
@@ -73389,7 +73389,7 @@
         return t1 ? -1 : 1;
       return B.JSString_methods.compareTo$1(a.name, b.name);
     },
-    $signature: 25
+    $signature: 26
   };
   A.DartAnalyzerApp__fetchZipFile_closure.prototype = {
     call$1(_) {
@@ -73425,19 +73425,19 @@
     call$1(node) {
       return this.call$2$expanded(node, false);
     },
-    $signature: 50
+    $signature: 49
   };
   A.DartAnalyzerApp__renderFileTree_renderNode_closure.prototype = {
     call$1(c) {
       return this.renderNode.call$2$expanded(type$.FileNode._as(c), false);
     },
-    $signature: 26
+    $signature: 27
   };
   A.DartAnalyzerApp__renderFileTree_closure.prototype = {
     call$1(n) {
       return this.renderNode.call$2$expanded(type$.FileNode._as(n), true);
     },
-    $signature: 26
+    $signature: 27
   };
   A.DartAnalyzerApp__setupTreeInteractions_closure.prototype = {
     call$1(e) {
@@ -73926,28 +73926,32 @@
     },
     _ast_plugin$_generateHtml$2(root, errors) {
       var t1, t2, _i,
-        _s167_ = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v9.0.0</span>\n</div>\n<div class="ast-errors">\n',
+        _s168_ = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n</div>\n<div class="ast-errors">\n',
         buffer = new A.StringBuffer("");
       buffer._contents = '<div class="ast-view">\n';
       buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n';
       buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n';
-      buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v9.0.0</span>\n';
-      t1 = buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v9.0.0</span>\n</div>\n';
-      t2 = errors.length;
-      if (t2 !== 0) {
-        buffer._contents = _s167_;
-        t1 = _s167_ + ("<h4>Parse Errors (" + t2 + ")</h4>\n");
-        buffer._contents = t1;
-        t1 = buffer._contents = t1 + "<ul>\n";
-        for (_i = 0; _i < errors.length; errors.length === t2 || (0, A.throwConcurrentModificationError)(errors), ++_i) {
-          t1 = J.toString$0$(errors[_i]);
-          t1 = A.stringReplaceAllUnchecked(t1, "&", "&amp;");
-          t1 = A.stringReplaceAllUnchecked(t1, "<", "&lt;");
-          t1 = A.stringReplaceAllUnchecked(t1, ">", "&gt;");
-          t1 = '<li class="error-item">' + A.stringReplaceAllUnchecked(t1, '"', "&quot;") + "</li>\n";
-          t1 = buffer._contents += t1;
+      buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n';
+      buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n</div>\n';
+      t1 = errors.length;
+      if (t1 !== 0) {
+        buffer._contents = _s168_;
+        t2 = _s168_ + ("<h4>Parse Diagnostics (" + t1 + ")</h4>\n");
+        buffer._contents = t2;
+        t2 = buffer._contents = t2 + "<ul>\n";
+        for (_i = 0; _i < errors.length; errors.length === t1 || (0, A.throwConcurrentModificationError)(errors), ++_i) {
+          t2 = J.toString$0$(errors[_i]);
+          t2 = A.stringReplaceAllUnchecked(t2, "&", "&amp;");
+          t2 = A.stringReplaceAllUnchecked(t2, "<", "&lt;");
+          t2 = A.stringReplaceAllUnchecked(t2, ">", "&gt;");
+          t2 = '<li class="error-item">' + A.stringReplaceAllUnchecked(t2, '"', "&quot;") + "</li>\n";
+          t2 = buffer._contents += t2;
         }
-        t1 = buffer._contents = t1 + "</ul></div>\n";
+        t1 = buffer._contents = t2 + "</ul></div>\n";
+      } else {
+        buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n</div>\n<div class="diagnostics-success">\n';
+        buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n</div>\n<div class="diagnostics-success">\n<span class="success-icon">&#10003;</span> No diagnostics produced\n';
+        t1 = buffer._contents = '<div class="ast-view">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n</div>\n<div class="diagnostics-success">\n<span class="success-icon">&#10003;</span> No diagnostics produced\n</div>\n';
       }
       buffer._contents = t1 + '<div class="ast-tree">\n';
       this._ast_plugin$_writeNode$3(buffer, root, 0);
@@ -74067,16 +74071,11 @@
     },
     visitClassDeclaration$1(node) {
       var t1, t2, t3, t4, _this = this;
-      _this._push$1(_this._node$3$name("ClassDeclaration", node, node.name.get$lexeme()));
+      _this._push$1(_this._node$3$name("ClassDeclaration", node, node._namePart.get$typeName().get$lexeme()));
       t1 = node._extendsClause;
       if (t1 != null)
         B.JSArray_methods.add$1(B.JSArray_methods.get$last(_this._stack).children, _this._node$3$value("ExtendsClause", t1, t1._superclass.name.get$lexeme()));
-      t1 = node._members;
-      t2 = t1.$ti;
-      t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>"));
-      t3 = type$.void;
-      t2 = t2._eval$1("ListBase.E");
-      while (t1.moveNext$0()) {
+      for (t1 = type$.BlockClassBodyImpl._as(node._body).members, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = type$.void, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
         t4 = t1.__internal$_current;
         (t4 == null ? t2._as(t4) : t4).accept$1$1(0, _this, t3);
       }
@@ -74600,7 +74599,7 @@
     process$body$TokenStreamPlugin(sourceCode, context) {
       var $async$goto = 0,
         $async$completer = A._makeAsyncAwaitCompleter(type$.PluginResult),
-        $async$returnValue, $async$self = this, stopwatch, result, tokens, token, comment, html, e, t1, t2, t3, t4, exception, stopwatch0;
+        $async$returnValue, $async$self = this, stopwatch, result, tokens, token, comment, html, hasIssues, e, t1, t2, t3, t4, exception, stopwatch0;
       var $async$process$2 = A._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
         if ($async$errorCode === 1)
           return A._asyncRethrow($async$result, $async$completer);
@@ -74639,9 +74638,10 @@
                 t1 = stopwatch;
                 if (t1._stop == null)
                   t1._stop = $.Primitives_timerTicks.call$0();
-                html = $async$self._token_stream_plugin$_generateHtml$1(tokens);
+                html = $async$self._token_stream_plugin$_generateHtml$2(tokens, result.errors);
+                hasIssues = result.errors.length !== 0;
                 t1 = A.Duration$(stopwatch.get$elapsedMicroseconds());
-                $async$returnValue = new A.PluginResult(true, html, null, t1, false);
+                $async$returnValue = new A.PluginResult(true, html, null, t1, hasIssues);
                 // goto return
                 $async$goto = 1;
                 break;
@@ -74695,21 +74695,23 @@
       }
       return column;
     },
-    _token_stream_plugin$_generateHtml$1(tokens) {
-      var t1, _i, t2, t3, token, cssClass;
+    _token_stream_plugin$_generateHtml$2(tokens, errors) {
+      var t1, t2, _i, t3, token;
       type$.List__TokenInfo_2._as(tokens);
-      for (t1 = tokens.length, _i = 0, t2 = '<div class="token-stream">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v9.0.0</span>\n</div>\n<table class="token-table">\n<thead><tr>\n<th>Line</th><th>Col</th><th>Type</th><th>Lexeme</th>\n</tr></thead>\n<tbody>\n'; t3 = tokens.length, _i < t3; tokens.length === t1 || (0, A.throwConcurrentModificationError)(tokens), ++_i) {
+      t1 = errors.length;
+      if (t1 !== 0) {
+        t2 = '<div class="token-stream">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n</div>\n<div class="ast-errors">\n' + ("<h4>Tokenization Diagnostics (" + t1 + ")</h4>\n") + "<ul>\n";
+        for (_i = 0; _i < errors.length; errors.length === t1 || (0, A.throwConcurrentModificationError)(errors), ++_i)
+          t2 += '<li class="error-item">' + this._token_stream_plugin$_escapeHtml$1(J.toString$0$(errors[_i])) + "</li>\n";
+        t1 = t2 + "</ul></div>\n";
+      } else
+        t1 = '<div class="token-stream">\n<div class="plugin-header">\n<span class="plugin-badge">Analyzer</span>\n<span class="version-info">v10.0.0</span>\n</div>\n<div class="diagnostics-success">\n<span class="success-icon">&#10003;</span> No diagnostics produced\n</div>\n';
+      t1 += '<table class="token-table">\n<thead><tr>\n<th>Line</th><th>Col</th><th>Type</th><th>Lexeme</th>\n</tr></thead>\n<tbody>\n';
+      for (t2 = tokens.length, _i = 0; t3 = tokens.length, _i < t3; tokens.length === t2 || (0, A.throwConcurrentModificationError)(tokens), ++_i) {
         token = tokens[_i];
-        cssClass = this._token_stream_plugin$_getCssClass$1(token);
-        t3 = A.stringReplaceAllUnchecked(token.lexeme, "&", "&amp;");
-        t3 = A.stringReplaceAllUnchecked(t3, "<", "&lt;");
-        t3 = A.stringReplaceAllUnchecked(t3, ">", "&gt;");
-        t3 = A.stringReplaceAllUnchecked(t3, '"', "&quot;");
-        t3 = A.stringReplaceAllUnchecked(t3, "\n", "\u21b5");
-        t3 = A.stringReplaceAllUnchecked(t3, "\t", "\u2192");
-        t2 = t2 + ('<tr class="' + cssClass + '" data-offset="' + token.offset + '" data-length="' + token.length + '">\n') + ('<td class="line-num">' + token.line + "</td>\n") + ('<td class="col-num">' + token.column + "</td>\n") + ('<td class="token-type">' + token.type + "</td>\n") + ('<td class="token-lexeme"><code>' + A.stringReplaceAllUnchecked(t3, " ", "\xb7") + "</code></td>\n") + "</tr>\n";
+        t1 = t1 + ('<tr class="' + this._token_stream_plugin$_getCssClass$1(token) + '" data-offset="' + token.offset + '" data-length="' + token.length + '">\n') + ('<td class="line-num">' + token.line + "</td>\n") + ('<td class="col-num">' + token.column + "</td>\n") + ('<td class="token-type">' + token.type + "</td>\n") + ('<td class="token-lexeme"><code>' + this._token_stream_plugin$_escapeHtml$1(token.lexeme) + "</code></td>\n") + "</tr>\n";
       }
-      t1 = t2 + "</tbody></table>\n" + ('<div class="token-count">Total: ' + t3 + " tokens</div>\n") + "</div>\n";
+      t1 = t1 + "</tbody></table>\n" + ('<div class="token-count">Total: ' + t3 + " tokens</div>\n") + "</div>\n";
       return t1.charCodeAt(0) == 0 ? t1 : t1;
     },
     _token_stream_plugin$_getCssClass$1(token) {
@@ -74726,6 +74728,15 @@
       if (B.JSString_methods.contains$1(type, "identifier"))
         return "token-identifier";
       return "token-default";
+    },
+    _token_stream_plugin$_escapeHtml$1(text) {
+      var t1 = A.stringReplaceAllUnchecked(text, "&", "&amp;");
+      t1 = A.stringReplaceAllUnchecked(t1, "<", "&lt;");
+      t1 = A.stringReplaceAllUnchecked(t1, ">", "&gt;");
+      t1 = A.stringReplaceAllUnchecked(t1, '"', "&quot;");
+      t1 = A.stringReplaceAllUnchecked(t1, "\n", "\u21b5");
+      t1 = A.stringReplaceAllUnchecked(t1, "\t", "\u2192");
+      return A.stringReplaceAllUnchecked(t1, " ", "\xb7");
     }
   };
   A.TokenStreamPlugin_process_closure.prototype = {
@@ -74733,7 +74744,7 @@
       var t1 = type$._TokenInfo;
       return B.JSInt_methods.compareTo$1(t1._as(a).offset, t1._as(b).offset);
     },
-    $signature: 65
+    $signature: 51
   };
   A._TokenInfo0.prototype = {
     get$length(receiver) {
@@ -74816,7 +74827,7 @@
       A._asStringQ(arg);
       return arg == null ? "null" : '"' + arg + '"';
     },
-    $signature: 53
+    $signature: 79
   };
   A.InternalStyle.prototype = {
     getRoot$1(path) {
@@ -75190,7 +75201,7 @@
       t1 = A.Primitives_parseInt(part, null);
       return t1 == null ? part : t1;
     },
-    $signature: 54
+    $signature: 53
   };
   A.EventStreamProvider.prototype = {};
   A._EventStream.prototype = {};
@@ -75222,8 +75233,6 @@
     _.super$_HashSet$_add = _._add$1;
     _ = A.ListBase.prototype;
     _.super$ListBase$setRange = _.setRange$4;
-    _ = A.Object.prototype;
-    _.super$Object$noSuchMethod = _.noSuchMethod$1;
     _ = A.ForwardingListener.prototype;
     _.super$ForwardingListener$endConditionalUri = _.endConditionalUri$3;
     _.super$ForwardingListener$endHide = _.endHide$1;
@@ -75252,24 +75261,24 @@
       _static = hunkHelpers.installStaticTearOff,
       _instance = hunkHelpers.installInstanceTearOff,
       _instance_2_u = hunkHelpers._instance_2u;
-    _static_0(A, "_js_helper_Primitives_dateNow$closure", "Primitives_dateNow", 22);
+    _static_0(A, "_js_helper_Primitives_dateNow$closure", "Primitives_dateNow", 23);
     _static_1(A, "async__AsyncRun__scheduleImmediateJsOverride$closure", "_AsyncRun__scheduleImmediateJsOverride", 15);
     _static_1(A, "async__AsyncRun__scheduleImmediateWithSetImmediate$closure", "_AsyncRun__scheduleImmediateWithSetImmediate", 15);
     _static_1(A, "async__AsyncRun__scheduleImmediateWithTimer$closure", "_AsyncRun__scheduleImmediateWithTimer", 15);
     _static_0(A, "async___startMicrotaskLoop$closure", "_startMicrotaskLoop", 2);
-    _static_1(A, "core__identityHashCode$closure", "identityHashCode", 56);
-    _static_2(A, "core__identical$closure", "identical", 57);
-    _static_1(A, "core_Uri_decodeComponent$closure", "Uri_decodeComponent", 21);
-    _static(A, "codes___withArgumentsAsciiControlCharacter$closure", 0, null, ["call$1$character"], ["_withArgumentsAsciiControlCharacter"], 58, 0);
-    _static_1(A, "codes___withArgumentsOldAsciiControlCharacter$closure", "_withArgumentsOldAsciiControlCharacter", 27);
-    _static(A, "codes___withArgumentsBinaryOperatorWrittenOut$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsBinaryOperatorWrittenOut"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldBinaryOperatorWrittenOut$closure", "_withArgumentsOldBinaryOperatorWrittenOut", 6);
-    _static(A, "codes___withArgumentsBuiltInIdentifierAsType$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsBuiltInIdentifierAsType"], 0, 0);
+    _static_1(A, "core__identityHashCode$closure", "identityHashCode", 55);
+    _static_2(A, "core__identical$closure", "identical", 56);
+    _static_1(A, "core_Uri_decodeComponent$closure", "Uri_decodeComponent", 22);
+    _static(A, "codes___withArgumentsAsciiControlCharacter$closure", 0, null, ["call$1$character"], ["_withArgumentsAsciiControlCharacter"], 57, 0);
+    _static_1(A, "codes___withArgumentsOldAsciiControlCharacter$closure", "_withArgumentsOldAsciiControlCharacter", 28);
+    _static(A, "codes___withArgumentsBinaryOperatorWrittenOut$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsBinaryOperatorWrittenOut"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldBinaryOperatorWrittenOut$closure", "_withArgumentsOldBinaryOperatorWrittenOut", 4);
+    _static(A, "codes___withArgumentsBuiltInIdentifierAsType$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsBuiltInIdentifierAsType0"], 0, 0);
     _static_1(A, "codes___withArgumentsOldBuiltInIdentifierAsType$closure", "_withArgumentsOldBuiltInIdentifierAsType", 1);
     _static(A, "codes___withArgumentsBuiltInIdentifierInDeclaration$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsBuiltInIdentifierInDeclaration"], 0, 0);
     _static_1(A, "codes___withArgumentsOldBuiltInIdentifierInDeclaration$closure", "_withArgumentsOldBuiltInIdentifierInDeclaration", 1);
-    _static(A, "codes___withArgumentsConflictingModifiers$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsConflictingModifiers"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldConflictingModifiers$closure", "_withArgumentsOldConflictingModifiers", 6);
+    _static(A, "codes___withArgumentsConflictingModifiers$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsConflictingModifiers"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldConflictingModifiers$closure", "_withArgumentsOldConflictingModifiers", 4);
     _static(A, "codes___withArgumentsConstFieldWithoutInitializer$closure", 0, null, ["call$1$name"], ["_withArgumentsConstFieldWithoutInitializer"], 8, 0);
     _static_1(A, "codes___withArgumentsOldConstFieldWithoutInitializer$closure", "_withArgumentsOldConstFieldWithoutInitializer", 3);
     _static(A, "codes___withArgumentsDuplicateLabelInSwitchStatement$closure", 0, null, ["call$1$name"], ["_withArgumentsDuplicateLabelInSwitchStatement"], 8, 0);
@@ -75280,6 +75289,8 @@
     _static_1(A, "codes___withArgumentsOldExpectedAfterButGot$closure", "_withArgumentsOldExpectedAfterButGot", 3);
     _static(A, "codes___withArgumentsExpectedButGot$closure", 0, null, ["call$1$string"], ["_withArgumentsExpectedButGot"], 10, 0);
     _static_1(A, "codes___withArgumentsOldExpectedButGot$closure", "_withArgumentsOldExpectedButGot", 3);
+    _static(A, "codes___withArgumentsExpectedButGot2$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsExpectedButGot2"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldExpectedButGot2$closure", "_withArgumentsOldExpectedButGot2", 4);
     _static(A, "codes___withArgumentsExpectedClassMember$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsExpectedClassMember"], 0, 0);
     _static_1(A, "codes___withArgumentsOldExpectedClassMember$closure", "_withArgumentsOldExpectedClassMember", 1);
     _static(A, "codes___withArgumentsExpectedDeclaration$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsExpectedDeclaration"], 0, 0);
@@ -75300,8 +75311,8 @@
     _static_1(A, "codes___withArgumentsOldExpectedToken$closure", "_withArgumentsOldExpectedToken", 3);
     _static(A, "codes___withArgumentsExpectedType$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsExpectedType"], 0, 0);
     _static_1(A, "codes___withArgumentsOldExpectedType$closure", "_withArgumentsOldExpectedType", 1);
-    _static(A, "codes___withArgumentsExperimentNotEnabled$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsExperimentNotEnabled"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldExperimentNotEnabled$closure", "_withArgumentsOldExperimentNotEnabled", 6);
+    _static(A, "codes___withArgumentsExperimentNotEnabled$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsExperimentNotEnabled"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldExperimentNotEnabled$closure", "_withArgumentsOldExperimentNotEnabled", 4);
     _static(A, "codes___withArgumentsExperimentNotEnabledOffByDefault$closure", 0, null, ["call$1$string"], ["_withArgumentsExperimentNotEnabledOffByDefault"], 10, 0);
     _static_1(A, "codes___withArgumentsOldExperimentNotEnabledOffByDefault$closure", "_withArgumentsOldExperimentNotEnabledOffByDefault", 3);
     _static(A, "codes___withArgumentsExtraneousModifier$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsExtraneousModifier"], 0, 0);
@@ -75320,10 +75331,10 @@
     _static_1(A, "codes___withArgumentsOldIllegalPatternIdentifierName$closure", "_withArgumentsOldIllegalPatternIdentifierName", 1);
     _static(A, "codes___withArgumentsIllegalPatternVariableName$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsIllegalPatternVariableName"], 0, 0);
     _static_1(A, "codes___withArgumentsOldIllegalPatternVariableName$closure", "_withArgumentsOldIllegalPatternVariableName", 1);
-    _static(A, "codes___withArgumentsInternalProblemStackNotEmpty$closure", 0, null, ["call$2$name$string"], ["_withArgumentsInternalProblemStackNotEmpty"], 67, 0);
-    _static_2(A, "codes___withArgumentsOldInternalProblemStackNotEmpty$closure", "_withArgumentsOldInternalProblemStackNotEmpty", 6);
-    _static(A, "codes___withArgumentsInternalProblemUnhandled$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsInternalProblemUnhandled"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldInternalProblemUnhandled$closure", "_withArgumentsOldInternalProblemUnhandled", 6);
+    _static(A, "codes___withArgumentsInternalProblemStackNotEmpty$closure", 0, null, ["call$2$name$string"], ["_withArgumentsInternalProblemStackNotEmpty"], 66, 0);
+    _static_2(A, "codes___withArgumentsOldInternalProblemStackNotEmpty$closure", "_withArgumentsOldInternalProblemStackNotEmpty", 4);
+    _static(A, "codes___withArgumentsInternalProblemUnhandled$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsInternalProblemUnhandled"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldInternalProblemUnhandled$closure", "_withArgumentsOldInternalProblemUnhandled", 4);
     _static(A, "codes___withArgumentsInvalidConstantPatternBinary$closure", 0, null, ["call$1$name"], ["_withArgumentsInvalidConstantPatternBinary"], 8, 0);
     _static_1(A, "codes___withArgumentsOldInvalidConstantPatternBinary$closure", "_withArgumentsOldInvalidConstantPatternBinary", 3);
     _static(A, "codes___withArgumentsInvalidConstantPatternUnary$closure", 0, null, ["call$1$name"], ["_withArgumentsInvalidConstantPatternUnary"], 8, 0);
@@ -75334,16 +75345,16 @@
     _static_2(A, "codes___withArgumentsOldLiteralWithClass$closure", "_withArgumentsOldLiteralWithClass", 17);
     _static(A, "codes___withArgumentsLiteralWithClassAndNew$closure", 0, null, ["call$2$lexeme$string"], ["_withArgumentsLiteralWithClassAndNew"], 16, 0);
     _static_2(A, "codes___withArgumentsOldLiteralWithClassAndNew$closure", "_withArgumentsOldLiteralWithClassAndNew", 17);
-    _static(A, "codes___withArgumentsModifierOutOfOrder$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsModifierOutOfOrder"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldModifierOutOfOrder$closure", "_withArgumentsOldModifierOutOfOrder", 6);
-    _static(A, "codes___withArgumentsMultipleClauses$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsMultipleClauses"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldMultipleClauses$closure", "_withArgumentsOldMultipleClauses", 6);
-    _static(A, "codes___withArgumentsNonAsciiIdentifier$closure", 0, null, ["call$2$character$unicode"], ["_withArgumentsNonAsciiIdentifier"], 70, 0);
-    _static_2(A, "codes___withArgumentsOldNonAsciiIdentifier$closure", "_withArgumentsOldNonAsciiIdentifier", 71);
-    _static(A, "codes___withArgumentsNonAsciiWhitespace$closure", 0, null, ["call$1$unicode"], ["_withArgumentsNonAsciiWhitespace"], 72, 0);
-    _static_1(A, "codes___withArgumentsOldNonAsciiWhitespace$closure", "_withArgumentsOldNonAsciiWhitespace", 27);
-    _static(A, "codes___withArgumentsOutOfOrderClauses$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsOutOfOrderClauses"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldOutOfOrderClauses$closure", "_withArgumentsOldOutOfOrderClauses", 6);
+    _static(A, "codes___withArgumentsModifierOutOfOrder$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsModifierOutOfOrder"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldModifierOutOfOrder$closure", "_withArgumentsOldModifierOutOfOrder", 4);
+    _static(A, "codes___withArgumentsMultipleClauses$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsMultipleClauses"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldMultipleClauses$closure", "_withArgumentsOldMultipleClauses", 4);
+    _static(A, "codes___withArgumentsNonAsciiIdentifier$closure", 0, null, ["call$2$character$unicode"], ["_withArgumentsNonAsciiIdentifier"], 69, 0);
+    _static_2(A, "codes___withArgumentsOldNonAsciiIdentifier$closure", "_withArgumentsOldNonAsciiIdentifier", 70);
+    _static(A, "codes___withArgumentsNonAsciiWhitespace$closure", 0, null, ["call$1$unicode"], ["_withArgumentsNonAsciiWhitespace"], 71, 0);
+    _static_1(A, "codes___withArgumentsOldNonAsciiWhitespace$closure", "_withArgumentsOldNonAsciiWhitespace", 28);
+    _static(A, "codes___withArgumentsOutOfOrderClauses$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsOutOfOrderClauses"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldOutOfOrderClauses$closure", "_withArgumentsOldOutOfOrderClauses", 4);
     _static(A, "codes___withArgumentsPatternAssignmentDeclaresVariable$closure", 0, null, ["call$1$name"], ["_withArgumentsPatternAssignmentDeclaresVariable"], 8, 0);
     _static_1(A, "codes___withArgumentsOldPatternAssignmentDeclaresVariable$closure", "_withArgumentsOldPatternAssignmentDeclaresVariable", 3);
     _static(A, "codes___withArgumentsUnexpectedToken$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsUnexpectedToken"], 0, 0);
@@ -75352,47 +75363,47 @@
     _static_2(A, "codes___withArgumentsOldUnmatchedToken$closure", "_withArgumentsOldUnmatchedToken", 17);
     _static(A, "codes___withArgumentsUnsupportedOperator$closure", 0, null, ["call$1$lexeme"], ["_withArgumentsUnsupportedOperator"], 0, 0);
     _static_1(A, "codes___withArgumentsOldUnsupportedOperator$closure", "_withArgumentsOldUnsupportedOperator", 1);
-    _static(A, "codes___withArgumentsUnterminatedString$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsUnterminatedString"], 7, 0);
-    _static_2(A, "codes___withArgumentsOldUnterminatedString$closure", "_withArgumentsOldUnterminatedString", 6);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsBinaryOperatorWrittenOut$closure", 0, null, ["call$2$string$string2"], ["ParserErrorCode__withArgumentsBinaryOperatorWrittenOut"], 9, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsConflictingModifiers$closure", 0, null, ["call$2$string$string2"], ["ParserErrorCode__withArgumentsConflictingModifiers"], 9, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsExpectedInstead$closure", 0, null, ["call$1$string"], ["ParserErrorCode__withArgumentsExpectedInstead"], 28, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsExpectedToken$closure", 0, null, ["call$1$p0"], ["ParserErrorCode__withArgumentsExpectedToken"], 4, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsExperimentNotEnabled$closure", 0, null, ["call$2$string$string2"], ["ParserErrorCode__withArgumentsExperimentNotEnabled"], 9, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsExperimentNotEnabledOffByDefault$closure", 0, null, ["call$1$string"], ["ParserErrorCode__withArgumentsExperimentNotEnabledOffByDefault"], 28, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsInvalidCodePoint$closure", 0, null, ["call$1$p0"], ["ParserErrorCode__withArgumentsInvalidCodePoint"], 4, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsModifierOutOfOrder$closure", 0, null, ["call$2$string$string2"], ["ParserErrorCode__withArgumentsModifierOutOfOrder"], 9, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsMultipleClauses$closure", 0, null, ["call$2$string$string2"], ["ParserErrorCode__withArgumentsMultipleClauses"], 9, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsOutOfOrderClauses$closure", 0, null, ["call$2$string$string2"], ["ParserErrorCode__withArgumentsOutOfOrderClauses"], 9, 0);
-    _static(A, "syntactic_errors_ParserErrorCode__withArgumentsUnexpectedToken$closure", 0, null, ["call$1$p0"], ["ParserErrorCode__withArgumentsUnexpectedToken"], 4, 0);
-    _static(A, "syntactic_errors_ScannerErrorCode__withArgumentsIllegalCharacter$closure", 0, null, ["call$1$p0"], ["ScannerErrorCode__withArgumentsIllegalCharacter"], 76, 0);
-    _static(A, "syntactic_errors_ScannerErrorCode__withArgumentsUnsupportedOperator$closure", 0, null, ["call$1$p0"], ["ScannerErrorCode__withArgumentsUnsupportedOperator"], 4, 0);
+    _static(A, "codes___withArgumentsUnterminatedString$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsUnterminatedString"], 6, 0);
+    _static_2(A, "codes___withArgumentsOldUnterminatedString$closure", "_withArgumentsOldUnterminatedString", 4);
     var _;
-    _instance(_ = A.Scanner.prototype, "get$reportError", 0, 3, null, ["call$3"], ["reportError$3"], 66, 0, 0);
-    _instance_2_u(_, "get$_languageVersionChanged", "_languageVersionChanged$2", 68);
-    _static(A, "codes0_CompileTimeErrorCode__withArgumentsBuiltInIdentifierAsType$closure", 0, null, ["call$1$p0"], ["CompileTimeErrorCode__withArgumentsBuiltInIdentifierAsType"], 4, 0);
-    _static(A, "codes0_CompileTimeErrorCode__withArgumentsConstNotInitialized$closure", 0, null, ["call$1$p0"], ["CompileTimeErrorCode__withArgumentsConstNotInitialized"], 4, 0);
-    _static(A, "codes0_CompileTimeErrorCode__withArgumentsFinalNotInitialized$closure", 0, null, ["call$1$p0"], ["CompileTimeErrorCode__withArgumentsFinalNotInitialized"], 4, 0);
-    _static(A, "codes0_WarningCode__withArgumentsDocDirectiveHasExtraArguments$closure", 0, null, ["call$3$p0$p1$p2"], ["WarningCode__withArgumentsDocDirectiveHasExtraArguments"], 77, 0);
-    _static(A, "codes0_WarningCode__withArgumentsDocDirectiveMissingClosingTag$closure", 0, null, ["call$1$p0"], ["WarningCode__withArgumentsDocDirectiveMissingClosingTag"], 4, 0);
-    _static(A, "codes0_WarningCode__withArgumentsDocDirectiveMissingOpeningTag$closure", 0, null, ["call$1$p0"], ["WarningCode__withArgumentsDocDirectiveMissingOpeningTag"], 4, 0);
-    _static(A, "codes0_WarningCode__withArgumentsDocDirectiveUnknown$closure", 0, null, ["call$1$p0"], ["WarningCode__withArgumentsDocDirectiveUnknown"], 4, 0);
-    _static(A, "codes0_WarningCode__withArgumentsInvalidLanguageVersionOverrideGreater$closure", 0, null, ["call$2$p0$p1"], ["WarningCode__withArgumentsInvalidLanguageVersionOverrideGreater"], 52, 0);
-    _instance(A.FastaErrorReporter.prototype, "get$reportScannerError", 0, 3, null, ["call$3"], ["reportScannerError$3"], 33, 0, 0);
+    _instance(_ = A.Scanner.prototype, "get$reportError", 0, 3, null, ["call$3"], ["reportError$3"], 64, 0, 0);
+    _instance_2_u(_, "get$_languageVersionChanged", "_languageVersionChanged$2", 65);
+    _instance(A.FastaErrorReporter.prototype, "get$reportScannerError", 0, 3, null, ["call$3"], ["reportScannerError$3"], 32, 0, 0);
+    _static(A, "diagnostic___withArgumentsBinaryOperatorWrittenOut$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsBinaryOperatorWrittenOut0"], 9, 0);
+    _static(A, "diagnostic___withArgumentsBuiltInIdentifierAsType$closure", 0, null, ["call$1$token"], ["_withArgumentsBuiltInIdentifierAsType"], 73, 0);
+    _static(A, "diagnostic___withArgumentsConflictingModifiers$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsConflictingModifiers0"], 9, 0);
+    _static(A, "diagnostic___withArgumentsConstNotInitialized$closure", 0, null, ["call$1$name"], ["_withArgumentsConstNotInitialized"], 74, 0);
+    _static(A, "diagnostic___withArgumentsDocDirectiveHasExtraArguments$closure", 0, null, ["call$3$p0$p1$p2"], ["_withArgumentsDocDirectiveHasExtraArguments"], 75, 0);
+    _static(A, "diagnostic___withArgumentsDocDirectiveMissingClosingTag$closure", 0, null, ["call$1$p0"], ["_withArgumentsDocDirectiveMissingClosingTag"], 7, 0);
+    _static(A, "diagnostic___withArgumentsDocDirectiveMissingOpeningTag$closure", 0, null, ["call$1$p0"], ["_withArgumentsDocDirectiveMissingOpeningTag"], 7, 0);
+    _static(A, "diagnostic___withArgumentsDocDirectiveUnknown$closure", 0, null, ["call$1$p0"], ["_withArgumentsDocDirectiveUnknown"], 7, 0);
+    _static(A, "diagnostic___withArgumentsExpectedInstead$closure", 0, null, ["call$1$string"], ["_withArgumentsExpectedInstead0"], 18, 0);
+    _static(A, "diagnostic___withArgumentsExpectedToken$closure", 0, null, ["call$1$p0"], ["_withArgumentsExpectedToken0"], 7, 0);
+    _static(A, "diagnostic___withArgumentsExperimentNotEnabled$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsExperimentNotEnabled0"], 9, 0);
+    _static(A, "diagnostic___withArgumentsExperimentNotEnabledOffByDefault$closure", 0, null, ["call$1$string"], ["_withArgumentsExperimentNotEnabledOffByDefault0"], 18, 0);
+    _static(A, "diagnostic___withArgumentsFinalNotInitialized$closure", 0, null, ["call$1$p0"], ["_withArgumentsFinalNotInitialized"], 7, 0);
+    _static(A, "diagnostic___withArgumentsIllegalCharacter$closure", 0, null, ["call$1$p0"], ["_withArgumentsIllegalCharacter"], 78, 0);
+    _static(A, "diagnostic___withArgumentsInvalidCodePoint$closure", 0, null, ["call$1$p0"], ["_withArgumentsInvalidCodePoint"], 7, 0);
+    _static(A, "diagnostic___withArgumentsInvalidLanguageVersionOverrideGreater$closure", 0, null, ["call$2$p0$p1"], ["_withArgumentsInvalidLanguageVersionOverrideGreater"], 52, 0);
+    _static(A, "diagnostic___withArgumentsModifierOutOfOrder$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsModifierOutOfOrder0"], 9, 0);
+    _static(A, "diagnostic___withArgumentsMultipleClauses$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsMultipleClauses0"], 9, 0);
+    _static(A, "diagnostic___withArgumentsOutOfOrderClauses$closure", 0, null, ["call$2$string$string2"], ["_withArgumentsOutOfOrderClauses0"], 9, 0);
+    _static(A, "diagnostic___withArgumentsUnexpectedToken$closure", 0, null, ["call$1$p0"], ["_withArgumentsUnexpectedToken0"], 7, 0);
+    _static(A, "diagnostic___withArgumentsUnsupportedOperator$closure", 0, null, ["call$1$p0"], ["_withArgumentsUnsupportedOperator0"], 7, 0);
   })();
   (function inheritance() {
     var _mixin = hunkHelpers.mixin,
       _inherit = hunkHelpers.inherit,
       _inheritMany = hunkHelpers.inheritMany;
     _inherit(A.Object, null);
-    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, A.SafeToStringHook, J.ArrayIterator, A.Error, A.ListBase, A.SentinelValue, A.Iterable, A.ListIterator, A.MappedIterator, A.WhereIterator, A.EmptyIterator, A.WhereTypeIterator, A.NonNullsIterator, A.FixedLengthListMixin, A.UnmodifiableListMixin, A.Symbol, A._Record, A.MapView, A.ConstantMap, A._KeysOrValuesOrElementsIterator, A.SetBase, A.JSInvocationMirror, A.Closure, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A.ExceptionAndStackTrace, A._StackTrace, A.MapBase, A.LinkedHashMapCell, A.LinkedHashMapKeyIterator, A.LinkedHashMapValueIterator, A.LinkedHashMapEntryIterator, A.JSSyntaxRegExp, A._MatchImplementation, A._AllMatchesIterator, A.StringMatch, A._StringAllMatchesIterator, A._Cell, A._InitializedCell, A._UnmodifiableNativeByteBufferView, A.Rti, A._FunctionParameters, A._Type, A._TimerImpl, A._AsyncAwaitCompleter, A.AsyncError, A._Completer, A._FutureListener, A._Future, A._AsyncCallbackEntry, A.Stream, A._StreamIterator, A._Zone, A._HashMapKeyIterator, A._HashSetIterator, A._LinkedHashSetCell, A._LinkedHashSetIterator, A._UnmodifiableMapMixin, A.Codec, A.Converter, A._Utf8Encoder, A._Utf8Decoder, A.Duration, A._Enum, A.OutOfMemoryError, A.StackOverflowError, A._Exception, A.FormatException, A.MapEntry, A.Null, A._StringStackTrace, A.Stopwatch, A.RuneIterator, A.StringBuffer, A._Uri, A.UriData, A._SimpleUri, A.CssStyleDeclarationBase, A.ImmutableListMixin, A.FixedSizeListIterator, A.NullRejectionException, A.Endian, A.DiagnosticMessageImpl, A.Diagnostic, A.DiagnosticCode, A.DiagnosticWithoutArguments, A.LocatableDiagnosticImpl, A.Source, A.Version0, A.Code, A.Message, A.BlockKind, A.DirectiveContext, A.ForwardingListener, A.IdentifierContext0, A.Listener, A.LiteralEntryInfo, A.ModifierContext, A.Parser, A.ForPartsContext, A.StackImpl, A.TokenStreamRewriter, A.NextTokenStreamChange, A.EndGroupTokenStreamChange, A.OffsetTokenStreamChange, A.PrecedingCommentsTokenStreamChange, A.PreviousTokenStreamChange, A.TypeParamOrArgInfo, A.NoType, A.PrefixedType, A.SimpleTypeWith1Argument, A.SimpleType, A.VoidType, A.ComplexTypeInfo, A.AbstractScanner, A._LineStarts_Object_ListMixin, A.ScannerConfiguration, A.SimpleToken, A.NullInterner, A.ScannerResult, A._Node, A._StringCanonicalizer, A.TokenType, A._LazySubstring, A.Link, A.LinkIterator, A.NullValue, A.StackChecker, A.BlockDocDirective, A.DocDirectiveArgument, A.DocDirectiveParameter, A.DocDirectiveTag, A.DocImport, A.MdCodeBlock, A.MdCodeBlockLine, A.SimpleDocDirective, A.Precedence, A.GeneralizingAstVisitor, A.LibraryLanguageVersion, A.RecordingDiagnosticListener, A.LineInfo, A.ExperimentalFeaturesStatus, A._ExperimentStatus_Object__CurrentState, A._CurrentState, A.EnabledDisabledFlags, A.ExperimentalFeature, A.ParseStringResultImpl, A.AstNodeImpl, A.AstNodeWithNameScopeMixin, A.BlockClassBodyImplStub, A.ChildEntities, A.ChildEntity, A.ClassBodyImplStub, A.ClassNamePartImplStub, A.CompoundAssignmentExpressionImpl, A.DotShorthandMixin, A.EnumBodyImplStub, A._NodeListImpl_Object_ListMixin, A._AnnotatedNodeMixin, A.ToSourceVisitor, A.Scanner, A.DiagnosticReporter, A._ClassLikeDeclarationBuilder, A._ConstructorNameWithInvalidTypeArgs, A._Modifiers, A._ObjectPatternFields, A._OperatorName, A._OptionalFormalParameters, A._ParameterDefaultValue, A._ParenthesizedCondition, A._PrimaryConstructorBuilder, A._RedirectingFactoryBody, A.DocCommentBuilder, A._BlockDocDirectiveBuilder, A._CharacterSequenceFromMultiLineComment, A._CharacterSequenceFromSingleLineComment, A._DirectiveParser, A.FastaErrorReporter, A.Parser0, A.ParameterKind, A.ATN, A.ATNConfig, A.ATNDeserializationOptions, A.ATNDeserializer, A.ATNSimulator, A.PredictionContextCache, A.ATNState, A.LexerChannelAction, A.LexerCustomAction, A.LexerModeAction, A.LexerMoreAction, A.LexerPopModeAction, A.LexerPushModeAction, A.LexerSkipAction, A.LexerTypeAction, A.LexerIndexedCustomAction, A.LexerActionExecutor, A.SimState, A.SemanticContext, A.Transition, A.DFA, A.DFASerializer, A.PredPrediction, A.DFAState, A.ErrorListener, A.ProxyErrorListener, A.DefaultErrorStrategy, A.IntStream, A.Interval, A.IntervalSet, A.Recognizer, A.LL1Analyzer, A.Pair, A.Tree, A.PredictionContext, A.Token0, A.CommonTokenFactory, A.BufferedTokenStream, A.BitSet, A.VocabularyImpl, A.ArchiveFile, A.Bz2BitReader, A.BZip2Decoder, A.FileContent, A.Aes, A.CipherParameters, A.BaseKeyDerivator, A.BaseMac, A.BaseDigest, A.Register64, A.BaseBlockCipher, A.InputStreamBase, A.OutputStreamBase, A.ZipDirectory, A.AesHeader, A.ZipFileHeader, A.ZipDecoder, A.HuffmanTable, A.Inflate, A.DefaultEquality, A.IterableEquality, A.ListEquality, A.FileNode, A.DartAnalyzerApp, A.Plugin0, A.PluginContext, A.PluginResult, A.PluginRegistry, A._TokenInfo, A._AstNode, A._TokenInfo0, A.Context, A.Style, A.ParsedPath, A.Version, A.EventStreamProvider, A._EventStreamSubscription]);
+    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, A.SafeToStringHook, J.ArrayIterator, A.Error, A.ListBase, A.SentinelValue, A.Iterable, A.ListIterator, A.MappedIterator, A.WhereIterator, A.EmptyIterator, A.WhereTypeIterator, A.NonNullsIterator, A.FixedLengthListMixin, A.UnmodifiableListMixin, A._Record, A.ConstantMap, A._KeysOrValuesOrElementsIterator, A.SetBase, A.Closure, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A.ExceptionAndStackTrace, A._StackTrace, A.MapBase, A.LinkedHashMapCell, A.LinkedHashMapKeyIterator, A.LinkedHashMapValueIterator, A.LinkedHashMapEntryIterator, A.JSSyntaxRegExp, A._MatchImplementation, A._AllMatchesIterator, A.StringMatch, A._StringAllMatchesIterator, A._Cell, A._InitializedCell, A._UnmodifiableNativeByteBufferView, A.Rti, A._FunctionParameters, A._Type, A._TimerImpl, A._AsyncAwaitCompleter, A.AsyncError, A._Completer, A._FutureListener, A._Future, A._AsyncCallbackEntry, A.Stream, A._StreamIterator, A._Zone, A._HashMapKeyIterator, A._HashSetIterator, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.Codec, A.Converter, A._Utf8Encoder, A._Utf8Decoder, A.Duration, A._Enum, A.OutOfMemoryError, A.StackOverflowError, A._Exception, A.FormatException, A.MapEntry, A.Null, A._StringStackTrace, A.Stopwatch, A.RuneIterator, A.StringBuffer, A._Uri, A.UriData, A._SimpleUri, A.CssStyleDeclarationBase, A.ImmutableListMixin, A.FixedSizeListIterator, A.NullRejectionException, A.Endian, A.DiagnosticMessageImpl, A.Diagnostic, A.DiagnosticCode, A.DiagnosticSeverity, A.DiagnosticType, A.DiagnosticWithoutArguments, A.LocatableDiagnosticImpl, A.LocatedDiagnostic, A.Source, A.SyntacticEntity, A.Version0, A.Code, A.Message, A.BlockKind, A.DirectiveContext, A.ForwardingListener, A.IdentifierContext0, A.Listener, A.LiteralEntryInfo, A.ModifierContext, A.Parser, A.ForPartsContext, A.StackImpl, A.TokenStreamRewriter, A.NextTokenStreamChange, A.EndGroupTokenStreamChange, A.OffsetTokenStreamChange, A.PrecedingCommentsTokenStreamChange, A.PreviousTokenStreamChange, A.TypeParamOrArgInfo, A.NoType, A.PrefixedType, A.SimpleTypeWith1Argument, A.SimpleType, A.VoidType, A.ComplexTypeInfo, A.AbstractScanner, A._LineStarts_Object_ListMixin, A.ScannerConfiguration, A.NullInterner, A.ScannerResult, A._Node, A._StringCanonicalizer, A.TokenType, A._LazySubstring, A.Link, A.LinkIterator, A.NullValue, A.StackChecker, A.BlockDocDirective, A.DocDirectiveArgument, A.DocDirectiveParameter, A.DocDirectiveTag, A.DocImport, A.MdCodeBlock, A.MdCodeBlockLine, A.SimpleDocDirective, A.Precedence, A.GeneralizingAstVisitor, A.LibraryLanguageVersion, A.RecordingDiagnosticListener, A.LineInfo, A.ExperimentalFeaturesStatus, A._ExperimentStatus_Object__CurrentState, A._CurrentState, A.EnabledDisabledFlags, A.ExperimentalFeature, A.ParseStringResultImpl, A.AstNodeWithNameScopeMixin, A.ChildEntities, A.ChildEntity, A.CompoundAssignmentExpressionImpl, A.DotShorthandMixin, A._NodeListImpl_Object_ListMixin, A._AnnotatedNodeMixin, A.ToSourceVisitor, A.Scanner, A.DiagnosticReporter, A._ClassLikeDeclarationBuilder, A._ConstructorNameWithInvalidTypeArgs, A._Modifiers, A._ObjectPatternFields, A._OperatorName, A._OptionalFormalParameters, A._ParameterDefaultValue, A._ParenthesizedCondition, A._PrimaryConstructorBuilder, A._RedirectingFactoryBody, A.DocCommentBuilder, A._BlockDocDirectiveBuilder, A._CharacterSequenceFromMultiLineComment, A._CharacterSequenceFromSingleLineComment, A._DirectiveParser, A.FastaErrorReporter, A.Parser0, A.ParameterKind, A.ATN, A.ATNConfig, A.ATNDeserializationOptions, A.ATNDeserializer, A.ATNSimulator, A.PredictionContextCache, A.ATNState, A.LexerChannelAction, A.LexerCustomAction, A.LexerModeAction, A.LexerMoreAction, A.LexerPopModeAction, A.LexerPushModeAction, A.LexerSkipAction, A.LexerTypeAction, A.LexerIndexedCustomAction, A.LexerActionExecutor, A.SimState, A.SemanticContext, A.Transition, A.DFA, A.DFASerializer, A.PredPrediction, A.DFAState, A.ErrorListener, A.ProxyErrorListener, A.DefaultErrorStrategy, A.IntStream, A.Interval, A.IntervalSet, A.Recognizer, A.LL1Analyzer, A.Pair, A.Tree, A.PredictionContext, A.Token0, A.CommonTokenFactory, A.BufferedTokenStream, A.BitSet, A.VocabularyImpl, A.ArchiveFile, A.Bz2BitReader, A.BZip2Decoder, A.FileContent, A.Aes, A.CipherParameters, A.BaseKeyDerivator, A.BaseMac, A.BaseDigest, A.Register64, A.BaseBlockCipher, A.InputStreamBase, A.OutputStreamBase, A.ZipDirectory, A.AesHeader, A.ZipFileHeader, A.ZipDecoder, A.HuffmanTable, A.Inflate, A.DefaultEquality, A.IterableEquality, A.ListEquality, A.FileNode, A.DartAnalyzerApp, A.Plugin0, A.PluginContext, A.PluginResult, A.PluginRegistry, A._TokenInfo, A._AstNode, A._TokenInfo0, A.Context, A.Style, A.ParsedPath, A.Version, A.EventStreamProvider, A._EventStreamSubscription]);
     _inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JavaScriptBigInt, J.JavaScriptSymbol, J.JSNumber, J.JSString]);
     _inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.NativeByteBuffer, A.NativeTypedData, A.EventTarget, A.AccessibleNodeList, A.Blob, A.CssTransformComponent, A.CssRule, A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase, A.CssStyleValue, A.DataTransferItemList, A.DomException, A._DomRectList_JavaScriptObject_ListMixin, A.DomRectReadOnly, A._DomStringList_JavaScriptObject_ListMixin, A.DomTokenList, A._FileList_JavaScriptObject_ListMixin, A.Gamepad, A.History, A._HtmlCollection_JavaScriptObject_ListMixin, A.Location, A.MediaList, A._MidiInputMap_JavaScriptObject_MapMixin, A._MidiOutputMap_JavaScriptObject_MapMixin, A.MimeType, A._MimeTypeArray_JavaScriptObject_ListMixin, A._NodeList_JavaScriptObject_ListMixin, A.Plugin, A._PluginArray_JavaScriptObject_ListMixin, A._RtcStatsReport_JavaScriptObject_MapMixin, A.SpeechGrammar, A._SpeechGrammarList_JavaScriptObject_ListMixin, A.SpeechRecognitionResult, A._Storage_JavaScriptObject_MapMixin, A.StyleSheet, A._TextTrackCueList_JavaScriptObject_ListMixin, A.TimeRanges, A.Touch, A._TouchList_JavaScriptObject_ListMixin, A.TrackDefaultList, A.Url, A.__CssRuleList_JavaScriptObject_ListMixin, A.__GamepadList_JavaScriptObject_ListMixin, A.__NamedNodeMap_JavaScriptObject_ListMixin, A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin, A.__StyleSheetList_JavaScriptObject_ListMixin, A.Length, A._LengthList_JavaScriptObject_ListMixin, A.Number, A._NumberList_JavaScriptObject_ListMixin, A.PointList, A._StringList_JavaScriptObject_ListMixin, A.Transform, A._TransformList_JavaScriptObject_ListMixin, A.AudioBuffer, A._AudioParamMap_JavaScriptObject_MapMixin]);
     _inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction]);
     _inherit(J.JSArraySafeToStringHook, A.SafeToStringHook);
     _inherit(J.JSUnmodifiableArray, J.JSArray);
     _inheritMany(J.JSNumber, [J.JSInt, J.JSNumNotInt]);
-    _inheritMany(A.Error, [A.LateError, A.TypeError, A.JsNoSuchMethodError, A.UnknownJsTypeError, A.RuntimeError, A._Error, A.AssertionError, A.ArgumentError, A.NoSuchMethodError, A.UnsupportedError, A.UnimplementedError, A.StateError, A.ConcurrentModificationError]);
+    _inheritMany(A.Error, [A.LateError, A.TypeError, A.JsNoSuchMethodError, A.UnknownJsTypeError, A.RuntimeError, A._Error, A.AssertionError, A.ArgumentError, A.UnsupportedError, A.UnimplementedError, A.StateError, A.ConcurrentModificationError]);
     _inherit(A.UnmodifiableListBase, A.ListBase);
     _inheritMany(A.UnmodifiableListBase, [A.CodeUnits, A.UnmodifiableListView]);
     _inheritMany(A.Iterable, [A.EfficientLengthIterable, A.MappedIterable, A.WhereIterable, A.WhereTypeIterable, A.NonNullsIterable, A._KeysOrValues, A._AllMatchesIterable, A._StringAllMatchesIterable, A.Runes, A.ATNConfigSet, A.Archive]);
@@ -75401,9 +75412,6 @@
     _inherit(A.EfficientLengthMappedIterable, A.MappedIterable);
     _inherit(A._Record2, A._Record);
     _inheritMany(A._Record2, [A._Record_2, A._Record_2_content_offset, A._Record_2_offsetInDocImport_offsetInUnit]);
-    _inherit(A._UnmodifiableMapView_MapView__UnmodifiableMapMixin, A.MapView);
-    _inherit(A.UnmodifiableMapView, A._UnmodifiableMapView_MapView__UnmodifiableMapMixin);
-    _inherit(A.ConstantMapView, A.UnmodifiableMapView);
     _inherit(A.ConstantStringMap, A.ConstantMap);
     _inheritMany(A.SetBase, [A.ConstantSet, A._SetBase]);
     _inherit(A.ConstantStringSet, A.ConstantSet);
@@ -75412,7 +75420,7 @@
     _inherit(A.NullError, A.TypeError);
     _inheritMany(A.TearOffClosure, [A.StaticClosure, A.BoundClosure]);
     _inheritMany(A.MapBase, [A.JsLinkedHashMap, A._HashMap]);
-    _inheritMany(A.Closure2Args, [A.initHooks_closure0, A._awaitOnObject_closure0, A._wrapJsFunctionForAsync_closure, A._Future__propagateToListeners_handleWhenCompleteCallback_closure0, A.MapBase_mapToString_closure, A.NoSuchMethodError_toString_closure, A.Uri_parseIPv6Address_error, A.MidiInputMap_keys_closure, A.MidiOutputMap_keys_closure, A.RtcStatsReport_keys_closure, A.Storage_keys_closure, A.AudioParamMap_keys_closure, A.AstNode_LEXICAL_ORDER_closure, A.ChildEntities_syntacticEntities_closure, A.translateErrorToken_makeError, A.defaultConfigLookup__closure, A.PredictionModeExtension_getConflictingAltSubsets_closure, A.AND_closure, A.OR_closure, A.DFA_getStates_closure, A.DartAnalyzerApp__loadFilesFromZip_closure2, A.DartAnalyzerApp__loadFilesFromZip_sortChildren_closure, A.TokenStreamPlugin_process_closure]);
+    _inheritMany(A.Closure2Args, [A.initHooks_closure0, A._awaitOnObject_closure0, A._wrapJsFunctionForAsync_closure, A._Future__propagateToListeners_handleWhenCompleteCallback_closure0, A.MapBase_mapToString_closure, A.Uri_parseIPv6Address_error, A.MidiInputMap_keys_closure, A.MidiOutputMap_keys_closure, A.RtcStatsReport_keys_closure, A.Storage_keys_closure, A.AudioParamMap_keys_closure, A.AstNode_LEXICAL_ORDER_closure, A.ChildEntities_syntacticEntities_closure, A.translateErrorToken_makeError, A.defaultConfigLookup__closure, A.PredictionModeExtension_getConflictingAltSubsets_closure, A.AND_closure, A.OR_closure, A.DFA_getStates_closure, A.DartAnalyzerApp__loadFilesFromZip_closure2, A.DartAnalyzerApp__loadFilesFromZip_sortChildren_closure, A.TokenStreamPlugin_process_closure]);
     _inherit(A.NativeArrayBuffer, A.NativeByteBuffer);
     _inheritMany(A.NativeTypedData, [A.NativeByteData, A.NativeTypedArray]);
     _inheritMany(A.NativeTypedArray, [A._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, A._NativeTypedArrayOfInt_NativeTypedArray_ListMixin]);
@@ -75490,7 +75498,10 @@
     _inherit(A.TransformList, A._TransformList_JavaScriptObject_ListMixin_ImmutableListMixin);
     _inherit(A.AudioParamMap, A._AudioParamMap_JavaScriptObject_MapMixin);
     _inherit(A.OfflineAudioContext, A.BaseAudioContext);
-    _inherit(A.DiagnosticCodeWithExpectedTypes, A.DiagnosticCode);
+    _inherit(A.DiagnosticCodeImpl, A.DiagnosticCode);
+    _inherit(A.DiagnosticCodeWithExpectedTypes, A.DiagnosticCodeImpl);
+    _inheritMany(A.DiagnosticCodeWithExpectedTypes, [A.DiagnosticWithArguments, A._DiagnosticWithoutArgumentsImpl_DiagnosticCodeWithExpectedTypes_DiagnosticWithoutArguments]);
+    _inherit(A.DiagnosticWithoutArgumentsImpl, A._DiagnosticWithoutArgumentsImpl_DiagnosticCodeWithExpectedTypes_DiagnosticWithoutArguments);
     _inheritMany(A._Enum, [A.ExpectedType, A.ExperimentalFlag, A.PseudoSharedCode, A.SharedCode, A.CfeSeverity, A.Assert, A.AsyncModifier, A.ConstructorReferenceContext, A.DeclarationKind, A.DeclarationHeaderKind, A.DirectiveState, A.FormalParameterKind, A.LoopState, A.MemberKind, A.AwaitOrYieldContext, A.PatternContext0, A.ConstantPatternContext0, A.Quote, A.KeywordStyle, A.DocDirectiveParameterFormat, A.DocDirectiveType, A._SetOrMapKind, A.StateType, A.ATNType, A.LexerActionType, A.PredictionMode, A.TransitionType]);
     _inheritMany(A.Code, [A.MessageCode, A.Template]);
     _inheritMany(A.ForwardingListener, [A.NullListener, A.DeclarationHeaderRecoveryListener, A.ImportRecoveryListener, A.MixinHeaderRecoveryListener]);
@@ -75505,6 +75516,7 @@
     _inheritMany(A.TypeParamOrArgInfo, [A.NoTypeParamOrArg, A.SimpleTypeArgument1, A.ComplexTypeParamOrArgInfo]);
     _inheritMany(A.SimpleTypeArgument1, [A.SimpleTypeArgument1GtEq, A.SimpleTypeArgument1GtGt]);
     _inherit(A.LineStarts, A._LineStarts_Object_ListMixin);
+    _inheritMany(A.SyntacticEntity, [A.SimpleToken, A.AstNodeImpl]);
     _inheritMany(A.SimpleToken, [A.ErrorToken, A.BeginToken, A.KeywordToken, A.StringToken, A.SyntheticToken, A.StringTokenImpl]);
     _inheritMany(A.ErrorToken, [A.EncodingErrorToken, A.NonAsciiIdentifierToken, A.NonAsciiWhitespaceToken, A.AsciiControlCharacterToken, A.UnsupportedOperator, A.UnterminatedString, A.UnterminatedToken, A.UnmatchedToken]);
     _inherit(A._StringNode, A._Node);
@@ -75520,7 +75532,7 @@
     _inherit(A.LinkEntry, A.Link);
     _inheritMany(A.DocDirectiveArgument, [A.DocDirectiveNamedArgument, A.DocDirectivePositionalArgument]);
     _inherit(A.ExperimentStatus, A._ExperimentStatus_Object__CurrentState);
-    _inheritMany(A.AstNodeImpl, [A.CollectionElementImpl, A._AnnotatedNodeImpl_AstNodeImpl__AnnotatedNodeMixin, A.AnnotationImpl, A.ArgumentListImpl, A.ConstructorInitializerImpl, A.StatementImpl, A.DartPatternImpl, A.FunctionBodyImpl, A._CaseClauseImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.CatchClauseImpl, A.CatchClauseParameterImpl, A.CombinatorImpl, A._CommentImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.CommentReferenceImpl, A._CompilationUnitImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.ConfigurationImpl, A.ConstructorNameImpl, A.ConstructorSelectorImpl, A.FormalParameterImpl, A.DottedNameImpl, A.EnumConstantArgumentsImpl, A.ExtendsClauseImpl, A.ExtensionOnClauseImpl, A.ForLoopPartsImpl, A.FormalParameterListImpl, A.TypeAnnotationImpl, A.GuardedPatternImpl, A.ImplementsClauseImpl, A.ImportPrefixReferenceImpl, A.InterpolationElementImpl, A.LabelImpl, A.MapPatternEntryImpl, A.MixinOnClauseImpl, A.NativeClauseImpl, A.PatternFieldImpl, A.PatternFieldNameImpl, A.PrimaryConstructorNameImpl, A.RecordTypeAnnotationFieldImpl, A.RecordTypeAnnotationNamedFieldsImpl, A.RepresentationConstructorNameImpl, A.RepresentationDeclarationImpl, A.RestPatternElementImpl, A.ScriptTagImpl, A._SwitchMemberImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A._SwitchExpressionCaseImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.TypeArgumentListImpl, A.TypeParameterListImpl, A.WhenClauseImpl, A.WithClauseImpl]);
+    _inheritMany(A.AstNodeImpl, [A.CollectionElementImpl, A._AnnotatedNodeImpl_AstNodeImpl__AnnotatedNodeMixin, A.AnnotationImpl, A.ArgumentListImpl, A.ConstructorInitializerImpl, A.StatementImpl, A.DartPatternImpl, A.ClassBodyImpl, A.FunctionBodyImpl, A._CaseClauseImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.CatchClauseImpl, A.CatchClauseParameterImpl, A.ClassNamePartImpl, A.CombinatorImpl, A._CommentImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.CommentReferenceImpl, A._CompilationUnitImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.ConfigurationImpl, A.ConstructorNameImpl, A.ConstructorSelectorImpl, A.FormalParameterImpl, A.DottedNameImpl, A.EnumBodyImpl, A.EnumConstantArgumentsImpl, A.ExtendsClauseImpl, A.ExtensionOnClauseImpl, A.ForLoopPartsImpl, A.FormalParameterListImpl, A.TypeAnnotationImpl, A.GuardedPatternImpl, A.ImplementsClauseImpl, A.ImportPrefixReferenceImpl, A.InterpolationElementImpl, A.LabelImpl, A.MapPatternEntryImpl, A.MixinOnClauseImpl, A.NativeClauseImpl, A.PatternFieldImpl, A.PatternFieldNameImpl, A.PrimaryConstructorNameImpl, A.RecordTypeAnnotationFieldImpl, A.RecordTypeAnnotationNamedFieldsImpl, A.RestPatternElementImpl, A.ScriptTagImpl, A._SwitchMemberImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A._SwitchExpressionCaseImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.TypeArgumentListImpl, A.TypeParameterListImpl, A.WhenClauseImpl, A.WithClauseImpl]);
     _inheritMany(A.CollectionElementImpl, [A.ExpressionImpl, A._ForElementImpl_CollectionElementImpl_AstNodeWithNameScopeMixin, A.IfElementImpl, A.MapLiteralEntryImpl, A.NullAwareElementImpl, A.SpreadElementImpl]);
     _inheritMany(A.ExpressionImpl, [A.LiteralImpl, A.AsExpressionImpl, A._AssignmentExpressionImpl_ExpressionImpl_CompoundAssignmentExpressionImpl, A.AwaitExpressionImpl, A.BinaryExpressionImpl, A.CascadeExpressionImpl, A.CommentReferableExpressionImpl, A.ConditionalExpressionImpl, A.InvocationExpressionImpl, A._DotShorthandPropertyAccessImpl_ExpressionImpl_DotShorthandMixin, A.FunctionExpressionImpl, A._IndexExpressionImpl_ExpressionImpl_DotShorthandMixin, A.InstanceCreationExpressionImpl, A.IsExpressionImpl, A.NamedExpressionImpl, A.ParenthesizedExpressionImpl, A.PatternAssignmentImpl, A._PostfixExpressionImpl_ExpressionImpl_CompoundAssignmentExpressionImpl, A._PrefixExpressionImpl_ExpressionImpl_CompoundAssignmentExpressionImpl, A.RethrowExpressionImpl, A.SuperExpressionImpl, A.SwitchExpressionImpl, A.ThisExpressionImpl, A.ThrowExpressionImpl]);
     _inheritMany(A.LiteralImpl, [A.StringLiteralImpl, A.BooleanLiteralImpl, A.DoubleLiteralImpl, A.IntegerLiteralImpl, A.TypedLiteralImpl, A.NullLiteralImpl, A.RecordLiteralImpl, A.SymbolLiteralImpl]);
@@ -75531,6 +75543,7 @@
     _inheritMany(A.DartPatternImpl, [A.VariablePatternImpl, A.CastPatternImpl, A.ConstantPatternImpl, A.ListPatternImpl, A.LogicalAndPatternImpl, A.LogicalOrPatternImpl, A.MapPatternImpl, A.NullAssertPatternImpl, A.NullCheckPatternImpl, A.ObjectPatternImpl, A.ParenthesizedPatternImpl, A.RecordPatternImpl, A.RelationalPatternImpl, A.WildcardPatternImpl]);
     _inheritMany(A.VariablePatternImpl, [A.AssignedVariablePatternImpl, A.DeclaredVariablePatternImpl]);
     _inherit(A.AssignmentExpressionImpl, A._AssignmentExpressionImpl_ExpressionImpl_CompoundAssignmentExpressionImpl);
+    _inheritMany(A.ClassBodyImpl, [A.BlockClassBodyImpl, A.EmptyClassBodyImpl]);
     _inheritMany(A.FunctionBodyImpl, [A.BlockFunctionBodyImpl, A.EmptyFunctionBodyImpl, A._ExpressionFunctionBodyImpl_FunctionBodyImpl_AstNodeWithNameScopeMixin, A.NativeFunctionBodyImpl]);
     _inherit(A.BlockImpl, A._BlockImpl_StatementImpl_AstNodeWithNameScopeMixin);
     _inherit(A.CaseClauseImpl, A._CaseClauseImpl_AstNodeImpl_AstNodeWithNameScopeMixin);
@@ -75542,7 +75555,7 @@
     _inheritMany(A.TypeAliasImpl, [A.ClassTypeAliasImpl, A.FunctionTypeAliasImpl, A._GenericTypeAliasImpl_TypeAliasImpl_AstNodeWithNameScopeMixin]);
     _inherit(A.CommentImpl, A._CommentImpl_AstNodeImpl_AstNodeWithNameScopeMixin);
     _inherit(A.CompilationUnitImpl, A._CompilationUnitImpl_AstNodeImpl_AstNodeWithNameScopeMixin);
-    _inheritMany(A.ClassMemberImpl, [A.ConstructorDeclarationImpl, A.FieldDeclarationImpl, A._MethodDeclarationImpl_ClassMemberImpl_AstNodeWithNameScopeMixin]);
+    _inheritMany(A.ClassMemberImpl, [A.ConstructorDeclarationImpl, A.FieldDeclarationImpl, A._MethodDeclarationImpl_ClassMemberImpl_AstNodeWithNameScopeMixin, A.PrimaryConstructorBodyImpl]);
     _inheritMany(A.FormalParameterImpl, [A.DefaultFormalParameterImpl, A._NormalFormalParameterImpl_FormalParameterImpl__AnnotatedNodeMixin]);
     _inheritMany(A.InvocationExpressionImpl, [A._DotShorthandConstructorInvocationImpl_InvocationExpressionImpl_DotShorthandMixin, A._DotShorthandInvocationImpl_InvocationExpressionImpl_DotShorthandMixin, A.FunctionExpressionInvocationImpl, A._MethodInvocationImpl_InvocationExpressionImpl_DotShorthandMixin]);
     _inherit(A.DotShorthandConstructorInvocationImpl, A._DotShorthandConstructorInvocationImpl_InvocationExpressionImpl_DotShorthandMixin);
@@ -75576,6 +75589,7 @@
     _inherit(A.MethodDeclarationImpl, A._MethodDeclarationImpl_ClassMemberImpl_AstNodeWithNameScopeMixin);
     _inherit(A.MethodInvocationImpl, A._MethodInvocationImpl_InvocationExpressionImpl_DotShorthandMixin);
     _inherit(A.MixinDeclarationImpl, A._MixinDeclarationImpl_NamedCompilationUnitMemberImpl_AstNodeWithNameScopeMixin);
+    _inheritMany(A.ClassNamePartImpl, [A.NameWithTypeParametersImpl, A.PrimaryConstructorDeclarationImpl]);
     _inherit(A.NodeListImpl, A._NodeListImpl_Object_ListMixin);
     _inherit(A._PostfixExpressionImpl_ExpressionImpl_CompoundAssignmentExpressionImpl_DotShorthandMixin, A._PostfixExpressionImpl_ExpressionImpl_CompoundAssignmentExpressionImpl);
     _inherit(A.PostfixExpressionImpl, A._PostfixExpressionImpl_ExpressionImpl_CompoundAssignmentExpressionImpl_DotShorthandMixin);
@@ -75586,15 +75600,6 @@
     _inherit(A.SwitchMemberImpl, A._SwitchMemberImpl_AstNodeImpl_AstNodeWithNameScopeMixin);
     _inheritMany(A.SwitchMemberImpl, [A.SwitchCaseImpl, A.SwitchDefaultImpl, A.SwitchPatternCaseImpl]);
     _inherit(A.SwitchExpressionCaseImpl, A._SwitchExpressionCaseImpl_AstNodeImpl_AstNodeWithNameScopeMixin);
-    _inheritMany(A.DiagnosticCodeWithExpectedTypes, [A.ParserErrorCode, A.ScannerErrorCode, A.CompileTimeErrorCode, A.WarningCode]);
-    _inheritMany(A.ParserErrorCode, [A.ParserErrorTemplate, A._ParserErrorWithoutArguments_ParserErrorCode_DiagnosticWithoutArguments]);
-    _inherit(A.ParserErrorWithoutArguments, A._ParserErrorWithoutArguments_ParserErrorCode_DiagnosticWithoutArguments);
-    _inheritMany(A.ScannerErrorCode, [A.ScannerErrorTemplate, A._ScannerErrorWithoutArguments_ScannerErrorCode_DiagnosticWithoutArguments]);
-    _inherit(A.ScannerErrorWithoutArguments, A._ScannerErrorWithoutArguments_ScannerErrorCode_DiagnosticWithoutArguments);
-    _inheritMany(A.CompileTimeErrorCode, [A.CompileTimeErrorTemplate, A._CompileTimeErrorWithoutArguments_CompileTimeErrorCode_DiagnosticWithoutArguments]);
-    _inherit(A.CompileTimeErrorWithoutArguments, A._CompileTimeErrorWithoutArguments_CompileTimeErrorCode_DiagnosticWithoutArguments);
-    _inheritMany(A.WarningCode, [A.WarningTemplate, A._WarningWithoutArguments_WarningCode_DiagnosticWithoutArguments]);
-    _inherit(A.WarningWithoutArguments, A._WarningWithoutArguments_WarningCode_DiagnosticWithoutArguments);
     _inherit(A.AstBuilder, A.StackListener);
     _inheritMany(A._ClassLikeDeclarationBuilder, [A._ClassDeclarationBuilder, A._EnumDeclarationBuilder, A._ExtensionDeclarationBuilder, A._ExtensionTypeDeclarationBuilder, A._MixinDeclarationBuilder]);
     _inherit(A.DocImportStringScanner, A.StringScanner);
@@ -75653,7 +75658,6 @@
     _mixin(A._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, A.FixedLengthListMixin);
     _mixin(A._NativeTypedArrayOfInt_NativeTypedArray_ListMixin, A.ListBase);
     _mixin(A._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, A.FixedLengthListMixin);
-    _mixin(A._UnmodifiableMapView_MapView__UnmodifiableMapMixin, A._UnmodifiableMapMixin);
     _mixin(A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase, A.CssStyleDeclarationBase);
     _mixin(A._DomRectList_JavaScriptObject_ListMixin, A.ListBase);
     _mixin(A._DomRectList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
@@ -75702,6 +75706,7 @@
     _mixin(A._TransformList_JavaScriptObject_ListMixin, A.ListBase);
     _mixin(A._TransformList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
     _mixin(A._AudioParamMap_JavaScriptObject_MapMixin, A.MapBase);
+    _mixin(A._DiagnosticWithoutArgumentsImpl_DiagnosticCodeWithExpectedTypes_DiagnosticWithoutArguments, A.DiagnosticWithoutArguments);
     _mixin(A._StackListener_Listener_StackChecker, A.StackChecker);
     _mixin(A._LineStarts_Object_ListMixin, A.ListBase);
     _mixin(A._ExperimentStatus_Object__CurrentState, A._CurrentState);
@@ -75737,17 +75742,13 @@
     _mixin(A._PropertyAccessImpl_CommentReferableExpressionImpl_DotShorthandMixin, A.DotShorthandMixin);
     _mixin(A._SwitchExpressionCaseImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.AstNodeWithNameScopeMixin);
     _mixin(A._SwitchMemberImpl_AstNodeImpl_AstNodeWithNameScopeMixin, A.AstNodeWithNameScopeMixin);
-    _mixin(A._ParserErrorWithoutArguments_ParserErrorCode_DiagnosticWithoutArguments, A.DiagnosticWithoutArguments);
-    _mixin(A._ScannerErrorWithoutArguments_ScannerErrorCode_DiagnosticWithoutArguments, A.DiagnosticWithoutArguments);
-    _mixin(A._CompileTimeErrorWithoutArguments_CompileTimeErrorCode_DiagnosticWithoutArguments, A.DiagnosticWithoutArguments);
-    _mixin(A._WarningWithoutArguments_WarningCode_DiagnosticWithoutArguments, A.DiagnosticWithoutArguments);
   })();
   var init = {
     G: typeof self != "undefined" ? self : globalThis,
     typeUniverse: {eC: new Map(), tR: {}, eT: {}, tPV: {}, sEA: []},
     mangledGlobalNames: {int: "int", double: "double", num: "num", String: "String", bool: "bool", Null: "Null", List: "List", Object: "Object", Map: "Map", JSObject: "JSObject"},
     mangledNames: {},
-    types: ["Message({lexeme!Token})", "Message(Token)", "~()", "Message(String)", "LocatableDiagnostic({p0!String})", "~(JSObject)", "Message(String,String)", "Message({string!String,string2!String})", "Message({name!String})", "LocatableDiagnostic({string!String,string2!String})", "Message({string!String})", "Null()", "~(String,@)", "bool(String)", "~(@)", "~(~())", "Message({lexeme!Token,string!String})", "Message(String,Token)", "Null(@)", "bool(Object?)", "@()", "String(String)", "int()", "int(ATNConfig)", "PrecedencePredicate(PrecedencePredicate,PrecedencePredicate)", "int(FileNode,FileNode)", "String(FileNode)", "Message(int)", "LocatableDiagnostic({string!String})", "~(DiagnosticCode,List<Object>?)", "Type(Object)", "List<LabelImpl>()", "SwitchMemberImpl({labels:List<LabelImpl>?,member!SwitchMemberImpl,statements:List<StatementImpl>?})", "~(DiagnosticCode,int,List<Object>?)", "String()", "HashSet<ATNConfig>()", "bool(ATNConfig,ATNConfig)", "Null(Object,StackTrace)", "LexerAction(int)", "bool(ATNConfig?,ATNConfig?)", "bool(SemanticContext)", "Null(~())", "int(DFAState,DFAState)", "StringBuffer(Interval)", "bool(FileNode)", "@(@,String)", "FileNode(String)", "@(String)", "~(FileNode)", "~(Symbol0,@)", "String(FileNode{expanded:bool})", "0&(String,int?)", "LocatableDiagnostic({p0!Object,p1!Object})", "String(String?)", "Object(String)", "@(@)", "int(Object?)", "bool(Object?,Object?)", "Message({character!int})", "Null(@,StackTrace)", "~(String,String)", "String(Match)", "bool(Token)", "int(AstNode,AstNode)", "int(SyntacticEntity,SyntacticEntity)", "int(_TokenInfo0,_TokenInfo0)", "~(DiagnosticCode,int,List<Object?>?)", "Message({name!String,string!String})", "~(Scanner0,LanguageVersionToken)", "~(int,@)", "Message({character!String,unicode!int})", "Message(String,int)", "Message({unicode!int})", "Set<Element0>()", "StateError()", "Type(Object?)", "LocatableDiagnostic({p0!Object})", "LocatableDiagnostic({p0!String,p1!int,p2!int})", "~(Object?,Object?)"],
+    types: ["Message({lexeme!Token})", "Message(Token)", "~()", "Message(String)", "Message(String,String)", "~(JSObject)", "Message({string!String,string2!String})", "LocatableDiagnostic({p0!String})", "Message({name!String})", "LocatableDiagnostic({string!String,string2!String})", "Message({string!String})", "Null()", "~(String,@)", "bool(String)", "~(@)", "~(~())", "Message({lexeme!Token,string!String})", "Message(String,Token)", "LocatableDiagnostic({string!String})", "Null(@)", "bool(Object?)", "@()", "String(String)", "int()", "int(ATNConfig)", "PrecedencePredicate(PrecedencePredicate,PrecedencePredicate)", "int(FileNode,FileNode)", "String(FileNode)", "Message(int)", "Set<Element0>()", "List<LabelImpl>()", "SwitchMemberImpl({labels:List<LabelImpl>?,member!SwitchMemberImpl,statements:List<StatementImpl>?})", "~(DiagnosticCode,int,List<Object>?)", "String()", "HashSet<ATNConfig>()", "bool(ATNConfig,ATNConfig)", "~(int,@)", "LexerAction(int)", "bool(ATNConfig?,ATNConfig?)", "bool(SemanticContext)", "Null(Object,StackTrace)", "int(DFAState,DFAState)", "StringBuffer(Interval)", "bool(FileNode)", "Null(~())", "FileNode(String)", "~(Object?,Object?)", "~(FileNode)", "@(@,String)", "String(FileNode{expanded:bool})", "0&(String,int?)", "int(_TokenInfo0,_TokenInfo0)", "LocatableDiagnostic({p0!Object,p1!Object})", "Object(String)", "@(String)", "int(Object?)", "bool(Object?,Object?)", "Message({character!int})", "@(@)", "~(String,String)", "String(Match)", "bool(Token)", "int(AstNode,AstNode)", "int(SyntacticEntity,SyntacticEntity)", "~(DiagnosticCode,int,List<Object?>?)", "~(Scanner0,LanguageVersionToken)", "Message({name!String,string!String})", "~(DiagnosticCode,List<Object>?)", "Null(@,StackTrace)", "Message({character!String,unicode!int})", "Message(String,int)", "Message({unicode!int})", "StateError()", "LocatableDiagnostic({token!String})", "LocatableDiagnostic({name!String})", "LocatableDiagnostic({p0!String,p1!int,p2!int})", "Type(Object?)", "Type(Object)", "LocatableDiagnostic({p0!Object})", "String(String?)"],
     interceptorsByTag: null,
     leafTags: null,
     arrayRti: Symbol("$ti"),
@@ -75757,7 +75758,7 @@
       "2;offsetInDocImport,offsetInUnit": (t1, t2) => o => o instanceof A._Record_2_offsetInDocImport_offsetInUnit && t1._is(o._0) && t2._is(o._1)
     }
   };
-  A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject","AbortPaymentEvent":"JavaScriptObject","ExtendableEvent":"JavaScriptObject","Event":"JavaScriptObject","AudioContext":"BaseAudioContext","AbsoluteOrientationSensor":"EventTarget","OrientationSensor":"EventTarget","Sensor":"EventTarget","MathMLElement":"Element","AudioElement":"HtmlElement","MediaElement":"HtmlElement","HtmlDocument":"Node","Document":"Node","VttCue":"TextTrackCue","CDataSection":"CharacterData","Text":"CharacterData","HtmlFormControlsCollection":"HtmlCollection","CssCharsetRule":"CssRule","CssMatrixComponent":"CssTransformComponent","CssStyleSheet":"StyleSheet","CssurlImageValue":"CssStyleValue","CssImageValue":"CssStyleValue","CssResourceValue":"CssStyleValue","NativeSharedArrayBuffer":"NativeByteBuffer","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"Null":[],"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSArraySafeToStringHook":{"SafeToStringHook":[]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"ArrayIterator":{"Iterator":["1"]},"JSNumber":{"double":[],"num":[]},"JSInt":{"double":[],"int":[],"num":[],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"Pattern":[],"TrustedGetRuntimeType":[]},"LateError":{"Error":[]},"CodeUnits":{"ListBase":["int"],"UnmodifiableListMixin":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int","UnmodifiableListMixin.E":"int"},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"ListIterator":{"Iterator":["1"]},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedIterator":{"Iterator":["2"]},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"WhereIterator":{"Iterator":["1"]},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"EmptyIterator":{"Iterator":["1"]},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterator":{"Iterator":["1"]},"NonNullsIterable":{"Iterable":["1"],"Iterable.E":"1"},"NonNullsIterator":{"Iterator":["1"]},"UnmodifiableListBase":{"ListBase":["1"],"UnmodifiableListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"Symbol":{"Symbol0":[]},"_Record_2":{"_Record2":[],"_Record":[]},"_Record_2_content_offset":{"_Record2":[],"_Record":[]},"_Record_2_offsetInDocImport_offsetInUnit":{"_Record2":[],"_Record":[]},"ConstantMapView":{"UnmodifiableMapView":["1","2"],"_UnmodifiableMapView_MapView__UnmodifiableMapMixin":["1","2"],"MapView":["1","2"],"_UnmodifiableMapMixin":["1","2"],"Map":["1","2"]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"_KeysOrValues":{"Iterable":["1"],"Iterable.E":"1"},"_KeysOrValuesOrElementsIterator":{"Iterator":["1"]},"ConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ConstantStringSet":{"ConstantSet":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"JSInvocationMirror":{"Invocation":[]},"NullError":{"TypeError":[],"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"],"LinkedHashMap":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"LinkedHashMapKeysIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapKeyIterator":{"Iterator":["1"]},"LinkedHashMapValuesIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapValueIterator":{"Iterator":["1"]},"LinkedHashMapEntriesIterable":{"EfficientLengthIterable":["MapEntry<1,2>"],"Iterable":["MapEntry<1,2>"],"Iterable.E":"MapEntry<1,2>"},"LinkedHashMapEntryIterator":{"Iterator":["MapEntry<1,2>"]},"_Record2":{"_Record":[]},"JSSyntaxRegExp":{"RegExp":[],"Pattern":[]},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"_AllMatchesIterator":{"Iterator":["RegExpMatch"]},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"_StringAllMatchesIterator":{"Iterator":["Match"]},"NativeByteBuffer":{"JSObject":[],"TrustedGetRuntimeType":[]},"NativeArrayBuffer":{"NativeByteBuffer":[],"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[],"TypedData":[]},"NativeByteData":{"JSObject":[],"TypedData":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[],"TypedData":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"NativeTypedArray":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"TypedData":[],"Iterable":["double"],"FixedLengthListMixin":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"]},"NativeFloat32List":{"ListBase":["double"],"NativeTypedArray":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"TypedData":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double","FixedLengthListMixin.E":"double"},"NativeFloat64List":{"ListBase":["double"],"NativeTypedArray":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"TypedData":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double","FixedLengthListMixin.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"Int32List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"Uint16List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"Uint32List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"Uint8List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"_Type":{"Type":[]},"_Error":{"Error":[]},"_TypeError":{"TypeError":[],"Error":[]},"_TimerImpl":{"Timer":[]},"AsyncError":{"Error":[]},"_AsyncCompleter":{"_Completer":["1"]},"_Future":{"Future":["1"]},"_Zone":{"Zone":[]},"_RootZone":{"_Zone":[],"Zone":[]},"HashSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"_IdentityHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"_CustomHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_HashMapKeyIterator":{"Iterator":["1"]},"_HashSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_IdentityHashSet":{"_HashSet":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_CustomHashSet":{"_HashSet":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashSetIterator":{"Iterator":["1"]},"_LinkedHashSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedHashSetIterator":{"Iterator":["1"]},"UnmodifiableListView":{"ListBase":["1"],"UnmodifiableListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1","UnmodifiableListMixin.E":"1"},"ListBase":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"Map":["1","2"]},"MapView":{"Map":["1","2"]},"UnmodifiableMapView":{"_UnmodifiableMapView_MapView__UnmodifiableMapMixin":["1","2"],"MapView":["1","2"],"_UnmodifiableMapMixin":["1","2"],"Map":["1","2"]},"SetBase":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"Base64Codec":{"Codec":["List<int>","String"]},"Encoding":{"Codec":["String","List<int>"]},"Utf8Codec":{"Codec":["String","List<int>"]},"double":{"num":[]},"StateError":{"Error":[]},"int":{"num":[]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Pattern":[]},"StringBuffer":{"StringSink":[]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"Error":[]},"NoSuchMethodError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"_StringStackTrace":{"StackTrace":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"RuneIterator":{"Iterator":["int"]},"_Uri":{"Uri":[]},"_SimpleUri":{"Uri":[]},"_DataUri":{"Uri":[]},"CssRule":{"JSObject":[]},"File":{"JSObject":[]},"Gamepad":{"JSObject":[]},"MimeType":{"JSObject":[]},"Node":{"JSObject":[]},"Plugin":{"JSObject":[]},"SourceBuffer":{"JSObject":[]},"SpeechGrammar":{"JSObject":[]},"SpeechRecognitionResult":{"JSObject":[]},"StyleSheet":{"JSObject":[]},"TextTrack":{"JSObject":[]},"TextTrackCue":{"JSObject":[]},"Touch":{"JSObject":[]},"HtmlElement":{"Node":[],"JSObject":[]},"AccessibleNodeList":{"JSObject":[]},"AnchorElement":{"Node":[],"JSObject":[]},"AreaElement":{"Node":[],"JSObject":[]},"Blob":{"JSObject":[]},"CharacterData":{"Node":[],"JSObject":[]},"CssPerspective":{"JSObject":[]},"CssStyleDeclaration":{"JSObject":[]},"CssStyleValue":{"JSObject":[]},"CssTransformComponent":{"JSObject":[]},"CssTransformValue":{"JSObject":[]},"CssUnparsedValue":{"JSObject":[]},"DataTransferItemList":{"JSObject":[]},"DomException":{"JSObject":[]},"DomRectList":{"ListBase":["Rectangle<num>"],"ImmutableListMixin":["Rectangle<num>"],"List":["Rectangle<num>"],"JavaScriptIndexingBehavior":["Rectangle<num>"],"EfficientLengthIterable":["Rectangle<num>"],"JSObject":[],"Iterable":["Rectangle<num>"],"ListBase.E":"Rectangle<num>","ImmutableListMixin.E":"Rectangle<num>"},"DomRectReadOnly":{"Rectangle":["num"],"JSObject":[]},"DomStringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"JavaScriptIndexingBehavior":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ListBase.E":"String","ImmutableListMixin.E":"String"},"DomTokenList":{"JSObject":[]},"Element":{"Node":[],"JSObject":[]},"EventTarget":{"JSObject":[]},"FileList":{"ListBase":["File"],"ImmutableListMixin":["File"],"List":["File"],"JavaScriptIndexingBehavior":["File"],"EfficientLengthIterable":["File"],"JSObject":[],"Iterable":["File"],"ListBase.E":"File","ImmutableListMixin.E":"File"},"FileWriter":{"JSObject":[]},"FormElement":{"Node":[],"JSObject":[]},"History":{"JSObject":[]},"HtmlCollection":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"Location":{"JSObject":[]},"MediaList":{"JSObject":[]},"MidiInputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"MidiOutputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"MimeTypeArray":{"ListBase":["MimeType"],"ImmutableListMixin":["MimeType"],"List":["MimeType"],"JavaScriptIndexingBehavior":["MimeType"],"EfficientLengthIterable":["MimeType"],"JSObject":[],"Iterable":["MimeType"],"ListBase.E":"MimeType","ImmutableListMixin.E":"MimeType"},"NodeList":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"PluginArray":{"ListBase":["Plugin"],"ImmutableListMixin":["Plugin"],"List":["Plugin"],"JavaScriptIndexingBehavior":["Plugin"],"EfficientLengthIterable":["Plugin"],"JSObject":[],"Iterable":["Plugin"],"ListBase.E":"Plugin","ImmutableListMixin.E":"Plugin"},"RtcStatsReport":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"SelectElement":{"Node":[],"JSObject":[]},"SourceBufferList":{"ListBase":["SourceBuffer"],"ImmutableListMixin":["SourceBuffer"],"List":["SourceBuffer"],"JavaScriptIndexingBehavior":["SourceBuffer"],"EfficientLengthIterable":["SourceBuffer"],"JSObject":[],"Iterable":["SourceBuffer"],"ListBase.E":"SourceBuffer","ImmutableListMixin.E":"SourceBuffer"},"SpeechGrammarList":{"ListBase":["SpeechGrammar"],"ImmutableListMixin":["SpeechGrammar"],"List":["SpeechGrammar"],"JavaScriptIndexingBehavior":["SpeechGrammar"],"EfficientLengthIterable":["SpeechGrammar"],"JSObject":[],"Iterable":["SpeechGrammar"],"ListBase.E":"SpeechGrammar","ImmutableListMixin.E":"SpeechGrammar"},"Storage":{"MapBase":["String","String"],"JSObject":[],"Map":["String","String"],"MapBase.K":"String","MapBase.V":"String"},"TextTrackCueList":{"ListBase":["TextTrackCue"],"ImmutableListMixin":["TextTrackCue"],"List":["TextTrackCue"],"JavaScriptIndexingBehavior":["TextTrackCue"],"EfficientLengthIterable":["TextTrackCue"],"JSObject":[],"Iterable":["TextTrackCue"],"ListBase.E":"TextTrackCue","ImmutableListMixin.E":"TextTrackCue"},"TextTrackList":{"ListBase":["TextTrack"],"ImmutableListMixin":["TextTrack"],"List":["TextTrack"],"JavaScriptIndexingBehavior":["TextTrack"],"EfficientLengthIterable":["TextTrack"],"JSObject":[],"Iterable":["TextTrack"],"ListBase.E":"TextTrack","ImmutableListMixin.E":"TextTrack"},"TimeRanges":{"JSObject":[]},"TouchList":{"ListBase":["Touch"],"ImmutableListMixin":["Touch"],"List":["Touch"],"JavaScriptIndexingBehavior":["Touch"],"EfficientLengthIterable":["Touch"],"JSObject":[],"Iterable":["Touch"],"ListBase.E":"Touch","ImmutableListMixin.E":"Touch"},"TrackDefaultList":{"JSObject":[]},"Url":{"JSObject":[]},"VideoTrackList":{"JSObject":[]},"_CssRuleList":{"ListBase":["CssRule"],"ImmutableListMixin":["CssRule"],"List":["CssRule"],"JavaScriptIndexingBehavior":["CssRule"],"EfficientLengthIterable":["CssRule"],"JSObject":[],"Iterable":["CssRule"],"ListBase.E":"CssRule","ImmutableListMixin.E":"CssRule"},"_DomRect":{"Rectangle":["num"],"JSObject":[]},"_GamepadList":{"ListBase":["Gamepad?"],"ImmutableListMixin":["Gamepad?"],"List":["Gamepad?"],"JavaScriptIndexingBehavior":["Gamepad?"],"EfficientLengthIterable":["Gamepad?"],"JSObject":[],"Iterable":["Gamepad?"],"ListBase.E":"Gamepad?","ImmutableListMixin.E":"Gamepad?"},"_NamedNodeMap":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"_SpeechRecognitionResultList":{"ListBase":["SpeechRecognitionResult"],"ImmutableListMixin":["SpeechRecognitionResult"],"List":["SpeechRecognitionResult"],"JavaScriptIndexingBehavior":["SpeechRecognitionResult"],"EfficientLengthIterable":["SpeechRecognitionResult"],"JSObject":[],"Iterable":["SpeechRecognitionResult"],"ListBase.E":"SpeechRecognitionResult","ImmutableListMixin.E":"SpeechRecognitionResult"},"_StyleSheetList":{"ListBase":["StyleSheet"],"ImmutableListMixin":["StyleSheet"],"List":["StyleSheet"],"JavaScriptIndexingBehavior":["StyleSheet"],"EfficientLengthIterable":["StyleSheet"],"JSObject":[],"Iterable":["StyleSheet"],"ListBase.E":"StyleSheet","ImmutableListMixin.E":"StyleSheet"},"FixedSizeListIterator":{"Iterator":["1"]},"NullRejectionException":{"Exception":[]},"Length":{"JSObject":[]},"Number":{"JSObject":[]},"Transform":{"JSObject":[]},"LengthList":{"ListBase":["Length"],"ImmutableListMixin":["Length"],"List":["Length"],"EfficientLengthIterable":["Length"],"JSObject":[],"Iterable":["Length"],"ListBase.E":"Length","ImmutableListMixin.E":"Length"},"NumberList":{"ListBase":["Number"],"ImmutableListMixin":["Number"],"List":["Number"],"EfficientLengthIterable":["Number"],"JSObject":[],"Iterable":["Number"],"ListBase.E":"Number","ImmutableListMixin.E":"Number"},"PointList":{"JSObject":[]},"StringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ListBase.E":"String","ImmutableListMixin.E":"String"},"TransformList":{"ListBase":["Transform"],"ImmutableListMixin":["Transform"],"List":["Transform"],"EfficientLengthIterable":["Transform"],"JSObject":[],"Iterable":["Transform"],"ListBase.E":"Transform","ImmutableListMixin.E":"Transform"},"ByteData":{"TypedData":[]},"Int8List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Int16List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint16List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Int32List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint32List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Float32List":{"List":["double"],"EfficientLengthIterable":["double"],"TypedData":[],"Iterable":["double"]},"Float64List":{"List":["double"],"EfficientLengthIterable":["double"],"TypedData":[],"Iterable":["double"]},"AudioBuffer":{"JSObject":[]},"AudioParamMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"AudioTrackList":{"JSObject":[]},"BaseAudioContext":{"JSObject":[]},"OfflineAudioContext":{"JSObject":[]},"DiagnosticMessageImpl":{"DiagnosticMessage":[]},"DiagnosticCodeWithExpectedTypes":{"DiagnosticCode":[]},"LocatableDiagnosticImpl":{"LocatableDiagnostic":[]},"MessageCode":{"Code":[],"Message":[]},"Template":{"Code":[]},"ForwardingListener":{"Listener":[]},"NullListener":{"Listener":[]},"CatchParameterIdentifierContext":{"IdentifierContext0":[]},"ClassOrMixinOrExtensionIdentifierContext":{"IdentifierContext0":[]},"CombinatorIdentifierContext":{"IdentifierContext0":[]},"ConstructorReferenceIdentifierContext":{"IdentifierContext0":[]},"DottedNameIdentifierContext":{"IdentifierContext0":[]},"EnumDeclarationIdentifierContext":{"IdentifierContext0":[]},"EnumValueDeclarationIdentifierContext":{"IdentifierContext0":[]},"ExpressionIdentifierContext":{"IdentifierContext0":[]},"FieldDeclarationIdentifierContext":{"IdentifierContext0":[]},"FieldInitializerIdentifierContext":{"IdentifierContext0":[]},"FormalParameterDeclarationIdentifierContext":{"IdentifierContext0":[]},"RecordFieldDeclarationIdentifierContext":{"IdentifierContext0":[]},"ImportPrefixIdentifierContext":{"IdentifierContext0":[]},"LiteralSymbolIdentifierContext":{"IdentifierContext0":[]},"LocalFunctionDeclarationIdentifierContext":{"IdentifierContext0":[]},"LabelDeclarationIdentifierContext":{"IdentifierContext0":[]},"LabelReferenceIdentifierContext":{"IdentifierContext0":[]},"LibraryIdentifierContext":{"IdentifierContext0":[]},"LocalVariableDeclarationIdentifierContext":{"IdentifierContext0":[]},"MetadataReferenceIdentifierContext":{"IdentifierContext0":[]},"MethodDeclarationIdentifierContext":{"IdentifierContext0":[]},"NamedArgumentReferenceIdentifierContext":{"IdentifierContext0":[]},"NamedRecordFieldReferenceIdentifierContext":{"IdentifierContext0":[]},"TopLevelDeclarationIdentifierContext":{"IdentifierContext0":[]},"TypedefDeclarationIdentifierContext":{"IdentifierContext0":[]},"TypeReferenceIdentifierContext":{"IdentifierContext0":[]},"TypeVariableDeclarationIdentifierContext":{"IdentifierContext0":[]},"ForCondition":{"LiteralEntryInfo":[]},"ForSpread":{"LiteralEntryInfo":[]},"ForInSpread":{"LiteralEntryInfo":[]},"ForEntry":{"LiteralEntryInfo":[]},"ForInEntry":{"LiteralEntryInfo":[]},"ForComplete":{"LiteralEntryInfo":[]},"ForInComplete":{"LiteralEntryInfo":[]},"IfCondition":{"LiteralEntryInfo":[]},"IfSpread":{"LiteralEntryInfo":[]},"IfEntry":{"LiteralEntryInfo":[]},"IfComplete":{"LiteralEntryInfo":[]},"IfElse":{"LiteralEntryInfo":[]},"ElseSpread":{"LiteralEntryInfo":[]},"ElseEntry":{"LiteralEntryInfo":[]},"IfElseComplete":{"LiteralEntryInfo":[]},"SpreadOperator":{"LiteralEntryInfo":[]},"Nested":{"LiteralEntryInfo":[]},"NullAwareEntry":{"LiteralEntryInfo":[]},"DeclarationHeaderRecoveryListener":{"Listener":[]},"ImportRecoveryListener":{"Listener":[]},"MixinHeaderRecoveryListener":{"Listener":[]},"StackListener":{"Listener":[]},"StackImpl":{"Stack":[]},"TokenStreamRewriterImpl":{"TokenStreamRewriter":[]},"NextTokenStreamChange":{"TokenStreamChange":[]},"EndGroupTokenStreamChange":{"TokenStreamChange":[]},"OffsetTokenStreamChange":{"TokenStreamChange":[]},"PrecedingCommentsTokenStreamChange":{"TokenStreamChange":[]},"PreviousTokenStreamChange":{"TokenStreamChange":[]},"UndoableTokenStreamRewriter":{"TokenStreamRewriter":[]},"NoType":{"TypeInfo":[]},"PrefixedType":{"TypeInfo":[]},"SimpleNullableTypeWith1Argument":{"TypeInfo":[]},"SimpleTypeWith1Argument":{"TypeInfo":[]},"SimpleNullableType":{"TypeInfo":[]},"SimpleType":{"TypeInfo":[]},"VoidType":{"TypeInfo":[]},"ComplexTypeInfo":{"TypeInfo":[]},"NoTypeParamOrArg":{"TypeParamOrArgInfo":[]},"SimpleTypeArgument1":{"TypeParamOrArgInfo":[]},"SimpleTypeArgument1GtEq":{"TypeParamOrArgInfo":[]},"SimpleTypeArgument1GtGt":{"TypeParamOrArgInfo":[]},"ComplexTypeParamOrArgInfo":{"TypeParamOrArgInfo":[]},"AbstractScanner":{"Scanner0":[]},"LineStarts":{"ListBase":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int"},"ErrorToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"EncodingErrorToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"NonAsciiIdentifierToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"NonAsciiWhitespaceToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"AsciiControlCharacterToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnsupportedOperator":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnterminatedString":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnterminatedToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnmatchedToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"_StringNode":{"_Node":[]},"StringScanner":{"Scanner0":[]},"BeginToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"Keyword":{"TokenType":[]},"LanguageVersionToken":{"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"Token":{"SyntacticEntity":[]},"KeywordToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SimpleToken":{"Token":[],"SyntacticEntity":[]},"StringToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticBeginToken":{"BeginToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticKeywordToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticStringToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"ReplacementToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"StringTokenImpl":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"CommentTokenImpl":{"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"LanguageVersionTokenImpl":{"LanguageVersionToken":[],"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"DartDocToken":{"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"Link":{"Iterable":["1"]},"LinkIterator":{"Iterator":["1"]},"LinkEntry":{"Link":["1"],"Iterable":["1"]},"DocDirectiveNamedArgument":{"DocDirectiveArgument":[]},"DocDirectivePositionalArgument":{"DocDirectiveArgument":[]},"BlockDocDirective":{"DocDirective":[]},"SimpleDocDirective":{"DocDirective":[]},"GeneralizingAstVisitor":{"AstVisitor":["1"]},"RecordingDiagnosticListener":{"DiagnosticListener":[],"DiagnosticOrErrorListener":[]},"ExperimentalFeaturesStatus":{"ExperimentalFeatures":[]},"ExperimentStatus":{"FeatureSet":[]},"AnnotationImpl":{"AstNodeImpl":[],"Annotation":[],"AstNode":[],"SyntacticEntity":[]},"ArgumentListImpl":{"AstNodeImpl":[],"ArgumentList":[],"AstNode":[],"SyntacticEntity":[]},"AstNode":{"SyntacticEntity":[]},"AstNodeImpl":{"AstNode":[],"SyntacticEntity":[]},"BlockImpl":{"StatementImpl":[],"Block":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"CaseClauseImpl":{"AstNodeImpl":[],"CaseClause":[],"AstNode":[],"SyntacticEntity":[]},"CatchClauseImpl":{"AstNodeImpl":[],"CatchClause":[],"AstNode":[],"SyntacticEntity":[]},"CatchClauseParameterImpl":{"AstNodeImpl":[],"CatchClauseParameter":[],"AstNode":[],"SyntacticEntity":[]},"ClassMemberImpl":{"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"CollectionElementImpl":{"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"CombinatorImpl":{"AstNodeImpl":[],"Combinator":[],"AstNode":[],"SyntacticEntity":[]},"CommentImpl":{"AstNodeImpl":[],"Comment0":[],"AstNode":[],"SyntacticEntity":[]},"CommentReferableExpressionImpl":{"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"CommentReferenceImpl":{"AstNodeImpl":[],"CommentReference":[],"AstNode":[],"SyntacticEntity":[]},"CompilationUnitMemberImpl":{"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ConfigurationImpl":{"AstNodeImpl":[],"Configuration":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorInitializerImpl":{"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorNameImpl":{"ConstructorName":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorSelectorImpl":{"AstNodeImpl":[],"ConstructorSelector":[],"AstNode":[],"SyntacticEntity":[]},"DartPatternImpl":{"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"DeclaredIdentifierImpl":{"DeclaredIdentifier":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"DirectiveImpl":{"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"DottedNameImpl":{"AstNodeImpl":[],"DottedName":[],"AstNode":[],"SyntacticEntity":[]},"EnumConstantArgumentsImpl":{"AstNodeImpl":[],"EnumConstantArguments":[],"AstNode":[],"SyntacticEntity":[]},"EnumConstantDeclarationImpl":{"EnumConstantDeclaration":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExpressionImpl":{"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ExtendsClauseImpl":{"AstNodeImpl":[],"ExtendsClause":[],"AstNode":[],"SyntacticEntity":[]},"ExtensionOnClauseImpl":{"AstNodeImpl":[],"ExtensionOnClause":[],"AstNode":[],"SyntacticEntity":[]},"ForLoopPartsImpl":{"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"FormalParameterImpl":{"AstNodeImpl":[],"FormalParameter":[],"AstNode":[],"SyntacticEntity":[]},"FormalParameterListImpl":{"AstNodeImpl":[],"FormalParameterList":[],"AstNode":[],"SyntacticEntity":[]},"FunctionBodyImpl":{"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"FunctionDeclarationImpl":{"CompilationUnitMemberImpl":[],"FunctionDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FunctionExpressionImpl":{"ExpressionImpl":[],"FunctionExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"GuardedPatternImpl":{"AstNodeImpl":[],"GuardedPattern":[],"AstNode":[],"SyntacticEntity":[]},"IdentifierImpl":{"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ImplementsClauseImpl":{"AstNodeImpl":[],"ImplementsClause":[],"AstNode":[],"SyntacticEntity":[]},"ImportPrefixReferenceImpl":{"AstNodeImpl":[],"ImportPrefixReference":[],"AstNode":[],"SyntacticEntity":[]},"InterpolationElementImpl":{"AstNodeImpl":[],"InterpolationElement":[],"AstNode":[],"SyntacticEntity":[]},"LabelImpl":{"AstNodeImpl":[],"Label":[],"AstNode":[],"SyntacticEntity":[]},"LibraryIdentifierImpl":{"IdentifierImpl":[],"LibraryIdentifier":[],"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ListPatternElementImpl":{"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MapPatternElementImpl":{"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MixinOnClauseImpl":{"AstNodeImpl":[],"MixinOnClause":[],"AstNode":[],"SyntacticEntity":[]},"NamedTypeImpl":{"TypeAnnotationImpl":[],"NamedType":[],"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"NativeClauseImpl":{"AstNodeImpl":[],"NativeClause":[],"AstNode":[],"SyntacticEntity":[]},"NormalFormalParameterImpl":{"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PatternFieldImpl":{"AstNodeImpl":[],"PatternField":[],"AstNode":[],"SyntacticEntity":[]},"PatternFieldNameImpl":{"AstNodeImpl":[],"PatternFieldName":[],"AstNode":[],"SyntacticEntity":[]},"PatternVariableDeclarationImpl":{"PatternVariableDeclaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationNamedFieldImpl":{"RecordTypeAnnotationNamedField":[],"AstNodeImpl":[],"RecordTypeAnnotationField":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationNamedFieldsImpl":{"AstNodeImpl":[],"RecordTypeAnnotationNamedFields":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationPositionalFieldImpl":{"RecordTypeAnnotationPositionalField":[],"AstNodeImpl":[],"RecordTypeAnnotationField":[],"AstNode":[],"SyntacticEntity":[]},"RepresentationConstructorNameImpl":{"AstNodeImpl":[],"RepresentationConstructorName":[],"AstNode":[],"SyntacticEntity":[]},"RepresentationDeclarationImpl":{"AstNodeImpl":[],"RepresentationDeclaration":[],"AstNode":[],"SyntacticEntity":[]},"ScriptTagImpl":{"AstNodeImpl":[],"ScriptTag":[],"AstNode":[],"SyntacticEntity":[]},"SimpleIdentifierImpl":{"IdentifierImpl":[],"SimpleIdentifier":[],"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"StatementImpl":{"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"StringLiteralImpl":{"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SwitchExpressionCaseImpl":{"AstNodeImpl":[],"SwitchExpressionCase":[],"AstNode":[],"SyntacticEntity":[]},"SwitchMemberImpl":{"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"TypeAnnotationImpl":{"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"TypeArgumentListImpl":{"AstNodeImpl":[],"TypeArgumentList":[],"AstNode":[],"SyntacticEntity":[]},"TypeParameterImpl":{"TypeParameter":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"TypeParameterListImpl":{"AstNodeImpl":[],"TypeParameterList":[],"AstNode":[],"SyntacticEntity":[]},"VariableDeclarationImpl":{"VariableDeclaration":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"VariableDeclarationListImpl":{"VariableDeclarationList":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"WhenClauseImpl":{"AstNodeImpl":[],"WhenClause":[],"AstNode":[],"SyntacticEntity":[]},"WithClauseImpl":{"AstNodeImpl":[],"WithClause":[],"AstNode":[],"SyntacticEntity":[]},"AdjacentStringsImpl":{"StringLiteralImpl":[],"AdjacentStrings":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"AnnotatedNodeImpl":{"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"AsExpressionImpl":{"ExpressionImpl":[],"AsExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"AssertInitializerImpl":{"ConstructorInitializerImpl":[],"AssertInitializer":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"AssertStatementImpl":{"StatementImpl":[],"AssertStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"AssignedVariablePatternImpl":{"AssignedVariablePattern":[],"DartPatternImpl":[],"VariablePattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"AssignmentExpressionImpl":{"AssignmentExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"AwaitExpressionImpl":{"ExpressionImpl":[],"AwaitExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"BinaryExpressionImpl":{"BinaryExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"BlockClassBodyImplStub":{"BlockClassBodyImpl":[],"ClassBodyImpl":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"BlockFunctionBodyImpl":{"FunctionBodyImpl":[],"BlockFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"BooleanLiteralImpl":{"BooleanLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"BreakStatementImpl":{"StatementImpl":[],"BreakStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"CascadeExpressionImpl":{"ExpressionImpl":[],"CascadeExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"CastPatternImpl":{"DartPatternImpl":[],"CastPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ClassBodyImplStub":{"ClassBodyImpl":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ClassDeclarationImpl":{"CompilationUnitMemberImpl":[],"ClassDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ClassNamePartImplStub":{"ClassNamePartImpl":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ClassTypeAliasImpl":{"CompilationUnitMemberImpl":[],"ClassTypeAlias":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"CompilationUnitImpl":{"AstNodeImpl":[],"CompilationUnit":[],"AstNode":[],"SyntacticEntity":[]},"ConditionalExpressionImpl":{"ExpressionImpl":[],"ConditionalExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ConstantPatternImpl":{"DartPatternImpl":[],"ConstantPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorDeclarationImpl":{"ClassMemberImpl":[],"ConstructorDeclaration":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorFieldInitializerImpl":{"ConstructorInitializerImpl":[],"ConstructorFieldInitializer":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"ContinueStatementImpl":{"StatementImpl":[],"ContinueStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"DeclarationImpl":{"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"DeclaredVariablePatternImpl":{"DeclaredVariablePattern":[],"DartPatternImpl":[],"VariablePattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"DefaultFormalParameterImpl":{"FormalParameterImpl":[],"DefaultFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AstNode":[],"SyntacticEntity":[]},"DoStatementImpl":{"StatementImpl":[],"DoStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"DotShorthandConstructorInvocationImpl":{"DotShorthandMixin":[],"DotShorthandConstructorInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"DotShorthandInvocationImpl":{"DotShorthandMixin":[],"DotShorthandInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"DotShorthandPropertyAccessImpl":{"DotShorthandMixin":[],"ExpressionImpl":[],"DotShorthandPropertyAccess":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"DoubleLiteralImpl":{"DoubleLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"EmptyFunctionBodyImpl":{"FunctionBodyImpl":[],"EmptyFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"EmptyStatementImpl":{"StatementImpl":[],"EmptyStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"EnumBodyImplStub":{"EnumBodyImpl":[],"ClassBodyImpl":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"EnumDeclarationImpl":{"CompilationUnitMemberImpl":[],"EnumDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExportDirectiveImpl":{"DirectiveImpl":[],"ExportDirective":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExpressionFunctionBodyImpl":{"FunctionBodyImpl":[],"ExpressionFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"ExpressionStatementImpl":{"StatementImpl":[],"ExpressionStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"ExtensionDeclarationImpl":{"CompilationUnitMemberImpl":[],"ExtensionDeclaration":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExtensionTypeDeclarationImpl":{"CompilationUnitMemberImpl":[],"ExtensionTypeDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FieldDeclarationImpl":{"ClassMemberImpl":[],"FieldDeclaration":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FieldFormalParameterImpl":{"NormalFormalParameterImpl":[],"FieldFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsImpl":{"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsWithDeclarationImpl":{"ForEachPartsImpl":[],"ForEachPartsWithDeclaration":[],"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsWithIdentifierImpl":{"ForEachPartsImpl":[],"ForEachPartsWithIdentifier":[],"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsWithPatternImpl":{"ForEachPartsImpl":[],"ForEachPartsWithPattern":[],"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForElementImpl":{"CollectionElementImpl":[],"ForElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsImpl":{"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsWithDeclarationsImpl":{"ForPartsImpl":[],"ForPartsWithDeclarations":[],"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsWithExpressionImpl":{"ForPartsImpl":[],"ForPartsWithExpression":[],"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsWithPatternImpl":{"ForPartsImpl":[],"ForPartsWithPattern":[],"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForStatementImpl":{"StatementImpl":[],"ForStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionDeclarationStatementImpl":{"StatementImpl":[],"FunctionDeclarationStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionExpressionInvocationImpl":{"FunctionExpressionInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionReferenceImpl":{"CommentReferableExpressionImpl":[],"DotShorthandMixin":[],"FunctionReference":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionTypeAliasImpl":{"CompilationUnitMemberImpl":[],"FunctionTypeAlias":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FunctionTypedFormalParameterImpl":{"NormalFormalParameterImpl":[],"FunctionTypedFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"GenericFunctionTypeImpl":{"TypeAnnotationImpl":[],"GenericFunctionType":[],"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"GenericTypeAliasImpl":{"CompilationUnitMemberImpl":[],"GenericTypeAlias":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"HideCombinatorImpl":{"CombinatorImpl":[],"HideCombinator":[],"AstNodeImpl":[],"Combinator":[],"AstNode":[],"SyntacticEntity":[]},"IfElementImpl":{"CollectionElementImpl":[],"IfElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"IfStatementImpl":{"StatementImpl":[],"IfStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"ImportDirectiveImpl":{"DirectiveImpl":[],"ImportDirective":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"IndexExpressionImpl":{"DotShorthandMixin":[],"IndexExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"InstanceCreationExpressionImpl":{"ExpressionImpl":[],"InstanceCreationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"IntegerLiteralImpl":{"IntegerLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"InterpolationExpressionImpl":{"InterpolationElementImpl":[],"InterpolationExpression":[],"AstNodeImpl":[],"InterpolationElement":[],"AstNode":[],"SyntacticEntity":[]},"InterpolationStringImpl":{"InterpolationElementImpl":[],"InterpolationString":[],"AstNodeImpl":[],"InterpolationElement":[],"AstNode":[],"SyntacticEntity":[]},"InvocationExpressionImpl":{"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"IsExpressionImpl":{"ExpressionImpl":[],"IsExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"LabeledStatementImpl":{"StatementImpl":[],"LabeledStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"LibraryDirectiveImpl":{"DirectiveImpl":[],"LibraryDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ListLiteralImpl":{"ListLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ListPatternImpl":{"DartPatternImpl":[],"ListPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"LiteralImpl":{"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"LogicalAndPatternImpl":{"DartPatternImpl":[],"LogicalAndPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"LogicalOrPatternImpl":{"DartPatternImpl":[],"LogicalOrPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MapLiteralEntryImpl":{"CollectionElementImpl":[],"MapLiteralEntry":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"MapPatternEntryImpl":{"MapPatternElementImpl":[],"MapPatternEntry":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MapPatternImpl":{"DartPatternImpl":[],"MapPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MethodDeclarationImpl":{"ClassMemberImpl":[],"MethodDeclaration":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"MethodInvocationImpl":{"DotShorthandMixin":[],"MethodInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"MixinDeclarationImpl":{"CompilationUnitMemberImpl":[],"MixinDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"NamedCompilationUnitMemberImpl":{"CompilationUnitMemberImpl":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"NamedExpressionImpl":{"ExpressionImpl":[],"NamedExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"NamespaceDirectiveImpl":{"DirectiveImpl":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"NativeFunctionBodyImpl":{"FunctionBodyImpl":[],"NativeFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"NodeListImpl":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1"},"NullAssertPatternImpl":{"DartPatternImpl":[],"NullAssertPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"NullAwareElementImpl":{"CollectionElementImpl":[],"NullAwareElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"NullCheckPatternImpl":{"DartPatternImpl":[],"NullCheckPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"NullLiteralImpl":{"NullLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ObjectPatternImpl":{"DartPatternImpl":[],"ObjectPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ParenthesizedExpressionImpl":{"ExpressionImpl":[],"ParenthesizedExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ParenthesizedPatternImpl":{"DartPatternImpl":[],"ParenthesizedPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"PartDirectiveImpl":{"DirectiveImpl":[],"PartDirective":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PartOfDirectiveImpl":{"DirectiveImpl":[],"PartOfDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PatternAssignmentImpl":{"ExpressionImpl":[],"PatternAssignment":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PatternVariableDeclarationStatementImpl":{"StatementImpl":[],"PatternVariableDeclarationStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"PostfixExpressionImpl":{"DotShorthandMixin":[],"PostfixExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PrefixedIdentifierImpl":{"IdentifierImpl":[],"PrefixedIdentifier":[],"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PrefixExpressionImpl":{"PrefixExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PrimaryConstructorNameImpl":{"AstNodeImpl":[],"PrimaryConstructorName":[],"AstNode":[],"SyntacticEntity":[]},"PropertyAccessImpl":{"CommentReferableExpressionImpl":[],"DotShorthandMixin":[],"PropertyAccess":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"RecordLiteralImpl":{"RecordLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"RecordPatternImpl":{"DartPatternImpl":[],"RecordPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationFieldImpl":{"AstNodeImpl":[],"RecordTypeAnnotationField":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationImpl":{"TypeAnnotationImpl":[],"RecordTypeAnnotation":[],"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"RedirectingConstructorInvocationImpl":{"ConstructorInitializerImpl":[],"RedirectingConstructorInvocation":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"RelationalPatternImpl":{"DartPatternImpl":[],"RelationalPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"RestPatternElementImpl":{"ListPatternElementImpl":[],"MapPatternElementImpl":[],"RestPatternElement":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"RethrowExpressionImpl":{"ExpressionImpl":[],"RethrowExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ReturnStatementImpl":{"StatementImpl":[],"ReturnStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"SetOrMapLiteralImpl":{"SetOrMapLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ShowCombinatorImpl":{"CombinatorImpl":[],"ShowCombinator":[],"AstNodeImpl":[],"Combinator":[],"AstNode":[],"SyntacticEntity":[]},"SimpleFormalParameterImpl":{"NormalFormalParameterImpl":[],"SimpleFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"SimpleStringLiteralImpl":{"SimpleStringLiteral":[],"StringLiteralImpl":[],"SingleStringLiteral":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SingleStringLiteralImpl":{"StringLiteralImpl":[],"SingleStringLiteral":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SpreadElementImpl":{"CollectionElementImpl":[],"SpreadElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"StringInterpolationImpl":{"StringInterpolation":[],"StringLiteralImpl":[],"SingleStringLiteral":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SuperConstructorInvocationImpl":{"ConstructorInitializerImpl":[],"SuperConstructorInvocation":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"SuperExpressionImpl":{"ExpressionImpl":[],"SuperExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SuperFormalParameterImpl":{"NormalFormalParameterImpl":[],"SuperFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"SwitchCaseImpl":{"SwitchMemberImpl":[],"SwitchCase":[],"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"SwitchDefaultImpl":{"SwitchMemberImpl":[],"SwitchDefault":[],"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"SwitchExpressionImpl":{"ExpressionImpl":[],"SwitchExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SwitchPatternCaseImpl":{"SwitchMemberImpl":[],"SwitchPatternCase":[],"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"SwitchStatementImpl":{"StatementImpl":[],"SwitchStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"SymbolLiteralImpl":{"SymbolLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ThisExpressionImpl":{"ExpressionImpl":[],"ThisExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ThrowExpressionImpl":{"ExpressionImpl":[],"ThrowExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"TopLevelVariableDeclarationImpl":{"CompilationUnitMemberImpl":[],"TopLevelVariableDeclaration":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"TryStatementImpl":{"StatementImpl":[],"TryStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"TypeAliasImpl":{"CompilationUnitMemberImpl":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"TypedLiteralImpl":{"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"UriBasedDirectiveImpl":{"DirectiveImpl":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"VariableDeclarationStatementImpl":{"StatementImpl":[],"VariableDeclarationStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"VariablePatternImpl":{"DartPatternImpl":[],"VariablePattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"WhileStatementImpl":{"StatementImpl":[],"WhileStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"WildcardPatternImpl":{"DartPatternImpl":[],"WildcardPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"YieldStatementImpl":{"StatementImpl":[],"YieldStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"ToSourceVisitor":{"AstVisitor":["~"]},"ParserErrorCode":{"DiagnosticCode":[]},"ParserErrorTemplate":{"DiagnosticCode":[]},"ParserErrorWithoutArguments":{"DiagnosticCode":[],"LocatableDiagnostic":[]},"ScannerErrorCode":{"DiagnosticCode":[]},"ScannerErrorTemplate":{"DiagnosticCode":[]},"ScannerErrorWithoutArguments":{"DiagnosticCode":[],"LocatableDiagnostic":[]},"CompileTimeErrorCode":{"DiagnosticCode":[]},"CompileTimeErrorTemplate":{"DiagnosticCode":[]},"CompileTimeErrorWithoutArguments":{"DiagnosticCode":[],"LocatableDiagnostic":[]},"WarningCode":{"DiagnosticCode":[]},"WarningTemplate":{"DiagnosticCode":[]},"WarningWithoutArguments":{"DiagnosticCode":[],"LocatableDiagnostic":[]},"AstBuilder":{"Listener":[]},"_ClassDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_EnumDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_ExtensionDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_ExtensionTypeDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_MixinDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"DocImportStringScanner":{"Scanner0":[]},"_CharacterSequenceFromMultiLineComment":{"_CharacterSequence":[]},"_CharacterSequenceFromSingleLineComment":{"_CharacterSequence":[]},"StringSource":{"Source":[]},"LexerATNConfig":{"ATNConfig":[]},"ATNConfigSet":{"Iterable":["ATNConfig"],"Iterable.E":"ATNConfig"},"OrderedATNConfigSet":{"ATNConfigSet":[],"Iterable":["ATNConfig"],"Iterable.E":"ATNConfig"},"RuleStartState":{"ATNState":[]},"DecisionState":{"ATNState":[]},"BlockStartState":{"DecisionState":[],"ATNState":[]},"TokensStartState":{"DecisionState":[],"ATNState":[]},"RuleStopState":{"ATNState":[]},"LoopEndState":{"ATNState":[]},"BasicState":{"ATNState":[]},"BasicBlockStartState":{"BlockStartState":[],"DecisionState":[],"ATNState":[]},"PlusBlockStartState":{"BlockStartState":[],"DecisionState":[],"ATNState":[]},"StarBlockStartState":{"BlockStartState":[],"DecisionState":[],"ATNState":[]},"BlockEndState":{"ATNState":[]},"StarLoopbackState":{"ATNState":[]},"StarLoopEntryState":{"DecisionState":[],"ATNState":[]},"PlusLoopbackState":{"DecisionState":[],"ATNState":[]},"LexerChannelAction":{"LexerAction":[]},"LexerCustomAction":{"LexerAction":[]},"LexerModeAction":{"LexerAction":[]},"LexerMoreAction":{"LexerAction":[]},"LexerPopModeAction":{"LexerAction":[]},"LexerPushModeAction":{"LexerAction":[]},"LexerSkipAction":{"LexerAction":[]},"LexerTypeAction":{"LexerAction":[]},"LexerIndexedCustomAction":{"LexerAction":[]},"LexerATNSimulator":{"ATNSimulator":[]},"ParserATNSimulator":{"ATNSimulator":[]},"PrecedencePredicate":{"SemanticContext":[]},"Predicate":{"SemanticContext":[]},"Operator":{"SemanticContext":[]},"AND":{"SemanticContext":[]},"OR":{"SemanticContext":[]},"EpsilonTransition":{"Transition":[]},"RangeTransition":{"Transition":[]},"RuleTransition":{"Transition":[]},"AbstractPredicateTransition":{"Transition":[]},"PredicateTransition":{"AbstractPredicateTransition":[],"Transition":[]},"AtomTransition":{"Transition":[]},"ActionTransition":{"Transition":[]},"SetTransition":{"Transition":[]},"NotSetTransition":{"Transition":[]},"WildcardTransition":{"Transition":[]},"PrecedencePredicateTransition":{"AbstractPredicateTransition":[],"Transition":[]},"BaseErrorListener":{"ErrorListener":[]},"ConsoleErrorListener":{"ErrorListener":[]},"ProxyErrorListener":{"ErrorListener":[]},"DefaultErrorStrategy":{"ErrorStrategy":[]},"LexerNoViableAltException":{"RecognitionException":["CharStream"],"Error":[],"RecognitionException.0":"CharStream"},"RecognitionException":{"Error":[]},"NoViableAltException":{"RecognitionException":["IntStream"],"Error":[],"RecognitionException.0":"IntStream"},"InputMismatchException":{"RecognitionException":["IntStream"],"Error":[],"RecognitionException.0":"IntStream"},"FailedPredicateException":{"RecognitionException":["IntStream"],"Error":[],"RecognitionException.0":"IntStream"},"CharStream":{"IntStream":[]},"InputStream":{"CharStream":[],"IntStream":[]},"Lexer":{"Recognizer":["LexerATNSimulator"],"TokenSource":[]},"Parser1":{"Recognizer":["ParserATNSimulator"]},"ParserRuleContext":{"RuleContext":[],"ParseTree":[]},"SingletonPredictionContext":{"PredictionContext":[]},"ArrayPredictionContext":{"PredictionContext":[]},"EmptyPredictionContext":{"SingletonPredictionContext":[],"PredictionContext":[]},"RuleContext":{"ParseTree":[]},"CommonToken":{"Token0":[]},"WritableToken":{"Token0":[]},"CommonTokenFactory":{"TokenFactory":["CommonToken"]},"BufferedTokenStream":{"TokenStream":[],"IntStream":[]},"CommonTokenStream":{"TokenStream":[],"IntStream":[]},"TerminalNode":{"ParseTree":[]},"ErrorNode":{"TerminalNode":[],"ParseTree":[]},"RuleNode":{"ParseTree":[]},"TerminalNodeImpl":{"TerminalNode":[],"ParseTree":[]},"ErrorNodeImpl":{"ErrorNode":[],"TerminalNode":[],"ParseTree":[]},"VocabularyImpl":{"Vocabulary":[]},"Archive":{"Iterable":["ArchiveFile"],"Iterable.E":"ArchiveFile"},"ArchiveException":{"Exception":[]},"BaseMac":{"Mac":[]},"BaseDigest":{"Digest":[]},"MD4FamilyDigest":{"Digest":[]},"SHA1Digest":{"Digest":[]},"HMac":{"Mac":[]},"InputStream0":{"InputStreamBase":[]},"OutputStream":{"OutputStreamBase":[]},"DartLexer":{"Lexer":[],"Recognizer":["LexerATNSimulator"],"TokenSource":[],"Recognizer.0":"LexerATNSimulator"},"DartParser":{"Parser1":[],"Recognizer":["ParserATNSimulator"],"Recognizer.0":"ParserATNSimulator"},"LibraryDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TopLevelDefinitionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaredIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FinalConstVarOrTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FinalVarOrTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"VarOrTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializedIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializedIdentifierListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BlockContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FormalParameterPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FormalParameterListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalOrNamedFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalPositionalFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalFormalParameterNoMetadataContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SimpleFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FieldFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SuperFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultNamedParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeWithParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ClassDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryConstructorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ClassNameMaybePrimaryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MemberedDeclarationBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MemberDeclarationsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ClassModifiersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinClassModifiersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SuperclassContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InterfacesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MemberDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinApplicationClassContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExtensionTypeDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExtensionDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MethodSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OperatorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BinaryOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"GetterSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SetterSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringParameterListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFormalParameterNoMetadataContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFunctionFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringSimpleFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalOrNamedDeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalPositionalDeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultDeclaringFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedDeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultDeclaringNamedParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorTwoPartNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorHeadContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FactoryConstructorHeadContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IdentifierOrNewContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RedirectionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializerListEntryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FieldInitializerContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializerExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FactoryConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RedirectingFactoryConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryConstructorBodySignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstantConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinApplicationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EnumTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EnumBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EnumEntryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MetadataContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MetadatumContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionWithoutCascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorInvocationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NumericLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BooleanLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StringLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SetOrMapLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordLiteralNoConstContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ElementsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullAwareExpressionElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullAwareMapElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SpreadElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorTearoffContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchExpressionCaseContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StaticMemberShorthandContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StaticMemberShorthandHeadContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ThrowExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ThrowExpressionWithoutCascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionWithoutCascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionWithoutCascadeBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionPrimaryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionPrimaryBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ThisExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NewExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstObjectExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeSectionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeSelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeSectionTailContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeAssignmentContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignmentOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CompoundAssignmentOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConditionalExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfNullExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalOrExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalAndExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EqualityExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EqualityOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RelationalExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RelationalOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseOrExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseXorExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseAndExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ShiftExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ShiftOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AdditiveExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AdditiveOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MultiplicativeExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MultiplicativeOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UnaryExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrefixOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MinusOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NegationOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TildeOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AwaitExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PostfixExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PostfixOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IncrementOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignableExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignableSelectorPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UnconditionalAssignableSelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignableSelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"QualifiedNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeIdentifierNotTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeTestContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IsOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeCastContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AsOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalOrPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalAndPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RelationalPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UnaryPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CastPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullCheckPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullAssertPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstantPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"VariablePatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ParenthesizedPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListPatternElementsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListPatternElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RestPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapPatternEntriesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapPatternEntryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternFieldsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ObjectPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternVariableDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OuterPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OuterPatternDeclarationPrefixContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternAssignmentContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StatementsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NonLabelledStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LocalVariableDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializedVariableDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LocalFunctionDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfConditionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForLoopPartsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForInLoopPrefixContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForInitializerStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"WhileStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DoStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchStatementCaseContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"GuardedPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchStatementDefaultContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RethrowStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TryStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OnPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CatchPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FinallyPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ReturnStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LabelContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BreakStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ContinueStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"YieldStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"YieldEachStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssertStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssertionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryNameBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DottedIdentifierListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ImportOrExportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryImportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryAugmentImportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ImportSpecificationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CombinatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IdentifierListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryExportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PartDirectiveContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UriContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConfigurableUriContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConfigurationUriContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UriTestContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotVoidContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotFunctionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNamedFunctionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotVoidNotFunctionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeArgumentsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeFieldsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeNamedFieldsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeNamedFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotVoidNotFunctionListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeAliasContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeAliasContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionPrefixContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeTailContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeTailsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ParameterTypeListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalParameterTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalPositionalParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedParameterTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypedIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorDesignationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SymbolLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SingleLineStringContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MultiLineStringContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BuiltInIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OtherIdentifierNotTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OtherIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AntlrParseTreePlugin":{"Plugin0":[]},"_CollectingErrorListener":{"ErrorListener":[]},"AntlrTokenStreamPlugin":{"Plugin0":[]},"AstPlugin":{"Plugin0":[]},"_AstTreeBuilder":{"AstVisitor":["~"]},"GrammarViewerPlugin":{"Plugin0":[]},"TokenStreamPlugin":{"Plugin0":[]},"PosixStyle":{"InternalStyle":[]},"UrlStyle":{"InternalStyle":[]},"WindowsStyle":{"InternalStyle":[]},"Version":{"VersionRange":[]},"_EventStream":{"Stream":["1"]},"_ElementEventStreamImpl":{"_EventStream":["1"],"Stream":["1"]},"_EventStreamSubscription":{"StreamSubscription":["1"]},"BindPatternVariableElementImpl":{"PatternVariableElementImpl":[],"Element0":[]},"BindPatternVariableFragmentImpl":{"LocalVariableFragmentImpl":[],"VariableFragmentImpl":[]},"InternalFormalParameterElement":{"Element0":[]},"PatternVariableElementImpl":{"Element0":[]},"TypeImpl":{"DartType":[]}}'));
+  A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject","AbortPaymentEvent":"JavaScriptObject","ExtendableEvent":"JavaScriptObject","Event":"JavaScriptObject","AudioContext":"BaseAudioContext","AbsoluteOrientationSensor":"EventTarget","OrientationSensor":"EventTarget","Sensor":"EventTarget","MathMLElement":"Element","AudioElement":"HtmlElement","MediaElement":"HtmlElement","HtmlDocument":"Node","Document":"Node","VttCue":"TextTrackCue","CDataSection":"CharacterData","Text":"CharacterData","HtmlFormControlsCollection":"HtmlCollection","CssCharsetRule":"CssRule","CssMatrixComponent":"CssTransformComponent","CssStyleSheet":"StyleSheet","CssurlImageValue":"CssStyleValue","CssImageValue":"CssStyleValue","CssResourceValue":"CssStyleValue","NativeSharedArrayBuffer":"NativeByteBuffer","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"Null":[],"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSArraySafeToStringHook":{"SafeToStringHook":[]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"ArrayIterator":{"Iterator":["1"]},"JSNumber":{"double":[],"num":[]},"JSInt":{"double":[],"int":[],"num":[],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"Pattern":[],"TrustedGetRuntimeType":[]},"LateError":{"Error":[]},"CodeUnits":{"ListBase":["int"],"UnmodifiableListMixin":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int","UnmodifiableListMixin.E":"int"},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"ListIterator":{"Iterator":["1"]},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedIterator":{"Iterator":["2"]},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"WhereIterator":{"Iterator":["1"]},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"EmptyIterator":{"Iterator":["1"]},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterator":{"Iterator":["1"]},"NonNullsIterable":{"Iterable":["1"],"Iterable.E":"1"},"NonNullsIterator":{"Iterator":["1"]},"UnmodifiableListBase":{"ListBase":["1"],"UnmodifiableListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"_Record_2":{"_Record2":[],"_Record":[]},"_Record_2_content_offset":{"_Record2":[],"_Record":[]},"_Record_2_offsetInDocImport_offsetInUnit":{"_Record2":[],"_Record":[]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"_KeysOrValues":{"Iterable":["1"],"Iterable.E":"1"},"_KeysOrValuesOrElementsIterator":{"Iterator":["1"]},"ConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ConstantStringSet":{"ConstantSet":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"NullError":{"TypeError":[],"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"],"LinkedHashMap":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"LinkedHashMapKeysIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapKeyIterator":{"Iterator":["1"]},"LinkedHashMapValuesIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapValueIterator":{"Iterator":["1"]},"LinkedHashMapEntriesIterable":{"EfficientLengthIterable":["MapEntry<1,2>"],"Iterable":["MapEntry<1,2>"],"Iterable.E":"MapEntry<1,2>"},"LinkedHashMapEntryIterator":{"Iterator":["MapEntry<1,2>"]},"_Record2":{"_Record":[]},"JSSyntaxRegExp":{"RegExp":[],"Pattern":[]},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"_AllMatchesIterator":{"Iterator":["RegExpMatch"]},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"_StringAllMatchesIterator":{"Iterator":["Match"]},"NativeByteBuffer":{"JSObject":[],"TrustedGetRuntimeType":[]},"NativeArrayBuffer":{"NativeByteBuffer":[],"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[],"TypedData":[]},"NativeByteData":{"JSObject":[],"TypedData":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[],"TypedData":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"NativeTypedArray":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"TypedData":[],"Iterable":["double"],"FixedLengthListMixin":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"]},"NativeFloat32List":{"ListBase":["double"],"NativeTypedArray":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"TypedData":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double","FixedLengthListMixin.E":"double"},"NativeFloat64List":{"ListBase":["double"],"NativeTypedArray":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"TypedData":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double","FixedLengthListMixin.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"Int32List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"Uint16List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"Uint32List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"Uint8List":[],"ListBase":["int"],"NativeTypedArray":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"TypedData":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int","FixedLengthListMixin.E":"int"},"_Type":{"Type":[]},"_Error":{"Error":[]},"_TypeError":{"TypeError":[],"Error":[]},"_TimerImpl":{"Timer":[]},"AsyncError":{"Error":[]},"_AsyncCompleter":{"_Completer":["1"]},"_Future":{"Future":["1"]},"_Zone":{"Zone":[]},"_RootZone":{"_Zone":[],"Zone":[]},"HashSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"_IdentityHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"_CustomHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.K":"1","MapBase.V":"2"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_HashMapKeyIterator":{"Iterator":["1"]},"_HashSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_IdentityHashSet":{"_HashSet":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_CustomHashSet":{"_HashSet":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashSetIterator":{"Iterator":["1"]},"_LinkedHashSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedHashSetIterator":{"Iterator":["1"]},"UnmodifiableListView":{"ListBase":["1"],"UnmodifiableListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1","UnmodifiableListMixin.E":"1"},"ListBase":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"Map":["1","2"]},"SetBase":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"Base64Codec":{"Codec":["List<int>","String"]},"Encoding":{"Codec":["String","List<int>"]},"Utf8Codec":{"Codec":["String","List<int>"]},"double":{"num":[]},"StateError":{"Error":[]},"int":{"num":[]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Pattern":[]},"StringBuffer":{"StringSink":[]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"_StringStackTrace":{"StackTrace":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"RuneIterator":{"Iterator":["int"]},"_Uri":{"Uri":[]},"_SimpleUri":{"Uri":[]},"_DataUri":{"Uri":[]},"CssRule":{"JSObject":[]},"File":{"JSObject":[]},"Gamepad":{"JSObject":[]},"MimeType":{"JSObject":[]},"Node":{"JSObject":[]},"Plugin":{"JSObject":[]},"SourceBuffer":{"JSObject":[]},"SpeechGrammar":{"JSObject":[]},"SpeechRecognitionResult":{"JSObject":[]},"StyleSheet":{"JSObject":[]},"TextTrack":{"JSObject":[]},"TextTrackCue":{"JSObject":[]},"Touch":{"JSObject":[]},"HtmlElement":{"Node":[],"JSObject":[]},"AccessibleNodeList":{"JSObject":[]},"AnchorElement":{"Node":[],"JSObject":[]},"AreaElement":{"Node":[],"JSObject":[]},"Blob":{"JSObject":[]},"CharacterData":{"Node":[],"JSObject":[]},"CssPerspective":{"JSObject":[]},"CssStyleDeclaration":{"JSObject":[]},"CssStyleValue":{"JSObject":[]},"CssTransformComponent":{"JSObject":[]},"CssTransformValue":{"JSObject":[]},"CssUnparsedValue":{"JSObject":[]},"DataTransferItemList":{"JSObject":[]},"DomException":{"JSObject":[]},"DomRectList":{"ListBase":["Rectangle<num>"],"ImmutableListMixin":["Rectangle<num>"],"List":["Rectangle<num>"],"JavaScriptIndexingBehavior":["Rectangle<num>"],"EfficientLengthIterable":["Rectangle<num>"],"JSObject":[],"Iterable":["Rectangle<num>"],"ListBase.E":"Rectangle<num>","ImmutableListMixin.E":"Rectangle<num>"},"DomRectReadOnly":{"Rectangle":["num"],"JSObject":[]},"DomStringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"JavaScriptIndexingBehavior":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ListBase.E":"String","ImmutableListMixin.E":"String"},"DomTokenList":{"JSObject":[]},"Element":{"Node":[],"JSObject":[]},"EventTarget":{"JSObject":[]},"FileList":{"ListBase":["File"],"ImmutableListMixin":["File"],"List":["File"],"JavaScriptIndexingBehavior":["File"],"EfficientLengthIterable":["File"],"JSObject":[],"Iterable":["File"],"ListBase.E":"File","ImmutableListMixin.E":"File"},"FileWriter":{"JSObject":[]},"FormElement":{"Node":[],"JSObject":[]},"History":{"JSObject":[]},"HtmlCollection":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"Location":{"JSObject":[]},"MediaList":{"JSObject":[]},"MidiInputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"MidiOutputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"MimeTypeArray":{"ListBase":["MimeType"],"ImmutableListMixin":["MimeType"],"List":["MimeType"],"JavaScriptIndexingBehavior":["MimeType"],"EfficientLengthIterable":["MimeType"],"JSObject":[],"Iterable":["MimeType"],"ListBase.E":"MimeType","ImmutableListMixin.E":"MimeType"},"NodeList":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"PluginArray":{"ListBase":["Plugin"],"ImmutableListMixin":["Plugin"],"List":["Plugin"],"JavaScriptIndexingBehavior":["Plugin"],"EfficientLengthIterable":["Plugin"],"JSObject":[],"Iterable":["Plugin"],"ListBase.E":"Plugin","ImmutableListMixin.E":"Plugin"},"RtcStatsReport":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"SelectElement":{"Node":[],"JSObject":[]},"SourceBufferList":{"ListBase":["SourceBuffer"],"ImmutableListMixin":["SourceBuffer"],"List":["SourceBuffer"],"JavaScriptIndexingBehavior":["SourceBuffer"],"EfficientLengthIterable":["SourceBuffer"],"JSObject":[],"Iterable":["SourceBuffer"],"ListBase.E":"SourceBuffer","ImmutableListMixin.E":"SourceBuffer"},"SpeechGrammarList":{"ListBase":["SpeechGrammar"],"ImmutableListMixin":["SpeechGrammar"],"List":["SpeechGrammar"],"JavaScriptIndexingBehavior":["SpeechGrammar"],"EfficientLengthIterable":["SpeechGrammar"],"JSObject":[],"Iterable":["SpeechGrammar"],"ListBase.E":"SpeechGrammar","ImmutableListMixin.E":"SpeechGrammar"},"Storage":{"MapBase":["String","String"],"JSObject":[],"Map":["String","String"],"MapBase.K":"String","MapBase.V":"String"},"TextTrackCueList":{"ListBase":["TextTrackCue"],"ImmutableListMixin":["TextTrackCue"],"List":["TextTrackCue"],"JavaScriptIndexingBehavior":["TextTrackCue"],"EfficientLengthIterable":["TextTrackCue"],"JSObject":[],"Iterable":["TextTrackCue"],"ListBase.E":"TextTrackCue","ImmutableListMixin.E":"TextTrackCue"},"TextTrackList":{"ListBase":["TextTrack"],"ImmutableListMixin":["TextTrack"],"List":["TextTrack"],"JavaScriptIndexingBehavior":["TextTrack"],"EfficientLengthIterable":["TextTrack"],"JSObject":[],"Iterable":["TextTrack"],"ListBase.E":"TextTrack","ImmutableListMixin.E":"TextTrack"},"TimeRanges":{"JSObject":[]},"TouchList":{"ListBase":["Touch"],"ImmutableListMixin":["Touch"],"List":["Touch"],"JavaScriptIndexingBehavior":["Touch"],"EfficientLengthIterable":["Touch"],"JSObject":[],"Iterable":["Touch"],"ListBase.E":"Touch","ImmutableListMixin.E":"Touch"},"TrackDefaultList":{"JSObject":[]},"Url":{"JSObject":[]},"VideoTrackList":{"JSObject":[]},"_CssRuleList":{"ListBase":["CssRule"],"ImmutableListMixin":["CssRule"],"List":["CssRule"],"JavaScriptIndexingBehavior":["CssRule"],"EfficientLengthIterable":["CssRule"],"JSObject":[],"Iterable":["CssRule"],"ListBase.E":"CssRule","ImmutableListMixin.E":"CssRule"},"_DomRect":{"Rectangle":["num"],"JSObject":[]},"_GamepadList":{"ListBase":["Gamepad?"],"ImmutableListMixin":["Gamepad?"],"List":["Gamepad?"],"JavaScriptIndexingBehavior":["Gamepad?"],"EfficientLengthIterable":["Gamepad?"],"JSObject":[],"Iterable":["Gamepad?"],"ListBase.E":"Gamepad?","ImmutableListMixin.E":"Gamepad?"},"_NamedNodeMap":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"_SpeechRecognitionResultList":{"ListBase":["SpeechRecognitionResult"],"ImmutableListMixin":["SpeechRecognitionResult"],"List":["SpeechRecognitionResult"],"JavaScriptIndexingBehavior":["SpeechRecognitionResult"],"EfficientLengthIterable":["SpeechRecognitionResult"],"JSObject":[],"Iterable":["SpeechRecognitionResult"],"ListBase.E":"SpeechRecognitionResult","ImmutableListMixin.E":"SpeechRecognitionResult"},"_StyleSheetList":{"ListBase":["StyleSheet"],"ImmutableListMixin":["StyleSheet"],"List":["StyleSheet"],"JavaScriptIndexingBehavior":["StyleSheet"],"EfficientLengthIterable":["StyleSheet"],"JSObject":[],"Iterable":["StyleSheet"],"ListBase.E":"StyleSheet","ImmutableListMixin.E":"StyleSheet"},"FixedSizeListIterator":{"Iterator":["1"]},"NullRejectionException":{"Exception":[]},"Length":{"JSObject":[]},"Number":{"JSObject":[]},"Transform":{"JSObject":[]},"LengthList":{"ListBase":["Length"],"ImmutableListMixin":["Length"],"List":["Length"],"EfficientLengthIterable":["Length"],"JSObject":[],"Iterable":["Length"],"ListBase.E":"Length","ImmutableListMixin.E":"Length"},"NumberList":{"ListBase":["Number"],"ImmutableListMixin":["Number"],"List":["Number"],"EfficientLengthIterable":["Number"],"JSObject":[],"Iterable":["Number"],"ListBase.E":"Number","ImmutableListMixin.E":"Number"},"PointList":{"JSObject":[]},"StringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ListBase.E":"String","ImmutableListMixin.E":"String"},"TransformList":{"ListBase":["Transform"],"ImmutableListMixin":["Transform"],"List":["Transform"],"EfficientLengthIterable":["Transform"],"JSObject":[],"Iterable":["Transform"],"ListBase.E":"Transform","ImmutableListMixin.E":"Transform"},"ByteData":{"TypedData":[]},"Int8List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Int16List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint16List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Int32List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Uint32List":{"List":["int"],"EfficientLengthIterable":["int"],"TypedData":[],"Iterable":["int"]},"Float32List":{"List":["double"],"EfficientLengthIterable":["double"],"TypedData":[],"Iterable":["double"]},"Float64List":{"List":["double"],"EfficientLengthIterable":["double"],"TypedData":[],"Iterable":["double"]},"AudioBuffer":{"JSObject":[]},"AudioParamMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.K":"String","MapBase.V":"@"},"AudioTrackList":{"JSObject":[]},"BaseAudioContext":{"JSObject":[]},"OfflineAudioContext":{"JSObject":[]},"DiagnosticMessageImpl":{"DiagnosticMessage":[]},"DiagnosticCodeImpl":{"DiagnosticCode":[]},"DiagnosticCodeWithExpectedTypes":{"DiagnosticCode":[]},"DiagnosticWithArguments":{"DiagnosticCode":[]},"DiagnosticWithoutArgumentsImpl":{"DiagnosticCode":[],"LocatableDiagnostic":[]},"LocatableDiagnosticImpl":{"LocatableDiagnostic":[]},"MessageCode":{"Code":[],"Message":[]},"Template":{"Code":[]},"ForwardingListener":{"Listener":[]},"NullListener":{"Listener":[]},"CatchParameterIdentifierContext":{"IdentifierContext0":[]},"ClassOrMixinOrExtensionIdentifierContext":{"IdentifierContext0":[]},"CombinatorIdentifierContext":{"IdentifierContext0":[]},"ConstructorReferenceIdentifierContext":{"IdentifierContext0":[]},"DottedNameIdentifierContext":{"IdentifierContext0":[]},"EnumDeclarationIdentifierContext":{"IdentifierContext0":[]},"EnumValueDeclarationIdentifierContext":{"IdentifierContext0":[]},"ExpressionIdentifierContext":{"IdentifierContext0":[]},"FieldDeclarationIdentifierContext":{"IdentifierContext0":[]},"FieldInitializerIdentifierContext":{"IdentifierContext0":[]},"FormalParameterDeclarationIdentifierContext":{"IdentifierContext0":[]},"RecordFieldDeclarationIdentifierContext":{"IdentifierContext0":[]},"ImportPrefixIdentifierContext":{"IdentifierContext0":[]},"LiteralSymbolIdentifierContext":{"IdentifierContext0":[]},"LocalFunctionDeclarationIdentifierContext":{"IdentifierContext0":[]},"LabelDeclarationIdentifierContext":{"IdentifierContext0":[]},"LabelReferenceIdentifierContext":{"IdentifierContext0":[]},"LibraryIdentifierContext":{"IdentifierContext0":[]},"LocalVariableDeclarationIdentifierContext":{"IdentifierContext0":[]},"MetadataReferenceIdentifierContext":{"IdentifierContext0":[]},"MethodDeclarationIdentifierContext":{"IdentifierContext0":[]},"NamedArgumentReferenceIdentifierContext":{"IdentifierContext0":[]},"NamedRecordFieldReferenceIdentifierContext":{"IdentifierContext0":[]},"TopLevelDeclarationIdentifierContext":{"IdentifierContext0":[]},"TypedefDeclarationIdentifierContext":{"IdentifierContext0":[]},"TypeReferenceIdentifierContext":{"IdentifierContext0":[]},"TypeVariableDeclarationIdentifierContext":{"IdentifierContext0":[]},"ForCondition":{"LiteralEntryInfo":[]},"ForSpread":{"LiteralEntryInfo":[]},"ForInSpread":{"LiteralEntryInfo":[]},"ForEntry":{"LiteralEntryInfo":[]},"ForInEntry":{"LiteralEntryInfo":[]},"ForComplete":{"LiteralEntryInfo":[]},"ForInComplete":{"LiteralEntryInfo":[]},"IfCondition":{"LiteralEntryInfo":[]},"IfSpread":{"LiteralEntryInfo":[]},"IfEntry":{"LiteralEntryInfo":[]},"IfComplete":{"LiteralEntryInfo":[]},"IfElse":{"LiteralEntryInfo":[]},"ElseSpread":{"LiteralEntryInfo":[]},"ElseEntry":{"LiteralEntryInfo":[]},"IfElseComplete":{"LiteralEntryInfo":[]},"SpreadOperator":{"LiteralEntryInfo":[]},"Nested":{"LiteralEntryInfo":[]},"NullAwareEntry":{"LiteralEntryInfo":[]},"DeclarationHeaderRecoveryListener":{"Listener":[]},"ImportRecoveryListener":{"Listener":[]},"MixinHeaderRecoveryListener":{"Listener":[]},"StackListener":{"Listener":[]},"StackImpl":{"Stack":[]},"TokenStreamRewriterImpl":{"TokenStreamRewriter":[]},"NextTokenStreamChange":{"TokenStreamChange":[]},"EndGroupTokenStreamChange":{"TokenStreamChange":[]},"OffsetTokenStreamChange":{"TokenStreamChange":[]},"PrecedingCommentsTokenStreamChange":{"TokenStreamChange":[]},"PreviousTokenStreamChange":{"TokenStreamChange":[]},"UndoableTokenStreamRewriter":{"TokenStreamRewriter":[]},"NoType":{"TypeInfo":[]},"PrefixedType":{"TypeInfo":[]},"SimpleNullableTypeWith1Argument":{"TypeInfo":[]},"SimpleTypeWith1Argument":{"TypeInfo":[]},"SimpleNullableType":{"TypeInfo":[]},"SimpleType":{"TypeInfo":[]},"VoidType":{"TypeInfo":[]},"ComplexTypeInfo":{"TypeInfo":[]},"NoTypeParamOrArg":{"TypeParamOrArgInfo":[]},"SimpleTypeArgument1":{"TypeParamOrArgInfo":[]},"SimpleTypeArgument1GtEq":{"TypeParamOrArgInfo":[]},"SimpleTypeArgument1GtGt":{"TypeParamOrArgInfo":[]},"ComplexTypeParamOrArgInfo":{"TypeParamOrArgInfo":[]},"AbstractScanner":{"Scanner0":[]},"LineStarts":{"ListBase":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int"},"ErrorToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"EncodingErrorToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"NonAsciiIdentifierToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"NonAsciiWhitespaceToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"AsciiControlCharacterToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnsupportedOperator":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnterminatedString":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnterminatedToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"UnmatchedToken":{"ErrorToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"_StringNode":{"_Node":[]},"StringScanner":{"Scanner0":[]},"BeginToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"Keyword":{"TokenType":[]},"LanguageVersionToken":{"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"Token":{"SyntacticEntity":[]},"KeywordToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SimpleToken":{"Token":[],"SyntacticEntity":[]},"StringToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticBeginToken":{"BeginToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticKeywordToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticStringToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"SyntheticToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"ReplacementToken":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"StringTokenImpl":{"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"CommentTokenImpl":{"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"LanguageVersionTokenImpl":{"LanguageVersionToken":[],"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"DartDocToken":{"CommentToken":[],"SimpleToken":[],"Token":[],"SyntacticEntity":[]},"Link":{"Iterable":["1"]},"LinkIterator":{"Iterator":["1"]},"LinkEntry":{"Link":["1"],"Iterable":["1"]},"DocDirectiveNamedArgument":{"DocDirectiveArgument":[]},"DocDirectivePositionalArgument":{"DocDirectiveArgument":[]},"BlockDocDirective":{"DocDirective":[]},"SimpleDocDirective":{"DocDirective":[]},"GeneralizingAstVisitor":{"AstVisitor":["1"]},"RecordingDiagnosticListener":{"DiagnosticListener":[]},"ExperimentalFeaturesStatus":{"ExperimentalFeatures":[]},"ExperimentStatus":{"FeatureSet":[]},"AnnotationImpl":{"AstNodeImpl":[],"Annotation":[],"AstNode":[],"SyntacticEntity":[]},"ArgumentListImpl":{"AstNodeImpl":[],"ArgumentList":[],"AstNode":[],"SyntacticEntity":[]},"AstNode":{"SyntacticEntity":[]},"AstNodeImpl":{"AstNode":[],"SyntacticEntity":[]},"BlockClassBodyImpl":{"ClassBodyImpl":[],"BlockClassBody":[],"AstNodeImpl":[],"ClassBody":[],"AstNode":[],"SyntacticEntity":[]},"BlockImpl":{"StatementImpl":[],"Block":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"CaseClauseImpl":{"AstNodeImpl":[],"CaseClause":[],"AstNode":[],"SyntacticEntity":[]},"CatchClauseImpl":{"AstNodeImpl":[],"CatchClause":[],"AstNode":[],"SyntacticEntity":[]},"CatchClauseParameterImpl":{"AstNodeImpl":[],"CatchClauseParameter":[],"AstNode":[],"SyntacticEntity":[]},"ClassBodyImpl":{"AstNodeImpl":[],"ClassBody":[],"AstNode":[],"SyntacticEntity":[]},"ClassMemberImpl":{"ClassMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ClassNamePartImpl":{"AstNodeImpl":[],"ClassNamePart":[],"AstNode":[],"SyntacticEntity":[]},"CollectionElementImpl":{"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"CombinatorImpl":{"AstNodeImpl":[],"Combinator":[],"AstNode":[],"SyntacticEntity":[]},"CommentImpl":{"AstNodeImpl":[],"Comment0":[],"AstNode":[],"SyntacticEntity":[]},"CommentReferableExpressionImpl":{"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"CommentReferenceImpl":{"AstNodeImpl":[],"CommentReference":[],"AstNode":[],"SyntacticEntity":[]},"CompilationUnitMemberImpl":{"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ConfigurationImpl":{"AstNodeImpl":[],"Configuration":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorInitializerImpl":{"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorNameImpl":{"ConstructorName":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorSelectorImpl":{"AstNodeImpl":[],"ConstructorSelector":[],"AstNode":[],"SyntacticEntity":[]},"DartPatternImpl":{"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"DeclaredIdentifierImpl":{"DeclaredIdentifier":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"DirectiveImpl":{"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"DottedNameImpl":{"AstNodeImpl":[],"DottedName":[],"AstNode":[],"SyntacticEntity":[]},"EnumBodyImpl":{"AstNodeImpl":[],"EnumBody":[],"AstNode":[],"SyntacticEntity":[]},"EnumConstantArgumentsImpl":{"AstNodeImpl":[],"EnumConstantArguments":[],"AstNode":[],"SyntacticEntity":[]},"EnumConstantDeclarationImpl":{"EnumConstantDeclaration":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExpressionImpl":{"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ExtendsClauseImpl":{"AstNodeImpl":[],"ExtendsClause":[],"AstNode":[],"SyntacticEntity":[]},"ExtensionOnClauseImpl":{"AstNodeImpl":[],"ExtensionOnClause":[],"AstNode":[],"SyntacticEntity":[]},"ForLoopPartsImpl":{"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"FormalParameterImpl":{"AstNodeImpl":[],"FormalParameter":[],"AstNode":[],"SyntacticEntity":[]},"FormalParameterListImpl":{"AstNodeImpl":[],"FormalParameterList":[],"AstNode":[],"SyntacticEntity":[]},"FunctionBodyImpl":{"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"FunctionDeclarationImpl":{"CompilationUnitMemberImpl":[],"FunctionDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FunctionExpressionImpl":{"ExpressionImpl":[],"FunctionExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"GuardedPatternImpl":{"AstNodeImpl":[],"GuardedPattern":[],"AstNode":[],"SyntacticEntity":[]},"IdentifierImpl":{"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ImplementsClauseImpl":{"AstNodeImpl":[],"ImplementsClause":[],"AstNode":[],"SyntacticEntity":[]},"ImportPrefixReferenceImpl":{"AstNodeImpl":[],"ImportPrefixReference":[],"AstNode":[],"SyntacticEntity":[]},"InterpolationElementImpl":{"AstNodeImpl":[],"InterpolationElement":[],"AstNode":[],"SyntacticEntity":[]},"LabelImpl":{"AstNodeImpl":[],"Label":[],"AstNode":[],"SyntacticEntity":[]},"LibraryIdentifierImpl":{"IdentifierImpl":[],"LibraryIdentifier":[],"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ListPatternElementImpl":{"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MapPatternElementImpl":{"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MixinOnClauseImpl":{"AstNodeImpl":[],"MixinOnClause":[],"AstNode":[],"SyntacticEntity":[]},"NamedTypeImpl":{"TypeAnnotationImpl":[],"NamedType":[],"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"NativeClauseImpl":{"AstNodeImpl":[],"NativeClause":[],"AstNode":[],"SyntacticEntity":[]},"NormalFormalParameterImpl":{"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PatternFieldImpl":{"AstNodeImpl":[],"PatternField":[],"AstNode":[],"SyntacticEntity":[]},"PatternFieldNameImpl":{"AstNodeImpl":[],"PatternFieldName":[],"AstNode":[],"SyntacticEntity":[]},"PatternVariableDeclarationImpl":{"PatternVariableDeclaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PrimaryConstructorDeclarationImpl":{"ClassNamePartImpl":[],"PrimaryConstructorDeclaration":[],"AstNodeImpl":[],"ClassNamePart":[],"AstNode":[],"SyntacticEntity":[]},"PrimaryConstructorNameImpl":{"AstNodeImpl":[],"PrimaryConstructorName":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationNamedFieldImpl":{"RecordTypeAnnotationNamedField":[],"AstNodeImpl":[],"RecordTypeAnnotationField":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationNamedFieldsImpl":{"AstNodeImpl":[],"RecordTypeAnnotationNamedFields":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationPositionalFieldImpl":{"RecordTypeAnnotationPositionalField":[],"AstNodeImpl":[],"RecordTypeAnnotationField":[],"AstNode":[],"SyntacticEntity":[]},"ScriptTagImpl":{"AstNodeImpl":[],"ScriptTag":[],"AstNode":[],"SyntacticEntity":[]},"SimpleIdentifierImpl":{"IdentifierImpl":[],"SimpleIdentifier":[],"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"StatementImpl":{"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"StringLiteralImpl":{"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SwitchExpressionCaseImpl":{"AstNodeImpl":[],"SwitchExpressionCase":[],"AstNode":[],"SyntacticEntity":[]},"SwitchMemberImpl":{"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"TypeAnnotationImpl":{"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"TypeArgumentListImpl":{"AstNodeImpl":[],"TypeArgumentList":[],"AstNode":[],"SyntacticEntity":[]},"TypeParameterImpl":{"TypeParameter":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"TypeParameterListImpl":{"AstNodeImpl":[],"TypeParameterList":[],"AstNode":[],"SyntacticEntity":[]},"VariableDeclarationImpl":{"VariableDeclaration":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"VariableDeclarationListImpl":{"VariableDeclarationList":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"WhenClauseImpl":{"AstNodeImpl":[],"WhenClause":[],"AstNode":[],"SyntacticEntity":[]},"WithClauseImpl":{"AstNodeImpl":[],"WithClause":[],"AstNode":[],"SyntacticEntity":[]},"AdjacentStringsImpl":{"StringLiteralImpl":[],"AdjacentStrings":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"AnnotatedNodeImpl":{"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"AsExpressionImpl":{"ExpressionImpl":[],"AsExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"AssertInitializerImpl":{"ConstructorInitializerImpl":[],"AssertInitializer":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"AssertStatementImpl":{"StatementImpl":[],"AssertStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"AssignedVariablePatternImpl":{"AssignedVariablePattern":[],"DartPatternImpl":[],"VariablePattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"AssignmentExpressionImpl":{"AssignmentExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"AwaitExpressionImpl":{"ExpressionImpl":[],"AwaitExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"BinaryExpressionImpl":{"BinaryExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"BlockFunctionBodyImpl":{"FunctionBodyImpl":[],"BlockFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"BooleanLiteralImpl":{"BooleanLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"BreakStatementImpl":{"StatementImpl":[],"BreakStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"CascadeExpressionImpl":{"ExpressionImpl":[],"CascadeExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"CastPatternImpl":{"DartPatternImpl":[],"CastPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ClassDeclarationImpl":{"CompilationUnitMemberImpl":[],"ClassDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ClassTypeAliasImpl":{"CompilationUnitMemberImpl":[],"ClassTypeAlias":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"CompilationUnitImpl":{"AstNodeImpl":[],"CompilationUnit":[],"AstNode":[],"SyntacticEntity":[]},"ConditionalExpressionImpl":{"ExpressionImpl":[],"ConditionalExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ConstantPatternImpl":{"DartPatternImpl":[],"ConstantPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorDeclarationImpl":{"ClassMemberImpl":[],"ConstructorDeclaration":[],"ClassMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ConstructorFieldInitializerImpl":{"ConstructorInitializerImpl":[],"ConstructorFieldInitializer":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"ContinueStatementImpl":{"StatementImpl":[],"ContinueStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"DeclarationImpl":{"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"DeclaredVariablePatternImpl":{"DeclaredVariablePattern":[],"DartPatternImpl":[],"VariablePattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"DefaultFormalParameterImpl":{"FormalParameterImpl":[],"DefaultFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AstNode":[],"SyntacticEntity":[]},"DoStatementImpl":{"StatementImpl":[],"DoStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"DotShorthandConstructorInvocationImpl":{"DotShorthandMixin":[],"DotShorthandConstructorInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"DotShorthandInvocationImpl":{"DotShorthandMixin":[],"DotShorthandInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"DotShorthandPropertyAccessImpl":{"DotShorthandMixin":[],"ExpressionImpl":[],"DotShorthandPropertyAccess":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"DoubleLiteralImpl":{"DoubleLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"EmptyClassBodyImpl":{"ClassBodyImpl":[],"EmptyClassBody":[],"AstNodeImpl":[],"ClassBody":[],"AstNode":[],"SyntacticEntity":[]},"EmptyFunctionBodyImpl":{"FunctionBodyImpl":[],"EmptyFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"EmptyStatementImpl":{"StatementImpl":[],"EmptyStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"EnumDeclarationImpl":{"CompilationUnitMemberImpl":[],"EnumDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExportDirectiveImpl":{"DirectiveImpl":[],"ExportDirective":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExpressionFunctionBodyImpl":{"FunctionBodyImpl":[],"ExpressionFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"ExpressionStatementImpl":{"StatementImpl":[],"ExpressionStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"ExtensionDeclarationImpl":{"CompilationUnitMemberImpl":[],"ExtensionDeclaration":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ExtensionTypeDeclarationImpl":{"CompilationUnitMemberImpl":[],"ExtensionTypeDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FieldDeclarationImpl":{"ClassMemberImpl":[],"FieldDeclaration":[],"ClassMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FieldFormalParameterImpl":{"NormalFormalParameterImpl":[],"FieldFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsImpl":{"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsWithDeclarationImpl":{"ForEachPartsImpl":[],"ForEachPartsWithDeclaration":[],"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsWithIdentifierImpl":{"ForEachPartsImpl":[],"ForEachPartsWithIdentifier":[],"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForEachPartsWithPatternImpl":{"ForEachPartsImpl":[],"ForEachPartsWithPattern":[],"ForLoopPartsImpl":[],"ForEachParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForElementImpl":{"CollectionElementImpl":[],"ForElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsImpl":{"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsWithDeclarationsImpl":{"ForPartsImpl":[],"ForPartsWithDeclarations":[],"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsWithExpressionImpl":{"ForPartsImpl":[],"ForPartsWithExpression":[],"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForPartsWithPatternImpl":{"ForPartsImpl":[],"ForPartsWithPattern":[],"ForLoopPartsImpl":[],"ForParts":[],"AstNodeImpl":[],"ForLoopParts":[],"AstNode":[],"SyntacticEntity":[]},"ForStatementImpl":{"StatementImpl":[],"ForStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionDeclarationStatementImpl":{"StatementImpl":[],"FunctionDeclarationStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionExpressionInvocationImpl":{"FunctionExpressionInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionReferenceImpl":{"CommentReferableExpressionImpl":[],"DotShorthandMixin":[],"FunctionReference":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"FunctionTypeAliasImpl":{"CompilationUnitMemberImpl":[],"FunctionTypeAlias":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"FunctionTypedFormalParameterImpl":{"NormalFormalParameterImpl":[],"FunctionTypedFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"GenericFunctionTypeImpl":{"TypeAnnotationImpl":[],"GenericFunctionType":[],"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"GenericTypeAliasImpl":{"CompilationUnitMemberImpl":[],"GenericTypeAlias":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"HideCombinatorImpl":{"CombinatorImpl":[],"HideCombinator":[],"AstNodeImpl":[],"Combinator":[],"AstNode":[],"SyntacticEntity":[]},"IfElementImpl":{"CollectionElementImpl":[],"IfElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"IfStatementImpl":{"StatementImpl":[],"IfStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"ImportDirectiveImpl":{"DirectiveImpl":[],"ImportDirective":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"IndexExpressionImpl":{"DotShorthandMixin":[],"IndexExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"InstanceCreationExpressionImpl":{"ExpressionImpl":[],"InstanceCreationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"IntegerLiteralImpl":{"IntegerLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"InterpolationExpressionImpl":{"InterpolationElementImpl":[],"InterpolationExpression":[],"AstNodeImpl":[],"InterpolationElement":[],"AstNode":[],"SyntacticEntity":[]},"InterpolationStringImpl":{"InterpolationElementImpl":[],"InterpolationString":[],"AstNodeImpl":[],"InterpolationElement":[],"AstNode":[],"SyntacticEntity":[]},"InvocationExpressionImpl":{"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"IsExpressionImpl":{"ExpressionImpl":[],"IsExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"LabeledStatementImpl":{"StatementImpl":[],"LabeledStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"LibraryDirectiveImpl":{"DirectiveImpl":[],"LibraryDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"ListLiteralImpl":{"ListLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ListPatternImpl":{"DartPatternImpl":[],"ListPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"LiteralImpl":{"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"LogicalAndPatternImpl":{"DartPatternImpl":[],"LogicalAndPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"LogicalOrPatternImpl":{"DartPatternImpl":[],"LogicalOrPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MapLiteralEntryImpl":{"CollectionElementImpl":[],"MapLiteralEntry":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"MapPatternEntryImpl":{"MapPatternElementImpl":[],"MapPatternEntry":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MapPatternImpl":{"DartPatternImpl":[],"MapPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"MethodDeclarationImpl":{"ClassMemberImpl":[],"MethodDeclaration":[],"ClassMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"MethodInvocationImpl":{"DotShorthandMixin":[],"MethodInvocation":[],"ExpressionImpl":[],"InvocationExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"MixinDeclarationImpl":{"CompilationUnitMemberImpl":[],"MixinDeclaration":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"NamedCompilationUnitMemberImpl":{"CompilationUnitMemberImpl":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"NamedExpressionImpl":{"ExpressionImpl":[],"NamedExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"NamespaceDirectiveImpl":{"DirectiveImpl":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"NameWithTypeParametersImpl":{"ClassNamePartImpl":[],"NameWithTypeParameters":[],"AstNodeImpl":[],"ClassNamePart":[],"AstNode":[],"SyntacticEntity":[]},"NativeFunctionBodyImpl":{"FunctionBodyImpl":[],"NativeFunctionBody":[],"AstNodeImpl":[],"FunctionBody":[],"AstNode":[],"SyntacticEntity":[]},"NodeListImpl":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1"},"NullAssertPatternImpl":{"DartPatternImpl":[],"NullAssertPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"NullAwareElementImpl":{"CollectionElementImpl":[],"NullAwareElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"NullCheckPatternImpl":{"DartPatternImpl":[],"NullCheckPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"NullLiteralImpl":{"NullLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ObjectPatternImpl":{"DartPatternImpl":[],"ObjectPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"ParenthesizedExpressionImpl":{"ExpressionImpl":[],"ParenthesizedExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ParenthesizedPatternImpl":{"DartPatternImpl":[],"ParenthesizedPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"PartDirectiveImpl":{"DirectiveImpl":[],"PartDirective":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PartOfDirectiveImpl":{"DirectiveImpl":[],"PartOfDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PatternAssignmentImpl":{"ExpressionImpl":[],"PatternAssignment":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PatternVariableDeclarationStatementImpl":{"StatementImpl":[],"PatternVariableDeclarationStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"PostfixExpressionImpl":{"DotShorthandMixin":[],"PostfixExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PrefixedIdentifierImpl":{"IdentifierImpl":[],"PrefixedIdentifier":[],"CommentReferableExpressionImpl":[],"Identifier":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PrefixExpressionImpl":{"PrefixExpression":[],"ExpressionImpl":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"PrimaryConstructorBodyImpl":{"ClassMemberImpl":[],"PrimaryConstructorBody":[],"ClassMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"PropertyAccessImpl":{"CommentReferableExpressionImpl":[],"DotShorthandMixin":[],"PropertyAccess":[],"ExpressionImpl":[],"CommentReferableExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"RecordLiteralImpl":{"RecordLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"RecordPatternImpl":{"DartPatternImpl":[],"RecordPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationFieldImpl":{"AstNodeImpl":[],"RecordTypeAnnotationField":[],"AstNode":[],"SyntacticEntity":[]},"RecordTypeAnnotationImpl":{"TypeAnnotationImpl":[],"RecordTypeAnnotation":[],"AstNodeImpl":[],"TypeAnnotation":[],"AstNode":[],"SyntacticEntity":[]},"RedirectingConstructorInvocationImpl":{"ConstructorInitializerImpl":[],"RedirectingConstructorInvocation":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"RelationalPatternImpl":{"DartPatternImpl":[],"RelationalPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"RestPatternElementImpl":{"ListPatternElementImpl":[],"MapPatternElementImpl":[],"RestPatternElement":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"RethrowExpressionImpl":{"ExpressionImpl":[],"RethrowExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ReturnStatementImpl":{"StatementImpl":[],"ReturnStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"SetOrMapLiteralImpl":{"SetOrMapLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ShowCombinatorImpl":{"CombinatorImpl":[],"ShowCombinator":[],"AstNodeImpl":[],"Combinator":[],"AstNode":[],"SyntacticEntity":[]},"SimpleFormalParameterImpl":{"NormalFormalParameterImpl":[],"SimpleFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"SimpleStringLiteralImpl":{"SimpleStringLiteral":[],"StringLiteralImpl":[],"SingleStringLiteral":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SingleStringLiteralImpl":{"StringLiteralImpl":[],"SingleStringLiteral":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SpreadElementImpl":{"CollectionElementImpl":[],"SpreadElement":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"StringInterpolationImpl":{"StringInterpolation":[],"StringLiteralImpl":[],"SingleStringLiteral":[],"StringLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SuperConstructorInvocationImpl":{"ConstructorInitializerImpl":[],"SuperConstructorInvocation":[],"AstNodeImpl":[],"ConstructorInitializer":[],"AstNode":[],"SyntacticEntity":[]},"SuperExpressionImpl":{"ExpressionImpl":[],"SuperExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SuperFormalParameterImpl":{"NormalFormalParameterImpl":[],"SuperFormalParameter":[],"FormalParameterImpl":[],"NormalFormalParameter":[],"AstNodeImpl":[],"FormalParameter":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"SwitchCaseImpl":{"SwitchMemberImpl":[],"SwitchCase":[],"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"SwitchDefaultImpl":{"SwitchMemberImpl":[],"SwitchDefault":[],"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"SwitchExpressionImpl":{"ExpressionImpl":[],"SwitchExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"SwitchPatternCaseImpl":{"SwitchMemberImpl":[],"SwitchPatternCase":[],"AstNodeImpl":[],"SwitchMember":[],"AstNode":[],"SyntacticEntity":[]},"SwitchStatementImpl":{"StatementImpl":[],"SwitchStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"SymbolLiteralImpl":{"SymbolLiteral":[],"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ThisExpressionImpl":{"ExpressionImpl":[],"ThisExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"ThrowExpressionImpl":{"ExpressionImpl":[],"ThrowExpression":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"TopLevelVariableDeclarationImpl":{"CompilationUnitMemberImpl":[],"TopLevelVariableDeclaration":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"TryStatementImpl":{"StatementImpl":[],"TryStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"TypeAliasImpl":{"CompilationUnitMemberImpl":[],"TypeAlias":[],"NamedCompilationUnitMember":[],"CompilationUnitMember":[],"Declaration":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"TypedLiteralImpl":{"ExpressionImpl":[],"Literal":[],"CollectionElementImpl":[],"Expression":[],"AstNodeImpl":[],"CollectionElement":[],"AstNode":[],"SyntacticEntity":[]},"UriBasedDirectiveImpl":{"DirectiveImpl":[],"UriBasedDirective":[],"Directive":[],"AstNodeImpl":[],"AnnotatedNode":[],"AstNode":[],"SyntacticEntity":[]},"VariableDeclarationStatementImpl":{"StatementImpl":[],"VariableDeclarationStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"VariablePatternImpl":{"DartPatternImpl":[],"VariablePattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"WhileStatementImpl":{"StatementImpl":[],"WhileStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"WildcardPatternImpl":{"DartPatternImpl":[],"WildcardPattern":[],"ListPatternElementImpl":[],"DartPattern":[],"AstNodeImpl":[],"AstNode":[],"SyntacticEntity":[]},"YieldStatementImpl":{"StatementImpl":[],"YieldStatement":[],"AstNodeImpl":[],"Statement":[],"AstNode":[],"SyntacticEntity":[]},"ToSourceVisitor":{"AstVisitor":["~"]},"AstBuilder":{"Listener":[]},"_ClassDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_EnumDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_ExtensionDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_ExtensionTypeDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"_MixinDeclarationBuilder":{"_ClassLikeDeclarationBuilder":[]},"DocImportStringScanner":{"Scanner0":[]},"_CharacterSequenceFromMultiLineComment":{"_CharacterSequence":[]},"_CharacterSequenceFromSingleLineComment":{"_CharacterSequence":[]},"StringSource":{"Source":[]},"LexerATNConfig":{"ATNConfig":[]},"ATNConfigSet":{"Iterable":["ATNConfig"],"Iterable.E":"ATNConfig"},"OrderedATNConfigSet":{"ATNConfigSet":[],"Iterable":["ATNConfig"],"Iterable.E":"ATNConfig"},"RuleStartState":{"ATNState":[]},"DecisionState":{"ATNState":[]},"BlockStartState":{"DecisionState":[],"ATNState":[]},"TokensStartState":{"DecisionState":[],"ATNState":[]},"RuleStopState":{"ATNState":[]},"LoopEndState":{"ATNState":[]},"BasicState":{"ATNState":[]},"BasicBlockStartState":{"BlockStartState":[],"DecisionState":[],"ATNState":[]},"PlusBlockStartState":{"BlockStartState":[],"DecisionState":[],"ATNState":[]},"StarBlockStartState":{"BlockStartState":[],"DecisionState":[],"ATNState":[]},"BlockEndState":{"ATNState":[]},"StarLoopbackState":{"ATNState":[]},"StarLoopEntryState":{"DecisionState":[],"ATNState":[]},"PlusLoopbackState":{"DecisionState":[],"ATNState":[]},"LexerChannelAction":{"LexerAction":[]},"LexerCustomAction":{"LexerAction":[]},"LexerModeAction":{"LexerAction":[]},"LexerMoreAction":{"LexerAction":[]},"LexerPopModeAction":{"LexerAction":[]},"LexerPushModeAction":{"LexerAction":[]},"LexerSkipAction":{"LexerAction":[]},"LexerTypeAction":{"LexerAction":[]},"LexerIndexedCustomAction":{"LexerAction":[]},"LexerATNSimulator":{"ATNSimulator":[]},"ParserATNSimulator":{"ATNSimulator":[]},"PrecedencePredicate":{"SemanticContext":[]},"Predicate":{"SemanticContext":[]},"Operator":{"SemanticContext":[]},"AND":{"SemanticContext":[]},"OR":{"SemanticContext":[]},"EpsilonTransition":{"Transition":[]},"RangeTransition":{"Transition":[]},"RuleTransition":{"Transition":[]},"AbstractPredicateTransition":{"Transition":[]},"PredicateTransition":{"AbstractPredicateTransition":[],"Transition":[]},"AtomTransition":{"Transition":[]},"ActionTransition":{"Transition":[]},"SetTransition":{"Transition":[]},"NotSetTransition":{"Transition":[]},"WildcardTransition":{"Transition":[]},"PrecedencePredicateTransition":{"AbstractPredicateTransition":[],"Transition":[]},"BaseErrorListener":{"ErrorListener":[]},"ConsoleErrorListener":{"ErrorListener":[]},"ProxyErrorListener":{"ErrorListener":[]},"DefaultErrorStrategy":{"ErrorStrategy":[]},"LexerNoViableAltException":{"RecognitionException":["CharStream"],"Error":[],"RecognitionException.0":"CharStream"},"RecognitionException":{"Error":[]},"NoViableAltException":{"RecognitionException":["IntStream"],"Error":[],"RecognitionException.0":"IntStream"},"InputMismatchException":{"RecognitionException":["IntStream"],"Error":[],"RecognitionException.0":"IntStream"},"FailedPredicateException":{"RecognitionException":["IntStream"],"Error":[],"RecognitionException.0":"IntStream"},"CharStream":{"IntStream":[]},"InputStream":{"CharStream":[],"IntStream":[]},"Lexer":{"Recognizer":["LexerATNSimulator"],"TokenSource":[]},"Parser1":{"Recognizer":["ParserATNSimulator"]},"ParserRuleContext":{"RuleContext":[],"ParseTree":[]},"SingletonPredictionContext":{"PredictionContext":[]},"ArrayPredictionContext":{"PredictionContext":[]},"EmptyPredictionContext":{"SingletonPredictionContext":[],"PredictionContext":[]},"RuleContext":{"ParseTree":[]},"CommonToken":{"Token0":[]},"WritableToken":{"Token0":[]},"CommonTokenFactory":{"TokenFactory":["CommonToken"]},"BufferedTokenStream":{"TokenStream":[],"IntStream":[]},"CommonTokenStream":{"TokenStream":[],"IntStream":[]},"TerminalNode":{"ParseTree":[]},"ErrorNode":{"TerminalNode":[],"ParseTree":[]},"RuleNode":{"ParseTree":[]},"TerminalNodeImpl":{"TerminalNode":[],"ParseTree":[]},"ErrorNodeImpl":{"ErrorNode":[],"TerminalNode":[],"ParseTree":[]},"VocabularyImpl":{"Vocabulary":[]},"Archive":{"Iterable":["ArchiveFile"],"Iterable.E":"ArchiveFile"},"ArchiveException":{"Exception":[]},"BaseMac":{"Mac":[]},"BaseDigest":{"Digest":[]},"MD4FamilyDigest":{"Digest":[]},"SHA1Digest":{"Digest":[]},"HMac":{"Mac":[]},"InputStream0":{"InputStreamBase":[]},"OutputStream":{"OutputStreamBase":[]},"DartLexer":{"Lexer":[],"Recognizer":["LexerATNSimulator"],"TokenSource":[],"Recognizer.0":"LexerATNSimulator"},"DartParser":{"Parser1":[],"Recognizer":["ParserATNSimulator"],"Recognizer.0":"ParserATNSimulator"},"LibraryDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TopLevelDefinitionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaredIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FinalConstVarOrTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FinalVarOrTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"VarOrTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializedIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializedIdentifierListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BlockContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FormalParameterPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FormalParameterListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalOrNamedFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalPositionalFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalFormalParameterNoMetadataContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SimpleFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FieldFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SuperFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultNamedParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeWithParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ClassDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryConstructorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ClassNameMaybePrimaryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MemberedDeclarationBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MemberDeclarationsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ClassModifiersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinClassModifiersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SuperclassContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InterfacesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MemberDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinApplicationClassContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExtensionTypeDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExtensionDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MethodSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OperatorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BinaryOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"GetterSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SetterSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringParameterListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFormalParameterNoMetadataContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringFunctionFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DeclaringSimpleFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalOrNamedDeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalPositionalDeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultDeclaringFormalParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedDeclaringFormalParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DefaultDeclaringNamedParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorTwoPartNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorHeadContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FactoryConstructorHeadContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IdentifierOrNewContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RedirectionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializerListEntryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FieldInitializerContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializerExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FactoryConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RedirectingFactoryConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryConstructorBodySignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstantConstructorSignatureContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MixinApplicationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EnumTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EnumBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EnumEntryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeParameterContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeParametersContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MetadataContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MetadatumContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionWithoutCascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorInvocationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NumericLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BooleanLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StringLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SetOrMapLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordLiteralNoConstContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ElementsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullAwareExpressionElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullAwareMapElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SpreadElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorTearoffContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchExpressionCaseContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StaticMemberShorthandContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StaticMemberShorthandHeadContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ThrowExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ThrowExpressionWithoutCascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionWithoutCascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionExpressionWithoutCascadeBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionPrimaryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionPrimaryBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ThisExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NewExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstObjectExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeSectionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeSelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeSectionTailContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CascadeAssignmentContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignmentOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CompoundAssignmentOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConditionalExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfNullExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalOrExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalAndExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EqualityExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"EqualityOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RelationalExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RelationalOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseOrExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseXorExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseAndExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BitwiseOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ShiftExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ShiftOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AdditiveExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AdditiveOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MultiplicativeExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MultiplicativeOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UnaryExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrefixOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MinusOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NegationOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TildeOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AwaitExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PostfixExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PostfixOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ArgumentPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IncrementOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignableExpressionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignableSelectorPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UnconditionalAssignableSelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssignableSelectorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"QualifiedNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeIdentifierNotTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeTestContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IsOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeCastContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AsOperatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalOrPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LogicalAndPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RelationalPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UnaryPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PrimaryPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CastPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullCheckPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NullAssertPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstantPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"VariablePatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ParenthesizedPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListPatternElementsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ListPatternElementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RestPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapPatternEntriesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MapPatternEntryContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternFieldsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ObjectPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternVariableDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OuterPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OuterPatternDeclarationPrefixContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PatternAssignmentContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StatementsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"StatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NonLabelledStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ExpressionStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LocalVariableDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"InitializedVariableDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LocalFunctionDeclarationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IfConditionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForLoopPartsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForInLoopPrefixContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ForInitializerStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"WhileStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DoStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchStatementCaseContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"GuardedPatternContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SwitchStatementDefaultContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RethrowStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TryStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OnPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CatchPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FinallyPartContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ReturnStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LabelContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BreakStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ContinueStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"YieldStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"YieldEachStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssertStatementContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AssertionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryNameBodyContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"DottedIdentifierListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ImportOrExportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryImportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryAugmentImportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ImportSpecificationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"CombinatorContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"IdentifierListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"LibraryExportContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"PartDirectiveContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UriContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConfigurableUriContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConfigurationUriContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"UriTestContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotVoidContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotFunctionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNamedFunctionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotVoidNotFunctionContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNameContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeArgumentsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeFieldsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeNamedFieldsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"RecordTypeNamedFieldContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeNotVoidNotFunctionListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypeAliasContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeAliasContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionPrefixContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeTailContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeTailsContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"FunctionTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ParameterTypeListContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NormalParameterTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OptionalPositionalParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedParameterTypesContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"NamedParameterTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"TypedIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"ConstructorDesignationContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SymbolLiteralContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"SingleLineStringContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"MultiLineStringContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"BuiltInIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OtherIdentifierNotTypeContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"OtherIdentifierContext":{"ParserRuleContext":[],"RuleContext":[],"ParseTree":[]},"AntlrParseTreePlugin":{"Plugin0":[]},"_CollectingErrorListener":{"ErrorListener":[]},"AntlrTokenStreamPlugin":{"Plugin0":[]},"AstPlugin":{"Plugin0":[]},"_AstTreeBuilder":{"AstVisitor":["~"]},"GrammarViewerPlugin":{"Plugin0":[]},"TokenStreamPlugin":{"Plugin0":[]},"PosixStyle":{"InternalStyle":[]},"UrlStyle":{"InternalStyle":[]},"WindowsStyle":{"InternalStyle":[]},"Version":{"VersionRange":[]},"_EventStream":{"Stream":["1"]},"_ElementEventStreamImpl":{"_EventStream":["1"],"Stream":["1"]},"_EventStreamSubscription":{"StreamSubscription":["1"]},"BindPatternVariableElementImpl":{"PatternVariableElementImpl":[],"Element0":[]},"BindPatternVariableFragmentImpl":{"LocalVariableFragmentImpl":[],"VariableFragmentImpl":[]},"InternalFormalParameterElement":{"Element0":[]},"PatternVariableElementImpl":{"Element0":[]},"TypeImpl":{"DartType":[]}}'));
   A._Universe_addErasedTypes(init.typeUniverse, JSON.parse('{"EfficientLengthIterable":1,"UnmodifiableListBase":1,"NativeTypedArray":1,"_SetBase":1,"Converter":2,"GeneralizingAstVisitor":1,"_NodeListImpl_Object_ListMixin":1}'));
   var string$ = {
     x00_____: "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\u03f6\x00\u0404\u03f4 \u03f4\u03f6\u01f6\u01f6\u03f6\u03fc\u01f4\u03ff\u03ff\u0584\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u05d4\u01f4\x00\u01f4\x00\u0504\u05c4\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u0400\x00\u0400\u0200\u03f7\u0200\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u0200\u0200\u0200\u03f7\x00",
@@ -75819,6 +75820,8 @@
     Cannotn: "Cannot extract a non-Windows file path from a file URI with an authority",
     Classei: "Classes can't be declared inside other classes.",
     Classet: "Classes can't be declared to be 'external'.",
+    Constrb: "Constructors declared with the 'new' keyword can't be named 'new'.",
+    Constrh: "Constructors declared with the 'new' keyword can't have qualified names.",
     Digit_: "Digit separators ('_') in a number literal can only be placed between two digits.",
     Direct: "Directives must appear before any declarations.",
     Duplic: "Duplicate 'const' keyword in constant expression.",
@@ -75834,7 +75837,8 @@
     Extens_: "Extension augmentations can't have 'on' clauses.",
     Extenss: "Extensions can't declare abstract members.",
     Factorb: "Factory bodies can't use 'async', 'async*', or 'sync*'.",
-    Factorc: "Factory constructors cannot have a return type.",
+    Factorc_: "Factory constructors can't be named 'new'.",
+    Factorcn: "Factory constructors cannot have a return type.",
     Fields: "Fields can't be declared both 'abstract' and 'external'.",
     For_in: "For-in loops use 'in' rather than a colon.",
     Functi: "Function-typed parameters can't specify 'const', 'final' or 'var' in place of a return type.",
@@ -75941,16 +75945,19 @@
     Try_remte_cx2e: "Try removing the 'const' keyword. If you're trying to indicate that instances of the class can be constants, place the 'const' keyword on  the class' constructor(s).",
     Try_remte_en: "Try removing the 'extends' clause or replacing the 'extends' with 'implements'.",
     Try_remte_er: "Try removing the 'external' or 'late' keyword.",
+    Try_remte_n: "Try removing the 'new' keyword or changing it to a different name.",
     Try_remte_w: "Try removing the 'with' clause or replacing the 'with' with 'implements'.",
     Try_remtebx20: "Try removing the body of the factory, or removing the keyword 'external'.",
     Try_remtebx2c: "Try removing the body, or not making this a redirecting constructor.",
-    Try_remtec: "Try removing the constructor declaration.",
+    Try_remtecl: "Try removing the class name prefix from the qualified name or removing the 'new' keyword.",
+    Try_remteco: "Try removing the constructor declaration.",
     Try_remtef: "Try removing the field declaration or making it a static field",
     Try_remtei: "Try removing the initializer, or using a different kind of loop.",
     Try_remtekx20: "Try removing the keyword 'var', or replacing it with the name of the return type.",
     Try_remtekx2c: "Try removing the keyword, or use a for-each statement.",
     Try_remteop: "Try removing the operator, moving it to a class, or converting it to be a function.",
     Try_remteot: "Try removing the other directives, or moving them to the library for which this is a part.",
+    Try_remtes: "Try removing the second 'new' or changing it to a different name.",
     Try_remtetp: "Try removing the type appearing before 'factory'.",
     Try_remtetr: "Try removing the type arguments or placing them after the class name.",
     Try_remti: "Try removing this native clause and adding @native() or @native('native-name') before the declaration.",
@@ -75969,6 +75976,17 @@
     Variab_: "Variable patterns in declaration context can't specify 'var' or 'final' keyword.",
     Variabsc: "Variables can't be declared using both 'var' and a type name.",
     Variabsm: "Variables must be declared using the keywords 'const', 'final', 'var' or a type name.",
+    annota: "annotation_with_type_arguments_uninstantiated",
+    extern: "external_constructor_with_field_initializers",
+    extran: "extraneous_modifier_in_primary_constructor",
+    field_: "field_initialized_outside_declaring_class",
+    final_: "final_and_covariant_late_with_initializer",
+    invalic: "invalid_constant_pattern_empty_record_literal",
+    invalio: "invalid_operator_questionmark_period_for_super",
+    patter: "pattern_variable_declaration_outside_function_or_method",
+    recordl: "record_literal_one_positional_no_trailing_comma",
+    recordt: "record_type_one_positional_no_trailing_comma",
+    variab: "variable_pattern_keyword_in_declaration_context",
     window: 'window.dartEditor ? window.dartEditor.getValue() : ""'
   };
   var type$ = (function rtii() {
@@ -76007,6 +76025,7 @@
       BitwiseOperatorContext: findType("BitwiseOperatorContext"),
       BitwiseOrExpressionContext: findType("BitwiseOrExpressionContext"),
       BitwiseXorExpressionContext: findType("BitwiseXorExpressionContext"),
+      BlockClassBodyImpl: findType("BlockClassBodyImpl"),
       BlockContext: findType("BlockContext"),
       BlockEndState: findType("BlockEndState"),
       BlockImpl: findType("BlockImpl"),
@@ -76024,15 +76043,16 @@
       CatchClauseImpl: findType("CatchClauseImpl"),
       CatchPartContext: findType("CatchPartContext"),
       CharStream: findType("CharStream"),
+      ClassBodyImpl: findType("ClassBodyImpl"),
       ClassDeclarationContext: findType("ClassDeclarationContext"),
       ClassModifiersContext: findType("ClassModifiersContext"),
       ClassNameMaybePrimaryContext: findType("ClassNameMaybePrimaryContext"),
+      ClassNamePartImpl: findType("ClassNamePartImpl"),
       CollectionElementImpl: findType("CollectionElementImpl"),
       CombinatorContext: findType("CombinatorContext"),
       CombinatorImpl: findType("CombinatorImpl"),
       CommentReferableExpressionImpl: findType("CommentReferableExpressionImpl"),
       CompilationUnitImpl: findType("CompilationUnitImpl"),
-      CompileTimeErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String: findType("CompileTimeErrorTemplate<LocatableDiagnostic({p0!String})>"),
       CompoundAssignmentOperatorContext: findType("CompoundAssignmentOperatorContext"),
       ConditionalExpressionContext: findType("ConditionalExpressionContext"),
       ConfigurableUriContext: findType("ConfigurableUriContext"),
@@ -76040,7 +76060,6 @@
       ConfigurationUriContext: findType("ConfigurationUriContext"),
       ConstObjectExpressionContext: findType("ConstObjectExpressionContext"),
       ConstantConstructorSignatureContext: findType("ConstantConstructorSignatureContext"),
-      ConstantMapView_Symbol_dynamic: findType("ConstantMapView<Symbol0,@>"),
       ConstantPatternContext: findType("ConstantPatternContext"),
       ConstantStringMap_String_String: findType("ConstantStringMap<String,String>"),
       ConstantStringSet_String: findType("ConstantStringSet<String>"),
@@ -76072,6 +76091,9 @@
       DefaultFormalParameterContext: findType("DefaultFormalParameterContext"),
       DefaultNamedParameterContext: findType("DefaultNamedParameterContext"),
       Diagnostic: findType("Diagnostic"),
+      DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String: findType("DiagnosticWithArguments<LocatableDiagnostic({p0!String})>"),
+      DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String: findType("DiagnosticWithArguments<LocatableDiagnostic({string!String})>"),
+      DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String: findType("DiagnosticWithArguments<LocatableDiagnostic({string!String,string2!String})>"),
       DoStatementContext: findType("DoStatementContext"),
       DotShorthandMixin: findType("DotShorthandMixin"),
       DottedIdentifierListContext: findType("DottedIdentifierListContext"),
@@ -76082,6 +76104,7 @@
       ElementsContext: findType("ElementsContext"),
       EmptyStatementImpl: findType("EmptyStatementImpl"),
       EnumBodyContext: findType("EnumBodyContext"),
+      EnumBodyImpl: findType("EnumBodyImpl"),
       EnumConstantDeclarationImpl: findType("EnumConstantDeclarationImpl"),
       EnumEntryContext: findType("EnumEntryContext"),
       EnumTypeContext: findType("EnumTypeContext"),
@@ -76165,7 +76188,6 @@
       IntStream: findType("IntStream"),
       InterfacesContext: findType("InterfacesContext"),
       Interval: findType("Interval"),
-      Invocation: findType("Invocation"),
       IsOperatorContext: findType("IsOperatorContext"),
       Iterable_String: findType("Iterable<String>"),
       Iterable_dynamic: findType("Iterable<@>"),
@@ -76241,7 +76263,6 @@
       JSObject: findType("JSObject"),
       JavaScriptFunction: findType("JavaScriptFunction"),
       JavaScriptIndexingBehavior_dynamic: findType("JavaScriptIndexingBehavior<@>"),
-      JsLinkedHashMap_Symbol_dynamic: findType("JsLinkedHashMap<Symbol0,@>"),
       Keyword: findType("Keyword"),
       LabelContext: findType("LabelContext"),
       LabelImpl: findType("LabelImpl"),
@@ -76402,9 +76423,6 @@
       ParameterTypeListContext: findType("ParameterTypeListContext"),
       ParenthesizedPatternContext: findType("ParenthesizedPatternContext"),
       ParseTree: findType("ParseTree"),
-      ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String: findType("ParserErrorTemplate<LocatableDiagnostic({p0!String})>"),
-      ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String: findType("ParserErrorTemplate<LocatableDiagnostic({string!String})>"),
-      ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String: findType("ParserErrorTemplate<LocatableDiagnostic({string!String,string2!String})>"),
       ParserRuleContext: findType("ParserRuleContext"),
       PartDirectiveContext: findType("PartDirectiveContext"),
       PatternAssignmentContext: findType("PatternAssignmentContext"),
@@ -76426,6 +76444,7 @@
       PrefixOperatorContext: findType("PrefixOperatorContext"),
       PrimaryConstructorBodySignatureContext: findType("PrimaryConstructorBodySignatureContext"),
       PrimaryConstructorContext: findType("PrimaryConstructorContext"),
+      PrimaryConstructorDeclarationImpl: findType("PrimaryConstructorDeclarationImpl"),
       PrimaryContext: findType("PrimaryContext"),
       PrimaryPatternContext: findType("PrimaryPatternContext"),
       QualifiedNameContext: findType("QualifiedNameContext"),
@@ -76452,7 +76471,6 @@
       RelationalExpressionContext: findType("RelationalExpressionContext"),
       RelationalOperatorContext: findType("RelationalOperatorContext"),
       RelationalPatternContext: findType("RelationalPatternContext"),
-      RepresentationDeclarationImpl: findType("RepresentationDeclarationImpl"),
       RestPatternContext: findType("RestPatternContext"),
       RethrowStatementContext: findType("RethrowStatementContext"),
       ReturnStatementContext: findType("ReturnStatementContext"),
@@ -76497,7 +76515,6 @@
       SwitchStatementCaseContext: findType("SwitchStatementCaseContext"),
       SwitchStatementContext: findType("SwitchStatementContext"),
       SwitchStatementDefaultContext: findType("SwitchStatementDefaultContext"),
-      Symbol: findType("Symbol0"),
       SymbolLiteralContext: findType("SymbolLiteralContext"),
       SyntacticEntity: findType("SyntacticEntity"),
       Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String: findType("Template<Message(String,String),Message({string!String,string2!String})>"),
@@ -76561,7 +76578,6 @@
       VariableDeclarationListImpl: findType("VariableDeclarationListImpl"),
       VariablePatternContext: findType("VariablePatternContext"),
       VersionRange: findType("VersionRange"),
-      WarningTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String: findType("WarningTemplate<LocatableDiagnostic({p0!String})>"),
       WhenClauseImpl: findType("WhenClauseImpl"),
       WhereIterable_String: findType("WhereIterable<String>"),
       WhereTypeIterable_PrecedencePredicate: findType("WhereTypeIterable<PrecedencePredicate>"),
@@ -76595,7 +76611,6 @@
       int: findType("int"),
       nullable_ATNConfig: findType("ATNConfig?"),
       nullable_ArgumentListImpl: findType("ArgumentListImpl?"),
-      nullable_AstNode: findType("AstNode?"),
       nullable_AstNodeImpl: findType("AstNodeImpl?"),
       nullable_BlockImpl: findType("BlockImpl?"),
       nullable_CascadeContext: findType("CascadeContext?"),
@@ -76616,6 +76631,7 @@
       nullable_Future_Null: findType("Future<Null>?"),
       nullable_Gamepad: findType("Gamepad?"),
       nullable_IdentifierContext: findType("IdentifierContext?"),
+      nullable_IdentifierImpl: findType("IdentifierImpl?"),
       nullable_ImplementsClauseImpl: findType("ImplementsClauseImpl?"),
       nullable_ImportPrefixReferenceImpl: findType("ImportPrefixReferenceImpl?"),
       nullable_JSObject: findType("JSObject?"),
@@ -76640,10 +76656,9 @@
       nullable_ParserRuleContext: findType("ParserRuleContext?"),
       nullable_PatternFieldNameImpl: findType("PatternFieldNameImpl?"),
       nullable_PredictionContext: findType("PredictionContext?"),
+      nullable_PrimaryConstructorNameImpl: findType("PrimaryConstructorNameImpl?"),
       nullable_RecognitionException_IntStream: findType("RecognitionException<IntStream>?"),
       nullable_RecordTypeAnnotationNamedFieldsImpl: findType("RecordTypeAnnotationNamedFieldsImpl?"),
-      nullable_RepresentationConstructorNameImpl: findType("RepresentationConstructorNameImpl?"),
-      nullable_RepresentationDeclarationImpl: findType("RepresentationDeclarationImpl?"),
       nullable_ScriptTagImpl: findType("ScriptTagImpl?"),
       nullable_SemanticContext: findType("SemanticContext?"),
       nullable_SimpleIdentifierImpl: findType("SimpleIdentifierImpl?"),
@@ -76895,19 +76910,6 @@
     B.CatchParameterIdentifierContext_Iyz = new A.CatchParameterIdentifierContext("catchParameter", false, false, false, true, B.Template_CgK);
     B.ClassOrMixinOrExtensionIdentifierContext_9h8 = new A.ClassOrMixinOrExtensionIdentifierContext("classOrMixinDeclaration", false, false, false, false, B.Template_CgK);
     B.CombinatorIdentifierContext_LLQ = new A.CombinatorIdentifierContext("combinator", false, false, false, true, B.Template_CgK);
-    B.ExpectedType_4 = new A.ExpectedType(4, "string");
-    B.List_ExpectedType_4 = makeConstList([B.ExpectedType_4], type$.JSArray_ExpectedType);
-    B.CompileTimeErrorTemplate_KtO = new A.CompileTimeErrorTemplate(B.List_ExpectedType_4, "FINAL_NOT_INITIALIZED", "CompileTimeErrorCode.FINAL_NOT_INITIALIZED", "The final variable '{0}' must be initialized.", "Try initializing the variable.", type$.CompileTimeErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.CompileTimeErrorTemplate_axY = new A.CompileTimeErrorTemplate(B.List_ExpectedType_4, "CONST_NOT_INITIALIZED", "CompileTimeErrorCode.CONST_NOT_INITIALIZED", "The constant '{0}' must be initialized.", "Try adding an initialization to the declaration.", type$.CompileTimeErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.CompileTimeErrorTemplate_h3I = new A.CompileTimeErrorTemplate(B.List_ExpectedType_4, "BUILT_IN_IDENTIFIER_AS_TYPE", "CompileTimeErrorCode.BUILT_IN_IDENTIFIER_AS_TYPE", "The built-in identifier '{0}' can't be used as a type.", "Try correcting the name to match an existing type.", type$.CompileTimeErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.List_empty10 = makeConstList([], type$.JSArray_ExpectedType);
-    B.CompileTimeErrorWithoutArguments_2j7 = new A.CompileTimeErrorWithoutArguments(B.List_empty10, "RETURN_IN_GENERATOR", "CompileTimeErrorCode.RETURN_IN_GENERATOR", "Can't return a value from a generator function that uses the 'async*' or 'sync*' modifier.", "Try replacing 'return' with 'yield', using a block function body, or changing the method body modifier.");
-    B.CompileTimeErrorWithoutArguments_PJl = new A.CompileTimeErrorWithoutArguments(B.List_empty10, "ASYNC_FOR_IN_WRONG_CONTEXT", "CompileTimeErrorCode.ASYNC_FOR_IN_WRONG_CONTEXT", "The async for-in loop can only be used in an async function.", "Try marking the function body with either 'async' or 'async*', or removing the 'await' before the for-in loop.");
-    B.CompileTimeErrorWithoutArguments_TYw = new A.CompileTimeErrorWithoutArguments(B.List_empty10, "INVALID_MODIFIER_ON_SETTER", "CompileTimeErrorCode.INVALID_MODIFIER_ON_SETTER", string$.Setter, "Try removing the modifier.");
-    B.CompileTimeErrorWithoutArguments_Tmo = new A.CompileTimeErrorWithoutArguments(B.List_empty10, "FIELD_INITIALIZER_OUTSIDE_CONSTRUCTOR", "CompileTimeErrorCode.FIELD_INITIALIZER_OUTSIDE_CONSTRUCTOR", "Field formal parameters can only be used in a constructor.", "Try removing 'this.'.");
-    B.CompileTimeErrorWithoutArguments_WN1 = new A.CompileTimeErrorWithoutArguments(B.List_empty10, "AWAIT_IN_WRONG_CONTEXT", "CompileTimeErrorCode.AWAIT_IN_WRONG_CONTEXT", "The await expression can only be used in an async function.", "Try marking the function body with either 'async' or 'async*'.");
-    B.CompileTimeErrorWithoutArguments_fOx = new A.CompileTimeErrorWithoutArguments(B.List_empty10, "INVALID_INLINE_FUNCTION_TYPE", "CompileTimeErrorCode.INVALID_INLINE_FUNCTION_TYPE", "Inline function types can't be used for parameters in a generic function type.", "Try using a generic function type (returnType 'Function(' parameters ')').");
-    B.CompileTimeErrorWithoutArguments_vhm = new A.CompileTimeErrorWithoutArguments(B.List_empty10, "NON_SYNC_FACTORY", "CompileTimeErrorCode.NON_SYNC_FACTORY", string$.Factorb, null);
     B.ConstantPatternContext_0 = new A.ConstantPatternContext0(0, "none");
     B.ConstantPatternContext_1 = new A.ConstantPatternContext0(1, "implicit");
     B.ConstantPatternContext_2 = new A.ConstantPatternContext0(2, "explicit");
@@ -76927,6 +76929,262 @@
     B.DeclarationKind_3 = new A.DeclarationKind(3, "Extension");
     B.DeclarationKind_4 = new A.DeclarationKind(4, "ExtensionType");
     B.DeclarationKind_5 = new A.DeclarationKind(5, "Enum");
+    B.ExpectedType_5 = new A.ExpectedType(5, "token");
+    B.List_ExpectedType_5 = makeConstList([B.ExpectedType_5], type$.JSArray_ExpectedType);
+    B.DiagnosticSeverity_ERROR_3 = new A.DiagnosticSeverity("ERROR", 3);
+    B.DiagnosticType_SYNTACTIC_ERROR_6 = new A.DiagnosticType("SYNTACTIC_ERROR", 6);
+    B.DiagnosticCodeWithExpectedTypes_2me = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, string$.extran, string$.extran, "Can't have modifier '{0}' in a primary constructor.", "Try removing '{0}'.");
+    B.ExpectedType_2 = new A.ExpectedType(2, "name");
+    B.List_ExpectedType_2 = makeConstList([B.ExpectedType_2], type$.JSArray_ExpectedType);
+    B.DiagnosticCodeWithExpectedTypes_55d = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_2, "type_arguments_on_type_variable", "type_arguments_on_type_variable", "Can't use type arguments with type variable '{0}'.", "Try removing the type arguments.");
+    B.DiagnosticCodeWithExpectedTypes_5pU = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "illegal_pattern_identifier_name", "illegal_pattern_identifier_name", "A pattern can't refer to an identifier named '{0}'.", "Match the identifier using '==");
+    B.DiagnosticCodeWithExpectedTypes_68l = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "extraneous_modifier", "extraneous_modifier", "Can't have modifier '{0}' here.", "Try removing '{0}'.");
+    B.DiagnosticCodeWithExpectedTypes_AMk = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_2, "pattern_assignment_declares_variable", "pattern_assignment_declares_variable", "Variable '{0}' can't be declared in a pattern assignment.", string$.Try_usp);
+    B.DiagnosticCodeWithExpectedTypes_Gu7 = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "illegal_pattern_assignment_variable_name", "illegal_pattern_assignment_variable_name", "A variable assigned by a pattern assignment can't be named '{0}'.", "Choose a different name.");
+    B.DiagnosticCodeWithExpectedTypes_Qqx = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_2, "invalid_constant_pattern_binary", "invalid_constant_pattern_binary", "The binary operator {0} is not supported as a constant pattern.", string$.Try_wrx2e);
+    B.DiagnosticCodeWithExpectedTypes_WQ9 = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "expected_identifier_but_got_keyword", "expected_identifier_but_got_keyword", "'{0}' can't be used as an identifier because it's a keyword.", string$.Try_ren);
+    B.DiagnosticCodeWithExpectedTypes_a3p = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_2, "duplicate_label_in_switch_statement", "duplicate_label_in_switch_statement", "The label '{0}' was already used in this switch statement.", string$.Try_cha);
+    B.ExpectedType_4 = new A.ExpectedType(4, "string");
+    B.List_ExpectedType_4_ExpectedType_5 = makeConstList([B.ExpectedType_4, B.ExpectedType_5], type$.JSArray_ExpectedType);
+    B.DiagnosticCodeWithExpectedTypes_dfn = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_4_ExpectedType_5, "literal_with_class", "literal_with_class", "A {0} literal can't be prefixed by '{1}'.", "Try removing '{1}'");
+    B.DiagnosticCodeWithExpectedTypes_doK = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_4_ExpectedType_5, "literal_with_class_and_new", "literal_with_class_and_new", "A {0} literal can't be prefixed by 'new {1}'.", "Try removing 'new' and '{1}'");
+    B.DiagnosticCodeWithExpectedTypes_erZ = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "duplicated_modifier", "duplicated_modifier", "The modifier '{0}' was already specified.", string$.Try_remaoc);
+    B.DiagnosticCodeWithExpectedTypes_hMU = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "extraneous_modifier_in_extension_type", "extraneous_modifier_in_extension_type", "Can't have modifier '{0}' in an extension type.", "Try removing '{0}'.");
+    B.DiagnosticCodeWithExpectedTypes_ju3 = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "invalid_use_of_covariant_in_extension", "invalid_use_of_covariant_in_extension", "Can't have modifier '{0}' in an extension.", "Try removing '{0}'.");
+    B.DiagnosticCodeWithExpectedTypes_juR = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_2, "invalid_constant_pattern_unary", "invalid_constant_pattern_unary", "The unary operator {0} is not supported as a constant pattern.", string$.Try_wrx2e);
+    B.DiagnosticCodeWithExpectedTypes_m14 = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "illegal_pattern_variable_name", "illegal_pattern_variable_name", "The variable declared by a variable pattern can't be named '{0}'.", "Choose a different name.");
+    B.DiagnosticCodeWithExpectedTypes_oua = new A.DiagnosticCodeWithExpectedTypes(B.List_ExpectedType_5, "invalid_operator", "invalid_operator", "The string '{0}' isn't a user-definable operator.", null);
+    B.List_ExpectedType_4_ExpectedType_4 = makeConstList([B.ExpectedType_4, B.ExpectedType_4], type$.JSArray_ExpectedType);
+    B.DiagnosticWithArguments_27j = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsExperimentNotEnabled$closure(), B.List_ExpectedType_4_ExpectedType_4, "experiment_not_enabled", "experiment_not_enabled", "This requires the '{0}' language feature to be enabled.", "Try updating your pubspec.yaml to set the minimum SDK constraint to {1} or higher, and running 'pub get'.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
+    B.ExpectedType_1 = new A.ExpectedType(1, "int");
+    B.List_iw6 = makeConstList([B.ExpectedType_4, B.ExpectedType_1, B.ExpectedType_1], type$.JSArray_ExpectedType);
+    B.DiagnosticSeverity_WARNING_2 = new A.DiagnosticSeverity("WARNING", 2);
+    B.DiagnosticType_STATIC_WARNING_4 = new A.DiagnosticType("STATIC_WARNING", 4);
+    B.DiagnosticWithArguments_4eA = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsDocDirectiveHasExtraArguments$closure(), B.List_iw6, "doc_directive_has_extra_arguments", "doc_directive_has_extra_arguments", "The '{0}' directive has '{1}' arguments, but only '{2}' are expected.", "Try removing the extra arguments.", A.findType("DiagnosticWithArguments<LocatableDiagnostic({p0!String,p1!int,p2!int})>"));
+    B.DiagnosticWithArguments_7pl = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsModifierOutOfOrder$closure(), B.List_ExpectedType_4_ExpectedType_4, "modifier_out_of_order", "modifier_out_of_order", "The modifier '{0}' should be before the modifier '{1}'.", "Try re-ordering the modifiers.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
+    B.List_ExpectedType_4 = makeConstList([B.ExpectedType_4], type$.JSArray_ExpectedType);
+    B.DiagnosticType_COMPILE_TIME_ERROR_2 = new A.DiagnosticType("COMPILE_TIME_ERROR", 2);
+    B.DiagnosticWithArguments_8gr = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsBuiltInIdentifierAsType$closure(), B.List_ExpectedType_4, "built_in_identifier_as_type", "built_in_identifier_as_type", "The built-in identifier '{0}' can't be used as a type.", "Try correcting the name to match an existing type.", A.findType("DiagnosticWithArguments<LocatableDiagnostic({token!String})>"));
+    B.DiagnosticWithArguments_8r5 = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsInvalidCodePoint$closure(), B.List_ExpectedType_4, "invalid_code_point", "invalid_code_point", "The escape sequence '{0}' isn't a valid code point.", null, type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.DiagnosticWithArguments_9ms = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsConstNotInitialized$closure(), B.List_ExpectedType_4, "const_not_initialized", "const_not_initialized", "The constant '{0}' must be initialized.", "Try adding an initialization to the declaration.", A.findType("DiagnosticWithArguments<LocatableDiagnostic({name!String})>"));
+    B.DiagnosticWithArguments_BT7 = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsDocDirectiveUnknown$closure(), B.List_ExpectedType_4, "doc_directive_unknown", "doc_directive_unknown", "Doc directive '{0}' is unknown.", "Try using one of the supported doc directives.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.DiagnosticWithArguments_G7s = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsUnsupportedOperator$closure(), B.List_ExpectedType_4, "unsupported_operator", "unsupported_operator", "The '{0}' operator is not supported.", null, type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.DiagnosticWithArguments_Goi = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsFinalNotInitialized$closure(), B.List_ExpectedType_4, "final_not_initialized", "final_not_initialized", "The final variable '{0}' must be initialized.", "Try initializing the variable.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.DiagnosticWithArguments_K1w = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsDocDirectiveMissingClosingTag$closure(), B.List_ExpectedType_4, "doc_directive_missing_closing_tag", "doc_directive_missing_closing_tag", "Doc directive is missing a closing tag.", "Try closing the directive with the appropriate closing tag, '{0}'.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.ExpectedType_3 = new A.ExpectedType(3, "object");
+    B.List_ExpectedType_3_ExpectedType_3 = makeConstList([B.ExpectedType_3, B.ExpectedType_3], type$.JSArray_ExpectedType);
+    B.DiagnosticWithArguments_Kun = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsInvalidLanguageVersionOverrideGreater$closure(), B.List_ExpectedType_3_ExpectedType_3, "invalid_language_version_override", "invalid_language_version_override_greater", "The language version override can't specify a version greater than the latest known language version: {0}.{1}.", "Try removing the language version override.", A.findType("DiagnosticWithArguments<LocatableDiagnostic({p0!Object,p1!Object})>"));
+    B.DiagnosticWithArguments_Mfk = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsOutOfOrderClauses$closure(), B.List_ExpectedType_4_ExpectedType_4, "out_of_order_clauses", "out_of_order_clauses", "The '{0}' clause must come before the '{1}' clause.", "Try moving the '{0}' clause before the '{1}' clause.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
+    B.DiagnosticWithArguments_OI4 = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsUnexpectedToken$closure(), B.List_ExpectedType_4, "unexpected_token", "unexpected_token", "Unexpected text '{0}'.", "Try removing the text.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.DiagnosticWithArguments_REj = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsMultipleClauses$closure(), B.List_ExpectedType_4_ExpectedType_4, "multiple_clauses", "multiple_clauses", "Each '{0}' definition can have at most one '{1}' clause.", "Try combining all of the '{1}' clauses into a single clause.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
+    B.DiagnosticWithArguments_S5R = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsExperimentNotEnabledOffByDefault$closure(), B.List_ExpectedType_4, "experiment_not_enabled_off_by_default", "experiment_not_enabled_off_by_default", "This requires the experimental '{0}' language feature to be enabled.", "Try passing the '--enable-experiment={0}' command line option.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String);
+    B.DiagnosticWithArguments_SmY = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsDocDirectiveMissingOpeningTag$closure(), B.List_ExpectedType_4, "doc_directive_missing_opening_tag", "doc_directive_missing_opening_tag", "Doc directive is missing an opening tag.", "Try opening the directive with the appropriate opening tag, '{0}'.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.DiagnosticWithArguments_UPH = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsConflictingModifiers$closure(), B.List_ExpectedType_4_ExpectedType_4, "conflicting_modifiers", "conflicting_modifiers", "Members can't be declared to be both '{0}' and '{1}'.", "Try removing one of the keywords.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
+    B.List_ExpectedType_3 = makeConstList([B.ExpectedType_3], type$.JSArray_ExpectedType);
+    B.DiagnosticWithArguments_X9O = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsIllegalCharacter$closure(), B.List_ExpectedType_3, "illegal_character", "illegal_character", "Illegal character '{0}'.", null, A.findType("DiagnosticWithArguments<LocatableDiagnostic({p0!Object})>"));
+    B.DiagnosticWithArguments_YlZ = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsBinaryOperatorWrittenOut$closure(), B.List_ExpectedType_4_ExpectedType_4, "binary_operator_written_out", "binary_operator_written_out", "Binary operator '{0}' is written as '{1}' instead of the written out word.", "Try replacing '{0}' with '{1}'.", type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
+    B.DiagnosticWithArguments_iNd = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsExpectedToken$closure(), B.List_ExpectedType_4, "expected_token", "expected_token", "Expected to find '{0}'.", null, type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_p0_String);
+    B.DiagnosticWithArguments_ygW = new A.DiagnosticWithArguments(A.diagnostic___withArgumentsExpectedInstead$closure(), B.List_ExpectedType_4, "expected_instead", "expected_instead", "Expected '{0}' instead of this.", null, type$.DiagnosticWithArguments_of_LocatableDiagnostic_Function_$named_$req_string_String);
+    B.List_empty9 = makeConstList([], type$.JSArray_ExpectedType);
+    B.DiagnosticWithoutArgumentsImpl_0Ci = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_switch_statement_body", string$.A_swits, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_0jM = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_function_body", "missing_function_body", "A function body must be provided.", "Try adding a function body.");
+    B.DiagnosticWithoutArgumentsImpl_0ol = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_keyword_operator", "missing_keyword_operator", string$.Operat_, "Try adding the keyword 'operator'.");
+    B.DiagnosticWithoutArgumentsImpl_0pO = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "non_sync_factory", "non_sync_factory", string$.Factorb, null);
+    B.DiagnosticWithoutArgumentsImpl_1Rf = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "switch_has_multiple_default_cases", "switch_has_multiple_default_cases", string$.The__d, "Try removing all but one default case.");
+    B.DiagnosticWithoutArgumentsImpl_1Ri = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "abstract_late_field", "abstract_late_field", "Abstract fields cannot be late.", string$.Try_remte_aol);
+    B.DiagnosticWithoutArgumentsImpl_1nE = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "illegal_assignment_to_non_assignable", "illegal_assignment_to_non_assignable", string$.Illega, null);
+    B.DiagnosticWithoutArgumentsImpl_306 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "multiple_part_of_directives", "multiple_part_of_directives", string$.Only_op, string$.Try_remaofp);
+    B.DiagnosticWithoutArgumentsImpl_3Lc = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "unexpected_separator_in_number", "unexpected_separator_in_number", string$.Digit_, "Try removing the '_'.");
+    B.DiagnosticWithoutArgumentsImpl_3oZ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_hex_digit", "missing_hex_digit", "Hexadecimal digit expected.", null);
+    B.DiagnosticWithoutArgumentsImpl_3p4 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "getter_constructor", "getter_constructor", "Constructors can't be a getter.", "Try removing 'get'.");
+    B.DiagnosticWithoutArgumentsImpl_483 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.field_, string$.field_, string$.A_fiel, string$.Try_pa);
+    B.DiagnosticWithoutArgumentsImpl_4BI = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_constructor_name", "invalid_constructor_name", string$.The_na, null);
+    B.DiagnosticWithoutArgumentsImpl_4lh = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "abstract_class_member", "abstract_class_member", string$.Membero, string$.Try_remte_ak);
+    B.DiagnosticWithoutArgumentsImpl_4pD = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_typedef", "external_typedef", string$.Typedet, "Try removing the keyword 'external'.");
+    B.DiagnosticWithoutArgumentsImpl_6Ab = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "enum_in_class", "enum_in_class", "Enums can't be declared inside classes.", "Try moving the enum to the top-level.");
+    B.DiagnosticWithoutArgumentsImpl_7EC = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_unicode_escape_u_bracket", "invalid_unicode_escape_u_bracket", string$.An_escux7b, null);
+    B.DiagnosticWithoutArgumentsImpl_7ab = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_inline_function_type", "invalid_inline_function_type", "Inline function types can't be used for parameters in a generic function type.", "Try using a generic function type (returnType 'Function(' parameters ')').");
+    B.DiagnosticWithoutArgumentsImpl_7f2 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_late_field", "external_late_field", "External fields cannot be late.", string$.Try_remte_er);
+    B.DiagnosticWithoutArgumentsImpl_7hu = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "function_typed_parameter_var", "function_typed_parameter_var", string$.Functi, string$.Try_repk);
+    B.DiagnosticWithoutArgumentsImpl_7l7 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "static_operator", "static_operator", "Operators can't be static.", "Try removing the keyword 'static'.");
+    B.DiagnosticWithoutArgumentsImpl_7rP = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "extension_declares_abstract_member", "extension_declares_abstract_member", string$.Extenss, string$.Try_pr);
+    B.DiagnosticWithoutArgumentsImpl_7uN = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_try_statement_body", string$.A_try_s, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_7zh = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_expression_in_throw", "missing_expression_in_throw", "Missing expression after 'throw'.", string$.Add_an);
+    B.DiagnosticWithoutArgumentsImpl_8Oc = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.recordl, string$.recordl, string$.A_recol_, "Try adding a trailing comma.");
+    B.DiagnosticWithoutArgumentsImpl_9cM = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "import_directive_after_part_directive", "import_directive_after_part_directive", string$.Import, string$.Try_moi);
+    B.DiagnosticWithoutArgumentsImpl_9rK = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_class_body", string$.A_clasd, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_A9r = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "interface_mixin_class", "interface_mixin_class", string$.A_mixici, "Try removing the 'interface' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_AIU = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_assignable_selector", "missing_assignable_selector", string$.Missin, "Try adding a selector.");
+    B.DiagnosticWithoutArgumentsImpl_ANd = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "field_initializer_outside_constructor", "field_initializer_outside_constructor", "Field formal parameters can only be used in a constructor.", "Try removing 'this.'.");
+    B.DiagnosticWithoutArgumentsImpl_BNA = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "var_return_type", "var_return_type", "The return type can't be 'var'.", string$.Try_remtekx20);
+    B.DiagnosticWithoutArgumentsImpl_BRH = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "implements_before_extends", "implements_before_extends", string$.The_exti, string$.Try_moeti);
+    B.DiagnosticWithoutArgumentsImpl_Blr = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "abstract_final_interface_class", "abstract_final_interface_class", string$.An__abi, string$.Try_remefi);
+    B.DiagnosticWithoutArgumentsImpl_C2r = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "empty_record_literal_with_comma", "empty_record_literal_with_comma", string$.A_recolo, "Try removing the trailing comma.");
+    B.DiagnosticWithoutArgumentsImpl_CDI = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "library_directive_not_first", "library_directive_not_first", string$.The_lib, string$.Try_mol);
+    B.DiagnosticWithoutArgumentsImpl_CLD = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "annotation_on_type_argument", "annotation_on_type_argument", string$.Type_a, null);
+    B.DiagnosticWithoutArgumentsImpl_D5v = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "continue_without_label_in_case", "continue_without_label_in_case", string$.A_conti, string$.Try_ada_l);
+    B.DiagnosticWithoutArgumentsImpl_D80 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "catch_syntax", "catch_syntax", string$.x27catch, string$.No_typ);
+    B.DiagnosticWithoutArgumentsImpl_DPN = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "final_enum", "final_enum", "Enums can't be declared to be 'final'.", "Try removing the keyword 'final'.");
+    B.DiagnosticWithoutArgumentsImpl_DnQ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "final_mixin", "final_mixin", "A mixin can't be declared 'final'.", "Try removing the 'final' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_Dud = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "deferred_after_prefix", "deferred_after_prefix", string$.The_dee, string$.Try_modee);
+    B.DiagnosticWithoutArgumentsImpl_E7C = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "duplicate_prefix", "duplicate_prefix", string$.An_impp, "Try removing all but one prefix.");
+    B.DiagnosticWithoutArgumentsImpl_ERy = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "multiple_library_directives", "multiple_library_directives", string$.Only_ol, string$.Try_remaofl);
+    B.DiagnosticWithoutArgumentsImpl_Eh9 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "member_with_class_name", "member_with_class_name", string$.A_clasm, "Try renaming the member.");
+    B.DiagnosticWithoutArgumentsImpl_Ei6 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_method_parameters", "missing_method_parameters", "Methods must have an explicit list of parameters.", "Try adding a parameter list.");
+    B.DiagnosticWithoutArgumentsImpl_Eny = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "break_outside_of_loop", "break_outside_of_loop", string$.A_brea, "Try removing the break statement.");
+    B.DiagnosticWithoutArgumentsImpl_F31 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_statement", "missing_statement", "Expected a statement.", null);
+    B.DiagnosticWithoutArgumentsImpl_F7m = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_unicode_escape_u_started", "invalid_unicode_escape_u_started", string$.An_escux27x20, null);
+    B.DiagnosticWithoutArgumentsImpl_FdI = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.invalio, string$.invalio, string$.The_op, "Try replacing '?.' with '.'");
+    B.DiagnosticWithoutArgumentsImpl_FiG = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_else_or_comma", "expected_else_or_comma", "Expected 'else' or comma.", null);
+    B.DiagnosticWithoutArgumentsImpl_Frq = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "abstract_external_field", "abstract_external_field", string$.Fields, string$.Try_remte_aoe);
+    B.DiagnosticWithoutArgumentsImpl_GBn = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "annotation_space_before_parenthesis", "annotation_space_before_parenthesis", string$.Annota, string$.Remove);
+    B.DiagnosticWithoutArgumentsImpl_GTJ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "async_keyword_used_as_identifier", "async_keyword_used_as_identifier", "The keywords 'await' and 'yield' can't be used as identifiers in an asynchronous or generator function.", null);
+    B.DiagnosticWithoutArgumentsImpl_Gpb = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "type_parameter_on_operator", "type_parameter_on_operator", string$.Types_, "Try removing the type parameters.");
+    B.DiagnosticWithoutArgumentsImpl_H4R = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "interface_enum", "interface_enum", string$.Enums_i, "Try removing the keyword 'interface'.");
+    B.DiagnosticWithoutArgumentsImpl_HMM = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "new_constructor_qualified_name", "new_constructor_qualified_name", string$.Constrh, string$.Try_remtecl);
+    B.DiagnosticWithoutArgumentsImpl_HcG = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "const_factory", "const_factory", string$.Only_r, string$.Try_remte_cx2c);
+    B.DiagnosticWithoutArgumentsImpl_Hie = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "empty_record_type_with_comma", "empty_record_type_with_comma", string$.A_recoto, "Try removing the trailing comma.");
+    B.DiagnosticWithoutArgumentsImpl_IYC = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "continue_outside_of_loop", "continue_outside_of_loop", string$.A_contc, "Try removing the continue statement.");
+    B.DiagnosticWithoutArgumentsImpl_It7 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "top_level_operator", "top_level_operator", string$.Operats, string$.Try_remteop);
+    B.DiagnosticWithoutArgumentsImpl_K6I = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_primary_constructor_parameters", "missing_primary_constructor_parameters", string$.A_prim, string$.Try_adf);
+    B.DiagnosticWithoutArgumentsImpl_KEF = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_named_type", "expected_named_type_extends", "Expected a class name.", "Try using a class name, possibly with type arguments.");
+    B.DiagnosticWithoutArgumentsImpl_KOt = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "type_parameter_on_constructor", "type_parameter_on_constructor", "Constructors can't have type parameters.", "Try removing the type parameters.");
+    B.DiagnosticWithoutArgumentsImpl_KcT = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "return_in_generator", "return_in_generator", "Can't return a value from a generator function that uses the 'async*' or 'sync*' modifier.", "Try replacing 'return' with 'yield', using a block function body, or changing the method body modifier.");
+    B.DiagnosticWithoutArgumentsImpl_KmS = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "final_mixin_class", "final_mixin_class", "A mixin class can't be declared 'final'.", "Try removing the 'final' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_KzX = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "extension_type_with", "extension_type_with", string$.An_extntc_, string$.Try_remte_w);
+    B.DiagnosticWithoutArgumentsImpl_LAu = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "positional_after_named_argument", "positional_after_named_argument", "Positional arguments must occur before named arguments.", "Try moving all of the positional arguments before the named arguments.");
+    B.DiagnosticWithoutArgumentsImpl_LHT = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "base_enum", "base_enum", "Enums can't be declared to be 'base'.", "Try removing the keyword 'base'.");
+    B.DiagnosticWithoutArgumentsImpl_LVo = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "abstract_final_base_class", "abstract_final_base_class", string$.An__abb, string$.Try_remefb);
+    B.DiagnosticWithoutArgumentsImpl_LbB = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_constant_pattern_duplicate_const", "invalid_constant_pattern_duplicate_const", string$.Duplic, string$.Try_remo);
+    B.DiagnosticWithoutArgumentsImpl_M7l = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_extension_type_body", string$.An_extntmb, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_MaI = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "multiple_on_clauses", "multiple_on_clauses", string$.Each_m, string$.Try_coao);
+    B.DiagnosticWithoutArgumentsImpl_NG2 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "final_and_var", "final_and_var", string$.Membercfv, "Try removing the keyword 'var'.");
+    B.DiagnosticWithoutArgumentsImpl_NOi = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_hex_escape", "invalid_hex_escape", string$.An_escx, null);
+    B.DiagnosticWithoutArgumentsImpl_Nfz = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_literal_in_configuration", "invalid_literal_in_configuration", "The literal in a configuration can't contain interpolation.", "Try removing the interpolation expressions.");
+    B.DiagnosticWithoutArgumentsImpl_O0M = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "covariant_and_static", "covariant_and_static", string$.Memberccv, string$.Try_remecv);
+    B.DiagnosticWithoutArgumentsImpl_OKF = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "late_pattern_variable_declaration", "late_pattern_variable_declaration", string$.A_pattu, "Try removing the keyword `late`.");
+    B.DiagnosticWithoutArgumentsImpl_P07 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_identifier", "missing_identifier", "Expected an identifier.", null);
+    B.DiagnosticWithoutArgumentsImpl_P2H = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.extern, string$.extern, "An external constructor can't initialize fields.", "Try removing the field initializers, or removing the keyword 'external'.");
+    B.DiagnosticWithoutArgumentsImpl_PIu = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_named_type", "expected_named_type_on", "Expected the name of a class or mixin.", string$.Try_usc);
+    B.DiagnosticWithoutArgumentsImpl_PMX = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "const_and_final", "const_and_final", string$.Memberccn, string$.Try_remecno);
+    B.DiagnosticWithoutArgumentsImpl_PSf = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "redirecting_constructor_with_body", "redirecting_constructor_with_body", string$.Redire, string$.Try_remtebx2c);
+    B.DiagnosticWithoutArgumentsImpl_PtH = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "new_constructor_new_name", "new_constructor_new_name", string$.Constrb, string$.Try_remtes);
+    B.DiagnosticWithoutArgumentsImpl_Q9M = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "covariant_member", "covariant_member", string$.Getterv, "Try removing the 'covariant' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_QwJ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "sealed_mixin", "sealed_mixin", "A mixin can't be declared 'sealed'.", "Try removing the 'sealed' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_R9j = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_constant_pattern_generic", "invalid_constant_pattern_generic", string$.This_e, string$.Try_wrx2e);
+    B.DiagnosticWithoutArgumentsImpl_RT4 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_factory_redirection", "external_factory_redirection", "A redirecting factory can't be external.", "Try removing the 'external' modifier.");
+    B.DiagnosticWithoutArgumentsImpl_RWF = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "multiple_implements_clauses", "multiple_implements_clauses", "Each class or mixin definition can have at most one implements clause.", string$.Try_coai);
+    B.DiagnosticWithoutArgumentsImpl_RY2 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "multiple_with_clauses", "multiple_with_clauses", string$.Each_cw, string$.Try_coaw);
+    B.DiagnosticWithoutArgumentsImpl_Rhy = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_constructor_with_initializer", "external_constructor_with_initializer", string$.An_extrc, null);
+    B.DiagnosticWithoutArgumentsImpl_Rlf = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "named_function_expression", "named_function_expression", "Function expressions can't be named.", "Try removing the name, or moving the function expression to a function declaration statement.");
+    B.DiagnosticWithoutArgumentsImpl_Rxn = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "implements_before_with", "implements_before_with", string$.The_wi, string$.Try_mow);
+    B.DiagnosticWithoutArgumentsImpl_S4C = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.final_, string$.final_, string$.Memberm, string$.Try_remefcx2c);
+    B.DiagnosticWithoutArgumentsImpl_SNH = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "private_named_non_field_parameter", "private_named_non_field_parameter", "Named parameters that don't refer to instance variables can't start with underscore.", null);
+    B.DiagnosticWithoutArgumentsImpl_STb = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_constant_const_prefix", "invalid_constant_const_prefix", string$.The_exp, string$.Try_wrx20);
+    B.DiagnosticWithoutArgumentsImpl_TNn = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_inside_unary_pattern", "invalid_inside_unary_pattern", string$.This_p, string$.Try_coi);
+    B.DiagnosticWithoutArgumentsImpl_Tku = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "void_with_type_arguments", "void_with_type_arguments", "Type 'void' can't have type arguments.", "Try removing the type arguments.");
+    B.DiagnosticWithoutArgumentsImpl_TqJ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "empty_record_type_named_fields_list", "empty_record_type_named_fields_list", string$.The_lis, "Try adding a named field to the list.");
+    B.DiagnosticWithoutArgumentsImpl_V7L = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "wrong_separator_for_positional_parameter", "wrong_separator_for_positional_parameter", "The default value of a positional parameter should be preceded by '='.", "Try replacing the ':' with '='.");
+    B.DiagnosticWithoutArgumentsImpl_VEf = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "null_aware_cascade_out_of_order", "null_aware_cascade_out_of_order", string$.The___, string$.Try_mo_);
+    B.DiagnosticWithoutArgumentsImpl_VGh = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "sealed_enum", "sealed_enum", "Enums can't be declared to be 'sealed'.", "Try removing the keyword 'sealed'.");
+    B.DiagnosticWithoutArgumentsImpl_Voh = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_star_after_sync", "missing_star_after_sync", "The modifier 'sync' must be followed by a star ('*').", "Try removing the modifier, or add a star.");
+    B.DiagnosticWithoutArgumentsImpl_WAT = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "literal_with_new", "literal_with_new", "A literal can't be prefixed by 'new'.", "Try removing 'new'");
+    B.DiagnosticWithoutArgumentsImpl_XDo = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "private_optional_parameter", "private_optional_parameter", "Named parameters can't start with an underscore.", null);
+    B.DiagnosticWithoutArgumentsImpl_XWY = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "default_value_in_function_type", "default_value_in_function_type", "Parameters in a function type can't have default values.", "Try removing the default value.");
+    B.DiagnosticWithoutArgumentsImpl_XrN = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "async_for_in_wrong_context", "async_for_in_wrong_context", "The async for-in loop can only be used in an async function.", "Try marking the function body with either 'async' or 'async*', or removing the 'await' before the for-in loop.");
+    B.DiagnosticWithoutArgumentsImpl_Y32 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "prefix_after_combinator", "prefix_after_combinator", string$.The_pr, string$.Try_mop);
+    B.DiagnosticWithoutArgumentsImpl_YFc = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_executable", "expected_executable", "Expected a method, getter, setter or operator declaration.", "This appears to be incomplete code. Try removing it or completing it.");
+    B.DiagnosticWithoutArgumentsImpl_YKL = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_modifier_on_setter", "invalid_modifier_on_setter", string$.Setter, "Try removing the modifier.");
+    B.DiagnosticWithoutArgumentsImpl_YaE = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "switch_has_case_after_default_case", "switch_has_case_after_default_case", string$.The_dea, string$.Try_modea);
+    B.DiagnosticWithoutArgumentsImpl_YzJ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_function_parameters", "missing_function_parameters", "Functions must have an explicit list of parameters.", "Try adding a parameter list.");
+    B.DiagnosticWithoutArgumentsImpl_ZJw = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_method_with_body", "external_method_with_body", string$.An_extro, null);
+    B.DiagnosticWithoutArgumentsImpl_ZXi = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "annotation_with_type_arguments", "annotation_with_type_arguments", "An annotation can't use type arguments.", null);
+    B.DiagnosticWithoutArgumentsImpl_a9v = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "await_in_wrong_context", "await_in_wrong_context", "The await expression can only be used in an async function.", "Try marking the function body with either 'async' or 'async*'.");
+    B.DiagnosticWithoutArgumentsImpl_aMQ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.patter, string$.patter, string$.A_patta, string$.Try_de);
+    B.DiagnosticWithoutArgumentsImpl_bAr = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.annota, string$.annota, string$.An_ann, null);
+    B.DiagnosticWithoutArgumentsImpl_bDB = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_unicode_escape_u_no_bracket", "invalid_unicode_escape_u_no_bracket", string$.An_escux27x2e, null);
+    B.DiagnosticWithoutArgumentsImpl_bOd = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_const_final_var_or_type", "missing_const_final_var_or_type", string$.Variabsm, string$.Try_adt);
+    B.DiagnosticWithoutArgumentsImpl_bTQ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_catch_or_finally", "missing_catch_or_finally", string$.A_try_b, string$.Try_ade);
+    B.DiagnosticWithoutArgumentsImpl_bXT = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "extension_augmentation_has_on_clause", "extension_augmentation_has_on_clause", string$.Extens_, "Try removing the 'on' clause.");
+    B.DiagnosticWithoutArgumentsImpl_bgl = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.recordt, string$.recordt, string$.A_recot_, "Try adding a trailing comma.");
+    B.DiagnosticWithoutArgumentsImpl_bmp = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "doc_directive_missing_closing_brace", "doc_directive_missing_closing_brace", "Doc directive is missing a closing curly brace ('}').", "Try closing the directive with a curly brace.");
+    B.DiagnosticWithoutArgumentsImpl_cUj = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_prefix_in_deferred_import", "missing_prefix_in_deferred_import", "Deferred imports should have a prefix.", string$.Try_ada_pe);
+    B.DiagnosticWithoutArgumentsImpl_cYT = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_unicode_escape_started", "invalid_unicode_escape_started", "The string '\\' can't stand alone.", string$.Try_adano);
+    B.DiagnosticWithoutArgumentsImpl_cbK = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "unterminated_string_literal", "unterminated_string_literal", "Unterminated string literal.", null);
+    B.DiagnosticWithoutArgumentsImpl_cna = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_extension_body", string$.An_extnd, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_cyW = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "colon_in_place_of_in", "colon_in_place_of_in", string$.For_in, string$.Try_repc);
+    B.DiagnosticWithoutArgumentsImpl_czB = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "equality_cannot_be_equality_operand", "equality_cannot_be_equality_operand", string$.A_comp, string$.Try_pu);
+    B.DiagnosticWithoutArgumentsImpl_dQB = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "unexpected_tokens", "unexpected_tokens", "Unexpected tokens.", null);
+    B.DiagnosticWithoutArgumentsImpl_e2Z = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "static_constructor", "static_constructor", "Constructors can't be static.", "Try removing the keyword 'static'.");
+    B.DiagnosticWithoutArgumentsImpl_e5m = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_class_member", "expected_class_member", "Expected a class member.", "Try placing this code inside a class member.");
+    B.DiagnosticWithoutArgumentsImpl_eHV = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "multiple_extends_clauses", "multiple_extends_clauses", string$.Each_ce, string$.Try_cho);
+    B.DiagnosticWithoutArgumentsImpl_eXL = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "const_without_primary_constructor", "const_without_primary_constructor", string$.x27const, string$.Try_remte_cx20);
+    B.DiagnosticWithoutArgumentsImpl_eaQ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "unterminated_multi_line_comment", "unterminated_multi_line_comment", "Unterminated multi-line comment.", "Try terminating the comment with '*/', or removing any unbalanced occurrences of '/*' (because comments nest in Dart).");
+    B.DiagnosticWithoutArgumentsImpl_ead = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "named_parameter_outside_group", "named_parameter_outside_group", "Named parameters must be enclosed in curly braces ('{' and '}').", "Try surrounding the named parameters in curly braces.");
+    B.DiagnosticWithoutArgumentsImpl_etx = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "unexpected_dollar_in_string", "unexpected_dollar_in_string", string$.A_____, string$.Try_ada_b);
+    B.DiagnosticWithoutArgumentsImpl_eyo = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "const_constructor_with_body", "const_constructor_with_body", "Const constructors can't have a body.", string$.Try_remecnk);
+    B.DiagnosticWithoutArgumentsImpl_f6C = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "duplicate_deferred", "duplicate_deferred", string$.An_imp_, string$.Try_rema_);
+    B.DiagnosticWithoutArgumentsImpl_fNu = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_initializer", "missing_initializer", "Expected an initializer.", null);
+    B.DiagnosticWithoutArgumentsImpl_foq = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_typedef_parameters", "missing_typedef_parameters", "Typedefs must have an explicit list of parameters.", "Try adding a parameter list.");
+    B.DiagnosticWithoutArgumentsImpl_g8Z = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_primary_constructor", "missing_primary_constructor", string$.An_extntmp, string$.Try_ada_pi);
+    B.DiagnosticWithoutArgumentsImpl_gBn = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "native_clause_should_be_annotation", "native_clause_should_be_annotation", string$.Native, string$.Try_remti);
+    B.DiagnosticWithoutArgumentsImpl_gXH = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_super_in_initializer", "invalid_super_in_initializer", string$.Can_ons, null);
+    B.DiagnosticWithoutArgumentsImpl_gjV = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_switch_expression_body", string$.A_switeu, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_goy = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_constant_pattern_negation", "invalid_constant_pattern_negation", string$.Only_n, string$.Try_wrx2e);
+    B.DiagnosticWithoutArgumentsImpl_hUb = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "part_of_name", "part_of_name", "The 'part of' directive can't use a name with the enhanced-parts feature.", "Try using 'part of' with a URI instead.");
+    B.DiagnosticWithoutArgumentsImpl_i6U = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "sealed_mixin_class", "sealed_mixin_class", string$.A_mixics, "Try removing the 'sealed' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_i6w = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "constructor_with_type_arguments", "constructor_with_type_arguments", string$.A_cons, string$.Try_remtetr);
+    B.DiagnosticWithoutArgumentsImpl_ieM = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "wrong_number_of_parameters_for_setter", "wrong_number_of_parameters_for_setter", "Setters must declare exactly one required positional parameter.", null);
+    B.DiagnosticWithoutArgumentsImpl_ize = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "stack_overflow", "stack_overflow", string$.The_fi, "Try simplifying the code.");
+    B.DiagnosticWithoutArgumentsImpl_j3w = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "mixin_with_clause", "mixin_with_clause", "A mixin can't have a with clause.", null);
+    B.DiagnosticWithoutArgumentsImpl_j6x = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "getter_with_parameters", "getter_with_parameters", "Getters must be declared without a parameter list.", "Try removing the parameter list, or removing the keyword 'get' to define a method rather than a getter.");
+    B.DiagnosticWithoutArgumentsImpl_jZ8 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "directive_after_declaration", "directive_after_declaration", string$.Direct, string$.Try_modi);
+    B.DiagnosticWithoutArgumentsImpl_jkn = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_factory_with_body", "external_factory_with_body", "External factories can't have a body.", string$.Try_remtebx20);
+    B.DiagnosticWithoutArgumentsImpl_kPX = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.variab, string$.variab, string$.Variab_, "Try removing the keyword.");
+    B.DiagnosticWithoutArgumentsImpl_kY2 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "initialized_variable_in_for_each", "initialized_variable_in_for_each", string$.The_lo, string$.Try_remtei);
+    B.DiagnosticWithoutArgumentsImpl_kk8 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_finally_clause_body", string$.A_fina, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_kka = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "default_in_switch_expression", "default_in_switch_expression", string$.A_switea, "Try replacing `default` with `_`.");
+    B.DiagnosticWithoutArgumentsImpl_lKb = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "encoding", "encoding", "Unable to decode bytes as UTF-8.", null);
+    B.DiagnosticWithoutArgumentsImpl_lc5 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "var_as_type_name", "var_as_type_name", string$.The_kev, null);
+    B.DiagnosticWithoutArgumentsImpl_m0q = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "class_in_class", "class_in_class", string$.Classei, "Try moving the class to the top-level.");
+    B.DiagnosticWithoutArgumentsImpl_mhe = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "constructor_with_return_type", "constructor_with_return_type", "Constructors can't have a return type.", "Try removing the return type.");
+    B.DiagnosticWithoutArgumentsImpl_nOu = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "multiple_variance_modifiers", "multiple_variance_modifiers", string$.Each_t, string$.Use_at);
+    B.DiagnosticWithoutArgumentsImpl_nR8 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_this_in_initializer", "invalid_this_in_initializer", string$.Can_ont, null);
+    B.DiagnosticWithoutArgumentsImpl_nj0 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "typedef_in_class", "typedef_in_class", string$.Typedei, "Try moving the typedef to the top-level.");
+    B.DiagnosticWithoutArgumentsImpl_nr0 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "final_and_covariant", "final_and_covariant", string$.Membercfc, string$.Try_remefcx2e);
+    B.DiagnosticWithoutArgumentsImpl_ntl = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "non_part_of_directive_in_part", "non_part_of_directive_in_part", string$.The_pa, string$.Try_remteot);
+    B.DiagnosticWithoutArgumentsImpl_oL2 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_enum", "external_enum", string$.Enums_e, "Try removing the keyword 'external'.");
+    B.DiagnosticWithoutArgumentsImpl_obQ = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "external_class", "external_class", string$.Classet, "Try removing the keyword 'external'.");
+    B.DiagnosticWithoutArgumentsImpl_os2 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_await_in_for", "invalid_await_in_for", string$.The_kea, string$.Try_remtekx2c);
+    B.DiagnosticWithoutArgumentsImpl_osT = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "mixin_declares_constructor", "mixin_declares_constructor", "Mixins can't declare constructors.", null);
+    B.DiagnosticWithoutArgumentsImpl_ouI = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_named_type", "expected_named_type_implements", "Expected the name of a class or mixin.", string$.Try_usc);
+    B.DiagnosticWithoutArgumentsImpl_ov4 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "factory_constructor_new_name", "factory_constructor_new_name", string$.Factorc_, string$.Try_remte_n);
+    B.DiagnosticWithoutArgumentsImpl_oz3 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "catch_syntax_extra_parameters", "catch_syntax_extra_parameters", string$.x27catch, string$.No_typ);
+    B.DiagnosticWithoutArgumentsImpl_p8a = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "extension_type_extends", "extension_type_extends", string$.An_extntcn, string$.Try_remte_en);
+    B.DiagnosticWithoutArgumentsImpl_q3p = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_mixin_body", string$.A_mixid, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_qla = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "extension_declares_constructor", "extension_declares_constructor", "Extensions can't declare constructors.", string$.Try_remteco);
+    B.DiagnosticWithoutArgumentsImpl_r2m = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "const_class", "const_class", "Classes can't be declared to be 'const'.", string$.Try_remte_cx2e);
+    B.DiagnosticWithoutArgumentsImpl_rK6 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "interface_mixin", "interface_mixin", "A mixin can't be declared 'interface'.", "Try removing the 'interface' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_rdF = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "redirection_in_non_factory_constructor", "redirection_in_non_factory_constructor", string$.Only_f, string$.Try_ma);
+    B.DiagnosticWithoutArgumentsImpl_rkN = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "export_directive_after_part_directive", "export_directive_after_part_directive", string$.Export, string$.Try_moep);
+    B.DiagnosticWithoutArgumentsImpl_s8U = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "type_before_factory", "type_before_factory", string$.Factorcn, string$.Try_remtetp);
+    B.DiagnosticWithoutArgumentsImpl_s9o = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "with_before_extends", "with_before_extends", string$.The_extw, string$.Try_moetw);
+    B.DiagnosticWithoutArgumentsImpl_se4 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "setter_constructor", "setter_constructor", "Constructors can't be a setter.", "Try removing 'set'.");
+    B.DiagnosticWithoutArgumentsImpl_ss1 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "factory_top_level_declaration", "factory_top_level_declaration", string$.Top_le, "Try removing the keyword 'factory'.");
+    B.DiagnosticWithoutArgumentsImpl_t23 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, string$.invalic, string$.invalic, string$.The_em, null);
+    B.DiagnosticWithoutArgumentsImpl_tEf = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_string_literal", "expected_string_literal", "Expected a string literal.", null);
+    B.DiagnosticWithoutArgumentsImpl_tKl = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "abstract_static_field", "abstract_static_field", string$.Static, string$.Try_remte_aos);
+    B.DiagnosticWithoutArgumentsImpl_taW = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "const_method", "const_method", string$.Gettern, "Try removing the 'const' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_uE3 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_named_type", "expected_named_type_with", "Expected a mixin name.", "Try using a mixin name, possibly with type arguments.");
+    B.DiagnosticWithoutArgumentsImpl_uMP = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "implements_before_on", "implements_before_on", string$.The_on, string$.Try_moo);
+    B.DiagnosticWithoutArgumentsImpl_ump = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "var_and_type", "var_and_type", string$.Variabsc, "Try removing 'var.'");
+    B.DiagnosticWithoutArgumentsImpl_vGq = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "abstract_sealed_class", "abstract_sealed_class", string$.A__sea, "Try removing the 'abstract' keyword.");
+    B.DiagnosticWithoutArgumentsImpl_vUK = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "invalid_initializer", "invalid_initializer", "Not a valid initializer.", string$.To_ini);
+    B.DiagnosticWithoutArgumentsImpl_vsG = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_body", "expected_catch_clause_body", string$.A_catc, "Try adding an empty body.");
+    B.DiagnosticWithoutArgumentsImpl_y54 = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_enum_body", "missing_enum_body", string$.An_enu, "Try adding a body and defining at least one constant.");
+    B.DiagnosticWithoutArgumentsImpl_yhF = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_digit", "missing_digit", "Decimal digit expected.", null);
+    B.DiagnosticWithoutArgumentsImpl_ypH = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "missing_assignment_in_initializer", "missing_assignment_in_initializer", string$.Expect, string$.To_ini);
+    B.DiagnosticWithoutArgumentsImpl_zlv = new A.DiagnosticWithoutArgumentsImpl(B.List_empty9, "expected_type_name", "expected_type_name", "Expected a type name.", null);
     B.DirectiveState_0 = new A.DirectiveState(0, "Unknown");
     B.DirectiveState_1 = new A.DirectiveState(1, "Script");
     B.DirectiveState_2 = new A.DirectiveState(2, "Library");
@@ -76934,7 +77192,7 @@
     B.DirectiveState_4 = new A.DirectiveState(4, "Part");
     B.DirectiveState_5 = new A.DirectiveState(5, "PartOf");
     B.DirectiveState_6 = new A.DirectiveState(6, "Declarations");
-    B.List_empty11 = makeConstList([], type$.JSArray_DocDirectiveParameter);
+    B.List_empty10 = makeConstList([], type$.JSArray_DocDirectiveParameter);
     B.DocDirectiveType_DZ7 = new A.DocDirectiveType("inject-html", "end-inject-html", 6, "injectHtml");
     B.DocDirectiveParameterFormat_1_integer = new A.DocDirectiveParameterFormat(1, "integer");
     B.C_DocDirectiveParameter = new A.DocDirectiveParameter();
@@ -76974,13 +77232,14 @@
     B.EnumValueDeclarationIdentifierContext_fPJ = new A.EnumValueDeclarationIdentifierContext("enumValueDeclaration", false, false, false, true, B.Template_CgK);
     B.Version_3_0 = new A.Version0(3, 0);
     B.ExperimentalFlag_186 = new A.ExperimentalFlag("patterns", true, B.Version_3_0, 27, "patterns");
-    B.Version_3_11 = new A.Version0(3, 11);
-    B.ExperimentalFlag_8Mz = new A.ExperimentalFlag("declaring-constructors", false, B.Version_3_11, 7, "declaringConstructors");
-    B.Version_2_14 = new A.Version0(2, 14);
-    B.ExperimentalFlag_PJS = new A.ExperimentalFlag("triple-shift", true, B.Version_2_14, 38, "tripleShift");
-    B.ExperimentalFlag_Vlu = new A.ExperimentalFlag("variance", false, B.Version_3_11, 41, "variance");
+    B.Version_3_12 = new A.Version0(3, 12);
+    B.ExperimentalFlag_aqQ = new A.ExperimentalFlag("variance", false, B.Version_3_12, 42, "variance");
     B.Version_3_6 = new A.Version0(3, 6);
-    B.ExperimentalFlag_ZeW = new A.ExperimentalFlag("enhanced-parts", false, B.Version_3_11, 11, "enhancedParts");
+    B.ExperimentalFlag_bDC = new A.ExperimentalFlag("enhanced-parts", false, B.Version_3_12, 11, "enhancedParts");
+    B.ExperimentalFlag_dxK = new A.ExperimentalFlag("anonymous-methods", false, B.Version_3_12, 0, "anonymousMethods");
+    B.ExperimentalFlag_x3b = new A.ExperimentalFlag("primary-constructors", false, B.Version_3_12, 28, "primaryConstructors");
+    B.Version_2_14 = new A.Version0(2, 14);
+    B.ExperimentalFlag_yGf = new A.ExperimentalFlag("triple-shift", true, B.Version_2_14, 39, "tripleShift");
     B.ExpressionIdentifierContext_8BF = new A.ExpressionIdentifierContext("expression", false, false, false, true, B.Template_CgK);
     B.ExpressionIdentifierContext_ofe = new A.ExpressionIdentifierContext("expressionContinuation", false, false, true, true, B.Template_CgK);
     B.FieldDeclarationIdentifierContext_sOX = new A.FieldDeclarationIdentifierContext("fieldDeclaration", false, false, false, true, B.Template_CgK);
@@ -77021,7 +77280,6 @@
     B.Keyword_bXa = new A.Keyword(B.KeywordStyle_1, 137, 107, false, false, false, false, false, "set", "SET", 0, "set");
     B.Keyword_njB = new A.Keyword(B.KeywordStyle_1, 112, 107, false, false, false, false, false, "get", "GET", 0, "get");
     B.Keyword_qLT = new A.Keyword(B.KeywordStyle_2, 128, 107, false, false, false, false, false, "on", "ON", 0, "on");
-    B.Keyword_rin = new A.Keyword(B.KeywordStyle_0, 93, 107, true, false, false, false, false, "const", "CONST", 0, "const");
     B.Keyword_xsI = new A.Keyword(B.KeywordStyle_1, 99, 107, false, false, false, false, false, "dynamic", "DYNAMIC", 0, "dynamic");
     B.LabelDeclarationIdentifierContext_VN8 = new A.LabelDeclarationIdentifierContext("labelDeclaration", false, false, false, true, B.Template_CgK);
     B.LabelReferenceIdentifierContext_7KG = new A.LabelReferenceIdentifierContext("labelReference", false, false, false, true, B.Template_CgK);
@@ -77125,6 +77383,7 @@
     B.Keyword_yY4 = new A.Keyword(B.KeywordStyle_0, 90, 107, false, false, false, false, false, "case", "CASE", 0, "case");
     B.Keyword_wA7 = new A.Keyword(B.KeywordStyle_0, 91, 107, false, false, false, false, false, "catch", "CATCH", 0, "catch");
     B.Keyword_pB1 = new A.Keyword(B.KeywordStyle_0, 92, 107, false, false, false, true, false, "class", "CLASS", 0, "class");
+    B.Keyword_rin = new A.Keyword(B.KeywordStyle_0, 93, 107, true, false, false, false, false, "const", "CONST", 0, "const");
     B.Keyword_Ebk = new A.Keyword(B.KeywordStyle_0, 94, 107, false, false, false, false, false, "continue", "CONTINUE", 0, "continue");
     B.Keyword_d4d = new A.Keyword(B.KeywordStyle_1, 95, 107, true, false, false, false, false, "covariant", "COVARIANT", 0, "covariant");
     B.Keyword_kUo = new A.Keyword(B.KeywordStyle_0, 96, 107, false, false, false, false, false, "default", "DEFAULT", 0, "default");
@@ -77209,7 +77468,7 @@
     B.List_Zh7 = makeConstList(["on", "implements", "{"], type$.JSArray_String);
     B.List_aMW = makeConstList([B.Keyword_yfm, B.Keyword_bMK, B.Keyword_iUi, B.Keyword_M92, B.Keyword_4Zk, B.Keyword_2Jl, B.Keyword_Ddu, B.Keyword_rec, B.Keyword_yY4, B.Keyword_wA7, B.Keyword_pB1, B.Keyword_rin, B.Keyword_Ebk, B.Keyword_d4d, B.Keyword_kUo, B.Keyword_Kh6, B.Keyword_bIO, B.Keyword_xsI, B.Keyword_W69, B.Keyword_hEe, B.Keyword_qDP, B.Keyword_5ZI, B.Keyword_UyC, B.Keyword_xAz, B.Keyword_aPt, B.Keyword_lYe, B.Keyword_P35, B.Keyword_gaz, B.Keyword_xV7, B.Keyword_34D, B.Keyword_njB, B.Keyword_HZR, B.Keyword_tsb, B.Keyword_Xbu, B.Keyword_TZZ, B.Keyword_NjI, B.Keyword_Jzb, B.Keyword_BqO, B.Keyword_88S, B.Keyword_v2b, B.Keyword_W3d, B.Keyword_19y, B.Keyword_FYm, B.Keyword_1hb, B.Keyword_AEa, B.Keyword_lRv, B.Keyword_qLT, B.Keyword_4U3, B.Keyword_Dpc, B.Keyword_ROE, B.Keyword_cSz, B.Keyword_hcF, B.Keyword_3It, B.Keyword_AzI, B.Keyword_uJd, B.Keyword_bXa, B.Keyword_hGM, B.Keyword_JnU, B.Keyword_mE7, B.Keyword_bxB, B.Keyword_yXR, B.Keyword_Oxc, B.Keyword_t1W, B.Keyword_sas, B.Keyword_T63, B.Keyword_UzY, B.Keyword_ufv, B.Keyword_AX3, B.Keyword_Lsc, B.Keyword_Ccw, B.Keyword_Vll, B.Keyword_Wwq, B.Keyword_nnk], A.findType("JSArray<Keyword>"));
     B.List_dF0 = makeConstList([2774754246, 2222750968, 2574743534, 2373680118, 234025727, 3177933782, 2976870366, 1422247313, 1345335392, 50397442, 2842126286, 2099981142, 436141799, 1658312629, 3870010189, 2591454956, 1170918031, 2642575903, 1086966153, 2273148410, 368769775, 3948501426, 3376891790, 200339707, 3970805057, 1742001331, 4255294047, 3937382213, 3214711843, 4154762323, 2524082916, 1539358875, 3266819957, 486407649, 2928907069, 1780885068, 1513502316, 1094664062, 49805301, 1338821763, 1546925160, 4104496465, 887481809, 150073849, 2473685474, 1943591083, 1395732834, 1058346282, 201589768, 1388824469, 1696801606, 1589887901, 672667696, 2711000631, 251987210, 3046808111, 151455502, 907153956, 2608889883, 1038279391, 652995533, 1764173646, 3451040383, 2675275242, 453576978, 2659418909, 1949051992, 773462580, 756751158, 2993581788, 3998898868, 4221608027, 4132590244, 1295727478, 1641469623, 3467883389, 2066295122, 1055122397, 1898917726, 2542044179, 4115878822, 1758581177, 0, 753790401, 1612718144, 536673507, 3367088505, 3982187446, 3194645204, 1187761037, 3653156455, 1262041458, 3729410708, 3561770136, 3898103984, 1255133061, 1808847035, 720367557, 3853167183, 385612781, 3309519750, 3612167578, 1429418854, 2491778321, 3477423498, 284817897, 100794884, 2172616702, 4031795360, 1144798328, 3131023141, 3819481163, 4082192802, 4272137053, 3225436288, 2324664069, 2912064063, 3164445985, 1211644016, 83228145, 3753688163, 3249976951, 1977277103, 1663115586, 806359072, 452984805, 250868733, 1842533055, 1288555905, 336333848, 890442534, 804056259, 3781124030, 2727843637, 3427026056, 957814574, 1472513171, 4071073621, 2189328124, 1195195770, 2892260552, 3881655738, 723065138, 2507371494, 2690670784, 2558624025, 3511635870, 2145180835, 1713513028, 2116692564, 2878378043, 2206763019, 3393603212, 703524551, 3552098411, 1007948840, 2044649127, 3797835452, 487262998, 1994120109, 1004593371, 1446130276, 1312438900, 503974420, 3679013266, 168166924, 1814307912, 3831258296, 1573044895, 1859376061, 4021070915, 2791465668, 2828112185, 2761266481, 937747667, 2339994098, 854058965, 1137232011, 1496790894, 3077402074, 2358086913, 1691735473, 3528347292, 3769215305, 3027004632, 4199962284, 133494003, 636152527, 2942657994, 2390391540, 3920539207, 403179536, 3585784431, 2289596656, 1864705354, 1915629148, 605822008, 4054230615, 3350508659, 1371981463, 602466507, 2094914977, 2624877800, 555687742, 3712699286, 3703422305, 2257292045, 2240449039, 2423288032, 1111375484, 3300242801, 2858837708, 3628615824, 84083462, 32962295, 302911004, 2741068226, 1597322602, 4183250862, 3501832553, 2441512471, 1489093017, 656219450, 3114180135, 954327513, 335083755, 3013122091, 856756514, 3144247762, 1893325225, 2307821063, 2811532339, 3063651117, 572399164, 2458355477, 552200649, 1238290055, 4283782570, 2015897680, 2061492133, 2408352771, 4171342169, 2156497161, 386731290, 3669999461, 837215959, 3326231172, 3093850320, 3275833730, 2962856233, 1999449434, 286199582, 3417354363, 4233385128, 3602627437, 974525996], type$.JSArray_int);
-    B.List_empty8 = makeConstList([], type$.JSArray_ConstructorInitializerImpl);
+    B.List_empty7 = makeConstList([], type$.JSArray_ConstructorInitializerImpl);
     B.List_empty1 = makeConstList([], A.findType("JSArray<Diagnostic>"));
     B.List_empty3 = makeConstList([], type$.JSArray_DiagnosticMessage);
     B.List_empty5 = makeConstList([], type$.JSArray_ExpressionImpl);
@@ -77218,8 +77477,7 @@
     B.List_empty6 = makeConstList([], type$.JSArray_RecordTypeAnnotationPositionalFieldImpl);
     B.List_empty0 = makeConstList([], type$.JSArray_String);
     B.List_empty2 = makeConstList([], A.findType("JSArray<0&>"));
-    B.List_empty7 = makeConstList([], type$.JSArray_dynamic);
-    B.List_empty9 = makeConstList([], A.findType("JSArray<Object?>"));
+    B.List_empty8 = makeConstList([], A.findType("JSArray<Object?>"));
     B.List_ewq = makeConstList([4, 0, 148, 1416, 6, -1, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7, 4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7, 10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15, 2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2, 21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 2, 26, 7, 26, 2, 27, 7, 27, 2, 28, 7, 28, 2, 29, 7, 29, 2, 30, 7, 30, 2, 31, 7, 31, 2, 32, 7, 32, 2, 33, 7, 33, 2, 34, 7, 34, 2, 35, 7, 35, 2, 36, 7, 36, 2, 37, 7, 37, 2, 38, 7, 38, 2, 39, 7, 39, 2, 40, 7, 40, 2, 41, 7, 41, 2, 42, 7, 42, 2, 43, 7, 43, 2, 44, 7, 44, 2, 45, 7, 45, 2, 46, 7, 46, 2, 47, 7, 47, 2, 48, 7, 48, 2, 49, 7, 49, 2, 50, 7, 50, 2, 51, 7, 51, 2, 52, 7, 52, 2, 53, 7, 53, 2, 54, 7, 54, 2, 55, 7, 55, 2, 56, 7, 56, 2, 57, 7, 57, 2, 58, 7, 58, 2, 59, 7, 59, 2, 60, 7, 60, 2, 61, 7, 61, 2, 62, 7, 62, 2, 63, 7, 63, 2, 64, 7, 64, 2, 65, 7, 65, 2, 66, 7, 66, 2, 67, 7, 67, 2, 68, 7, 68, 2, 69, 7, 69, 2, 70, 7, 70, 2, 71, 7, 71, 2, 72, 7, 72, 2, 73, 7, 73, 2, 74, 7, 74, 2, 75, 7, 75, 2, 76, 7, 76, 2, 77, 7, 77, 2, 78, 7, 78, 2, 79, 7, 79, 2, 80, 7, 80, 2, 81, 7, 81, 2, 82, 7, 82, 2, 83, 7, 83, 2, 84, 7, 84, 2, 85, 7, 85, 2, 86, 7, 86, 2, 87, 7, 87, 2, 88, 7, 88, 2, 89, 7, 89, 2, 90, 7, 90, 2, 91, 7, 91, 2, 92, 7, 92, 2, 93, 7, 93, 2, 94, 7, 94, 2, 95, 7, 95, 2, 96, 7, 96, 2, 97, 7, 97, 2, 98, 7, 98, 2, 99, 7, 99, 2, 100, 7, 100, 2, 101, 7, 101, 2, 102, 7, 102, 2, 103, 7, 103, 2, 104, 7, 104, 2, 105, 7, 105, 2, 106, 7, 106, 2, 107, 7, 107, 2, 108, 7, 108, 2, 109, 7, 109, 2, 110, 7, 110, 2, 111, 7, 111, 2, 112, 7, 112, 2, 113, 7, 113, 2, 114, 7, 114, 2, 115, 7, 115, 2, 116, 7, 116, 2, 117, 7, 117, 2, 118, 7, 118, 2, 119, 7, 119, 2, 120, 7, 120, 2, 121, 7, 121, 2, 122, 7, 122, 2, 123, 7, 123, 2, 124, 7, 124, 2, 125, 7, 125, 2, 126, 7, 126, 2, 127, 7, 127, 2, 128, 7, 128, 2, 129, 7, 129, 2, 130, 7, 130, 2, 131, 7, 131, 2, 132, 7, 132, 2, 133, 7, 133, 2, 134, 7, 134, 2, 135, 7, 135, 2, 136, 7, 136, 2, 137, 7, 137, 2, 138, 7, 138, 2, 139, 7, 139, 2, 140, 7, 140, 2, 141, 7, 141, 2, 142, 7, 142, 2, 143, 7, 143, 2, 144, 7, 144, 2, 145, 7, 145, 2, 146, 7, 146, 2, 147, 7, 147, 2, 148, 7, 148, 2, 149, 7, 149, 2, 150, 7, 150, 2, 151, 7, 151, 2, 152, 7, 152, 2, 153, 7, 153, 2, 154, 7, 154, 2, 155, 7, 155, 2, 156, 7, 156, 2, 157, 7, 157, 2, 158, 7, 158, 2, 159, 7, 159, 2, 160, 7, 160, 2, 161, 7, 161, 2, 162, 7, 162, 2, 163, 7, 163, 2, 164, 7, 164, 2, 165, 7, 165, 2, 166, 7, 166, 2, 167, 7, 167, 2, 168, 7, 168, 2, 169, 7, 169, 1, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 5, 1, 5, 1, 6, 1, 6, 1, 7, 1, 7, 1, 8, 1, 8, 1, 9, 1, 9, 1, 10, 1, 10, 1, 11, 1, 11, 1, 12, 1, 12, 1, 12, 1, 13, 1, 13, 1, 14, 1, 14, 1, 15, 1, 15, 1, 16, 1, 16, 1, 17, 1, 17, 1, 17, 1, 17, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 19, 1, 19, 1, 19, 1, 20, 1, 20, 1, 20, 1, 20, 1, 21, 1, 21, 1, 21, 1, 22, 1, 22, 1, 22, 1, 23, 1, 23, 1, 23, 1, 23, 1, 24, 1, 24, 1, 24, 1, 25, 1, 25, 1, 25, 1, 26, 1, 26, 1, 26, 1, 27, 1, 27, 1, 27, 1, 27, 1, 28, 1, 28, 1, 28, 1, 29, 1, 29, 1, 29, 1, 30, 1, 30, 1, 30, 1, 31, 1, 31, 1, 31, 1, 31, 1, 32, 1, 32, 1, 32, 1, 33, 1, 33, 1, 33, 1, 34, 1, 34, 1, 34, 1, 35, 1, 35, 1, 35, 1, 36, 1, 36, 1, 36, 1, 37, 1, 37, 1, 38, 1, 38, 1, 39, 1, 39, 1, 40, 1, 40, 1, 40, 1, 41, 1, 41, 1, 42, 1, 42, 1, 43, 1, 43, 1, 44, 1, 44, 1, 45, 1, 45, 1, 45, 1, 46, 1, 46, 1, 47, 1, 47, 1, 47, 1, 48, 1, 48, 1, 48, 1, 49, 1, 49, 1, 49, 1, 50, 1, 50, 1, 51, 1, 51, 1, 52, 1, 52, 1, 53, 1, 53, 3, 53, 484, 8, 53, 1, 53, 1, 53, 1, 54, 1, 54, 5, 54, 490, 8, 54, 10, 54, 12, 54, 493, 9, 54, 1, 54, 5, 54, 496, 8, 54, 10, 54, 12, 54, 499, 9, 54, 1, 55, 1, 55, 3, 55, 503, 8, 55, 1, 56, 1, 56, 5, 56, 507, 8, 56, 10, 56, 12, 56, 510, 9, 56, 1, 56, 5, 56, 513, 8, 56, 10, 56, 12, 56, 516, 9, 56, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57, 1, 58, 1, 58, 1, 58, 1, 58, 1, 58, 1, 58, 1, 59, 1, 59, 1, 59, 1, 59, 1, 59, 1, 60, 1, 60, 1, 60, 1, 60, 1, 60, 1, 60, 1, 61, 1, 61, 1, 61, 1, 61, 1, 61, 1, 61, 1, 62, 1, 62, 1, 62, 1, 62, 1, 62, 1, 62, 1, 63, 1, 63, 1, 63, 1, 63, 1, 63, 1, 63, 1, 63, 1, 63, 1, 63, 1, 64, 1, 64, 1, 64, 1, 64, 1, 64, 1, 64, 1, 64, 1, 64, 1, 65, 1, 65, 1, 65, 1, 66, 1, 66, 1, 66, 1, 66, 1, 66, 1, 67, 1, 67, 1, 67, 1, 67, 1, 67, 1, 68, 1, 68, 1, 68, 1, 68, 1, 68, 1, 68, 1, 68, 1, 68, 1, 69, 1, 69, 1, 69, 1, 69, 1, 69, 1, 69, 1, 70, 1, 70, 1, 70, 1, 70, 1, 70, 1, 70, 1, 71, 1, 71, 1, 71, 1, 71, 1, 71, 1, 71, 1, 71, 1, 71, 1, 72, 1, 72, 1, 72, 1, 72, 1, 73, 1, 73, 1, 73, 1, 74, 1, 74, 1, 74, 1, 75, 1, 75, 1, 75, 1, 76, 1, 76, 1, 76, 1, 76, 1, 77, 1, 77, 1, 77, 1, 77, 1, 77, 1, 78, 1, 78, 1, 78, 1, 78, 1, 78, 1, 78, 1, 78, 1, 78, 1, 79, 1, 79, 1, 79, 1, 79, 1, 79, 1, 79, 1, 79, 1, 80, 1, 80, 1, 80, 1, 80, 1, 80, 1, 80, 1, 81, 1, 81, 1, 81, 1, 81, 1, 81, 1, 81, 1, 81, 1, 82, 1, 82, 1, 82, 1, 82, 1, 82, 1, 83, 1, 83, 1, 83, 1, 83, 1, 83, 1, 83, 1, 84, 1, 84, 1, 84, 1, 84, 1, 84, 1, 85, 1, 85, 1, 85, 1, 85, 1, 86, 1, 86, 1, 86, 1, 86, 1, 87, 1, 87, 1, 87, 1, 87, 1, 87, 1, 88, 1, 88, 1, 88, 1, 88, 1, 88, 1, 88, 1, 89, 1, 89, 1, 89, 1, 89, 1, 89, 1, 90, 1, 90, 1, 90, 1, 90, 1, 90, 1, 90, 1, 90, 1, 90, 1, 90, 1, 91, 1, 91, 1, 91, 1, 92, 1, 92, 1, 92, 1, 92, 1, 92, 1, 92, 1, 92, 1, 92, 1, 93, 1, 93, 1, 93, 1, 93, 1, 93, 1, 93, 1, 93, 1, 93, 1, 93, 1, 93, 1, 94, 1, 94, 1, 94, 1, 94, 1, 94, 1, 94, 1, 94, 1, 94, 1, 94, 1, 95, 1, 95, 1, 95, 1, 95, 1, 95, 1, 95, 1, 95, 1, 95, 1, 96, 1, 96, 1, 96, 1, 96, 1, 96, 1, 96, 1, 96, 1, 97, 1, 97, 1, 97, 1, 97, 1, 97, 1, 97, 1, 97, 1, 97, 1, 97, 1, 97, 1, 98, 1, 98, 1, 98, 1, 98, 1, 98, 1, 98, 1, 98, 1, 98, 1, 98, 1, 99, 1, 99, 1, 99, 1, 99, 1, 99, 1, 99, 1, 99, 1, 99, 1, 100, 1, 100, 1, 100, 1, 100, 1, 100, 1, 100, 1, 100, 1, 100, 1, 100, 1, 101, 1, 101, 1, 101, 1, 101, 1, 102, 1, 102, 1, 102, 1, 102, 1, 102, 1, 102, 1, 102, 1, 102, 1, 102, 1, 102, 1, 102, 1, 103, 1, 103, 1, 103, 1, 103, 1, 103, 1, 103, 1, 103, 1, 104, 1, 104, 1, 104, 1, 104, 1, 104, 1, 104, 1, 104, 1, 104, 1, 104, 1, 104, 1, 105, 1, 105, 1, 105, 1, 105, 1, 105, 1, 106, 1, 106, 1, 106, 1, 106, 1, 106, 1, 106, 1, 106, 1, 106, 1, 107, 1, 107, 1, 107, 1, 107, 1, 107, 1, 107, 1, 107, 1, 107, 1, 107, 1, 108, 1, 108, 1, 108, 1, 108, 1, 108, 1, 108, 1, 109, 1, 109, 1, 109, 1, 109, 1, 109, 1, 110, 1, 110, 1, 110, 1, 110, 1, 110, 1, 110, 1, 110, 1, 110, 1, 110, 1, 111, 1, 111, 1, 111, 1, 111, 1, 112, 1, 112, 1, 112, 1, 112, 1, 112, 1, 112, 1, 112, 1, 113, 1, 113, 1, 113, 1, 113, 1, 113, 1, 113, 1, 113, 1, 113, 1, 114, 1, 114, 1, 114, 1, 114, 1, 114, 1, 114, 1, 115, 1, 115, 1, 115, 1, 115, 1, 115, 1, 115, 1, 116, 1, 116, 1, 116, 1, 116, 1, 116, 1, 116, 1, 117, 1, 117, 1, 117, 1, 117, 1, 117, 1, 118, 1, 118, 1, 118, 1, 118, 1, 118, 1, 119, 1, 119, 1, 119, 1, 120, 1, 120, 1, 120, 1, 121, 1, 121, 1, 121, 1, 121, 1, 121, 1, 121, 1, 121, 1, 122, 1, 122, 1, 122, 1, 122, 1, 122, 1, 123, 1, 123, 1, 123, 1, 123, 1, 123, 1, 124, 1, 124, 1, 124, 1, 124, 1, 124, 1, 125, 1, 125, 1, 125, 1, 125, 1, 125, 1, 126, 1, 126, 1, 126, 3, 126, 949, 8, 126, 1, 126, 3, 126, 952, 8, 126, 1, 126, 1, 126, 1, 126, 3, 126, 957, 8, 126, 3, 126, 959, 8, 126, 1, 127, 1, 127, 1, 127, 1, 127, 1, 127, 1, 127, 1, 127, 1, 127, 3, 127, 969, 8, 127, 1, 128, 1, 128, 1, 128, 5, 128, 974, 8, 128, 10, 128, 12, 128, 977, 9, 128, 1, 128, 1, 128, 1, 128, 1, 128, 5, 128, 983, 8, 128, 10, 128, 12, 128, 986, 9, 128, 1, 128, 3, 128, 989, 8, 128, 1, 129, 1, 129, 1, 129, 1, 129, 1, 129, 1, 129, 5, 129, 997, 8, 129, 10, 129, 12, 129, 1000, 9, 129, 1, 129, 1, 129, 1, 129, 1, 129, 1, 129, 1, 129, 1, 129, 1, 129, 1, 129, 5, 129, 1011, 8, 129, 10, 129, 12, 129, 1014, 9, 129, 1, 129, 1, 129, 1, 129, 3, 129, 1019, 8, 129, 1, 130, 1, 130, 1, 130, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 1, 131, 3, 131, 1055, 8, 131, 1, 132, 1, 132, 3, 132, 1059, 8, 132, 1, 132, 3, 132, 1062, 8, 132, 1, 132, 3, 132, 1065, 8, 132, 1, 132, 3, 132, 1068, 8, 132, 1, 132, 3, 132, 1071, 8, 132, 1, 133, 1, 133, 1, 133, 1, 133, 1, 133, 3, 133, 1078, 8, 133, 1, 134, 1, 134, 3, 134, 1082, 8, 134, 1, 135, 1, 135, 5, 135, 1086, 8, 135, 10, 135, 12, 135, 1089, 9, 135, 1, 135, 1, 135, 1, 136, 1, 136, 5, 136, 1095, 8, 136, 10, 136, 12, 136, 1098, 9, 136, 1, 136, 1, 136, 1, 136, 1, 136, 1, 136, 1, 137, 1, 137, 1, 137, 1, 137, 5, 137, 1109, 8, 137, 10, 137, 12, 137, 1112, 9, 137, 1, 137, 1, 137, 1, 137, 1, 137, 1, 137, 1, 138, 1, 138, 1, 138, 1, 138, 5, 138, 1123, 8, 138, 10, 138, 12, 138, 1126, 9, 138, 1, 138, 1, 138, 1, 139, 1, 139, 3, 139, 1132, 8, 139, 1, 140, 1, 140, 5, 140, 1136, 8, 140, 10, 140, 12, 140, 1139, 9, 140, 1, 140, 1, 140, 1, 141, 1, 141, 5, 141, 1145, 8, 141, 10, 141, 12, 141, 1148, 9, 141, 1, 141, 1, 141, 1, 141, 1, 141, 1, 141, 1, 142, 1, 142, 1, 142, 1, 142, 5, 142, 1159, 8, 142, 10, 142, 12, 142, 1162, 9, 142, 1, 142, 1, 142, 1, 142, 1, 142, 1, 142, 1, 143, 1, 143, 1, 143, 1, 143, 5, 143, 1173, 8, 143, 10, 143, 12, 143, 1176, 9, 143, 1, 143, 1, 143, 1, 144, 1, 144, 1, 144, 1, 144, 3, 144, 1184, 8, 144, 1, 145, 1, 145, 1, 145, 1, 145, 1, 145, 1, 145, 1, 145, 3, 145, 1193, 8, 145, 1, 146, 1, 146, 1, 146, 1, 146, 1, 146, 5, 146, 1200, 8, 146, 10, 146, 12, 146, 1203, 9, 146, 1, 146, 1, 146, 1, 146, 1, 146, 1, 147, 1, 147, 1, 147, 1, 147, 1, 147, 5, 147, 1214, 8, 147, 10, 147, 12, 147, 1217, 9, 147, 1, 147, 1, 147, 1, 147, 1, 147, 1, 147, 1, 147, 1, 148, 1, 148, 1, 148, 1, 148, 5, 148, 1229, 8, 148, 10, 148, 12, 148, 1232, 9, 148, 1, 148, 1, 148, 1, 148, 1, 148, 1, 148, 1, 148, 1, 149, 1, 149, 1, 149, 1, 149, 5, 149, 1244, 8, 149, 10, 149, 12, 149, 1247, 9, 149, 1, 149, 1, 149, 1, 149, 1, 149, 1, 150, 1, 150, 1, 150, 1, 150, 3, 150, 1257, 8, 150, 1, 151, 1, 151, 1, 151, 1, 151, 1, 151, 1, 151, 1, 151, 3, 151, 1266, 8, 151, 1, 152, 1, 152, 1, 152, 1, 152, 1, 152, 5, 152, 1273, 8, 152, 10, 152, 12, 152, 1276, 9, 152, 1, 152, 1, 152, 1, 152, 1, 152, 1, 153, 1, 153, 1, 153, 1, 153, 1, 153, 5, 153, 1287, 8, 153, 10, 153, 12, 153, 1290, 9, 153, 1, 153, 1, 153, 1, 153, 1, 153, 1, 153, 1, 153, 1, 154, 1, 154, 1, 154, 1, 154, 5, 154, 1302, 8, 154, 10, 154, 12, 154, 1305, 9, 154, 1, 154, 1, 154, 1, 154, 1, 154, 1, 154, 1, 154, 1, 155, 1, 155, 1, 155, 1, 155, 5, 155, 1317, 8, 155, 10, 155, 12, 155, 1320, 9, 155, 1, 155, 1, 155, 1, 155, 1, 155, 1, 156, 1, 156, 1, 156, 1, 157, 1, 157, 1, 157, 1, 157, 1, 158, 1, 158, 3, 158, 1335, 8, 158, 1, 159, 1, 159, 3, 159, 1339, 8, 159, 1, 160, 1, 160, 5, 160, 1343, 8, 160, 10, 160, 12, 160, 1346, 9, 160, 1, 161, 1, 161, 3, 161, 1350, 8, 161, 1, 162, 1, 162, 3, 162, 1354, 8, 162, 1, 163, 1, 163, 1, 163, 1, 163, 5, 163, 1360, 8, 163, 10, 163, 12, 163, 1363, 9, 163, 1, 163, 1, 163, 1, 164, 1, 164, 5, 164, 1369, 8, 164, 10, 164, 12, 164, 1372, 9, 164, 1, 165, 1, 165, 1, 165, 1, 165, 5, 165, 1378, 8, 165, 10, 165, 12, 165, 1381, 9, 165, 1, 165, 3, 165, 1384, 8, 165, 1, 165, 1, 165, 1, 166, 1, 166, 1, 166, 1, 166, 1, 166, 5, 166, 1393, 8, 166, 10, 166, 12, 166, 1396, 9, 166, 1, 166, 1, 166, 1, 166, 1, 166, 1, 166, 1, 167, 1, 167, 1, 167, 3, 167, 1406, 8, 167, 1, 168, 1, 168, 1, 169, 4, 169, 1411, 8, 169, 11, 169, 12, 169, 1412, 1, 169, 1, 169, 3, 998, 1012, 1394, 0, 170, 1, 1, 3, 2, 5, 3, 7, 4, 9, 5, 11, 6, 13, 7, 15, 8, 17, 9, 19, 10, 21, 11, 23, 12, 25, 13, 27, 14, 29, 15, 31, 16, 33, 17, 35, 18, 37, 19, 39, 20, 41, 21, 43, 22, 45, 23, 47, 24, 49, 25, 51, 26, 53, 27, 55, 28, 57, 29, 59, 30, 61, 31, 63, 32, 65, 33, 67, 34, 69, 35, 71, 36, 73, 37, 75, 38, 77, 39, 79, 40, 81, 41, 83, 42, 85, 43, 87, 44, 89, 45, 91, 46, 93, 47, 95, 48, 97, 49, 99, 50, 101, 51, 103, 0, 105, 0, 107, 0, 109, 0, 111, 0, 113, 0, 115, 52, 117, 53, 119, 54, 121, 55, 123, 56, 125, 57, 127, 58, 129, 59, 131, 60, 133, 61, 135, 62, 137, 63, 139, 64, 141, 65, 143, 66, 145, 67, 147, 68, 149, 69, 151, 70, 153, 71, 155, 72, 157, 73, 159, 74, 161, 75, 163, 76, 165, 77, 167, 78, 169, 79, 171, 80, 173, 81, 175, 82, 177, 83, 179, 84, 181, 85, 183, 86, 185, 87, 187, 88, 189, 89, 191, 90, 193, 91, 195, 92, 197, 93, 199, 94, 201, 95, 203, 96, 205, 97, 207, 98, 209, 99, 211, 100, 213, 101, 215, 102, 217, 103, 219, 104, 221, 105, 223, 106, 225, 107, 227, 108, 229, 109, 231, 110, 233, 111, 235, 112, 237, 113, 239, 114, 241, 115, 243, 116, 245, 117, 247, 118, 249, 119, 251, 120, 253, 121, 255, 122, 257, 123, 259, 124, 261, 0, 263, 0, 265, 0, 267, 0, 269, 0, 271, 125, 273, 126, 275, 127, 277, 128, 279, 0, 281, 129, 283, 130, 285, 131, 287, 132, 289, 0, 291, 0, 293, 133, 295, 134, 297, 135, 299, 136, 301, 0, 303, 0, 305, 137, 307, 138, 309, 139, 311, 140, 313, 141, 315, 142, 317, 0, 319, 0, 321, 0, 323, 0, 325, 0, 327, 143, 329, 144, 331, 145, 333, 146, 335, 0, 337, 147, 339, 148, 1, 0, 10, 2, 0, 65, 90, 97, 122, 2, 0, 69, 69, 101, 101, 2, 0, 43, 43, 45, 45, 2, 0, 65, 70, 97, 102, 3, 0, 10, 10, 13, 13, 39, 39, 3, 0, 10, 10, 13, 13, 34, 34, 6, 0, 10, 10, 13, 13, 34, 34, 36, 36, 39, 39, 92, 92, 7, 0, 10, 10, 13, 13, 98, 98, 110, 110, 114, 114, 116, 118, 120, 120, 2, 0, 10, 10, 13, 13, 3, 0, 9, 10, 13, 13, 32, 32, 1466, 0, 1, 1, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 5, 1, 0, 0, 0, 0, 7, 1, 0, 0, 0, 0, 9, 1, 0, 0, 0, 0, 11, 1, 0, 0, 0, 0, 13, 1, 0, 0, 0, 0, 15, 1, 0, 0, 0, 0, 17, 1, 0, 0, 0, 0, 19, 1, 0, 0, 0, 0, 21, 1, 0, 0, 0, 0, 23, 1, 0, 0, 0, 0, 25, 1, 0, 0, 0, 0, 27, 1, 0, 0, 0, 0, 29, 1, 0, 0, 0, 0, 31, 1, 0, 0, 0, 0, 33, 1, 0, 0, 0, 0, 35, 1, 0, 0, 0, 0, 37, 1, 0, 0, 0, 0, 39, 1, 0, 0, 0, 0, 41, 1, 0, 0, 0, 0, 43, 1, 0, 0, 0, 0, 45, 1, 0, 0, 0, 0, 47, 1, 0, 0, 0, 0, 49, 1, 0, 0, 0, 0, 51, 1, 0, 0, 0, 0, 53, 1, 0, 0, 0, 0, 55, 1, 0, 0, 0, 0, 57, 1, 0, 0, 0, 0, 59, 1, 0, 0, 0, 0, 61, 1, 0, 0, 0, 0, 63, 1, 0, 0, 0, 0, 65, 1, 0, 0, 0, 0, 67, 1, 0, 0, 0, 0, 69, 1, 0, 0, 0, 0, 71, 1, 0, 0, 0, 0, 73, 1, 0, 0, 0, 0, 75, 1, 0, 0, 0, 0, 77, 1, 0, 0, 0, 0, 79, 1, 0, 0, 0, 0, 81, 1, 0, 0, 0, 0, 83, 1, 0, 0, 0, 0, 85, 1, 0, 0, 0, 0, 87, 1, 0, 0, 0, 0, 89, 1, 0, 0, 0, 0, 91, 1, 0, 0, 0, 0, 93, 1, 0, 0, 0, 0, 95, 1, 0, 0, 0, 0, 97, 1, 0, 0, 0, 0, 99, 1, 0, 0, 0, 0, 101, 1, 0, 0, 0, 0, 115, 1, 0, 0, 0, 0, 117, 1, 0, 0, 0, 0, 119, 1, 0, 0, 0, 0, 121, 1, 0, 0, 0, 0, 123, 1, 0, 0, 0, 0, 125, 1, 0, 0, 0, 0, 127, 1, 0, 0, 0, 0, 129, 1, 0, 0, 0, 0, 131, 1, 0, 0, 0, 0, 133, 1, 0, 0, 0, 0, 135, 1, 0, 0, 0, 0, 137, 1, 0, 0, 0, 0, 139, 1, 0, 0, 0, 0, 141, 1, 0, 0, 0, 0, 143, 1, 0, 0, 0, 0, 145, 1, 0, 0, 0, 0, 147, 1, 0, 0, 0, 0, 149, 1, 0, 0, 0, 0, 151, 1, 0, 0, 0, 0, 153, 1, 0, 0, 0, 0, 155, 1, 0, 0, 0, 0, 157, 1, 0, 0, 0, 0, 159, 1, 0, 0, 0, 0, 161, 1, 0, 0, 0, 0, 163, 1, 0, 0, 0, 0, 165, 1, 0, 0, 0, 0, 167, 1, 0, 0, 0, 0, 169, 1, 0, 0, 0, 0, 171, 1, 0, 0, 0, 0, 173, 1, 0, 0, 0, 0, 175, 1, 0, 0, 0, 0, 177, 1, 0, 0, 0, 0, 179, 1, 0, 0, 0, 0, 181, 1, 0, 0, 0, 0, 183, 1, 0, 0, 0, 0, 185, 1, 0, 0, 0, 0, 187, 1, 0, 0, 0, 0, 189, 1, 0, 0, 0, 0, 191, 1, 0, 0, 0, 0, 193, 1, 0, 0, 0, 0, 195, 1, 0, 0, 0, 0, 197, 1, 0, 0, 0, 0, 199, 1, 0, 0, 0, 0, 201, 1, 0, 0, 0, 0, 203, 1, 0, 0, 0, 0, 205, 1, 0, 0, 0, 0, 207, 1, 0, 0, 0, 0, 209, 1, 0, 0, 0, 0, 211, 1, 0, 0, 0, 0, 213, 1, 0, 0, 0, 0, 215, 1, 0, 0, 0, 0, 217, 1, 0, 0, 0, 0, 219, 1, 0, 0, 0, 0, 221, 1, 0, 0, 0, 0, 223, 1, 0, 0, 0, 0, 225, 1, 0, 0, 0, 0, 227, 1, 0, 0, 0, 0, 229, 1, 0, 0, 0, 0, 231, 1, 0, 0, 0, 0, 233, 1, 0, 0, 0, 0, 235, 1, 0, 0, 0, 0, 237, 1, 0, 0, 0, 0, 239, 1, 0, 0, 0, 0, 241, 1, 0, 0, 0, 0, 243, 1, 0, 0, 0, 0, 245, 1, 0, 0, 0, 0, 247, 1, 0, 0, 0, 0, 249, 1, 0, 0, 0, 0, 251, 1, 0, 0, 0, 0, 253, 1, 0, 0, 0, 0, 255, 1, 0, 0, 0, 0, 257, 1, 0, 0, 0, 0, 259, 1, 0, 0, 0, 0, 271, 1, 0, 0, 0, 0, 273, 1, 0, 0, 0, 0, 275, 1, 0, 0, 0, 0, 277, 1, 0, 0, 0, 0, 281, 1, 0, 0, 0, 0, 283, 1, 0, 0, 0, 0, 285, 1, 0, 0, 0, 0, 287, 1, 0, 0, 0, 0, 293, 1, 0, 0, 0, 0, 295, 1, 0, 0, 0, 0, 297, 1, 0, 0, 0, 0, 299, 1, 0, 0, 0, 0, 305, 1, 0, 0, 0, 0, 307, 1, 0, 0, 0, 0, 309, 1, 0, 0, 0, 0, 311, 1, 0, 0, 0, 0, 313, 1, 0, 0, 0, 0, 315, 1, 0, 0, 0, 0, 327, 1, 0, 0, 0, 0, 329, 1, 0, 0, 0, 0, 331, 1, 0, 0, 0, 0, 333, 1, 0, 0, 0, 0, 337, 1, 0, 0, 0, 0, 339, 1, 0, 0, 0, 1, 341, 1, 0, 0, 0, 3, 343, 1, 0, 0, 0, 5, 345, 1, 0, 0, 0, 7, 347, 1, 0, 0, 0, 9, 350, 1, 0, 0, 0, 11, 352, 1, 0, 0, 0, 13, 354, 1, 0, 0, 0, 15, 356, 1, 0, 0, 0, 17, 358, 1, 0, 0, 0, 19, 360, 1, 0, 0, 0, 21, 362, 1, 0, 0, 0, 23, 364, 1, 0, 0, 0, 25, 366, 1, 0, 0, 0, 27, 369, 1, 0, 0, 0, 29, 371, 1, 0, 0, 0, 31, 373, 1, 0, 0, 0, 33, 375, 1, 0, 0, 0, 35, 377, 1, 0, 0, 0, 37, 381, 1, 0, 0, 0, 39, 386, 1, 0, 0, 0, 41, 389, 1, 0, 0, 0, 43, 393, 1, 0, 0, 0, 45, 396, 1, 0, 0, 0, 47, 399, 1, 0, 0, 0, 49, 403, 1, 0, 0, 0, 51, 406, 1, 0, 0, 0, 53, 409, 1, 0, 0, 0, 55, 412, 1, 0, 0, 0, 57, 416, 1, 0, 0, 0, 59, 419, 1, 0, 0, 0, 61, 422, 1, 0, 0, 0, 63, 425, 1, 0, 0, 0, 65, 429, 1, 0, 0, 0, 67, 432, 1, 0, 0, 0, 69, 435, 1, 0, 0, 0, 71, 438, 1, 0, 0, 0, 73, 441, 1, 0, 0, 0, 75, 444, 1, 0, 0, 0, 77, 446, 1, 0, 0, 0, 79, 448, 1, 0, 0, 0, 81, 450, 1, 0, 0, 0, 83, 453, 1, 0, 0, 0, 85, 455, 1, 0, 0, 0, 87, 457, 1, 0, 0, 0, 89, 459, 1, 0, 0, 0, 91, 461, 1, 0, 0, 0, 93, 464, 1, 0, 0, 0, 95, 466, 1, 0, 0, 0, 97, 469, 1, 0, 0, 0, 99, 472, 1, 0, 0, 0, 101, 475, 1, 0, 0, 0, 103, 477, 1, 0, 0, 0, 105, 479, 1, 0, 0, 0, 107, 481, 1, 0, 0, 0, 109, 487, 1, 0, 0, 0, 111, 502, 1, 0, 0, 0, 113, 504, 1, 0, 0, 0, 115, 517, 1, 0, 0, 0, 117, 524, 1, 0, 0, 0, 119, 530, 1, 0, 0, 0, 121, 535, 1, 0, 0, 0, 123, 541, 1, 0, 0, 0, 125, 547, 1, 0, 0, 0, 127, 553, 1, 0, 0, 0, 129, 562, 1, 0, 0, 0, 131, 570, 1, 0, 0, 0, 133, 573, 1, 0, 0, 0, 135, 578, 1, 0, 0, 0, 137, 583, 1, 0, 0, 0, 139, 591, 1, 0, 0, 0, 141, 597, 1, 0, 0, 0, 143, 603, 1, 0, 0, 0, 145, 611, 1, 0, 0, 0, 147, 615, 1, 0, 0, 0, 149, 618, 1, 0, 0, 0, 151, 621, 1, 0, 0, 0, 153, 624, 1, 0, 0, 0, 155, 628, 1, 0, 0, 0, 157, 633, 1, 0, 0, 0, 159, 641, 1, 0, 0, 0, 161, 648, 1, 0, 0, 0, 163, 654, 1, 0, 0, 0, 165, 661, 1, 0, 0, 0, 167, 666, 1, 0, 0, 0, 169, 672, 1, 0, 0, 0, 171, 677, 1, 0, 0, 0, 173, 681, 1, 0, 0, 0, 175, 685, 1, 0, 0, 0, 177, 690, 1, 0, 0, 0, 179, 696, 1, 0, 0, 0, 181, 701, 1, 0, 0, 0, 183, 710, 1, 0, 0, 0, 185, 713, 1, 0, 0, 0, 187, 721, 1, 0, 0, 0, 189, 731, 1, 0, 0, 0, 191, 740, 1, 0, 0, 0, 193, 748, 1, 0, 0, 0, 195, 755, 1, 0, 0, 0, 197, 765, 1, 0, 0, 0, 199, 774, 1, 0, 0, 0, 201, 782, 1, 0, 0, 0, 203, 791, 1, 0, 0, 0, 205, 795, 1, 0, 0, 0, 207, 806, 1, 0, 0, 0, 209, 813, 1, 0, 0, 0, 211, 823, 1, 0, 0, 0, 213, 828, 1, 0, 0, 0, 215, 836, 1, 0, 0, 0, 217, 845, 1, 0, 0, 0, 219, 851, 1, 0, 0, 0, 221, 856, 1, 0, 0, 0, 223, 865, 1, 0, 0, 0, 225, 869, 1, 0, 0, 0, 227, 876, 1, 0, 0, 0, 229, 884, 1, 0, 0, 0, 231, 890, 1, 0, 0, 0, 233, 896, 1, 0, 0, 0, 235, 902, 1, 0, 0, 0, 237, 907, 1, 0, 0, 0, 239, 912, 1, 0, 0, 0, 241, 915, 1, 0, 0, 0, 243, 918, 1, 0, 0, 0, 245, 925, 1, 0, 0, 0, 247, 930, 1, 0, 0, 0, 249, 935, 1, 0, 0, 0, 251, 940, 1, 0, 0, 0, 253, 958, 1, 0, 0, 0, 255, 968, 1, 0, 0, 0, 257, 988, 1, 0, 0, 0, 259, 1018, 1, 0, 0, 0, 261, 1020, 1, 0, 0, 0, 263, 1054, 1, 0, 0, 0, 265, 1056, 1, 0, 0, 0, 267, 1077, 1, 0, 0, 0, 269, 1081, 1, 0, 0, 0, 271, 1083, 1, 0, 0, 0, 273, 1092, 1, 0, 0, 0, 275, 1104, 1, 0, 0, 0, 277, 1118, 1, 0, 0, 0, 279, 1131, 1, 0, 0, 0, 281, 1133, 1, 0, 0, 0, 283, 1142, 1, 0, 0, 0, 285, 1154, 1, 0, 0, 0, 287, 1168, 1, 0, 0, 0, 289, 1183, 1, 0, 0, 0, 291, 1185, 1, 0, 0, 0, 293, 1194, 1, 0, 0, 0, 295, 1208, 1, 0, 0, 0, 297, 1224, 1, 0, 0, 0, 299, 1239, 1, 0, 0, 0, 301, 1256, 1, 0, 0, 0, 303, 1258, 1, 0, 0, 0, 305, 1267, 1, 0, 0, 0, 307, 1281, 1, 0, 0, 0, 309, 1297, 1, 0, 0, 0, 311, 1312, 1, 0, 0, 0, 313, 1325, 1, 0, 0, 0, 315, 1328, 1, 0, 0, 0, 317, 1334, 1, 0, 0, 0, 319, 1338, 1, 0, 0, 0, 321, 1340, 1, 0, 0, 0, 323, 1349, 1, 0, 0, 0, 325, 1353, 1, 0, 0, 0, 327, 1355, 1, 0, 0, 0, 329, 1366, 1, 0, 0, 0, 331, 1373, 1, 0, 0, 0, 333, 1387, 1, 0, 0, 0, 335, 1405, 1, 0, 0, 0, 337, 1407, 1, 0, 0, 0, 339, 1410, 1, 0, 0, 0, 341, 342, 5, 59, 0, 0, 342, 2, 1, 0, 0, 0, 343, 344, 5, 61, 0, 0, 344, 4, 1, 0, 0, 0, 345, 346, 5, 44, 0, 0, 346, 6, 1, 0, 0, 0, 347, 348, 5, 61, 0, 0, 348, 349, 5, 62, 0, 0, 349, 8, 1, 0, 0, 0, 350, 351, 5, 42, 0, 0, 351, 10, 1, 0, 0, 0, 352, 353, 5, 40, 0, 0, 353, 12, 1, 0, 0, 0, 354, 355, 5, 41, 0, 0, 355, 14, 1, 0, 0, 0, 356, 357, 5, 91, 0, 0, 357, 16, 1, 0, 0, 0, 358, 359, 5, 93, 0, 0, 359, 18, 1, 0, 0, 0, 360, 361, 5, 63, 0, 0, 361, 20, 1, 0, 0, 0, 362, 363, 5, 46, 0, 0, 363, 22, 1, 0, 0, 0, 364, 365, 5, 126, 0, 0, 365, 24, 1, 0, 0, 0, 366, 367, 5, 61, 0, 0, 367, 368, 5, 61, 0, 0, 368, 26, 1, 0, 0, 0, 369, 370, 5, 58, 0, 0, 370, 28, 1, 0, 0, 0, 371, 372, 5, 60, 0, 0, 372, 30, 1, 0, 0, 0, 373, 374, 5, 62, 0, 0, 374, 32, 1, 0, 0, 0, 375, 376, 5, 64, 0, 0, 376, 34, 1, 0, 0, 0, 377, 378, 5, 46, 0, 0, 378, 379, 5, 46, 0, 0, 379, 380, 5, 46, 0, 0, 380, 36, 1, 0, 0, 0, 381, 382, 5, 46, 0, 0, 382, 383, 5, 46, 0, 0, 383, 384, 5, 46, 0, 0, 384, 385, 5, 63, 0, 0, 385, 38, 1, 0, 0, 0, 386, 387, 5, 46, 0, 0, 387, 388, 5, 46, 0, 0, 388, 40, 1, 0, 0, 0, 389, 390, 5, 63, 0, 0, 390, 391, 5, 46, 0, 0, 391, 392, 5, 46, 0, 0, 392, 42, 1, 0, 0, 0, 393, 394, 5, 42, 0, 0, 394, 395, 5, 61, 0, 0, 395, 44, 1, 0, 0, 0, 396, 397, 5, 47, 0, 0, 397, 398, 5, 61, 0, 0, 398, 46, 1, 0, 0, 0, 399, 400, 5, 126, 0, 0, 400, 401, 5, 47, 0, 0, 401, 402, 5, 61, 0, 0, 402, 48, 1, 0, 0, 0, 403, 404, 5, 37, 0, 0, 404, 405, 5, 61, 0, 0, 405, 50, 1, 0, 0, 0, 406, 407, 5, 43, 0, 0, 407, 408, 5, 61, 0, 0, 408, 52, 1, 0, 0, 0, 409, 410, 5, 45, 0, 0, 410, 411, 5, 61, 0, 0, 411, 54, 1, 0, 0, 0, 412, 413, 5, 60, 0, 0, 413, 414, 5, 60, 0, 0, 414, 415, 5, 61, 0, 0, 415, 56, 1, 0, 0, 0, 416, 417, 5, 38, 0, 0, 417, 418, 5, 61, 0, 0, 418, 58, 1, 0, 0, 0, 419, 420, 5, 94, 0, 0, 420, 421, 5, 61, 0, 0, 421, 60, 1, 0, 0, 0, 422, 423, 5, 124, 0, 0, 423, 424, 5, 61, 0, 0, 424, 62, 1, 0, 0, 0, 425, 426, 5, 63, 0, 0, 426, 427, 5, 63, 0, 0, 427, 428, 5, 61, 0, 0, 428, 64, 1, 0, 0, 0, 429, 430, 5, 63, 0, 0, 430, 431, 5, 63, 0, 0, 431, 66, 1, 0, 0, 0, 432, 433, 5, 124, 0, 0, 433, 434, 5, 124, 0, 0, 434, 68, 1, 0, 0, 0, 435, 436, 5, 38, 0, 0, 436, 437, 5, 38, 0, 0, 437, 70, 1, 0, 0, 0, 438, 439, 5, 33, 0, 0, 439, 440, 5, 61, 0, 0, 440, 72, 1, 0, 0, 0, 441, 442, 5, 60, 0, 0, 442, 443, 5, 61, 0, 0, 443, 74, 1, 0, 0, 0, 444, 445, 5, 124, 0, 0, 445, 76, 1, 0, 0, 0, 446, 447, 5, 94, 0, 0, 447, 78, 1, 0, 0, 0, 448, 449, 5, 38, 0, 0, 449, 80, 1, 0, 0, 0, 450, 451, 5, 60, 0, 0, 451, 452, 5, 60, 0, 0, 452, 82, 1, 0, 0, 0, 453, 454, 5, 43, 0, 0, 454, 84, 1, 0, 0, 0, 455, 456, 5, 45, 0, 0, 456, 86, 1, 0, 0, 0, 457, 458, 5, 47, 0, 0, 458, 88, 1, 0, 0, 0, 459, 460, 5, 37, 0, 0, 460, 90, 1, 0, 0, 0, 461, 462, 5, 126, 0, 0, 462, 463, 5, 47, 0, 0, 463, 92, 1, 0, 0, 0, 464, 465, 5, 33, 0, 0, 465, 94, 1, 0, 0, 0, 466, 467, 5, 43, 0, 0, 467, 468, 5, 43, 0, 0, 468, 96, 1, 0, 0, 0, 469, 470, 5, 45, 0, 0, 470, 471, 5, 45, 0, 0, 471, 98, 1, 0, 0, 0, 472, 473, 5, 63, 0, 0, 473, 474, 5, 46, 0, 0, 474, 100, 1, 0, 0, 0, 475, 476, 5, 35, 0, 0, 476, 102, 1, 0, 0, 0, 477, 478, 7, 0, 0, 0, 478, 104, 1, 0, 0, 0, 479, 480, 2, 48, 57, 0, 480, 106, 1, 0, 0, 0, 481, 483, 7, 1, 0, 0, 482, 484, 7, 2, 0, 0, 483, 482, 1, 0, 0, 0, 483, 484, 1, 0, 0, 0, 484, 485, 1, 0, 0, 0, 485, 486, 3, 109, 54, 0, 486, 108, 1, 0, 0, 0, 487, 497, 3, 105, 52, 0, 488, 490, 5, 95, 0, 0, 489, 488, 1, 0, 0, 0, 490, 493, 1, 0, 0, 0, 491, 489, 1, 0, 0, 0, 491, 492, 1, 0, 0, 0, 492, 494, 1, 0, 0, 0, 493, 491, 1, 0, 0, 0, 494, 496, 3, 105, 52, 0, 495, 491, 1, 0, 0, 0, 496, 499, 1, 0, 0, 0, 497, 495, 1, 0, 0, 0, 497, 498, 1, 0, 0, 0, 498, 110, 1, 0, 0, 0, 499, 497, 1, 0, 0, 0, 500, 503, 7, 3, 0, 0, 501, 503, 3, 105, 52, 0, 502, 500, 1, 0, 0, 0, 502, 501, 1, 0, 0, 0, 503, 112, 1, 0, 0, 0, 504, 514, 3, 111, 55, 0, 505, 507, 5, 95, 0, 0, 506, 505, 1, 0, 0, 0, 507, 510, 1, 0, 0, 0, 508, 506, 1, 0, 0, 0, 508, 509, 1, 0, 0, 0, 509, 511, 1, 0, 0, 0, 510, 508, 1, 0, 0, 0, 511, 513, 3, 111, 55, 0, 512, 508, 1, 0, 0, 0, 513, 516, 1, 0, 0, 0, 514, 512, 1, 0, 0, 0, 514, 515, 1, 0, 0, 0, 515, 114, 1, 0, 0, 0, 516, 514, 1, 0, 0, 0, 517, 518, 5, 97, 0, 0, 518, 519, 5, 115, 0, 0, 519, 520, 5, 115, 0, 0, 520, 521, 5, 101, 0, 0, 521, 522, 5, 114, 0, 0, 522, 523, 5, 116, 0, 0, 523, 116, 1, 0, 0, 0, 524, 525, 5, 98, 0, 0, 525, 526, 5, 114, 0, 0, 526, 527, 5, 101, 0, 0, 527, 528, 5, 97, 0, 0, 528, 529, 5, 107, 0, 0, 529, 118, 1, 0, 0, 0, 530, 531, 5, 99, 0, 0, 531, 532, 5, 97, 0, 0, 532, 533, 5, 115, 0, 0, 533, 534, 5, 101, 0, 0, 534, 120, 1, 0, 0, 0, 535, 536, 5, 99, 0, 0, 536, 537, 5, 97, 0, 0, 537, 538, 5, 116, 0, 0, 538, 539, 5, 99, 0, 0, 539, 540, 5, 104, 0, 0, 540, 122, 1, 0, 0, 0, 541, 542, 5, 99, 0, 0, 542, 543, 5, 108, 0, 0, 543, 544, 5, 97, 0, 0, 544, 545, 5, 115, 0, 0, 545, 546, 5, 115, 0, 0, 546, 124, 1, 0, 0, 0, 547, 548, 5, 99, 0, 0, 548, 549, 5, 111, 0, 0, 549, 550, 5, 110, 0, 0, 550, 551, 5, 115, 0, 0, 551, 552, 5, 116, 0, 0, 552, 126, 1, 0, 0, 0, 553, 554, 5, 99, 0, 0, 554, 555, 5, 111, 0, 0, 555, 556, 5, 110, 0, 0, 556, 557, 5, 116, 0, 0, 557, 558, 5, 105, 0, 0, 558, 559, 5, 110, 0, 0, 559, 560, 5, 117, 0, 0, 560, 561, 5, 101, 0, 0, 561, 128, 1, 0, 0, 0, 562, 563, 5, 100, 0, 0, 563, 564, 5, 101, 0, 0, 564, 565, 5, 102, 0, 0, 565, 566, 5, 97, 0, 0, 566, 567, 5, 117, 0, 0, 567, 568, 5, 108, 0, 0, 568, 569, 5, 116, 0, 0, 569, 130, 1, 0, 0, 0, 570, 571, 5, 100, 0, 0, 571, 572, 5, 111, 0, 0, 572, 132, 1, 0, 0, 0, 573, 574, 5, 101, 0, 0, 574, 575, 5, 108, 0, 0, 575, 576, 5, 115, 0, 0, 576, 577, 5, 101, 0, 0, 577, 134, 1, 0, 0, 0, 578, 579, 5, 101, 0, 0, 579, 580, 5, 110, 0, 0, 580, 581, 5, 117, 0, 0, 581, 582, 5, 109, 0, 0, 582, 136, 1, 0, 0, 0, 583, 584, 5, 101, 0, 0, 584, 585, 5, 120, 0, 0, 585, 586, 5, 116, 0, 0, 586, 587, 5, 101, 0, 0, 587, 588, 5, 110, 0, 0, 588, 589, 5, 100, 0, 0, 589, 590, 5, 115, 0, 0, 590, 138, 1, 0, 0, 0, 591, 592, 5, 102, 0, 0, 592, 593, 5, 97, 0, 0, 593, 594, 5, 108, 0, 0, 594, 595, 5, 115, 0, 0, 595, 596, 5, 101, 0, 0, 596, 140, 1, 0, 0, 0, 597, 598, 5, 102, 0, 0, 598, 599, 5, 105, 0, 0, 599, 600, 5, 110, 0, 0, 600, 601, 5, 97, 0, 0, 601, 602, 5, 108, 0, 0, 602, 142, 1, 0, 0, 0, 603, 604, 5, 102, 0, 0, 604, 605, 5, 105, 0, 0, 605, 606, 5, 110, 0, 0, 606, 607, 5, 97, 0, 0, 607, 608, 5, 108, 0, 0, 608, 609, 5, 108, 0, 0, 609, 610, 5, 121, 0, 0, 610, 144, 1, 0, 0, 0, 611, 612, 5, 102, 0, 0, 612, 613, 5, 111, 0, 0, 613, 614, 5, 114, 0, 0, 614, 146, 1, 0, 0, 0, 615, 616, 5, 105, 0, 0, 616, 617, 5, 102, 0, 0, 617, 148, 1, 0, 0, 0, 618, 619, 5, 105, 0, 0, 619, 620, 5, 110, 0, 0, 620, 150, 1, 0, 0, 0, 621, 622, 5, 105, 0, 0, 622, 623, 5, 115, 0, 0, 623, 152, 1, 0, 0, 0, 624, 625, 5, 110, 0, 0, 625, 626, 5, 101, 0, 0, 626, 627, 5, 119, 0, 0, 627, 154, 1, 0, 0, 0, 628, 629, 5, 110, 0, 0, 629, 630, 5, 117, 0, 0, 630, 631, 5, 108, 0, 0, 631, 632, 5, 108, 0, 0, 632, 156, 1, 0, 0, 0, 633, 634, 5, 114, 0, 0, 634, 635, 5, 101, 0, 0, 635, 636, 5, 116, 0, 0, 636, 637, 5, 104, 0, 0, 637, 638, 5, 114, 0, 0, 638, 639, 5, 111, 0, 0, 639, 640, 5, 119, 0, 0, 640, 158, 1, 0, 0, 0, 641, 642, 5, 114, 0, 0, 642, 643, 5, 101, 0, 0, 643, 644, 5, 116, 0, 0, 644, 645, 5, 117, 0, 0, 645, 646, 5, 114, 0, 0, 646, 647, 5, 110, 0, 0, 647, 160, 1, 0, 0, 0, 648, 649, 5, 115, 0, 0, 649, 650, 5, 117, 0, 0, 650, 651, 5, 112, 0, 0, 651, 652, 5, 101, 0, 0, 652, 653, 5, 114, 0, 0, 653, 162, 1, 0, 0, 0, 654, 655, 5, 115, 0, 0, 655, 656, 5, 119, 0, 0, 656, 657, 5, 105, 0, 0, 657, 658, 5, 116, 0, 0, 658, 659, 5, 99, 0, 0, 659, 660, 5, 104, 0, 0, 660, 164, 1, 0, 0, 0, 661, 662, 5, 116, 0, 0, 662, 663, 5, 104, 0, 0, 663, 664, 5, 105, 0, 0, 664, 665, 5, 115, 0, 0, 665, 166, 1, 0, 0, 0, 666, 667, 5, 116, 0, 0, 667, 668, 5, 104, 0, 0, 668, 669, 5, 114, 0, 0, 669, 670, 5, 111, 0, 0, 670, 671, 5, 119, 0, 0, 671, 168, 1, 0, 0, 0, 672, 673, 5, 116, 0, 0, 673, 674, 5, 114, 0, 0, 674, 675, 5, 117, 0, 0, 675, 676, 5, 101, 0, 0, 676, 170, 1, 0, 0, 0, 677, 678, 5, 116, 0, 0, 678, 679, 5, 114, 0, 0, 679, 680, 5, 121, 0, 0, 680, 172, 1, 0, 0, 0, 681, 682, 5, 118, 0, 0, 682, 683, 5, 97, 0, 0, 683, 684, 5, 114, 0, 0, 684, 174, 1, 0, 0, 0, 685, 686, 5, 118, 0, 0, 686, 687, 5, 111, 0, 0, 687, 688, 5, 105, 0, 0, 688, 689, 5, 100, 0, 0, 689, 176, 1, 0, 0, 0, 690, 691, 5, 119, 0, 0, 691, 692, 5, 104, 0, 0, 692, 693, 5, 105, 0, 0, 693, 694, 5, 108, 0, 0, 694, 695, 5, 101, 0, 0, 695, 178, 1, 0, 0, 0, 696, 697, 5, 119, 0, 0, 697, 698, 5, 105, 0, 0, 698, 699, 5, 116, 0, 0, 699, 700, 5, 104, 0, 0, 700, 180, 1, 0, 0, 0, 701, 702, 5, 97, 0, 0, 702, 703, 5, 98, 0, 0, 703, 704, 5, 115, 0, 0, 704, 705, 5, 116, 0, 0, 705, 706, 5, 114, 0, 0, 706, 707, 5, 97, 0, 0, 707, 708, 5, 99, 0, 0, 708, 709, 5, 116, 0, 0, 709, 182, 1, 0, 0, 0, 710, 711, 5, 97, 0, 0, 711, 712, 5, 115, 0, 0, 712, 184, 1, 0, 0, 0, 713, 714, 5, 97, 0, 0, 714, 715, 5, 117, 0, 0, 715, 716, 5, 103, 0, 0, 716, 717, 5, 109, 0, 0, 717, 718, 5, 101, 0, 0, 718, 719, 5, 110, 0, 0, 719, 720, 5, 116, 0, 0, 720, 186, 1, 0, 0, 0, 721, 722, 5, 99, 0, 0, 722, 723, 5, 111, 0, 0, 723, 724, 5, 118, 0, 0, 724, 725, 5, 97, 0, 0, 725, 726, 5, 114, 0, 0, 726, 727, 5, 105, 0, 0, 727, 728, 5, 97, 0, 0, 728, 729, 5, 110, 0, 0, 729, 730, 5, 116, 0, 0, 730, 188, 1, 0, 0, 0, 731, 732, 5, 100, 0, 0, 732, 733, 5, 101, 0, 0, 733, 734, 5, 102, 0, 0, 734, 735, 5, 101, 0, 0, 735, 736, 5, 114, 0, 0, 736, 737, 5, 114, 0, 0, 737, 738, 5, 101, 0, 0, 738, 739, 5, 100, 0, 0, 739, 190, 1, 0, 0, 0, 740, 741, 5, 100, 0, 0, 741, 742, 5, 121, 0, 0, 742, 743, 5, 110, 0, 0, 743, 744, 5, 97, 0, 0, 744, 745, 5, 109, 0, 0, 745, 746, 5, 105, 0, 0, 746, 747, 5, 99, 0, 0, 747, 192, 1, 0, 0, 0, 748, 749, 5, 101, 0, 0, 749, 750, 5, 120, 0, 0, 750, 751, 5, 112, 0, 0, 751, 752, 5, 111, 0, 0, 752, 753, 5, 114, 0, 0, 753, 754, 5, 116, 0, 0, 754, 194, 1, 0, 0, 0, 755, 756, 5, 101, 0, 0, 756, 757, 5, 120, 0, 0, 757, 758, 5, 116, 0, 0, 758, 759, 5, 101, 0, 0, 759, 760, 5, 110, 0, 0, 760, 761, 5, 115, 0, 0, 761, 762, 5, 105, 0, 0, 762, 763, 5, 111, 0, 0, 763, 764, 5, 110, 0, 0, 764, 196, 1, 0, 0, 0, 765, 766, 5, 101, 0, 0, 766, 767, 5, 120, 0, 0, 767, 768, 5, 116, 0, 0, 768, 769, 5, 101, 0, 0, 769, 770, 5, 114, 0, 0, 770, 771, 5, 110, 0, 0, 771, 772, 5, 97, 0, 0, 772, 773, 5, 108, 0, 0, 773, 198, 1, 0, 0, 0, 774, 775, 5, 102, 0, 0, 775, 776, 5, 97, 0, 0, 776, 777, 5, 99, 0, 0, 777, 778, 5, 116, 0, 0, 778, 779, 5, 111, 0, 0, 779, 780, 5, 114, 0, 0, 780, 781, 5, 121, 0, 0, 781, 200, 1, 0, 0, 0, 782, 783, 5, 70, 0, 0, 783, 784, 5, 117, 0, 0, 784, 785, 5, 110, 0, 0, 785, 786, 5, 99, 0, 0, 786, 787, 5, 116, 0, 0, 787, 788, 5, 105, 0, 0, 788, 789, 5, 111, 0, 0, 789, 790, 5, 110, 0, 0, 790, 202, 1, 0, 0, 0, 791, 792, 5, 103, 0, 0, 792, 793, 5, 101, 0, 0, 793, 794, 5, 116, 0, 0, 794, 204, 1, 0, 0, 0, 795, 796, 5, 105, 0, 0, 796, 797, 5, 109, 0, 0, 797, 798, 5, 112, 0, 0, 798, 799, 5, 108, 0, 0, 799, 800, 5, 101, 0, 0, 800, 801, 5, 109, 0, 0, 801, 802, 5, 101, 0, 0, 802, 803, 5, 110, 0, 0, 803, 804, 5, 116, 0, 0, 804, 805, 5, 115, 0, 0, 805, 206, 1, 0, 0, 0, 806, 807, 5, 105, 0, 0, 807, 808, 5, 109, 0, 0, 808, 809, 5, 112, 0, 0, 809, 810, 5, 111, 0, 0, 810, 811, 5, 114, 0, 0, 811, 812, 5, 116, 0, 0, 812, 208, 1, 0, 0, 0, 813, 814, 5, 105, 0, 0, 814, 815, 5, 110, 0, 0, 815, 816, 5, 116, 0, 0, 816, 817, 5, 101, 0, 0, 817, 818, 5, 114, 0, 0, 818, 819, 5, 102, 0, 0, 819, 820, 5, 97, 0, 0, 820, 821, 5, 99, 0, 0, 821, 822, 5, 101, 0, 0, 822, 210, 1, 0, 0, 0, 823, 824, 5, 108, 0, 0, 824, 825, 5, 97, 0, 0, 825, 826, 5, 116, 0, 0, 826, 827, 5, 101, 0, 0, 827, 212, 1, 0, 0, 0, 828, 829, 5, 108, 0, 0, 829, 830, 5, 105, 0, 0, 830, 831, 5, 98, 0, 0, 831, 832, 5, 114, 0, 0, 832, 833, 5, 97, 0, 0, 833, 834, 5, 114, 0, 0, 834, 835, 5, 121, 0, 0, 835, 214, 1, 0, 0, 0, 836, 837, 5, 111, 0, 0, 837, 838, 5, 112, 0, 0, 838, 839, 5, 101, 0, 0, 839, 840, 5, 114, 0, 0, 840, 841, 5, 97, 0, 0, 841, 842, 5, 116, 0, 0, 842, 843, 5, 111, 0, 0, 843, 844, 5, 114, 0, 0, 844, 216, 1, 0, 0, 0, 845, 846, 5, 109, 0, 0, 846, 847, 5, 105, 0, 0, 847, 848, 5, 120, 0, 0, 848, 849, 5, 105, 0, 0, 849, 850, 5, 110, 0, 0, 850, 218, 1, 0, 0, 0, 851, 852, 5, 112, 0, 0, 852, 853, 5, 97, 0, 0, 853, 854, 5, 114, 0, 0, 854, 855, 5, 116, 0, 0, 855, 220, 1, 0, 0, 0, 856, 857, 5, 114, 0, 0, 857, 858, 5, 101, 0, 0, 858, 859, 5, 113, 0, 0, 859, 860, 5, 117, 0, 0, 860, 861, 5, 105, 0, 0, 861, 862, 5, 114, 0, 0, 862, 863, 5, 101, 0, 0, 863, 864, 5, 100, 0, 0, 864, 222, 1, 0, 0, 0, 865, 866, 5, 115, 0, 0, 866, 867, 5, 101, 0, 0, 867, 868, 5, 116, 0, 0, 868, 224, 1, 0, 0, 0, 869, 870, 5, 115, 0, 0, 870, 871, 5, 116, 0, 0, 871, 872, 5, 97, 0, 0, 872, 873, 5, 116, 0, 0, 873, 874, 5, 105, 0, 0, 874, 875, 5, 99, 0, 0, 875, 226, 1, 0, 0, 0, 876, 877, 5, 116, 0, 0, 877, 878, 5, 121, 0, 0, 878, 879, 5, 112, 0, 0, 879, 880, 5, 101, 0, 0, 880, 881, 5, 100, 0, 0, 881, 882, 5, 101, 0, 0, 882, 883, 5, 102, 0, 0, 883, 228, 1, 0, 0, 0, 884, 885, 5, 97, 0, 0, 885, 886, 5, 119, 0, 0, 886, 887, 5, 97, 0, 0, 887, 888, 5, 105, 0, 0, 888, 889, 5, 116, 0, 0, 889, 230, 1, 0, 0, 0, 890, 891, 5, 121, 0, 0, 891, 892, 5, 105, 0, 0, 892, 893, 5, 101, 0, 0, 893, 894, 5, 108, 0, 0, 894, 895, 5, 100, 0, 0, 895, 232, 1, 0, 0, 0, 896, 897, 5, 97, 0, 0, 897, 898, 5, 115, 0, 0, 898, 899, 5, 121, 0, 0, 899, 900, 5, 110, 0, 0, 900, 901, 5, 99, 0, 0, 901, 234, 1, 0, 0, 0, 902, 903, 5, 98, 0, 0, 903, 904, 5, 97, 0, 0, 904, 905, 5, 115, 0, 0, 905, 906, 5, 101, 0, 0, 906, 236, 1, 0, 0, 0, 907, 908, 5, 104, 0, 0, 908, 909, 5, 105, 0, 0, 909, 910, 5, 100, 0, 0, 910, 911, 5, 101, 0, 0, 911, 238, 1, 0, 0, 0, 912, 913, 5, 111, 0, 0, 913, 914, 5, 102, 0, 0, 914, 240, 1, 0, 0, 0, 915, 916, 5, 111, 0, 0, 916, 917, 5, 110, 0, 0, 917, 242, 1, 0, 0, 0, 918, 919, 5, 115, 0, 0, 919, 920, 5, 101, 0, 0, 920, 921, 5, 97, 0, 0, 921, 922, 5, 108, 0, 0, 922, 923, 5, 101, 0, 0, 923, 924, 5, 100, 0, 0, 924, 244, 1, 0, 0, 0, 925, 926, 5, 115, 0, 0, 926, 927, 5, 104, 0, 0, 927, 928, 5, 111, 0, 0, 928, 929, 5, 119, 0, 0, 929, 246, 1, 0, 0, 0, 930, 931, 5, 115, 0, 0, 931, 932, 5, 121, 0, 0, 932, 933, 5, 110, 0, 0, 933, 934, 5, 99, 0, 0, 934, 248, 1, 0, 0, 0, 935, 936, 5, 116, 0, 0, 936, 937, 5, 121, 0, 0, 937, 938, 5, 112, 0, 0, 938, 939, 5, 101, 0, 0, 939, 250, 1, 0, 0, 0, 940, 941, 5, 119, 0, 0, 941, 942, 5, 104, 0, 0, 942, 943, 5, 101, 0, 0, 943, 944, 5, 110, 0, 0, 944, 252, 1, 0, 0, 0, 945, 948, 3, 109, 54, 0, 946, 947, 5, 46, 0, 0, 947, 949, 3, 109, 54, 0, 948, 946, 1, 0, 0, 0, 948, 949, 1, 0, 0, 0, 949, 951, 1, 0, 0, 0, 950, 952, 3, 107, 53, 0, 951, 950, 1, 0, 0, 0, 951, 952, 1, 0, 0, 0, 952, 959, 1, 0, 0, 0, 953, 954, 5, 46, 0, 0, 954, 956, 3, 109, 54, 0, 955, 957, 3, 107, 53, 0, 956, 955, 1, 0, 0, 0, 956, 957, 1, 0, 0, 0, 957, 959, 1, 0, 0, 0, 958, 945, 1, 0, 0, 0, 958, 953, 1, 0, 0, 0, 959, 254, 1, 0, 0, 0, 960, 961, 5, 48, 0, 0, 961, 962, 5, 120, 0, 0, 962, 963, 1, 0, 0, 0, 963, 969, 3, 113, 56, 0, 964, 965, 5, 48, 0, 0, 965, 966, 5, 88, 0, 0, 966, 967, 1, 0, 0, 0, 967, 969, 3, 113, 56, 0, 968, 960, 1, 0, 0, 0, 968, 964, 1, 0, 0, 0, 969, 256, 1, 0, 0, 0, 970, 971, 5, 114, 0, 0, 971, 975, 5, 39, 0, 0, 972, 974, 8, 4, 0, 0, 973, 972, 1, 0, 0, 0, 974, 977, 1, 0, 0, 0, 975, 973, 1, 0, 0, 0, 975, 976, 1, 0, 0, 0, 976, 978, 1, 0, 0, 0, 977, 975, 1, 0, 0, 0, 978, 989, 5, 39, 0, 0, 979, 980, 5, 114, 0, 0, 980, 984, 5, 34, 0, 0, 981, 983, 8, 5, 0, 0, 982, 981, 1, 0, 0, 0, 983, 986, 1, 0, 0, 0, 984, 982, 1, 0, 0, 0, 984, 985, 1, 0, 0, 0, 985, 987, 1, 0, 0, 0, 986, 984, 1, 0, 0, 0, 987, 989, 5, 34, 0, 0, 988, 970, 1, 0, 0, 0, 988, 979, 1, 0, 0, 0, 989, 258, 1, 0, 0, 0, 990, 991, 5, 114, 0, 0, 991, 992, 5, 34, 0, 0, 992, 993, 5, 34, 0, 0, 993, 994, 5, 34, 0, 0, 994, 998, 1, 0, 0, 0, 995, 997, 9, 0, 0, 0, 996, 995, 1, 0, 0, 0, 997, 1000, 1, 0, 0, 0, 998, 999, 1, 0, 0, 0, 998, 996, 1, 0, 0, 0, 999, 1001, 1, 0, 0, 0, 1000, 998, 1, 0, 0, 0, 1001, 1002, 5, 34, 0, 0, 1002, 1003, 5, 34, 0, 0, 1003, 1019, 5, 34, 0, 0, 1004, 1005, 5, 114, 0, 0, 1005, 1006, 5, 39, 0, 0, 1006, 1007, 5, 39, 0, 0, 1007, 1008, 5, 39, 0, 0, 1008, 1012, 1, 0, 0, 0, 1009, 1011, 9, 0, 0, 0, 1010, 1009, 1, 0, 0, 0, 1011, 1014, 1, 0, 0, 0, 1012, 1013, 1, 0, 0, 0, 1012, 1010, 1, 0, 0, 0, 1013, 1015, 1, 0, 0, 0, 1014, 1012, 1, 0, 0, 0, 1015, 1016, 5, 39, 0, 0, 1016, 1017, 5, 39, 0, 0, 1017, 1019, 5, 39, 0, 0, 1018, 990, 1, 0, 0, 0, 1018, 1004, 1, 0, 0, 0, 1019, 260, 1, 0, 0, 0, 1020, 1021, 5, 36, 0, 0, 1021, 1022, 3, 321, 160, 0, 1022, 262, 1, 0, 0, 0, 1023, 1024, 5, 92, 0, 0, 1024, 1055, 5, 110, 0, 0, 1025, 1026, 5, 92, 0, 0, 1026, 1055, 5, 114, 0, 0, 1027, 1028, 5, 92, 0, 0, 1028, 1055, 5, 98, 0, 0, 1029, 1030, 5, 92, 0, 0, 1030, 1055, 5, 116, 0, 0, 1031, 1032, 5, 92, 0, 0, 1032, 1055, 5, 118, 0, 0, 1033, 1034, 5, 92, 0, 0, 1034, 1035, 5, 120, 0, 0, 1035, 1036, 1, 0, 0, 0, 1036, 1037, 3, 111, 55, 0, 1037, 1038, 3, 111, 55, 0, 1038, 1055, 1, 0, 0, 0, 1039, 1040, 5, 92, 0, 0, 1040, 1041, 5, 117, 0, 0, 1041, 1042, 1, 0, 0, 0, 1042, 1043, 3, 111, 55, 0, 1043, 1044, 3, 111, 55, 0, 1044, 1045, 3, 111, 55, 0, 1045, 1046, 3, 111, 55, 0, 1046, 1055, 1, 0, 0, 0, 1047, 1048, 5, 92, 0, 0, 1048, 1049, 5, 117, 0, 0, 1049, 1050, 5, 123, 0, 0, 1050, 1051, 1, 0, 0, 0, 1051, 1052, 3, 265, 132, 0, 1052, 1053, 5, 125, 0, 0, 1053, 1055, 1, 0, 0, 0, 1054, 1023, 1, 0, 0, 0, 1054, 1025, 1, 0, 0, 0, 1054, 1027, 1, 0, 0, 0, 1054, 1029, 1, 0, 0, 0, 1054, 1031, 1, 0, 0, 0, 1054, 1033, 1, 0, 0, 0, 1054, 1039, 1, 0, 0, 0, 1054, 1047, 1, 0, 0, 0, 1055, 264, 1, 0, 0, 0, 1056, 1058, 3, 111, 55, 0, 1057, 1059, 3, 111, 55, 0, 1058, 1057, 1, 0, 0, 0, 1058, 1059, 1, 0, 0, 0, 1059, 1061, 1, 0, 0, 0, 1060, 1062, 3, 111, 55, 0, 1061, 1060, 1, 0, 0, 0, 1061, 1062, 1, 0, 0, 0, 1062, 1064, 1, 0, 0, 0, 1063, 1065, 3, 111, 55, 0, 1064, 1063, 1, 0, 0, 0, 1064, 1065, 1, 0, 0, 0, 1065, 1067, 1, 0, 0, 0, 1066, 1068, 3, 111, 55, 0, 1067, 1066, 1, 0, 0, 0, 1067, 1068, 1, 0, 0, 0, 1068, 1070, 1, 0, 0, 0, 1069, 1071, 3, 111, 55, 0, 1070, 1069, 1, 0, 0, 0, 1070, 1071, 1, 0, 0, 0, 1071, 266, 1, 0, 0, 0, 1072, 1078, 8, 6, 0, 0, 1073, 1078, 3, 263, 131, 0, 1074, 1075, 5, 92, 0, 0, 1075, 1078, 8, 7, 0, 0, 1076, 1078, 3, 261, 130, 0, 1077, 1072, 1, 0, 0, 0, 1077, 1073, 1, 0, 0, 0, 1077, 1074, 1, 0, 0, 0, 1077, 1076, 1, 0, 0, 0, 1078, 268, 1, 0, 0, 0, 1079, 1082, 3, 267, 133, 0, 1080, 1082, 5, 34, 0, 0, 1081, 1079, 1, 0, 0, 0, 1081, 1080, 1, 0, 0, 0, 1082, 270, 1, 0, 0, 0, 1083, 1087, 5, 39, 0, 0, 1084, 1086, 3, 269, 134, 0, 1085, 1084, 1, 0, 0, 0, 1086, 1089, 1, 0, 0, 0, 1087, 1085, 1, 0, 0, 0, 1087, 1088, 1, 0, 0, 0, 1088, 1090, 1, 0, 0, 0, 1089, 1087, 1, 0, 0, 0, 1090, 1091, 5, 39, 0, 0, 1091, 272, 1, 0, 0, 0, 1092, 1096, 5, 39, 0, 0, 1093, 1095, 3, 269, 134, 0, 1094, 1093, 1, 0, 0, 0, 1095, 1098, 1, 0, 0, 0, 1096, 1094, 1, 0, 0, 0, 1096, 1097, 1, 0, 0, 0, 1097, 1099, 1, 0, 0, 0, 1098, 1096, 1, 0, 0, 0, 1099, 1100, 5, 36, 0, 0, 1100, 1101, 5, 123, 0, 0, 1101, 1102, 1, 0, 0, 0, 1102, 1103, 6, 136, 0, 0, 1103, 274, 1, 0, 0, 0, 1104, 1105, 4, 137, 0, 0, 1105, 1106, 6, 137, 1, 0, 1106, 1110, 5, 125, 0, 0, 1107, 1109, 3, 269, 134, 0, 1108, 1107, 1, 0, 0, 0, 1109, 1112, 1, 0, 0, 0, 1110, 1108, 1, 0, 0, 0, 1110, 1111, 1, 0, 0, 0, 1111, 1113, 1, 0, 0, 0, 1112, 1110, 1, 0, 0, 0, 1113, 1114, 5, 36, 0, 0, 1114, 1115, 5, 123, 0, 0, 1115, 1116, 1, 0, 0, 0, 1116, 1117, 6, 137, 2, 0, 1117, 276, 1, 0, 0, 0, 1118, 1119, 4, 138, 1, 0, 1119, 1120, 6, 138, 3, 0, 1120, 1124, 5, 125, 0, 0, 1121, 1123, 3, 269, 134, 0, 1122, 1121, 1, 0, 0, 0, 1123, 1126, 1, 0, 0, 0, 1124, 1122, 1, 0, 0, 0, 1124, 1125, 1, 0, 0, 0, 1125, 1127, 1, 0, 0, 0, 1126, 1124, 1, 0, 0, 0, 1127, 1128, 5, 39, 0, 0, 1128, 278, 1, 0, 0, 0, 1129, 1132, 3, 267, 133, 0, 1130, 1132, 5, 39, 0, 0, 1131, 1129, 1, 0, 0, 0, 1131, 1130, 1, 0, 0, 0, 1132, 280, 1, 0, 0, 0, 1133, 1137, 5, 34, 0, 0, 1134, 1136, 3, 279, 139, 0, 1135, 1134, 1, 0, 0, 0, 1136, 1139, 1, 0, 0, 0, 1137, 1135, 1, 0, 0, 0, 1137, 1138, 1, 0, 0, 0, 1138, 1140, 1, 0, 0, 0, 1139, 1137, 1, 0, 0, 0, 1140, 1141, 5, 34, 0, 0, 1141, 282, 1, 0, 0, 0, 1142, 1146, 5, 34, 0, 0, 1143, 1145, 3, 279, 139, 0, 1144, 1143, 1, 0, 0, 0, 1145, 1148, 1, 0, 0, 0, 1146, 1144, 1, 0, 0, 0, 1146, 1147, 1, 0, 0, 0, 1147, 1149, 1, 0, 0, 0, 1148, 1146, 1, 0, 0, 0, 1149, 1150, 5, 36, 0, 0, 1150, 1151, 5, 123, 0, 0, 1151, 1152, 1, 0, 0, 0, 1152, 1153, 6, 141, 4, 0, 1153, 284, 1, 0, 0, 0, 1154, 1155, 4, 142, 2, 0, 1155, 1156, 6, 142, 5, 0, 1156, 1160, 5, 125, 0, 0, 1157, 1159, 3, 279, 139, 0, 1158, 1157, 1, 0, 0, 0, 1159, 1162, 1, 0, 0, 0, 1160, 1158, 1, 0, 0, 0, 1160, 1161, 1, 0, 0, 0, 1161, 1163, 1, 0, 0, 0, 1162, 1160, 1, 0, 0, 0, 1163, 1164, 5, 36, 0, 0, 1164, 1165, 5, 123, 0, 0, 1165, 1166, 1, 0, 0, 0, 1166, 1167, 6, 142, 6, 0, 1167, 286, 1, 0, 0, 0, 1168, 1169, 4, 143, 3, 0, 1169, 1170, 6, 143, 7, 0, 1170, 1174, 5, 125, 0, 0, 1171, 1173, 3, 279, 139, 0, 1172, 1171, 1, 0, 0, 0, 1173, 1176, 1, 0, 0, 0, 1174, 1172, 1, 0, 0, 0, 1174, 1175, 1, 0, 0, 0, 1175, 1177, 1, 0, 0, 0, 1176, 1174, 1, 0, 0, 0, 1177, 1178, 5, 34, 0, 0, 1178, 288, 1, 0, 0, 0, 1179, 1184, 1, 0, 0, 0, 1180, 1184, 5, 39, 0, 0, 1181, 1182, 5, 39, 0, 0, 1182, 1184, 5, 39, 0, 0, 1183, 1179, 1, 0, 0, 0, 1183, 1180, 1, 0, 0, 0, 1183, 1181, 1, 0, 0, 0, 1184, 290, 1, 0, 0, 0, 1185, 1192, 3, 289, 144, 0, 1186, 1193, 3, 267, 133, 0, 1187, 1193, 7, 5, 0, 0, 1188, 1189, 5, 92, 0, 0, 1189, 1193, 5, 13, 0, 0, 1190, 1191, 5, 92, 0, 0, 1191, 1193, 5, 10, 0, 0, 1192, 1186, 1, 0, 0, 0, 1192, 1187, 1, 0, 0, 0, 1192, 1188, 1, 0, 0, 0, 1192, 1190, 1, 0, 0, 0, 1193, 292, 1, 0, 0, 0, 1194, 1195, 5, 39, 0, 0, 1195, 1196, 5, 39, 0, 0, 1196, 1197, 5, 39, 0, 0, 1197, 1201, 1, 0, 0, 0, 1198, 1200, 3, 291, 145, 0, 1199, 1198, 1, 0, 0, 0, 1200, 1203, 1, 0, 0, 0, 1201, 1199, 1, 0, 0, 0, 1201, 1202, 1, 0, 0, 0, 1202, 1204, 1, 0, 0, 0, 1203, 1201, 1, 0, 0, 0, 1204, 1205, 5, 39, 0, 0, 1205, 1206, 5, 39, 0, 0, 1206, 1207, 5, 39, 0, 0, 1207, 294, 1, 0, 0, 0, 1208, 1209, 5, 39, 0, 0, 1209, 1210, 5, 39, 0, 0, 1210, 1211, 5, 39, 0, 0, 1211, 1215, 1, 0, 0, 0, 1212, 1214, 3, 291, 145, 0, 1213, 1212, 1, 0, 0, 0, 1214, 1217, 1, 0, 0, 0, 1215, 1213, 1, 0, 0, 0, 1215, 1216, 1, 0, 0, 0, 1216, 1218, 1, 0, 0, 0, 1217, 1215, 1, 0, 0, 0, 1218, 1219, 3, 289, 144, 0, 1219, 1220, 5, 36, 0, 0, 1220, 1221, 5, 123, 0, 0, 1221, 1222, 1, 0, 0, 0, 1222, 1223, 6, 147, 8, 0, 1223, 296, 1, 0, 0, 0, 1224, 1225, 4, 148, 4, 0, 1225, 1226, 6, 148, 9, 0, 1226, 1230, 5, 125, 0, 0, 1227, 1229, 3, 291, 145, 0, 1228, 1227, 1, 0, 0, 0, 1229, 1232, 1, 0, 0, 0, 1230, 1228, 1, 0, 0, 0, 1230, 1231, 1, 0, 0, 0, 1231, 1233, 1, 0, 0, 0, 1232, 1230, 1, 0, 0, 0, 1233, 1234, 3, 289, 144, 0, 1234, 1235, 5, 36, 0, 0, 1235, 1236, 5, 123, 0, 0, 1236, 1237, 1, 0, 0, 0, 1237, 1238, 6, 148, 10, 0, 1238, 298, 1, 0, 0, 0, 1239, 1240, 4, 149, 5, 0, 1240, 1241, 6, 149, 11, 0, 1241, 1245, 5, 125, 0, 0, 1242, 1244, 3, 291, 145, 0, 1243, 1242, 1, 0, 0, 0, 1244, 1247, 1, 0, 0, 0, 1245, 1243, 1, 0, 0, 0, 1245, 1246, 1, 0, 0, 0, 1246, 1248, 1, 0, 0, 0, 1247, 1245, 1, 0, 0, 0, 1248, 1249, 5, 39, 0, 0, 1249, 1250, 5, 39, 0, 0, 1250, 1251, 5, 39, 0, 0, 1251, 300, 1, 0, 0, 0, 1252, 1257, 1, 0, 0, 0, 1253, 1257, 5, 34, 0, 0, 1254, 1255, 5, 34, 0, 0, 1255, 1257, 5, 34, 0, 0, 1256, 1252, 1, 0, 0, 0, 1256, 1253, 1, 0, 0, 0, 1256, 1254, 1, 0, 0, 0, 1257, 302, 1, 0, 0, 0, 1258, 1265, 3, 301, 150, 0, 1259, 1266, 3, 267, 133, 0, 1260, 1266, 7, 4, 0, 0, 1261, 1262, 5, 92, 0, 0, 1262, 1266, 5, 13, 0, 0, 1263, 1264, 5, 92, 0, 0, 1264, 1266, 5, 10, 0, 0, 1265, 1259, 1, 0, 0, 0, 1265, 1260, 1, 0, 0, 0, 1265, 1261, 1, 0, 0, 0, 1265, 1263, 1, 0, 0, 0, 1266, 304, 1, 0, 0, 0, 1267, 1268, 5, 34, 0, 0, 1268, 1269, 5, 34, 0, 0, 1269, 1270, 5, 34, 0, 0, 1270, 1274, 1, 0, 0, 0, 1271, 1273, 3, 303, 151, 0, 1272, 1271, 1, 0, 0, 0, 1273, 1276, 1, 0, 0, 0, 1274, 1272, 1, 0, 0, 0, 1274, 1275, 1, 0, 0, 0, 1275, 1277, 1, 0, 0, 0, 1276, 1274, 1, 0, 0, 0, 1277, 1278, 5, 34, 0, 0, 1278, 1279, 5, 34, 0, 0, 1279, 1280, 5, 34, 0, 0, 1280, 306, 1, 0, 0, 0, 1281, 1282, 5, 34, 0, 0, 1282, 1283, 5, 34, 0, 0, 1283, 1284, 5, 34, 0, 0, 1284, 1288, 1, 0, 0, 0, 1285, 1287, 3, 303, 151, 0, 1286, 1285, 1, 0, 0, 0, 1287, 1290, 1, 0, 0, 0, 1288, 1286, 1, 0, 0, 0, 1288, 1289, 1, 0, 0, 0, 1289, 1291, 1, 0, 0, 0, 1290, 1288, 1, 0, 0, 0, 1291, 1292, 3, 301, 150, 0, 1292, 1293, 5, 36, 0, 0, 1293, 1294, 5, 123, 0, 0, 1294, 1295, 1, 0, 0, 0, 1295, 1296, 6, 153, 12, 0, 1296, 308, 1, 0, 0, 0, 1297, 1298, 4, 154, 6, 0, 1298, 1299, 6, 154, 13, 0, 1299, 1303, 5, 125, 0, 0, 1300, 1302, 3, 303, 151, 0, 1301, 1300, 1, 0, 0, 0, 1302, 1305, 1, 0, 0, 0, 1303, 1301, 1, 0, 0, 0, 1303, 1304, 1, 0, 0, 0, 1304, 1306, 1, 0, 0, 0, 1305, 1303, 1, 0, 0, 0, 1306, 1307, 3, 301, 150, 0, 1307, 1308, 5, 36, 0, 0, 1308, 1309, 5, 123, 0, 0, 1309, 1310, 1, 0, 0, 0, 1310, 1311, 6, 154, 14, 0, 1311, 310, 1, 0, 0, 0, 1312, 1313, 4, 155, 7, 0, 1313, 1314, 6, 155, 15, 0, 1314, 1318, 5, 125, 0, 0, 1315, 1317, 3, 303, 151, 0, 1316, 1315, 1, 0, 0, 0, 1317, 1320, 1, 0, 0, 0, 1318, 1316, 1, 0, 0, 0, 1318, 1319, 1, 0, 0, 0, 1319, 1321, 1, 0, 0, 0, 1320, 1318, 1, 0, 0, 0, 1321, 1322, 5, 34, 0, 0, 1322, 1323, 5, 34, 0, 0, 1323, 1324, 5, 34, 0, 0, 1324, 312, 1, 0, 0, 0, 1325, 1326, 5, 123, 0, 0, 1326, 1327, 6, 156, 16, 0, 1327, 314, 1, 0, 0, 0, 1328, 1329, 4, 157, 8, 0, 1329, 1330, 6, 157, 17, 0, 1330, 1331, 5, 125, 0, 0, 1331, 316, 1, 0, 0, 0, 1332, 1335, 3, 103, 51, 0, 1333, 1335, 5, 95, 0, 0, 1334, 1332, 1, 0, 0, 0, 1334, 1333, 1, 0, 0, 0, 1335, 318, 1, 0, 0, 0, 1336, 1339, 3, 317, 158, 0, 1337, 1339, 3, 105, 52, 0, 1338, 1336, 1, 0, 0, 0, 1338, 1337, 1, 0, 0, 0, 1339, 320, 1, 0, 0, 0, 1340, 1344, 3, 317, 158, 0, 1341, 1343, 3, 319, 159, 0, 1342, 1341, 1, 0, 0, 0, 1343, 1346, 1, 0, 0, 0, 1344, 1342, 1, 0, 0, 0, 1344, 1345, 1, 0, 0, 0, 1345, 322, 1, 0, 0, 0, 1346, 1344, 1, 0, 0, 0, 1347, 1350, 3, 317, 158, 0, 1348, 1350, 5, 36, 0, 0, 1349, 1347, 1, 0, 0, 0, 1349, 1348, 1, 0, 0, 0, 1350, 324, 1, 0, 0, 0, 1351, 1354, 3, 323, 161, 0, 1352, 1354, 3, 105, 52, 0, 1353, 1351, 1, 0, 0, 0, 1353, 1352, 1, 0, 0, 0, 1354, 326, 1, 0, 0, 0, 1355, 1356, 5, 35, 0, 0, 1356, 1357, 5, 33, 0, 0, 1357, 1361, 1, 0, 0, 0, 1358, 1360, 8, 8, 0, 0, 1359, 1358, 1, 0, 0, 0, 1360, 1363, 1, 0, 0, 0, 1361, 1359, 1, 0, 0, 0, 1361, 1362, 1, 0, 0, 0, 1362, 1364, 1, 0, 0, 0, 1363, 1361, 1, 0, 0, 0, 1364, 1365, 3, 335, 167, 0, 1365, 328, 1, 0, 0, 0, 1366, 1370, 3, 323, 161, 0, 1367, 1369, 3, 325, 162, 0, 1368, 1367, 1, 0, 0, 0, 1369, 1372, 1, 0, 0, 0, 1370, 1368, 1, 0, 0, 0, 1370, 1371, 1, 0, 0, 0, 1371, 330, 1, 0, 0, 0, 1372, 1370, 1, 0, 0, 0, 1373, 1374, 5, 47, 0, 0, 1374, 1375, 5, 47, 0, 0, 1375, 1379, 1, 0, 0, 0, 1376, 1378, 8, 8, 0, 0, 1377, 1376, 1, 0, 0, 0, 1378, 1381, 1, 0, 0, 0, 1379, 1377, 1, 0, 0, 0, 1379, 1380, 1, 0, 0, 0, 1380, 1383, 1, 0, 0, 0, 1381, 1379, 1, 0, 0, 0, 1382, 1384, 3, 335, 167, 0, 1383, 1382, 1, 0, 0, 0, 1383, 1384, 1, 0, 0, 0, 1384, 1385, 1, 0, 0, 0, 1385, 1386, 6, 165, 18, 0, 1386, 332, 1, 0, 0, 0, 1387, 1388, 5, 47, 0, 0, 1388, 1389, 5, 42, 0, 0, 1389, 1394, 1, 0, 0, 0, 1390, 1393, 3, 333, 166, 0, 1391, 1393, 9, 0, 0, 0, 1392, 1390, 1, 0, 0, 0, 1392, 1391, 1, 0, 0, 0, 1393, 1396, 1, 0, 0, 0, 1394, 1395, 1, 0, 0, 0, 1394, 1392, 1, 0, 0, 0, 1395, 1397, 1, 0, 0, 0, 1396, 1394, 1, 0, 0, 0, 1397, 1398, 5, 42, 0, 0, 1398, 1399, 5, 47, 0, 0, 1399, 1400, 1, 0, 0, 0, 1400, 1401, 6, 166, 19, 0, 1401, 334, 1, 0, 0, 0, 1402, 1406, 7, 8, 0, 0, 1403, 1404, 5, 13, 0, 0, 1404, 1406, 5, 10, 0, 0, 1405, 1402, 1, 0, 0, 0, 1405, 1403, 1, 0, 0, 0, 1406, 336, 1, 0, 0, 0, 1407, 1408, 5, 65279, 0, 0, 1408, 338, 1, 0, 0, 0, 1409, 1411, 7, 9, 0, 0, 1410, 1409, 1, 0, 0, 0, 1411, 1412, 1, 0, 0, 0, 1412, 1410, 1, 0, 0, 0, 1412, 1413, 1, 0, 0, 0, 1413, 1414, 1, 0, 0, 0, 1414, 1415, 6, 169, 20, 0, 1415, 340, 1, 0, 0, 0, 60, 0, 483, 491, 497, 502, 508, 514, 948, 951, 956, 958, 968, 975, 984, 988, 998, 1012, 1018, 1054, 1058, 1061, 1064, 1067, 1070, 1077, 1081, 1087, 1096, 1110, 1124, 1131, 1137, 1146, 1160, 1174, 1183, 1192, 1201, 1215, 1230, 1245, 1256, 1265, 1274, 1288, 1303, 1318, 1334, 1338, 1344, 1349, 1353, 1361, 1370, 1379, 1383, 1392, 1394, 1405, 1412, 21, 1, 136, 0, 1, 137, 1, 1, 137, 2, 1, 138, 3, 1, 141, 4, 1, 142, 5, 1, 142, 6, 1, 143, 7, 1, 147, 8, 1, 148, 9, 1, 148, 10, 1, 149, 11, 1, 153, 12, 1, 154, 13, 1, 154, 14, 1, 155, 15, 1, 156, 16, 1, 157, 17, 1, 165, 18, 1, 166, 19, 1, 169, 20], type$.JSArray_int);
     B.List_extend_extends = makeConstList(["extend", "extends"], type$.JSArray_String);
     B.List_extend_on = makeConstList(["extend", "on"], type$.JSArray_String);
@@ -77262,7 +77520,6 @@
     B.Object_empty = {};
     B.Map_empty0 = new A.ConstantStringMap(B.Object_empty, [], type$.ConstantStringMap_String_String);
     B.Map_empty = new A.ConstantStringMap(B.Object_empty, [], A.findType("ConstantStringMap<String,@>"));
-    B.Map_empty1 = new A.ConstantStringMap(B.Object_empty, [], A.findType("ConstantStringMap<Symbol0,@>"));
     B.Object_IkT = {xor: 0, and: 1, or: 2, shl: 3, shr: 4};
     B.List_2L8 = makeConstList([B.TokenType_DCZ], type$.JSArray_TokenType);
     B.List_AsC = makeConstList([B.TokenType_41X, B.TokenType_4Za], type$.JSArray_TokenType);
@@ -77272,379 +77529,384 @@
     B.Map_exhgH = new A.ConstantStringMap(B.Object_IkT, [B.List_2L8, B.List_AsC, B.List_fcu, B.List_vDE, B.List_GLG], A.findType("ConstantStringMap<String,List<TokenType>>"));
     B.MemberKind_0 = new A.MemberKind(0, "Catch");
     B.MemberKind_1 = new A.MemberKind(1, "Factory");
-    B.MemberKind_10 = new A.MemberKind(10, "ExtensionStaticMethod");
-    B.MemberKind_11 = new A.MemberKind(11, "ExtensionTypeNonStaticMethod");
-    B.MemberKind_12 = new A.MemberKind(12, "ExtensionTypeStaticMethod");
-    B.MemberKind_16 = new A.MemberKind(16, "PrimaryConstructor");
+    B.MemberKind_10 = new A.MemberKind(10, "ExtensionNonStaticMethod");
+    B.MemberKind_11 = new A.MemberKind(11, "ExtensionStaticMethod");
+    B.MemberKind_12 = new A.MemberKind(12, "ExtensionTypeNonStaticMethod");
+    B.MemberKind_13 = new A.MemberKind(13, "ExtensionTypeStaticMethod");
+    B.MemberKind_17 = new A.MemberKind(17, "PrimaryConstructor");
     B.MemberKind_2 = new A.MemberKind(2, "FunctionTypeAlias");
     B.MemberKind_3 = new A.MemberKind(3, "FunctionTypedParameter");
     B.MemberKind_4 = new A.MemberKind(4, "GeneralizedFunctionType");
     B.MemberKind_5 = new A.MemberKind(5, "Local");
-    B.MemberKind_6 = new A.MemberKind(6, "NonStaticMethod");
-    B.MemberKind_7 = new A.MemberKind(7, "StaticMethod");
-    B.MemberKind_8 = new A.MemberKind(8, "TopLevelMethod");
-    B.MemberKind_9 = new A.MemberKind(9, "ExtensionNonStaticMethod");
+    B.MemberKind_6 = new A.MemberKind(6, "AnonymousMethod");
+    B.MemberKind_7 = new A.MemberKind(7, "NonStaticMethod");
+    B.MemberKind_8 = new A.MemberKind(8, "StaticMethod");
+    B.MemberKind_9 = new A.MemberKind(9, "TopLevelMethod");
+    B.SharedCode_108 = new A.SharedCode(108, "invalidInitializer");
+    B.MessageCode_0ES = new A.MessageCode("Not a valid initializer.", string$.To_ini, "InvalidInitializer", null, B.SharedCode_108);
     B.PseudoSharedCode_44 = new A.PseudoSharedCode(44, "nonSyncFactory");
     B.MessageCode_0lC = new A.MessageCode(string$.Factorb, null, "FactoryNotSync", B.PseudoSharedCode_44, null);
-    B.SharedCode_136 = new A.SharedCode(136, "mixinWithClause");
-    B.MessageCode_124 = new A.MessageCode("A mixin can't have a with clause.", null, "MixinWithClause", null, B.SharedCode_136);
-    B.SharedCode_79 = new A.SharedCode(79, "finalAndVar");
-    B.MessageCode_1TH = new A.MessageCode(string$.Membercfv, "Try removing the keyword 'var'.", "FinalAndVar", null, B.SharedCode_79);
+    B.SharedCode_174 = new A.SharedCode(174, "varAndType");
+    B.MessageCode_1ZU = new A.MessageCode(string$.Variabsc, "Try removing 'var.'", "TypeAfterVar", null, B.SharedCode_174);
     B.MessageCode_2MP = new A.MessageCode("'+' is not a prefix operator.", "Try removing '+'.", "UnsupportedPrefixPlus", B.PseudoSharedCode_35, null);
     B.SharedCode_11 = new A.SharedCode(11, "baseEnum");
     B.MessageCode_2fu = new A.MessageCode("Enums can't be declared to be 'base'.", "Try removing the keyword 'base'.", "BaseEnum", null, B.SharedCode_11);
-    B.SharedCode_119 = new A.SharedCode(119, "libraryDirectiveNotFirst");
-    B.MessageCode_2qD = new A.MessageCode(string$.The_lib, string$.Try_mol, "LibraryDirectiveNotFirst", null, B.SharedCode_119);
-    B.SharedCode_163 = new A.SharedCode(163, "switchHasMultipleDefaultCases");
-    B.MessageCode_3Bh = new A.MessageCode(string$.The__d, "Try removing all but one default case.", "SwitchHasMultipleDefaults", null, B.SharedCode_163);
-    B.PseudoSharedCode_46 = new A.PseudoSharedCode(46, "privateOptionalParameter");
-    B.MessageCode_3t2 = new A.MessageCode("A named parameter can't start with an underscore ('_').", null, "PrivateNamedParameter", B.PseudoSharedCode_46, null);
+    B.SharedCode_106 = new A.SharedCode(106, "invalidConstructorName");
+    B.MessageCode_3Cs = new A.MessageCode(string$.The_na, null, "ConstructorWithWrongName", null, B.SharedCode_106);
+    B.SharedCode_112 = new A.SharedCode(112, "invalidSuperInInitializer");
+    B.MessageCode_3ih = new A.MessageCode(string$.Can_ons, null, "InvalidSuperInInitializer", null, B.SharedCode_112);
+    B.SharedCode_94 = new A.SharedCode(94, "initializedVariableInForEach");
+    B.MessageCode_4GP = new A.MessageCode(string$.The_lo, string$.Try_remtei, "InitializedVariableInForEach", null, B.SharedCode_94);
+    B.SharedCode_137 = new A.SharedCode(137, "mixinWithClause");
+    B.MessageCode_4Jy = new A.MessageCode("A mixin can't have a with clause.", null, "MixinWithClause", null, B.SharedCode_137);
+    B.SharedCode_92 = new A.SharedCode(92, "implementsBeforeWith");
+    B.MessageCode_4in = new A.MessageCode(string$.The_wi, string$.Try_mow, "ImplementsBeforeWith", null, B.SharedCode_92);
+    B.SharedCode_86 = new A.SharedCode(86, "illegalAssignmentToNonAssignable");
+    B.MessageCode_528 = new A.MessageCode(string$.Illega, null, "IllegalAssignmentToNonAssignable", null, B.SharedCode_86);
     B.PseudoSharedCode_28 = new A.PseudoSharedCode(28, "invalidLiteralInConfiguration");
     B.MessageCode_53K = new A.MessageCode("Can't use string interpolation in a URI.", null, "InterpolationInUri", B.PseudoSharedCode_28, null);
+    B.SharedCode_129 = new A.SharedCode(129, "missingExpressionInThrow");
+    B.MessageCode_56B = new A.MessageCode("Missing expression after 'throw'.", string$.Add_an, "MissingExpressionInThrow", null, B.SharedCode_129);
+    B.SharedCode_102 = new A.SharedCode(102, "invalidConstantPatternEmptyRecordLiteral");
+    B.MessageCode_59S = new A.MessageCode(string$.The_em, null, "InvalidConstantPatternEmptyRecordLiteral", null, B.SharedCode_102);
     B.SharedCode_24 = new A.SharedCode(24, "constructorWithReturnType");
     B.MessageCode_5DF = new A.MessageCode("Constructors can't have a return type.", "Try removing the return type.", "ConstructorWithReturnType", null, B.SharedCode_24);
     B.MessageCode_5IU = new A.MessageCode("Optional parameter lists cannot be empty.", "Try adding an optional parameter to the list.", "EmptyOptionalParameterList", B.PseudoSharedCode_35, null);
     B.SharedCode_70 = new A.SharedCode(70, "externalTypedef");
     B.MessageCode_5Jv = new A.MessageCode(string$.Typedet, "Try removing the keyword 'external'.", "ExternalTypedef", null, B.SharedCode_70);
+    B.SharedCode_161 = new A.SharedCode(161, "setterConstructor");
+    B.MessageCode_5MZ = new A.MessageCode("Constructors can't be a setter.", "Try removing 'set'.", "SetterConstructor", null, B.SharedCode_161);
     B.PseudoSharedCode_2 = new A.PseudoSharedCode(2, "asyncForInWrongContext");
     B.MessageCode_5SJ = new A.MessageCode("The asynchronous for-in can only be used in functions marked with 'async' or 'async*'.", "Try marking the function body with either 'async' or 'async*', or removing the 'await' before the for loop.", "AwaitForNotAsync", B.PseudoSharedCode_2, null);
     B.PseudoSharedCode_10 = new A.PseudoSharedCode(10, "encoding");
     B.MessageCode_5U7 = new A.MessageCode("Unable to decode bytes as UTF-8.", null, "Encoding", B.PseudoSharedCode_10, null);
-    B.SharedCode_133 = new A.SharedCode(133, "missingPrimaryConstructorParameters");
-    B.MessageCode_5dN = new A.MessageCode(string$.A_prim, string$.Try_adf, "MissingPrimaryConstructorParameters", null, B.SharedCode_133);
     B.PseudoSharedCode_36 = new A.PseudoSharedCode(36, "missingMethodParameters");
     B.MessageCode_5db = new A.MessageCode("A method declaration needs an explicit list of parameters.", "Try adding a parameter list to the method declaration.", "MissingMethodParameters", B.PseudoSharedCode_36, null);
-    B.SharedCode_168 = new A.SharedCode(168, "typeParameterOnOperator");
-    B.MessageCode_5lV = new A.MessageCode(string$.Types_, "Try removing the type parameters.", "OperatorWithTypeParameters", null, B.SharedCode_168);
-    B.SharedCode_161 = new A.SharedCode(161, "staticOperator");
-    B.MessageCode_6QJ = new A.MessageCode("Operators can't be static.", "Try removing the keyword 'static'.", "StaticOperator", null, B.SharedCode_161);
+    B.SharedCode_135 = new A.SharedCode(135, "missingStatement");
+    B.MessageCode_6Ed = new A.MessageCode("Expected a statement.", null, "ExpectedStatement", null, B.SharedCode_135);
+    B.SharedCode_172 = new A.SharedCode(172, "typedefInClass");
+    B.MessageCode_6HA = new A.MessageCode(string$.Typedei, "Try moving the typedef to the top-level.", "TypedefInClass", null, B.SharedCode_172);
     B.PseudoSharedCode_3 = new A.PseudoSharedCode(3, "asyncKeywordUsedAsIdentifier");
     B.MessageCode_6bT = new A.MessageCode("'await' can't be used as an identifier in 'async', 'async*', or 'sync*' methods.", null, "AwaitAsIdentifier", B.PseudoSharedCode_3, null);
-    B.SharedCode_111 = new A.SharedCode(111, "invalidSuperInInitializer");
-    B.MessageCode_6iC = new A.MessageCode(string$.Can_ons, null, "InvalidSuperInInitializer", null, B.SharedCode_111);
-    B.SharedCode_124 = new A.SharedCode(124, "missingAssignableSelector");
-    B.MessageCode_6qA = new A.MessageCode(string$.Missin, "Try adding a selector.", "MissingAssignableSelector", null, B.SharedCode_124);
-    B.SharedCode_93 = new A.SharedCode(93, "initializedVariableInForEach");
-    B.MessageCode_785 = new A.MessageCode(string$.The_lo, string$.Try_remtei, "InitializedVariableInForEach", null, B.SharedCode_93);
-    B.SharedCode_176 = new A.SharedCode(176, "withBeforeExtends");
-    B.MessageCode_79k = new A.MessageCode(string$.The_extw, string$.Try_moetw, "WithBeforeExtends", null, B.SharedCode_176);
-    B.SharedCode_83 = new A.SharedCode(83, "functionTypedParameterVar");
-    B.MessageCode_7Oc = new A.MessageCode(string$.Functi, string$.Try_repk, "FunctionTypedParameterVar", null, B.SharedCode_83);
     B.SharedCode_14 = new A.SharedCode(14, "catchSyntax");
     B.MessageCode_7Yr = new A.MessageCode(string$.x27catch, string$.No_typ, "CatchSyntax", null, B.SharedCode_14);
-    B.SharedCode_112 = new A.SharedCode(112, "invalidThisInInitializer");
-    B.MessageCode_7nk = new A.MessageCode(string$.Can_ont, null, "InvalidThisInInitializer", null, B.SharedCode_112);
     B.SharedCode_31 = new A.SharedCode(31, "deferredAfterPrefix");
     B.MessageCode_8HB = new A.MessageCode(string$.The_dee, string$.Try_modee, "DeferredAfterPrefix", null, B.SharedCode_31);
-    B.PseudoSharedCode_54 = new A.PseudoSharedCode(54, "unterminatedMultiLineComment");
-    B.MessageCode_8nl = new A.MessageCode("Comment starting with '/*' must end with '*/'.", null, "UnterminatedComment", B.PseudoSharedCode_54, null);
-    B.SharedCode_128 = new A.SharedCode(128, "missingExpressionInThrow");
-    B.MessageCode_8v2 = new A.MessageCode("Missing expression after 'throw'.", string$.Add_an, "MissingExpressionInThrow", null, B.SharedCode_128);
+    B.SharedCode_178 = new A.SharedCode(178, "voidWithTypeArguments");
+    B.MessageCode_8hr = new A.MessageCode("Type 'void' can't have type arguments.", "Try removing the type arguments.", "VoidWithTypeArguments", null, B.SharedCode_178);
     B.SharedCode_64 = new A.SharedCode(64, "externalConstructorWithInitializer");
     B.MessageCode_8xn = new A.MessageCode(string$.An_extrc, null, "ExternalConstructorWithInitializer", null, B.SharedCode_64);
     B.SharedCode_23 = new A.SharedCode(23, "constWithoutPrimaryConstructor");
     B.MessageCode_97u = new A.MessageCode(string$.x27const, string$.Try_remte_cx20, "ConstWithoutPrimaryConstructor", null, B.SharedCode_23);
-    B.SharedCode_143 = new A.SharedCode(143, "multipleVarianceModifiers");
-    B.MessageCode_AG2 = new A.MessageCode(string$.Each_t, string$.Use_at, "MultipleVarianceModifiers", null, B.SharedCode_143);
+    B.SharedCode_75 = new A.SharedCode(75, "factoryTopLevelDeclaration");
+    B.MessageCode_9C3 = new A.MessageCode(string$.Top_le, "Try removing the keyword 'factory'.", "FactoryTopLevelDeclaration", null, B.SharedCode_75);
+    B.PseudoSharedCode_48 = new A.PseudoSharedCode(48, "returnInGenerator");
+    B.MessageCode_9R8 = new A.MessageCode("'sync*' and 'async*' can't return a value.", null, "GeneratorReturnsValue", B.PseudoSharedCode_48, null);
+    B.SharedCode_166 = new A.SharedCode(166, "switchHasMultipleDefaultCases");
+    B.MessageCode_9dY = new A.MessageCode(string$.The__d, "Try removing all but one default case.", "SwitchHasMultipleDefaults", null, B.SharedCode_166);
     B.SharedCode_13 = new A.SharedCode(13, "breakOutsideOfLoop");
     B.MessageCode_AT8 = new A.MessageCode(string$.A_brea, "Try removing the break statement.", "BreakOutsideOfLoop", null, B.SharedCode_13);
     B.PseudoSharedCode_9 = new A.PseudoSharedCode(9, "defaultValueInFunctionType");
     B.MessageCode_BM3 = new A.MessageCode("Can't have a default value in a function type.", null, "FunctionTypeDefaultValue", B.PseudoSharedCode_9, null);
-    B.SharedCode_91 = new A.SharedCode(91, "implementsBeforeWith");
-    B.MessageCode_BcI = new A.MessageCode(string$.The_wi, string$.Try_mow, "ImplementsBeforeWith", null, B.SharedCode_91);
     B.PseudoSharedCode_17 = new A.PseudoSharedCode(17, "extensionTypeDeclaresInstanceField");
     B.MessageCode_Bdk = new A.MessageCode("Extension types can't declare instance fields", string$.Try_remtef, "ExtensionTypeDeclaresInstanceField", B.PseudoSharedCode_17, null);
-    B.SharedCode_150 = new A.SharedCode(150, "prefixAfterCombinator");
-    B.MessageCode_CYJ = new A.MessageCode(string$.The_pr, string$.Try_mop, "PrefixAfterCombinator", null, B.SharedCode_150);
-    B.SharedCode_94 = new A.SharedCode(94, "interfaceEnum");
-    B.MessageCode_Dl6 = new A.MessageCode(string$.Enums_i, "Try removing the keyword 'interface'.", "InterfaceEnum", null, B.SharedCode_94);
-    B.SharedCode_164 = new A.SharedCode(164, "topLevelOperator");
-    B.MessageCode_Dos = new A.MessageCode(string$.Operats, string$.Try_remteop, "TopLevelOperator", null, B.SharedCode_164);
-    B.SharedCode_84 = new A.SharedCode(84, "getterConstructor");
-    B.MessageCode_E0F = new A.MessageCode("Constructors can't be a getter.", "Try removing 'get'.", "GetterConstructor", null, B.SharedCode_84);
+    B.SharedCode_125 = new A.SharedCode(125, "missingAssignableSelector");
+    B.MessageCode_ClO = new A.MessageCode(string$.Missin, "Try adding a selector.", "MissingAssignableSelector", null, B.SharedCode_125);
+    B.SharedCode_157 = new A.SharedCode(157, "redirectionInNonFactoryConstructor");
+    B.MessageCode_DI1 = new A.MessageCode(string$.Only_f, string$.Try_ma, "RedirectionInNonFactory", null, B.SharedCode_157);
+    B.SharedCode_163 = new A.SharedCode(163, "staticConstructor");
+    B.MessageCode_E1I = new A.MessageCode("Constructors can't be static.", "Try removing the keyword 'static'.", "StaticConstructor", null, B.SharedCode_163);
     B.SharedCode_27 = new A.SharedCode(27, "continueWithoutLabelInCase");
     B.MessageCode_EFh = new A.MessageCode(string$.A_conti, string$.Try_ada_l, "ContinueWithoutLabelInCase", null, B.SharedCode_27);
     B.SharedCode_44 = new A.SharedCode(44, "expectedElseOrComma");
     B.MessageCode_ES6 = new A.MessageCode("Expected 'else' or comma.", null, "ExpectedElseOrComma", null, B.SharedCode_44);
+    B.PseudoSharedCode_57 = new A.PseudoSharedCode(57, "wrongSeparatorForPositionalParameter");
+    B.MessageCode_Ewe = new A.MessageCode("Positional optional parameters can't use ':' to specify a default value.", "Try replacing ':' with '='.", "PositionalParameterWithEquals", B.PseudoSharedCode_57, null);
     B.MessageCode_Ez6 = new A.MessageCode("Expected a function body or '=>'.", "Try adding {}.", "ExpectedBody", B.PseudoSharedCode_32, null);
+    B.SharedCode_103 = new A.SharedCode(103, "invalidConstantPatternGeneric");
+    B.MessageCode_F6b = new A.MessageCode(string$.This_e, string$.Try_wrx2e, "InvalidConstantPatternGeneric", null, B.SharedCode_103);
     B.SharedCode_59 = new A.SharedCode(59, "extensionDeclaresConstructor");
-    B.MessageCode_FU2 = new A.MessageCode("Extensions can't declare constructors.", string$.Try_remtec, "ExtensionDeclaresConstructor", null, B.SharedCode_59);
-    B.SharedCode_123 = new A.SharedCode(123, "memberWithClassName");
-    B.MessageCode_G2L = new A.MessageCode(string$.A_clasm, "Try renaming the member.", "MemberWithSameNameAsClass", null, B.SharedCode_123);
+    B.MessageCode_FU2 = new A.MessageCode("Extensions can't declare constructors.", string$.Try_remteco, "ExtensionDeclaresConstructor", null, B.SharedCode_59);
     B.PseudoSharedCode_37 = new A.PseudoSharedCode(37, "missingStarAfterSync");
     B.MessageCode_GD3 = new A.MessageCode("Invalid modifier 'sync'.", "Try replacing 'sync' with 'sync*'.", "InvalidSyncModifier", B.PseudoSharedCode_37, null);
     B.SharedCode_28 = new A.SharedCode(28, "covariantAndStatic");
     B.MessageCode_GKw = new A.MessageCode(string$.Memberccv, string$.Try_remecv, "CovariantAndStatic", null, B.SharedCode_28);
-    B.SharedCode_132 = new A.SharedCode(132, "missingPrimaryConstructor");
-    B.MessageCode_GO6 = new A.MessageCode(string$.An_extntmp, string$.Try_ada_pi, "MissingPrimaryConstructor", null, B.SharedCode_132);
-    B.SharedCode_160 = new A.SharedCode(160, "staticConstructor");
-    B.MessageCode_GZA = new A.MessageCode("Constructors can't be static.", "Try removing the keyword 'static'.", "StaticConstructor", null, B.SharedCode_160);
     B.PseudoSharedCode_1 = new A.PseudoSharedCode(1, "assertAsExpression");
     B.MessageCode_Ggu = new A.MessageCode("`assert` can't be used as an expression.", null, "AssertAsExpression", B.PseudoSharedCode_1, null);
-    B.SharedCode_172 = new A.SharedCode(172, "varAsTypeName");
-    B.MessageCode_HHG = new A.MessageCode(string$.The_kev, null, "VarAsTypeName", null, B.SharedCode_172);
-    B.SharedCode_134 = new A.SharedCode(134, "missingStatement");
-    B.MessageCode_HPz = new A.MessageCode("Expected a statement.", null, "ExpectedStatement", null, B.SharedCode_134);
+    B.SharedCode_169 = new A.SharedCode(169, "typeBeforeFactory");
+    B.MessageCode_GhC = new A.MessageCode(string$.Factorcn, string$.Try_remtetp, "TypeBeforeFactory", null, B.SharedCode_169);
+    B.SharedCode_104 = new A.SharedCode(104, "invalidConstantPatternNegation");
+    B.MessageCode_HRa = new A.MessageCode(string$.Only_n, string$.Try_wrx2e, "InvalidConstantPatternNegation", null, B.SharedCode_104);
     B.PseudoSharedCode_41 = new A.PseudoSharedCode(41, "namedParameterOutsideGroup");
     B.MessageCode_Hvq = new A.MessageCode("Non-optional parameters can't have a default value.", "Try removing the default value or making the parameter optional.", "RequiredParameterWithDefault", B.PseudoSharedCode_41, null);
+    B.SharedCode_109 = new A.SharedCode(109, "invalidInsideUnaryPattern");
+    B.MessageCode_IBJ = new A.MessageCode(string$.This_p, string$.Try_coi, "InvalidInsideUnaryPattern", null, B.SharedCode_109);
     B.SharedCode_4 = new A.SharedCode(4, "abstractLateField");
     B.MessageCode_ID6 = new A.MessageCode("Abstract fields cannot be late.", string$.Try_remte_aol, "AbstractLateField", null, B.SharedCode_4);
-    B.SharedCode_115 = new A.SharedCode(115, "invalidUnicodeEscapeUNoBracket");
-    B.MessageCode_IHW = new A.MessageCode(string$.An_escux27x2e, null, "InvalidUnicodeEscapeUNoBracket", null, B.SharedCode_115);
-    B.SharedCode_149 = new A.SharedCode(149, "patternVariableDeclarationOutsideFunctionOrMethod");
-    B.MessageCode_IaC = new A.MessageCode(string$.A_patta, string$.Try_de, "PatternVariableDeclarationOutsideFunctionOrMethod", null, B.SharedCode_149);
-    B.SharedCode_101 = new A.SharedCode(101, "invalidConstantPatternEmptyRecordLiteral");
-    B.MessageCode_IkE = new A.MessageCode(string$.The_em, null, "InvalidConstantPatternEmptyRecordLiteral", null, B.SharedCode_101);
+    B.SharedCode_98 = new A.SharedCode(98, "invalidAwaitInFor");
+    B.MessageCode_IWB = new A.MessageCode(string$.The_kea, string$.Try_remtekx2c, "InvalidAwaitFor", null, B.SharedCode_98);
     B.SharedCode_19 = new A.SharedCode(19, "constAndFinal");
     B.MessageCode_JW4 = new A.MessageCode(string$.Memberccn, string$.Try_remecno, "ConstAndFinal", null, B.SharedCode_19);
-    B.SharedCode_145 = new A.SharedCode(145, "nativeClauseShouldBeAnnotation");
-    B.MessageCode_JvH = new A.MessageCode(string$.Native, string$.Try_remti, "NativeClauseShouldBeAnnotation", null, B.SharedCode_145);
+    B.SharedCode_167 = new A.SharedCode(167, "topLevelOperator");
+    B.MessageCode_JbG = new A.MessageCode(string$.Operats, string$.Try_remteop, "TopLevelOperator", null, B.SharedCode_167);
     B.SharedCode_66 = new A.SharedCode(66, "externalFactoryRedirection");
     B.MessageCode_Jy7 = new A.MessageCode("A redirecting factory can't be external.", "Try removing the 'external' modifier.", "ExternalFactoryRedirection", null, B.SharedCode_66);
     B.PseudoSharedCode_7 = new A.PseudoSharedCode(7, "constConstructorWithBody");
     B.MessageCode_K4k = new A.MessageCode("A const constructor can't have a body.", string$.Try_remecnk, "ConstConstructorWithBody", B.PseudoSharedCode_7, null);
-    B.PseudoSharedCode_50 = new A.PseudoSharedCode(50, "unexpectedSeparatorInNumber");
-    B.MessageCode_K73 = new A.MessageCode(string$.Digit_, "Try removing the '_'.", "UnexpectedSeparatorInNumber", B.PseudoSharedCode_50, null);
-    B.SharedCode_125 = new A.SharedCode(125, "missingAssignmentInInitializer");
-    B.MessageCode_Kd8 = new A.MessageCode(string$.Expect, string$.To_ini, "MissingAssignmentInInitializer", null, B.SharedCode_125);
+    B.SharedCode_107 = new A.SharedCode(107, "invalidHexEscape");
+    B.MessageCode_Kh2 = new A.MessageCode(string$.An_escx, null, "InvalidHexEscape", null, B.SharedCode_107);
     B.SharedCode_26 = new A.SharedCode(26, "continueOutsideOfLoop");
     B.MessageCode_Kra = new A.MessageCode(string$.A_contc, "Try removing the continue statement.", "ContinueOutsideOfLoop", null, B.SharedCode_26);
-    B.SharedCode_175 = new A.SharedCode(175, "voidWithTypeArguments");
-    B.MessageCode_L2M = new A.MessageCode("Type 'void' can't have type arguments.", "Try removing the type arguments.", "VoidWithTypeArguments", null, B.SharedCode_175);
-    B.SharedCode_75 = new A.SharedCode(75, "fieldInitializedOutsideDeclaringClass");
-    B.MessageCode_L7K = new A.MessageCode(string$.A_fiel, string$.Try_pa, "FieldInitializedOutsideDeclaringClass", null, B.SharedCode_75);
-    B.SharedCode_162 = new A.SharedCode(162, "switchHasCaseAfterDefaultCase");
-    B.MessageCode_Lsv = new A.MessageCode(string$.The_dea, string$.Try_modea, "SwitchHasCaseAfterDefault", null, B.SharedCode_162);
+    B.SharedCode_114 = new A.SharedCode(114, "invalidUnicodeEscapeStarted");
+    B.MessageCode_LKi = new A.MessageCode("The string '\\' can't stand alone.", string$.Try_adano, "InvalidEscapeStarted", null, B.SharedCode_114);
+    B.PseudoSharedCode_58 = new A.PseudoSharedCode(58, "yieldInNonGenerator");
+    B.MessageCode_MFA = new A.MessageCode("'yield' can only be used in 'sync*' or 'async*' methods.", null, "YieldNotGenerator", B.PseudoSharedCode_58, null);
     B.SharedCode_3 = new A.SharedCode(3, "abstractFinalInterfaceClass");
     B.MessageCode_MN7 = new A.MessageCode(string$.An__abi, string$.Try_remefi, "AbstractFinalInterfaceClass", null, B.SharedCode_3);
+    B.SharedCode_81 = new A.SharedCode(81, "finalEnum");
+    B.MessageCode_MVP = new A.MessageCode("Enums can't be declared to be 'final'.", "Try removing the keyword 'final'.", "FinalEnum", null, B.SharedCode_81);
     B.PseudoSharedCode_30 = new A.PseudoSharedCode(30, "missingDigit");
     B.MessageCode_Ma6 = new A.MessageCode("Numbers in exponential notation should always contain an exponent (an integer number with an optional sign).", "Make sure there is an exponent, and remove any whitespace before it.", "MissingExponent", B.PseudoSharedCode_30, null);
-    B.SharedCode_131 = new A.SharedCode(131, "missingPrefixInDeferredImport");
-    B.MessageCode_MbQ = new A.MessageCode("Deferred imports should have a prefix.", string$.Try_ada_pe, "MissingPrefixInDeferredImport", null, B.SharedCode_131);
-    B.SharedCode_82 = new A.SharedCode(82, "finalMixinClass");
-    B.MessageCode_MpU = new A.MessageCode("A mixin class can't be declared 'final'.", "Try removing the 'final' keyword.", "FinalMixinClass", null, B.SharedCode_82);
-    B.PseudoSharedCode_49 = new A.PseudoSharedCode(49, "unexpectedDollarInString");
-    B.MessageCode_NTb = new A.MessageCode(string$.A_____, string$.Try_ada_b, "UnexpectedDollarInString", B.PseudoSharedCode_49, null);
+    B.SharedCode_147 = new A.SharedCode(147, "newConstructorNewName");
+    B.MessageCode_NAv = new A.MessageCode(string$.Constrb, string$.Try_remtes, "NewConstructorNewName", null, B.SharedCode_147);
     B.SharedCode_7 = new A.SharedCode(7, "annotationOnTypeArgument");
     B.MessageCode_NpD = new A.MessageCode(string$.Type_a, null, "AnnotationOnTypeArgument", null, B.SharedCode_7);
-    B.SharedCode_100 = new A.SharedCode(100, "invalidConstantPatternDuplicateConst");
-    B.MessageCode_On5 = new A.MessageCode(string$.Duplic, string$.Try_remo, "InvalidConstantPatternDuplicateConst", null, B.SharedCode_100);
     B.PseudoSharedCode_33 = new A.PseudoSharedCode(33, "missingFunctionParameters");
     B.MessageCode_Opa = new A.MessageCode("A function declaration needs an explicit list of parameters.", "Try adding a parameter list to the function declaration.", "MissingFunctionParameters", B.PseudoSharedCode_33, null);
+    B.SharedCode_96 = new A.SharedCode(96, "interfaceMixin");
+    B.MessageCode_Owk = new A.MessageCode("A mixin can't be declared 'interface'.", "Try removing the 'interface' keyword.", "InterfaceMixin", null, B.SharedCode_96);
     B.MessageCode_Owq = new A.MessageCode("Named parameter lists cannot be empty.", "Try adding a named parameter to the list.", "EmptyNamedParameterList", B.PseudoSharedCode_35, null);
-    B.SharedCode_166 = new A.SharedCode(166, "typeBeforeFactory");
-    B.MessageCode_PDS = new A.MessageCode(string$.Factorc, string$.Try_remtetp, "TypeBeforeFactory", null, B.SharedCode_166);
-    B.SharedCode_103 = new A.SharedCode(103, "invalidConstantPatternNegation");
-    B.MessageCode_Pfc = new A.MessageCode(string$.Only_n, string$.Try_wrx2e, "InvalidConstantPatternNegation", null, B.SharedCode_103);
-    B.SharedCode_146 = new A.SharedCode(146, "nullAwareCascadeOutOfOrder");
-    B.MessageCode_Q45 = new A.MessageCode(string$.The___, string$.Try_mo_, "NullAwareCascadeOutOfOrder", null, B.SharedCode_146);
+    B.SharedCode_119 = new A.SharedCode(119, "latePatternVariableDeclaration");
+    B.MessageCode_P1N = new A.MessageCode(string$.A_pattu, "Try removing the keyword `late`.", "LatePatternVariableDeclaration", null, B.SharedCode_119);
+    B.SharedCode_111 = new A.SharedCode(111, "invalidOperatorQuestionmarkPeriodForSuper");
+    B.MessageCode_Py4 = new A.MessageCode(string$.The_op, "Try replacing '?.' with '.'", "SuperNullAware", null, B.SharedCode_111);
+    B.SharedCode_74 = new A.SharedCode(74, "factoryConstructorNewName");
+    B.MessageCode_QFH = new A.MessageCode(string$.Factorc_, string$.Try_remte_n, "FactoryConstructorNewName", null, B.SharedCode_74);
     B.PseudoSharedCode_16 = new A.PseudoSharedCode(16, "extensionDeclaresInstanceField");
     B.MessageCode_QSt = new A.MessageCode("Extensions can't declare instance fields", string$.Try_remtef, "ExtensionDeclaresInstanceField", B.PseudoSharedCode_16, null);
+    B.SharedCode_76 = new A.SharedCode(76, "fieldInitializedOutsideDeclaringClass");
+    B.MessageCode_QhF = new A.MessageCode(string$.A_fiel, string$.Try_pa, "FieldInitializedOutsideDeclaringClass", null, B.SharedCode_76);
     B.SharedCode_38 = new A.SharedCode(38, "emptyRecordTypeNamedFieldsList");
     B.MessageCode_Qqc = new A.MessageCode(string$.The_lis, "Try adding a named field to the list.", "EmptyRecordTypeNamedFieldsList", null, B.SharedCode_38);
     B.PseudoSharedCode_45 = new A.PseudoSharedCode(45, "positionalAfterNamedArgument");
     B.MessageCode_Qyy = new A.MessageCode("Place positional arguments before named arguments.", "Try moving the positional argument before the named arguments, or add a name to the argument.", "PositionalAfterNamedArgument", B.PseudoSharedCode_45, null);
-    B.SharedCode_144 = new A.SharedCode(144, "multipleWithClauses");
-    B.MessageCode_RMm = new A.MessageCode(string$.Each_cw, string$.Try_coaw, "MultipleWith", null, B.SharedCode_144);
     B.PseudoSharedCode_29 = new A.PseudoSharedCode(29, "invalidModifierOnSetter");
     B.MessageCode_S1u = new A.MessageCode(string$.Setter, null, "SetterNotSync", B.PseudoSharedCode_29, null);
+    B.SharedCode_132 = new A.SharedCode(132, "missingPrefixInDeferredImport");
+    B.MessageCode_SR1 = new A.MessageCode("Deferred imports should have a prefix.", string$.Try_ada_pe, "MissingPrefixInDeferredImport", null, B.SharedCode_132);
     B.SharedCode_1 = new A.SharedCode(1, "abstractExternalField");
     B.MessageCode_ShS = new A.MessageCode(string$.Fields, string$.Try_remte_aoe, "AbstractExternalField", null, B.SharedCode_1);
     B.SharedCode_15 = new A.SharedCode(15, "catchSyntaxExtraParameters");
     B.MessageCode_TRH = new A.MessageCode(string$.x27catch, string$.No_typ, "CatchSyntaxExtraParameters", null, B.SharedCode_15);
     B.SharedCode_32 = new A.SharedCode(32, "directiveAfterDeclaration");
     B.MessageCode_TUE = new A.MessageCode(string$.Direct, string$.Try_modi, "DirectiveAfterDeclaration", null, B.SharedCode_32);
-    B.SharedCode_81 = new A.SharedCode(81, "finalMixin");
-    B.MessageCode_TbP = new A.MessageCode("A mixin can't be declared 'final'.", "Try removing the 'final' keyword.", "FinalMixin", null, B.SharedCode_81);
-    B.SharedCode_92 = new A.SharedCode(92, "importDirectiveAfterPartDirective");
-    B.MessageCode_To9 = new A.MessageCode(string$.Import, string$.Try_moi, "ImportAfterPart", null, B.SharedCode_92);
-    B.SharedCode_140 = new A.SharedCode(140, "multipleLibraryDirectives");
-    B.MessageCode_VYF = new A.MessageCode(string$.Only_ol, string$.Try_remaofl, "MultipleLibraryDirectives", null, B.SharedCode_140);
+    B.PseudoSharedCode_55 = new A.PseudoSharedCode(55, "unterminatedMultiLineComment");
+    B.MessageCode_TwP = new A.MessageCode("Comment starting with '/*' must end with '*/'.", null, "UnterminatedComment", B.PseudoSharedCode_55, null);
+    B.SharedCode_165 = new A.SharedCode(165, "switchHasCaseAfterDefaultCase");
+    B.MessageCode_V4x = new A.MessageCode(string$.The_dea, string$.Try_modea, "SwitchHasCaseAfterDefault", null, B.SharedCode_165);
     B.PseudoSharedCode_21 = new A.PseudoSharedCode(21, "getterWithParameters");
     B.MessageCode_VoN = new A.MessageCode("A getter can't have formal parameters.", "Try removing '(...)'.", "GetterWithFormals", B.PseudoSharedCode_21, null);
+    B.SharedCode_134 = new A.SharedCode(134, "missingPrimaryConstructorParameters");
+    B.MessageCode_Vpd = new A.MessageCode(string$.A_prim, string$.Try_adf, "MissingPrimaryConstructorParameters", null, B.SharedCode_134);
     B.PseudoSharedCode_27 = new A.PseudoSharedCode(27, "invalidInlineFunctionType");
     B.MessageCode_VuA = new A.MessageCode("Inline function types cannot be used for parameters in a generic function type.", "Try changing the inline function type (as in 'int f()') to a prefixed function type using the `Function` keyword (as in 'int Function() f').", "InvalidInlineFunctionType", B.PseudoSharedCode_27, null);
-    B.SharedCode_96 = new A.SharedCode(96, "interfaceMixinClass");
-    B.MessageCode_WWN = new A.MessageCode(string$.A_mixici, "Try removing the 'interface' keyword.", "InterfaceMixinClass", null, B.SharedCode_96);
-    B.SharedCode_105 = new A.SharedCode(105, "invalidConstructorName");
-    B.MessageCode_XHS = new A.MessageCode(string$.The_na, null, "ConstructorWithWrongName", null, B.SharedCode_105);
+    B.SharedCode_175 = new A.SharedCode(175, "varAsTypeName");
+    B.MessageCode_W6o = new A.MessageCode(string$.The_kev, null, "VarAsTypeName", null, B.SharedCode_175);
+    B.SharedCode_120 = new A.SharedCode(120, "libraryDirectiveNotFirst");
+    B.MessageCode_WKM = new A.MessageCode(string$.The_lib, string$.Try_mol, "LibraryDirectiveNotFirst", null, B.SharedCode_120);
+    B.SharedCode_127 = new A.SharedCode(127, "missingCatchOrFinally");
+    B.MessageCode_Whl = new A.MessageCode(string$.A_try_b, string$.Try_ade, "OnlyTry", null, B.SharedCode_127);
+    B.SharedCode_159 = new A.SharedCode(159, "sealedMixin");
+    B.MessageCode_WqQ = new A.MessageCode("A mixin can't be declared 'sealed'.", "Try removing the 'sealed' keyword.", "SealedMixin", null, B.SharedCode_159);
+    B.SharedCode_160 = new A.SharedCode(160, "sealedMixinClass");
+    B.MessageCode_X05 = new A.MessageCode(string$.A_mixics, "Try removing the 'sealed' keyword.", "SealedMixinClass", null, B.SharedCode_160);
+    B.PseudoSharedCode_49 = new A.PseudoSharedCode(49, "setOrMapLiteralTooManyTypeArguments");
+    B.MessageCode_X20 = new A.MessageCode("A set or map literal requires exactly one or two type arguments, respectively.", null, "SetOrMapLiteralTooManyTypeArguments", B.PseudoSharedCode_49, null);
+    B.SharedCode_158 = new A.SharedCode(158, "sealedEnum");
+    B.MessageCode_X2V = new A.MessageCode("Enums can't be declared to be 'sealed'.", "Try removing the keyword 'sealed'.", "SealedEnum", null, B.SharedCode_158);
+    B.SharedCode_146 = new A.SharedCode(146, "nativeClauseShouldBeAnnotation");
+    B.MessageCode_X6S = new A.MessageCode(string$.Native, string$.Try_remti, "NativeClauseShouldBeAnnotation", null, B.SharedCode_146);
+    B.SharedCode_124 = new A.SharedCode(124, "memberWithClassName");
+    B.MessageCode_XC8 = new A.MessageCode(string$.A_clasm, "Try renaming the member.", "MemberWithSameNameAsClass", null, B.SharedCode_124);
+    B.SharedCode_80 = new A.SharedCode(80, "finalAndVar");
+    B.MessageCode_XKB = new A.MessageCode(string$.Membercfv, "Try removing the keyword 'var'.", "FinalAndVar", null, B.SharedCode_80);
     B.SharedCode_16 = new A.SharedCode(16, "classInClass");
     B.MessageCode_XSL = new A.MessageCode(string$.Classei, "Try moving the class to the top-level.", "ClassInClass", null, B.SharedCode_16);
     B.SharedCode_6 = new A.SharedCode(6, "abstractStaticField");
     B.MessageCode_XUm = new A.MessageCode(string$.Static, string$.Try_remte_aos, "AbstractStaticField", null, B.SharedCode_6);
-    B.PseudoSharedCode_48 = new A.PseudoSharedCode(48, "setOrMapLiteralTooManyTypeArguments");
-    B.MessageCode_Xur = new A.MessageCode("A set or map literal requires exactly one or two type arguments, respectively.", null, "SetOrMapLiteralTooManyTypeArguments", B.PseudoSharedCode_48, null);
+    B.SharedCode_179 = new A.SharedCode(179, "withBeforeExtends");
+    B.MessageCode_XiT = new A.MessageCode(string$.The_extw, string$.Try_moetw, "WithBeforeExtends", null, B.SharedCode_179);
     B.SharedCode_62 = new A.SharedCode(62, "externalClass");
     B.MessageCode_Y2I = new A.MessageCode(string$.Classet, "Try removing the keyword 'external'.", "ExternalClass", null, B.SharedCode_62);
-    B.SharedCode_77 = new A.SharedCode(77, "finalAndCovariant");
-    B.MessageCode_YaP = new A.MessageCode(string$.Membercfc, string$.Try_remefcx2e, "FinalAndCovariant", null, B.SharedCode_77);
-    B.SharedCode_174 = new A.SharedCode(174, "variablePatternKeywordInDeclarationContext");
-    B.MessageCode_Yh0 = new A.MessageCode(string$.Variab_, "Try removing the keyword.", "VariablePatternKeywordInDeclarationContext", null, B.SharedCode_174);
-    B.SharedCode_89 = new A.SharedCode(89, "implementsBeforeExtends");
-    B.MessageCode_Z2N = new A.MessageCode(string$.The_exti, string$.Try_moeti, "ImplementsBeforeExtends", null, B.SharedCode_89);
+    B.SharedCode_173 = new A.SharedCode(173, "unexpectedTokens");
+    B.MessageCode_YAK = new A.MessageCode("Unexpected tokens.", null, "UnexpectedTokens", null, B.SharedCode_173);
+    B.SharedCode_116 = new A.SharedCode(116, "invalidUnicodeEscapeUNoBracket");
+    B.MessageCode_YM6 = new A.MessageCode(string$.An_escux27x2e, null, "InvalidUnicodeEscapeUNoBracket", null, B.SharedCode_116);
+    B.SharedCode_117 = new A.SharedCode(117, "invalidUnicodeEscapeUStarted");
+    B.MessageCode_Ycr = new A.MessageCode(string$.An_escux27x20, null, "InvalidUnicodeEscapeUStarted", null, B.SharedCode_117);
+    B.SharedCode_177 = new A.SharedCode(177, "variablePatternKeywordInDeclarationContext");
+    B.MessageCode_Z2o = new A.MessageCode(string$.Variab_, "Try removing the keyword.", "VariablePatternKeywordInDeclarationContext", null, B.SharedCode_177);
     B.PseudoSharedCode_34 = new A.PseudoSharedCode(34, "missingHexDigit");
     B.MessageCode_ZMP = new A.MessageCode("A hex digit (0-9 or A-F) must follow '0x'.", null, "ExpectedHexDigit", B.PseudoSharedCode_34, null);
+    B.SharedCode_136 = new A.SharedCode(136, "mixinDeclaresConstructor");
+    B.MessageCode_ZOS = new A.MessageCode("Mixins can't declare constructors.", null, "MixinDeclaresConstructor", null, B.SharedCode_136);
     B.SharedCode_0 = new A.SharedCode(0, "abstractClassMember");
     B.MessageCode_ZSs = new A.MessageCode(string$.Membero, string$.Try_remte_ak, "AbstractClassMember", null, B.SharedCode_0);
     B.SharedCode_69 = new A.SharedCode(69, "externalMethodWithBody");
     B.MessageCode_aNL = new A.MessageCode(string$.An_extro, null, "ExternalMethodWithBody", null, B.SharedCode_69);
-    B.SharedCode_130 = new A.SharedCode(130, "missingKeywordOperator");
-    B.MessageCode_ae0 = new A.MessageCode(string$.Operat_, "Try adding the keyword 'operator'.", "MissingOperatorKeyword", null, B.SharedCode_130);
-    B.SharedCode_158 = new A.SharedCode(158, "setterConstructor");
-    B.MessageCode_ahx = new A.MessageCode("Constructors can't be a setter.", "Try removing 'set'.", "SetterConstructor", null, B.SharedCode_158);
-    B.SharedCode_95 = new A.SharedCode(95, "interfaceMixin");
-    B.MessageCode_aj4 = new A.MessageCode("A mixin can't be declared 'interface'.", "Try removing the 'interface' keyword.", "InterfaceMixin", null, B.SharedCode_95);
+    B.SharedCode_99 = new A.SharedCode(99, "invalidConstantConstPrefix");
+    B.MessageCode_aQt = new A.MessageCode(string$.The_exp, string$.Try_wrx20, "InvalidConstantPatternConstPrefix", null, B.SharedCode_99);
+    B.PseudoSharedCode_50 = new A.PseudoSharedCode(50, "unexpectedDollarInString");
+    B.MessageCode_ahz = new A.MessageCode(string$.A_____, string$.Try_ada_b, "UnexpectedDollarInString", B.PseudoSharedCode_50, null);
     B.PseudoSharedCode_40 = new A.PseudoSharedCode(40, "namedFunctionExpression");
     B.MessageCode_alT = new A.MessageCode("A function expression can't have a name.", null, "NamedFunctionExpression", B.PseudoSharedCode_40, null);
-    B.SharedCode_173 = new A.SharedCode(173, "varReturnType");
-    B.MessageCode_amd = new A.MessageCode("The return type can't be 'var'.", string$.Try_remtekx20, "VarReturnType", null, B.SharedCode_173);
-    B.SharedCode_167 = new A.SharedCode(167, "typeParameterOnConstructor");
-    B.MessageCode_bFJ = new A.MessageCode("Constructors can't have type parameters.", "Try removing the type parameters.", "ConstructorWithTypeParameters", null, B.SharedCode_167);
+    B.SharedCode_176 = new A.SharedCode(176, "varReturnType");
+    B.MessageCode_b8v = new A.MessageCode("The return type can't be 'var'.", string$.Try_remtekx20, "VarReturnType", null, B.SharedCode_176);
+    B.PseudoSharedCode_51 = new A.PseudoSharedCode(51, "unexpectedSeparatorInNumber");
+    B.MessageCode_bRc = new A.MessageCode(string$.Digit_, "Try removing the '_'.", "UnexpectedSeparatorInNumber", B.PseudoSharedCode_51, null);
     B.SharedCode_56 = new A.SharedCode(56, "exportDirectiveAfterPartDirective");
     B.MessageCode_bnu = new A.MessageCode(string$.Export, string$.Try_moep, "ExportAfterPart", null, B.SharedCode_56);
-    B.SharedCode_157 = new A.SharedCode(157, "sealedMixinClass");
-    B.MessageCode_c0S = new A.MessageCode(string$.A_mixics, "Try removing the 'sealed' keyword.", "SealedMixinClass", null, B.SharedCode_157);
+    B.SharedCode_113 = new A.SharedCode(113, "invalidThisInInitializer");
+    B.MessageCode_cYk = new A.MessageCode(string$.Can_ont, null, "InvalidThisInInitializer", null, B.SharedCode_113);
     B.PseudoSharedCode_42 = new A.PseudoSharedCode(42, "nonPartOfDirectiveInPart");
     B.MessageCode_cx4 = new A.MessageCode(string$.The_pa, string$.Try_remteot, "NonPartOfDirectiveInPart", B.PseudoSharedCode_42, null);
-    B.SharedCode_151 = new A.SharedCode(151, "recordLiteralOnePositionalNoTrailingComma");
-    B.MessageCode_dfQ = new A.MessageCode(string$.A_recol_, "Try adding a trailing comma.", "RecordLiteralOnePositionalFieldNoTrailingComma", null, B.SharedCode_151);
-    B.SharedCode_102 = new A.SharedCode(102, "invalidConstantPatternGeneric");
-    B.MessageCode_e5c = new A.MessageCode(string$.This_e, string$.Try_wrx2e, "InvalidConstantPatternGeneric", null, B.SharedCode_102);
-    B.SharedCode_139 = new A.SharedCode(139, "multipleExtendsClauses");
-    B.MessageCode_e9e = new A.MessageCode(string$.Each_ce, string$.Try_cho, "MultipleExtends", null, B.SharedCode_139);
-    B.SharedCode_98 = new A.SharedCode(98, "invalidConstantConstPrefix");
-    B.MessageCode_ePM = new A.MessageCode(string$.The_exp, string$.Try_wrx20, "InvalidConstantPatternConstPrefix", null, B.SharedCode_98);
-    B.SharedCode_97 = new A.SharedCode(97, "invalidAwaitInFor");
-    B.MessageCode_emP = new A.MessageCode(string$.The_kea, string$.Try_remtekx2c, "InvalidAwaitFor", null, B.SharedCode_97);
-    B.SharedCode_114 = new A.SharedCode(114, "invalidUnicodeEscapeUBracket");
-    B.MessageCode_emg = new A.MessageCode(string$.An_escux7b, null, "InvalidUnicodeEscapeUBracket", null, B.SharedCode_114);
+    B.SharedCode_164 = new A.SharedCode(164, "staticOperator");
+    B.MessageCode_d61 = new A.MessageCode("Operators can't be static.", "Try removing the keyword 'static'.", "StaticOperator", null, B.SharedCode_164);
+    B.SharedCode_133 = new A.SharedCode(133, "missingPrimaryConstructor");
+    B.MessageCode_eFw = new A.MessageCode(string$.An_extntmp, string$.Try_ada_pi, "MissingPrimaryConstructor", null, B.SharedCode_133);
+    B.SharedCode_143 = new A.SharedCode(143, "multiplePartOfDirectives");
+    B.MessageCode_eLC = new A.MessageCode(string$.Only_op, string$.Try_remaofp, "PartOfTwice", null, B.SharedCode_143);
+    B.SharedCode_85 = new A.SharedCode(85, "getterConstructor");
+    B.MessageCode_ePr = new A.MessageCode("Constructors can't be a getter.", "Try removing 'get'.", "GetterConstructor", null, B.SharedCode_85);
+    B.SharedCode_149 = new A.SharedCode(149, "nullAwareCascadeOutOfOrder");
+    B.MessageCode_eyg = new A.MessageCode(string$.The___, string$.Try_mo_, "NullAwareCascadeOutOfOrder", null, B.SharedCode_149);
+    B.SharedCode_79 = new A.SharedCode(79, "finalAndCovariantLateWithInitializer");
+    B.MessageCode_f68 = new A.MessageCode(string$.Memberm, string$.Try_remefcx2c, "FinalAndCovariantLateWithInitializer", null, B.SharedCode_79);
+    B.SharedCode_131 = new A.SharedCode(131, "missingKeywordOperator");
+    B.MessageCode_gjw = new A.MessageCode(string$.Operat_, "Try adding the keyword 'operator'.", "MissingOperatorKeyword", null, B.SharedCode_131);
+    B.SharedCode_140 = new A.SharedCode(140, "multipleExtendsClauses");
+    B.MessageCode_grV = new A.MessageCode(string$.Each_ce, string$.Try_cho, "MultipleExtends", null, B.SharedCode_140);
     B.SharedCode_30 = new A.SharedCode(30, "defaultInSwitchExpression");
     B.MessageCode_h0d = new A.MessageCode(string$.A_switea, "Try replacing `default` with `_`.", "DefaultInSwitchExpression", null, B.SharedCode_30);
-    B.SharedCode_153 = new A.SharedCode(153, "redirectingConstructorWithBody");
-    B.MessageCode_h9S = new A.MessageCode(string$.Redire, string$.Try_remtebx2c, "RedirectingConstructorWithBody", null, B.SharedCode_153);
-    B.SharedCode_80 = new A.SharedCode(80, "finalEnum");
-    B.MessageCode_hXw = new A.MessageCode("Enums can't be declared to be 'final'.", "Try removing the keyword 'final'.", "FinalEnum", null, B.SharedCode_80);
+    B.SharedCode_144 = new A.SharedCode(144, "multipleVarianceModifiers");
+    B.MessageCode_hCn = new A.MessageCode(string$.Each_t, string$.Use_at, "MultipleVarianceModifiers", null, B.SharedCode_144);
     B.SharedCode_58 = new A.SharedCode(58, "extensionDeclaresAbstractMember");
     B.MessageCode_hku = new A.MessageCode(string$.Extenss, string$.Try_pr, "ExtensionDeclaresAbstractMember", null, B.SharedCode_58);
     B.SharedCode_37 = new A.SharedCode(37, "emptyRecordLiteralWithComma");
     B.MessageCode_hrB = new A.MessageCode(string$.A_recolo, "Try removing the trailing comma.", "RecordLiteralZeroFieldsWithTrailingComma", null, B.SharedCode_37);
-    B.SharedCode_155 = new A.SharedCode(155, "sealedEnum");
-    B.MessageCode_i6q = new A.MessageCode("Enums can't be declared to be 'sealed'.", "Try removing the keyword 'sealed'.", "SealedEnum", null, B.SharedCode_155);
-    B.SharedCode_170 = new A.SharedCode(170, "unexpectedTokens");
-    B.MessageCode_iUe = new A.MessageCode("Unexpected tokens.", null, "UnexpectedTokens", null, B.SharedCode_170);
     B.SharedCode_60 = new A.SharedCode(60, "extensionTypeExtends");
     B.MessageCode_iut = new A.MessageCode(string$.An_extntcn, string$.Try_remte_en, "ExtensionTypeExtends", null, B.SharedCode_60);
     B.PseudoSharedCode_43 = new A.PseudoSharedCode(43, "nonSyncAbstractMethod");
     B.MessageCode_j2m = new A.MessageCode("Abstract methods can't use 'async', 'async*', or 'sync*'.", null, "AbstractNotSync", B.PseudoSharedCode_43, null);
-    B.SharedCode_169 = new A.SharedCode(169, "typedefInClass");
-    B.MessageCode_j6O = new A.MessageCode(string$.Typedei, "Try moving the typedef to the top-level.", "TypedefInClass", null, B.SharedCode_169);
+    B.SharedCode_101 = new A.SharedCode(101, "invalidConstantPatternDuplicateConst");
+    B.MessageCode_jAj = new A.MessageCode(string$.Duplic, string$.Try_remo, "InvalidConstantPatternDuplicateConst", null, B.SharedCode_101);
     B.SharedCode_21 = new A.SharedCode(21, "constFactory");
     B.MessageCode_jQJ = new A.MessageCode(string$.Only_r, string$.Try_remte_cx2c, "ConstFactory", null, B.SharedCode_21);
     B.SharedCode_65 = new A.SharedCode(65, "externalEnum");
     B.MessageCode_jgF = new A.MessageCode(string$.Enums_e, "Try removing the keyword 'external'.", "ExternalEnum", null, B.SharedCode_65);
-    B.SharedCode_152 = new A.SharedCode(152, "recordTypeOnePositionalNoTrailingComma");
-    B.MessageCode_kn0 = new A.MessageCode(string$.A_recot_, "Try adding a trailing comma.", "RecordTypeOnePositionalFieldNoTrailingComma", null, B.SharedCode_152);
-    B.PseudoSharedCode_47 = new A.PseudoSharedCode(47, "returnInGenerator");
-    B.MessageCode_kx2 = new A.MessageCode("'sync*' and 'async*' can't return a value.", null, "GeneratorReturnsValue", B.PseudoSharedCode_47, null);
-    B.SharedCode_141 = new A.SharedCode(141, "multipleOnClauses");
-    B.MessageCode_lps = new A.MessageCode(string$.Each_m, string$.Try_coao, "MultipleOnClauses", null, B.SharedCode_141);
-    B.SharedCode_90 = new A.SharedCode(90, "implementsBeforeOn");
-    B.MessageCode_mIO = new A.MessageCode(string$.The_on, string$.Try_moo, "ImplementsBeforeOn", null, B.SharedCode_90);
-    B.SharedCode_74 = new A.SharedCode(74, "factoryTopLevelDeclaration");
-    B.MessageCode_mTa = new A.MessageCode(string$.Top_le, "Try removing the keyword 'factory'.", "FactoryTopLevelDeclaration", null, B.SharedCode_74);
-    B.SharedCode_108 = new A.SharedCode(108, "invalidInsideUnaryPattern");
-    B.MessageCode_mcU = new A.MessageCode(string$.This_p, string$.Try_coi, "InvalidInsideUnaryPattern", null, B.SharedCode_108);
+    B.SharedCode_156 = new A.SharedCode(156, "redirectingConstructorWithBody");
+    B.MessageCode_kll = new A.MessageCode(string$.Redire, string$.Try_remtebx2c, "RedirectingConstructorWithBody", null, B.SharedCode_156);
+    B.SharedCode_171 = new A.SharedCode(171, "typeParameterOnOperator");
+    B.MessageCode_lCF = new A.MessageCode(string$.Types_, "Try removing the type parameters.", "OperatorWithTypeParameters", null, B.SharedCode_171);
+    B.SharedCode_83 = new A.SharedCode(83, "finalMixinClass");
+    B.MessageCode_mJg = new A.MessageCode("A mixin class can't be declared 'final'.", "Try removing the 'final' keyword.", "FinalMixinClass", null, B.SharedCode_83);
+    B.SharedCode_95 = new A.SharedCode(95, "interfaceEnum");
+    B.MessageCode_mXW = new A.MessageCode(string$.Enums_i, "Try removing the keyword 'interface'.", "InterfaceEnum", null, B.SharedCode_95);
     B.SharedCode_40 = new A.SharedCode(40, "enumInClass");
     B.MessageCode_mdU = new A.MessageCode("Enums can't be declared inside classes.", "Try moving the enum to the top-level.", "EnumInClass", null, B.SharedCode_40);
-    B.SharedCode_107 = new A.SharedCode(107, "invalidInitializer");
-    B.MessageCode_nDE = new A.MessageCode("Not a valid initializer.", string$.To_ini, "InvalidInitializer", null, B.SharedCode_107);
-    B.SharedCode_154 = new A.SharedCode(154, "redirectionInNonFactoryConstructor");
-    B.MessageCode_niK = new A.MessageCode(string$.Only_f, string$.Try_ma, "RedirectionInNonFactory", null, B.SharedCode_154);
+    B.SharedCode_130 = new A.SharedCode(130, "missingInitializer");
+    B.MessageCode_mdl = new A.MessageCode("Expected an initializer.", null, "ExpectedAnInitializer", null, B.SharedCode_130);
+    B.SharedCode_90 = new A.SharedCode(90, "implementsBeforeExtends");
+    B.MessageCode_mul = new A.MessageCode(string$.The_exti, string$.Try_moeti, "ImplementsBeforeExtends", null, B.SharedCode_90);
+    B.SharedCode_97 = new A.SharedCode(97, "interfaceMixinClass");
+    B.MessageCode_nkq = new A.MessageCode(string$.A_mixici, "Try removing the 'interface' keyword.", "InterfaceMixinClass", null, B.SharedCode_97);
     B.PseudoSharedCode_15 = new A.PseudoSharedCode(15, "expectedTypeName");
     B.MessageCode_o1d = new A.MessageCode("Type 'void' can't be used here.", "Try removing 'void' keyword or replace it with 'var', 'final', or a type.", "InvalidVoid", B.PseudoSharedCode_15, null);
     B.SharedCode_57 = new A.SharedCode(57, "extensionAugmentationHasOnClause");
     B.MessageCode_o4f = new A.MessageCode(string$.Extens_, "Try removing the 'on' clause.", "ExtensionAugmentationHasOnClause", null, B.SharedCode_57);
-    B.SharedCode_110 = new A.SharedCode(110, "invalidOperatorQuestionmarkPeriodForSuper");
-    B.MessageCode_oIz = new A.MessageCode(string$.The_op, "Try replacing '?.' with '.'", "SuperNullAware", null, B.SharedCode_110);
+    B.SharedCode_126 = new A.SharedCode(126, "missingAssignmentInInitializer");
+    B.MessageCode_o6W = new A.MessageCode(string$.Expect, string$.To_ini, "MissingAssignmentInInitializer", null, B.SharedCode_126);
     B.PseudoSharedCode_26 = new A.PseudoSharedCode(26, "invalidCodePoint");
     B.MessageCode_oUK = new A.MessageCode("The escape sequence starting with '\\u' isn't a valid code point.", null, "InvalidCodePoint", B.PseudoSharedCode_26, null);
-    B.SharedCode_113 = new A.SharedCode(113, "invalidUnicodeEscapeStarted");
-    B.MessageCode_odM = new A.MessageCode("The string '\\' can't stand alone.", string$.Try_adano, "InvalidEscapeStarted", null, B.SharedCode_113);
+    B.SharedCode_123 = new A.SharedCode(123, "literalWithNew");
+    B.MessageCode_oYt = new A.MessageCode("A literal can't be prefixed by 'new'.", "Try removing 'new'", "LiteralWithNew", null, B.SharedCode_123);
     B.SharedCode_17 = new A.SharedCode(17, "colonInPlaceOfIn");
     B.MessageCode_oji = new A.MessageCode(string$.For_in, string$.Try_repc, "ColonInPlaceOfIn", null, B.SharedCode_17);
+    B.SharedCode_84 = new A.SharedCode(84, "functionTypedParameterVar");
+    B.MessageCode_ovB = new A.MessageCode(string$.Functi, string$.Try_repk, "FunctionTypedParameterVar", null, B.SharedCode_84);
     B.SharedCode_29 = new A.SharedCode(29, "covariantMember");
     B.MessageCode_p6P = new A.MessageCode(string$.Getterv, "Try removing the 'covariant' keyword.", "CovariantMember", null, B.SharedCode_29);
     B.MessageCode_pBH = new A.MessageCode("'yield' can't be used as an identifier in 'async', 'async*', or 'sync*' methods.", null, "YieldAsIdentifier", B.PseudoSharedCode_3, null);
-    B.SharedCode_127 = new A.SharedCode(127, "missingConstFinalVarOrType");
-    B.MessageCode_pGG = new A.MessageCode(string$.Variabsm, string$.Try_adt, "MissingConstFinalVarOrType", null, B.SharedCode_127);
     B.PseudoSharedCode_39 = new A.PseudoSharedCode(39, "multipleImplementsClauses");
     B.MessageCode_pbf = new A.MessageCode("Each class definition can have at most one implements clause.", string$.Try_coai, "MultipleImplements", B.PseudoSharedCode_39, null);
-    B.SharedCode_116 = new A.SharedCode(116, "invalidUnicodeEscapeUStarted");
-    B.MessageCode_q3l = new A.MessageCode(string$.An_escux27x20, null, "InvalidUnicodeEscapeUStarted", null, B.SharedCode_116);
+    B.SharedCode_82 = new A.SharedCode(82, "finalMixin");
+    B.MessageCode_pjq = new A.MessageCode("A mixin can't be declared 'final'.", "Try removing the 'final' keyword.", "FinalMixin", null, B.SharedCode_82);
+    B.SharedCode_155 = new A.SharedCode(155, "recordTypeOnePositionalNoTrailingComma");
+    B.MessageCode_q0i = new A.MessageCode(string$.A_recot_, "Try adding a trailing comma.", "RecordTypeOnePositionalFieldNoTrailingComma", null, B.SharedCode_155);
     B.SharedCode_8 = new A.SharedCode(8, "annotationSpaceBeforeParenthesis");
     B.MessageCode_qxi = new A.MessageCode(string$.Annota, string$.Remove, "MetadataSpaceBeforeParenthesis", null, B.SharedCode_8);
-    B.SharedCode_126 = new A.SharedCode(126, "missingCatchOrFinally");
-    B.MessageCode_r1O = new A.MessageCode(string$.A_try_b, string$.Try_ade, "OnlyTry", null, B.SharedCode_126);
-    B.SharedCode_118 = new A.SharedCode(118, "latePatternVariableDeclaration");
-    B.MessageCode_r9u = new A.MessageCode(string$.A_pattu, "Try removing the keyword `late`.", "LatePatternVariableDeclaration", null, B.SharedCode_118);
-    B.SharedCode_142 = new A.SharedCode(142, "multiplePartOfDirectives");
-    B.MessageCode_rJJ = new A.MessageCode(string$.Only_op, string$.Try_remaofp, "PartOfTwice", null, B.SharedCode_142);
+    B.SharedCode_128 = new A.SharedCode(128, "missingConstFinalVarOrType");
+    B.MessageCode_qzU = new A.MessageCode(string$.Variabsm, string$.Try_adt, "MissingConstFinalVarOrType", null, B.SharedCode_128);
+    B.SharedCode_148 = new A.SharedCode(148, "newConstructorQualifiedName");
+    B.MessageCode_raE = new A.MessageCode(string$.Constrh, string$.Try_remtecl, "NewConstructorQualifiedName", null, B.SharedCode_148);
     B.PseudoSharedCode_0 = new A.PseudoSharedCode(0, "abstractExtensionField");
     B.MessageCode_rm7 = new A.MessageCode("Extension fields can't be declared 'abstract'.", "Try removing the 'abstract' keyword.", "AbstractExtensionField", B.PseudoSharedCode_0, null);
-    B.SharedCode_171 = new A.SharedCode(171, "varAndType");
-    B.MessageCode_rrr = new A.MessageCode(string$.Variabsc, "Try removing 'var.'", "TypeAfterVar", null, B.SharedCode_171);
     B.PseudoSharedCode_38 = new A.PseudoSharedCode(38, "missingTypedefParameters");
     B.MessageCode_rsi = new A.MessageCode("A typedef needs an explicit list of parameters.", "Try adding a parameter list to the typedef.", "MissingTypedefParameters", B.PseudoSharedCode_38, null);
     B.SharedCode_5 = new A.SharedCode(5, "abstractSealedClass");
     B.MessageCode_s1z = new A.MessageCode(string$.A__sea, "Try removing the 'abstract' keyword.", "AbstractSealedClass", null, B.SharedCode_5);
-    B.SharedCode_85 = new A.SharedCode(85, "illegalAssignmentToNonAssignable");
-    B.MessageCode_s5f = new A.MessageCode(string$.Illega, null, "IllegalAssignmentToNonAssignable", null, B.SharedCode_85);
     B.SharedCode_22 = new A.SharedCode(22, "constMethod");
     B.MessageCode_sXM = new A.MessageCode(string$.Gettern, "Try removing the 'const' keyword.", "ConstMethod", null, B.SharedCode_22);
-    B.SharedCode_78 = new A.SharedCode(78, "finalAndCovariantLateWithInitializer");
-    B.MessageCode_tA9 = new A.MessageCode(string$.Memberm, string$.Try_remefcx2c, "FinalAndCovariantLateWithInitializer", null, B.SharedCode_78);
+    B.SharedCode_153 = new A.SharedCode(153, "prefixAfterCombinator");
+    B.MessageCode_sbp = new A.MessageCode(string$.The_pr, string$.Try_mop, "PrefixAfterCombinator", null, B.SharedCode_153);
+    B.SharedCode_93 = new A.SharedCode(93, "importDirectiveAfterPartDirective");
+    B.MessageCode_skW = new A.MessageCode(string$.Import, string$.Try_moi, "ImportAfterPart", null, B.SharedCode_93);
+    B.SharedCode_115 = new A.SharedCode(115, "invalidUnicodeEscapeUBracket");
+    B.MessageCode_t7M = new A.MessageCode(string$.An_escux7b, null, "InvalidUnicodeEscapeUBracket", null, B.SharedCode_115);
+    B.SharedCode_78 = new A.SharedCode(78, "finalAndCovariant");
+    B.MessageCode_tLt = new A.MessageCode(string$.Membercfc, string$.Try_remefcx2e, "FinalAndCovariant", null, B.SharedCode_78);
     B.SharedCode_39 = new A.SharedCode(39, "emptyRecordTypeWithComma");
     B.MessageCode_tWA = new A.MessageCode(string$.A_recoto, "Try removing the trailing comma.", "RecordTypeZeroFieldsButTrailingComma", null, B.SharedCode_39);
+    B.SharedCode_142 = new A.SharedCode(142, "multipleOnClauses");
+    B.MessageCode_tX3 = new A.MessageCode(string$.Each_m, string$.Try_coao, "MultipleOnClauses", null, B.SharedCode_142);
     B.SharedCode_61 = new A.SharedCode(61, "extensionTypeWith");
     B.MessageCode_thg = new A.MessageCode(string$.An_extntc_, string$.Try_remte_w, "ExtensionTypeWith", null, B.SharedCode_61);
+    B.SharedCode_91 = new A.SharedCode(91, "implementsBeforeOn");
+    B.MessageCode_tsq = new A.MessageCode(string$.The_on, string$.Try_moo, "ImplementsBeforeOn", null, B.SharedCode_91);
     B.SharedCode_35 = new A.SharedCode(35, "duplicatePrefix");
     B.MessageCode_tuB = new A.MessageCode(string$.An_impp, "Try removing all but one prefix.", "DuplicatePrefix", null, B.SharedCode_35);
     B.SharedCode_20 = new A.SharedCode(20, "constClass");
     B.MessageCode_tzN = new A.MessageCode("Classes can't be declared to be 'const'.", string$.Try_remte_cx2e, "ConstClass", null, B.SharedCode_20);
     B.SharedCode_68 = new A.SharedCode(68, "externalLateField");
     B.MessageCode_uEu = new A.MessageCode("External fields cannot be late.", string$.Try_remte_er, "ExternalLateField", null, B.SharedCode_68);
-    B.SharedCode_156 = new A.SharedCode(156, "sealedMixin");
-    B.MessageCode_uHW = new A.MessageCode("A mixin can't be declared 'sealed'.", "Try removing the 'sealed' keyword.", "SealedMixin", null, B.SharedCode_156);
-    B.SharedCode_159 = new A.SharedCode(159, "stackOverflow");
-    B.MessageCode_un5 = new A.MessageCode(string$.The_fi, "Try simplifying the code.", "StackOverflow", null, B.SharedCode_159);
+    B.SharedCode_141 = new A.SharedCode(141, "multipleLibraryDirectives");
+    B.MessageCode_uzS = new A.MessageCode(string$.Only_ol, string$.Try_remaofl, "MultipleLibraryDirectives", null, B.SharedCode_141);
+    B.SharedCode_162 = new A.SharedCode(162, "stackOverflow");
+    B.MessageCode_v0n = new A.MessageCode(string$.The_fi, "Try simplifying the code.", "StackOverflow", null, B.SharedCode_162);
+    B.SharedCode_152 = new A.SharedCode(152, "patternVariableDeclarationOutsideFunctionOrMethod");
+    B.MessageCode_vQF = new A.MessageCode(string$.A_patta, string$.Try_de, "PatternVariableDeclarationOutsideFunctionOrMethod", null, B.SharedCode_152);
     B.SharedCode_67 = new A.SharedCode(67, "externalFactoryWithBody");
     B.MessageCode_vYz = new A.MessageCode("External factories can't have a body.", string$.Try_remtebx20, "ExternalFactoryWithBody", null, B.SharedCode_67);
-    B.SharedCode_122 = new A.SharedCode(122, "literalWithNew");
-    B.MessageCode_vkt = new A.MessageCode("A literal can't be prefixed by 'new'.", "Try removing 'new'", "LiteralWithNew", null, B.SharedCode_122);
     B.SharedCode_2 = new A.SharedCode(2, "abstractFinalBaseClass");
     B.MessageCode_voz = new A.MessageCode(string$.An__abb, string$.Try_remefb, "AbstractFinalBaseClass", null, B.SharedCode_2);
-    B.PseudoSharedCode_56 = new A.PseudoSharedCode(56, "wrongSeparatorForPositionalParameter");
-    B.MessageCode_w5F = new A.MessageCode("Positional optional parameters can't use ':' to specify a default value.", "Try replacing ':' with '='.", "PositionalParameterWithEquals", B.PseudoSharedCode_56, null);
     B.PseudoSharedCode_4 = new A.PseudoSharedCode(4, "awaitInWrongContext");
     B.MessageCode_wNq = new A.MessageCode("'await' can only be used in 'async' or 'async*' methods.", null, "AwaitNotAsync", B.PseudoSharedCode_4, null);
     B.SharedCode_33 = new A.SharedCode(33, "duplicateDeferred");
     B.MessageCode_wUE = new A.MessageCode(string$.An_imp_, string$.Try_rema_, "DuplicateDeferred", null, B.SharedCode_33);
+    B.SharedCode_154 = new A.SharedCode(154, "recordLiteralOnePositionalNoTrailingComma");
+    B.MessageCode_we7 = new A.MessageCode(string$.A_recol_, "Try adding a trailing comma.", "RecordLiteralOnePositionalFieldNoTrailingComma", null, B.SharedCode_154);
     B.PseudoSharedCode_18 = new A.PseudoSharedCode(18, "extensionTypeWithAbstractMember");
     B.MessageCode_x04 = new A.MessageCode("Extension types can't declare abstract members.", string$.Try_pr, "ExtensionTypeDeclaresAbstractMember", B.PseudoSharedCode_18, null);
     B.SharedCode_41 = new A.SharedCode(41, "equalityCannotBeEqualityOperand");
     B.MessageCode_xa3 = new A.MessageCode(string$.A_comp, string$.Try_pu, "EqualityCannotBeEqualityOperand", null, B.SharedCode_41);
+    B.SharedCode_170 = new A.SharedCode(170, "typeParameterOnConstructor");
+    B.MessageCode_xsm = new A.MessageCode("Constructors can't have type parameters.", "Try removing the type parameters.", "ConstructorWithTypeParameters", null, B.SharedCode_170);
     B.SharedCode_25 = new A.SharedCode(25, "constructorWithTypeArguments");
     B.MessageCode_xyz = new A.MessageCode(string$.A_cons, string$.Try_remtetr, "ConstructorWithTypeArguments", null, B.SharedCode_25);
-    B.PseudoSharedCode_57 = new A.PseudoSharedCode(57, "yieldInNonGenerator");
-    B.MessageCode_yPb = new A.MessageCode("'yield' can only be used in 'sync*' or 'async*' methods.", null, "YieldNotGenerator", B.PseudoSharedCode_57, null);
-    B.SharedCode_129 = new A.SharedCode(129, "missingInitializer");
-    B.MessageCode_z2b = new A.MessageCode("Expected an initializer.", null, "ExpectedAnInitializer", null, B.SharedCode_129);
-    B.SharedCode_135 = new A.SharedCode(135, "mixinDeclaresConstructor");
-    B.MessageCode_zMr = new A.MessageCode("Mixins can't declare constructors.", null, "MixinDeclaresConstructor", null, B.SharedCode_135);
+    B.SharedCode_145 = new A.SharedCode(145, "multipleWithClauses");
+    B.MessageCode_yvz = new A.MessageCode(string$.Each_cw, string$.Try_coaw, "MultipleWith", null, B.SharedCode_145);
     B.SharedCode_10 = new A.SharedCode(10, "annotationWithTypeArgumentsUninstantiated");
     B.MessageCode_zSA = new A.MessageCode(string$.An_ann, null, "MetadataTypeArgumentsUninstantiated", null, B.SharedCode_10);
-    B.SharedCode_106 = new A.SharedCode(106, "invalidHexEscape");
-    B.MessageCode_zpJ = new A.MessageCode(string$.An_escx, null, "InvalidHexEscape", null, B.SharedCode_106);
     B.MetadataReferenceIdentifierContext_5d6 = new A.MetadataReferenceIdentifierContext("metadataContinuation", false, false, true, true, B.Template_CgK);
     B.MetadataReferenceIdentifierContext_B49 = new A.MetadataReferenceIdentifierContext("metadataReference", false, false, false, true, B.Template_CgK);
     B.MetadataReferenceIdentifierContext_T08 = new A.MetadataReferenceIdentifierContext("metadataContinuationAfterTypeArguments", false, false, true, true, B.Template_CgK);
@@ -77678,7 +77940,6 @@
     B.NullValue_ParameterDefaultValue = new A.NullValue("ParameterDefaultValue");
     B.NullValue_Prefix = new A.NullValue("Prefix");
     B.NullValue_PrimaryConstructor = new A.NullValue("PrimaryConstructor");
-    B.NullValue_RepresentationDeclarationImpl = new A.NullValue("RepresentationDeclarationImpl");
     B.NullValue_Token = new A.NullValue("Token");
     B.NullValue_TypeArguments = new A.NullValue("TypeArguments");
     B.NullValue_TypeBuilder = new A.NullValue("TypeBuilder");
@@ -77690,224 +77951,6 @@
     B.ParameterKind_NAMED_REQUIRED_2_false_true = new A.ParameterKind("NAMED_REQUIRED", 2, false, true);
     B.ParameterKind_POSITIONAL_1_false_false = new A.ParameterKind("POSITIONAL", 1, false, false);
     B.ParameterKind_REQUIRED_0_true_false = new A.ParameterKind("REQUIRED", 0, true, false);
-    B.ExpectedType_5 = new A.ExpectedType(5, "token");
-    B.List_ExpectedType_5 = makeConstList([B.ExpectedType_5], type$.JSArray_ExpectedType);
-    B.ParserErrorCode_6Tg = new A.ParserErrorCode(B.List_ExpectedType_5, "EXPECTED_IDENTIFIER_BUT_GOT_KEYWORD", "ParserErrorCode.EXPECTED_IDENTIFIER_BUT_GOT_KEYWORD", "'{0}' can't be used as an identifier because it's a keyword.", string$.Try_ren);
-    B.ExpectedType_2 = new A.ExpectedType(2, "name");
-    B.List_ExpectedType_2 = makeConstList([B.ExpectedType_2], type$.JSArray_ExpectedType);
-    B.ParserErrorCode_6du = new A.ParserErrorCode(B.List_ExpectedType_2, "INVALID_CONSTANT_PATTERN_BINARY", "ParserErrorCode.INVALID_CONSTANT_PATTERN_BINARY", "The binary operator {0} is not supported as a constant pattern.", string$.Try_wrx2e);
-    B.List_ExpectedType_4_ExpectedType_5 = makeConstList([B.ExpectedType_4, B.ExpectedType_5], type$.JSArray_ExpectedType);
-    B.ParserErrorCode_9e5 = new A.ParserErrorCode(B.List_ExpectedType_4_ExpectedType_5, "LITERAL_WITH_CLASS", "ParserErrorCode.LITERAL_WITH_CLASS", "A {0} literal can't be prefixed by '{1}'.", "Try removing '{1}'");
-    B.ParserErrorCode_Ouz = new A.ParserErrorCode(B.List_ExpectedType_2, "TYPE_ARGUMENTS_ON_TYPE_VARIABLE", "ParserErrorCode.TYPE_ARGUMENTS_ON_TYPE_VARIABLE", "Can't use type arguments with type variable '{0}'.", "Try removing the type arguments.");
-    B.ParserErrorCode_P6M = new A.ParserErrorCode(B.List_ExpectedType_5, "INVALID_OPERATOR", "ParserErrorCode.INVALID_OPERATOR", "The string '{0}' isn't a user-definable operator.", null);
-    B.ParserErrorCode_U3x = new A.ParserErrorCode(B.List_ExpectedType_5, "ILLEGAL_PATTERN_ASSIGNMENT_VARIABLE_NAME", "ParserErrorCode.ILLEGAL_PATTERN_ASSIGNMENT_VARIABLE_NAME", "A variable assigned by a pattern assignment can't be named '{0}'.", "Choose a different name.");
-    B.ParserErrorCode_UOD = new A.ParserErrorCode(B.List_ExpectedType_2, "INVALID_CONSTANT_PATTERN_UNARY", "ParserErrorCode.INVALID_CONSTANT_PATTERN_UNARY", "The unary operator {0} is not supported as a constant pattern.", string$.Try_wrx2e);
-    B.ParserErrorCode_ZWj = new A.ParserErrorCode(B.List_ExpectedType_5, "EXTRANEOUS_MODIFIER_IN_PRIMARY_CONSTRUCTOR", "ParserErrorCode.EXTRANEOUS_MODIFIER_IN_PRIMARY_CONSTRUCTOR", "Can't have modifier '{0}' in a primary constructor.", "Try removing '{0}'.");
-    B.ParserErrorCode_cR1 = new A.ParserErrorCode(B.List_ExpectedType_2, "DUPLICATE_LABEL_IN_SWITCH_STATEMENT", "ParserErrorCode.DUPLICATE_LABEL_IN_SWITCH_STATEMENT", "The label '{0}' was already used in this switch statement.", string$.Try_cha);
-    B.ParserErrorCode_fa9 = new A.ParserErrorCode(B.List_ExpectedType_5, "INVALID_USE_OF_COVARIANT_IN_EXTENSION", "ParserErrorCode.INVALID_USE_OF_COVARIANT_IN_EXTENSION", "Can't have modifier '{0}' in an extension.", "Try removing '{0}'.");
-    B.ParserErrorCode_giY = new A.ParserErrorCode(B.List_ExpectedType_4_ExpectedType_5, "LITERAL_WITH_CLASS_AND_NEW", "ParserErrorCode.LITERAL_WITH_CLASS_AND_NEW", "A {0} literal can't be prefixed by 'new {1}'.", "Try removing 'new' and '{1}'");
-    B.ParserErrorCode_lYX = new A.ParserErrorCode(B.List_ExpectedType_5, "DUPLICATED_MODIFIER", "ParserErrorCode.DUPLICATED_MODIFIER", "The modifier '{0}' was already specified.", string$.Try_remaoc);
-    B.ParserErrorCode_nEG = new A.ParserErrorCode(B.List_ExpectedType_2, "PATTERN_ASSIGNMENT_DECLARES_VARIABLE", "ParserErrorCode.PATTERN_ASSIGNMENT_DECLARES_VARIABLE", "Variable '{0}' can't be declared in a pattern assignment.", string$.Try_usp);
-    B.ParserErrorCode_oe0 = new A.ParserErrorCode(B.List_ExpectedType_5, "ILLEGAL_PATTERN_VARIABLE_NAME", "ParserErrorCode.ILLEGAL_PATTERN_VARIABLE_NAME", "The variable declared by a variable pattern can't be named '{0}'.", "Choose a different name.");
-    B.ParserErrorCode_qWN = new A.ParserErrorCode(B.List_ExpectedType_5, "EXTRANEOUS_MODIFIER", "ParserErrorCode.EXTRANEOUS_MODIFIER", "Can't have modifier '{0}' here.", "Try removing '{0}'.");
-    B.ParserErrorCode_xeT = new A.ParserErrorCode(B.List_ExpectedType_5, "EXTRANEOUS_MODIFIER_IN_EXTENSION_TYPE", "ParserErrorCode.EXTRANEOUS_MODIFIER_IN_EXTENSION_TYPE", "Can't have modifier '{0}' in an extension type.", "Try removing '{0}'.");
-    B.ParserErrorCode_yZC = new A.ParserErrorCode(B.List_ExpectedType_5, "ILLEGAL_PATTERN_IDENTIFIER_NAME", "ParserErrorCode.ILLEGAL_PATTERN_IDENTIFIER_NAME", "A pattern can't refer to an identifier named '{0}'.", "Match the identifier using '==");
-    B.List_ExpectedType_4_ExpectedType_4 = makeConstList([B.ExpectedType_4, B.ExpectedType_4], type$.JSArray_ExpectedType);
-    B.ParserErrorTemplate_38z = new A.ParserErrorTemplate(B.List_ExpectedType_4_ExpectedType_4, "MODIFIER_OUT_OF_ORDER", "ParserErrorCode.MODIFIER_OUT_OF_ORDER", "The modifier '{0}' should be before the modifier '{1}'.", "Try re-ordering the modifiers.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
-    B.ParserErrorTemplate_4kp = new A.ParserErrorTemplate(B.List_ExpectedType_4_ExpectedType_4, "MULTIPLE_CLAUSES", "ParserErrorCode.MULTIPLE_CLAUSES", "Each '{0}' definition can have at most one '{1}' clause.", "Try combining all of the '{1}' clauses into a single clause.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
-    B.ParserErrorTemplate_8OE = new A.ParserErrorTemplate(B.List_ExpectedType_4, "EXPERIMENT_NOT_ENABLED_OFF_BY_DEFAULT", "ParserErrorCode.EXPERIMENT_NOT_ENABLED_OFF_BY_DEFAULT", "This requires the experimental '{0}' language feature to be enabled.", "Try passing the '--enable-experiment={0}' command line option.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String);
-    B.ParserErrorTemplate_BRK = new A.ParserErrorTemplate(B.List_ExpectedType_4_ExpectedType_4, "OUT_OF_ORDER_CLAUSES", "ParserErrorCode.OUT_OF_ORDER_CLAUSES", "The '{0}' clause must come before the '{1}' clause.", "Try moving the '{0}' clause before the '{1}' clause.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
-    B.ParserErrorTemplate_HFR = new A.ParserErrorTemplate(B.List_ExpectedType_4, "UNEXPECTED_TOKEN", "ParserErrorCode.UNEXPECTED_TOKEN", "Unexpected text '{0}'.", "Try removing the text.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.ParserErrorTemplate_P5Q = new A.ParserErrorTemplate(B.List_ExpectedType_4, "EXPECTED_INSTEAD", "ParserErrorCode.EXPECTED_INSTEAD", "Expected '{0}' instead of this.", null, type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String);
-    B.ParserErrorTemplate_SAT = new A.ParserErrorTemplate(B.List_ExpectedType_4_ExpectedType_4, "CONFLICTING_MODIFIERS", "ParserErrorCode.CONFLICTING_MODIFIERS", "Members can't be declared to be both '{0}' and '{1}'.", "Try removing one of the keywords.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
-    B.ParserErrorTemplate_UAG = new A.ParserErrorTemplate(B.List_ExpectedType_4_ExpectedType_4, "BINARY_OPERATOR_WRITTEN_OUT", "ParserErrorCode.BINARY_OPERATOR_WRITTEN_OUT", "Binary operator '{0}' is written as '{1}' instead of the written out word.", "Try replacing '{0}' with '{1}'.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
-    B.ParserErrorTemplate_fwC = new A.ParserErrorTemplate(B.List_ExpectedType_4, "EXPECTED_TOKEN", "ParserErrorCode.EXPECTED_TOKEN", "Expected to find '{0}'.", null, type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.ParserErrorTemplate_gzW = new A.ParserErrorTemplate(B.List_ExpectedType_4, "INVALID_CODE_POINT", "ParserErrorCode.INVALID_CODE_POINT", "The escape sequence '{0}' isn't a valid code point.", null, type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.ParserErrorTemplate_jR8 = new A.ParserErrorTemplate(B.List_ExpectedType_4_ExpectedType_4, "EXPERIMENT_NOT_ENABLED", "ParserErrorCode.EXPERIMENT_NOT_ENABLED", "This requires the '{0}' language feature to be enabled.", "Try updating your pubspec.yaml to set the minimum SDK constraint to {1} or higher, and running 'pub get'.", type$.ParserErrorTemplate_of_LocatableDiagnostic_Function_$named_$req_string_String_and_$req_string2_String);
-    B.ParserErrorWithoutArguments_08W = new A.ParserErrorWithoutArguments(B.List_empty10, "LATE_PATTERN_VARIABLE_DECLARATION", "ParserErrorCode.LATE_PATTERN_VARIABLE_DECLARATION", string$.A_pattu, "Try removing the keyword `late`.");
-    B.ParserErrorWithoutArguments_0Z3 = new A.ParserErrorWithoutArguments(B.List_empty10, "CONST_METHOD", "ParserErrorCode.CONST_METHOD", string$.Gettern, "Try removing the 'const' keyword.");
-    B.ParserErrorWithoutArguments_0wF = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_LATE_FIELD", "ParserErrorCode.EXTERNAL_LATE_FIELD", "External fields cannot be late.", string$.Try_remte_er);
-    B.ParserErrorWithoutArguments_1QZ = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_CLASS_MEMBER", "ParserErrorCode.EXPECTED_CLASS_MEMBER", "Expected a class member.", "Try placing this code inside a class member.");
-    B.ParserErrorWithoutArguments_1dT = new A.ParserErrorWithoutArguments(B.List_empty10, "NATIVE_CLAUSE_SHOULD_BE_ANNOTATION", "ParserErrorCode.NATIVE_CLAUSE_SHOULD_BE_ANNOTATION", string$.Native, string$.Try_remti);
-    B.ParserErrorWithoutArguments_1g0 = new A.ParserErrorWithoutArguments(B.List_empty10, "DIRECTIVE_AFTER_DECLARATION", "ParserErrorCode.DIRECTIVE_AFTER_DECLARATION", string$.Direct, string$.Try_modi);
-    B.ParserErrorWithoutArguments_1gQ = new A.ParserErrorWithoutArguments(B.List_empty10, "ABSTRACT_SEALED_CLASS", "ParserErrorCode.ABSTRACT_SEALED_CLASS", string$.A__sea, "Try removing the 'abstract' keyword.");
-    B.ParserErrorWithoutArguments_1pM = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_FUNCTION_BODY", "ParserErrorCode.MISSING_FUNCTION_BODY", "A function body must be provided.", "Try adding a function body.");
-    B.ParserErrorWithoutArguments_22I = new A.ParserErrorWithoutArguments(B.List_empty10, "WITH_BEFORE_EXTENDS", "ParserErrorCode.WITH_BEFORE_EXTENDS", string$.The_extw, string$.Try_moetw);
-    B.ParserErrorWithoutArguments_2Gp = new A.ParserErrorWithoutArguments(B.List_empty10, "GETTER_CONSTRUCTOR", "ParserErrorCode.GETTER_CONSTRUCTOR", "Constructors can't be a getter.", "Try removing 'get'.");
-    B.ParserErrorWithoutArguments_2Z5 = new A.ParserErrorWithoutArguments(B.List_empty10, "CATCH_SYNTAX_EXTRA_PARAMETERS", "ParserErrorCode.CATCH_SYNTAX_EXTRA_PARAMETERS", string$.x27catch, string$.No_typ);
-    B.ParserErrorWithoutArguments_3YO = new A.ParserErrorWithoutArguments(B.List_empty10, "DEFERRED_AFTER_PREFIX", "ParserErrorCode.DEFERRED_AFTER_PREFIX", string$.The_dee, string$.Try_modee);
-    B.ParserErrorWithoutArguments_3vR = new A.ParserErrorWithoutArguments(B.List_empty10, "SWITCH_HAS_CASE_AFTER_DEFAULT_CASE", "ParserErrorCode.SWITCH_HAS_CASE_AFTER_DEFAULT_CASE", string$.The_dea, string$.Try_modea);
-    B.ParserErrorWithoutArguments_4HU = new A.ParserErrorWithoutArguments(B.List_empty10, "NAMED_PARAMETER_OUTSIDE_GROUP", "ParserErrorCode.NAMED_PARAMETER_OUTSIDE_GROUP", "Named parameters must be enclosed in curly braces ('{' and '}').", "Try surrounding the named parameters in curly braces.");
-    B.ParserErrorWithoutArguments_4g8 = new A.ParserErrorWithoutArguments(B.List_empty10, "SEALED_MIXIN", "ParserErrorCode.SEALED_MIXIN", "A mixin can't be declared 'sealed'.", "Try removing the 'sealed' keyword.");
-    B.ParserErrorWithoutArguments_4kB = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_STATEMENT", "ParserErrorCode.MISSING_STATEMENT", "Expected a statement.", null);
-    B.ParserErrorWithoutArguments_4mr = new A.ParserErrorWithoutArguments(B.List_empty10, "BREAK_OUTSIDE_OF_LOOP", "ParserErrorCode.BREAK_OUTSIDE_OF_LOOP", string$.A_brea, "Try removing the break statement.");
-    B.ParserErrorWithoutArguments_5G6 = new A.ParserErrorWithoutArguments(B.List_empty10, "WRONG_SEPARATOR_FOR_POSITIONAL_PARAMETER", "ParserErrorCode.WRONG_SEPARATOR_FOR_POSITIONAL_PARAMETER", "The default value of a positional parameter should be preceded by '='.", "Try replacing the ':' with '='.");
-    B.ParserErrorWithoutArguments_5I3 = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_UNICODE_ESCAPE_STARTED", "ParserErrorCode.INVALID_UNICODE_ESCAPE_STARTED", "The string '\\' can't stand alone.", string$.Try_adano);
-    B.ParserErrorWithoutArguments_5Ov = new A.ParserErrorWithoutArguments(B.List_empty10, "RECORD_TYPE_ONE_POSITIONAL_NO_TRAILING_COMMA", "ParserErrorCode.RECORD_TYPE_ONE_POSITIONAL_NO_TRAILING_COMMA", string$.A_recot_, "Try adding a trailing comma.");
-    B.ParserErrorWithoutArguments_5gp = new A.ParserErrorWithoutArguments(B.List_empty10, "COVARIANT_AND_STATIC", "ParserErrorCode.COVARIANT_AND_STATIC", string$.Memberccv, string$.Try_remecv);
-    B.ParserErrorWithoutArguments_6bT = new A.ParserErrorWithoutArguments(B.List_empty10, "PART_OF_NAME", "ParserErrorCode.PART_OF_NAME", "The 'part of' directive can't use a name with the enhanced-parts feature.", "Try using 'part of' with a URI instead.");
-    B.ParserErrorWithoutArguments_79l = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_CONSTANT_PATTERN_EMPTY_RECORD_LITERAL", "ParserErrorCode.INVALID_CONSTANT_PATTERN_EMPTY_RECORD_LITERAL", string$.The_em, null);
-    B.ParserErrorWithoutArguments_7Lt = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_CONSTANT_PATTERN_DUPLICATE_CONST", "ParserErrorCode.INVALID_CONSTANT_PATTERN_DUPLICATE_CONST", string$.Duplic, string$.Try_remo);
-    B.ParserErrorWithoutArguments_7pa = new A.ParserErrorWithoutArguments(B.List_empty10, "INTERFACE_ENUM", "ParserErrorCode.INTERFACE_ENUM", string$.Enums_i, "Try removing the keyword 'interface'.");
-    B.ParserErrorWithoutArguments_7sQ = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_VARIANCE_MODIFIERS", "ParserErrorCode.MULTIPLE_VARIANCE_MODIFIERS", string$.Each_t, string$.Use_at);
-    B.ParserErrorWithoutArguments_812 = new A.ParserErrorWithoutArguments(B.List_empty10, "UNEXPECTED_TOKENS", "ParserErrorCode.UNEXPECTED_TOKENS", "Unexpected tokens.", null);
-    B.ParserErrorWithoutArguments_8Sm = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_CATCH_CLAUSE_BODY", string$.A_catc, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_8Uk = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_CLASS_BODY", string$.A_clasd, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_8ZT = new A.ParserErrorWithoutArguments(B.List_empty10, "FIELD_INITIALIZED_OUTSIDE_DECLARING_CLASS", "ParserErrorCode.FIELD_INITIALIZED_OUTSIDE_DECLARING_CLASS", string$.A_fiel, string$.Try_pa);
-    B.ParserErrorWithoutArguments_8eE = new A.ParserErrorWithoutArguments(B.List_empty10, "FUNCTION_TYPED_PARAMETER_VAR", "ParserErrorCode.FUNCTION_TYPED_PARAMETER_VAR", string$.Functi, string$.Try_repk);
-    B.ParserErrorWithoutArguments_9Sf = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_ASSIGNABLE_SELECTOR", "ParserErrorCode.MISSING_ASSIGNABLE_SELECTOR", string$.Missin, "Try adding a selector.");
-    B.ParserErrorWithoutArguments_9ar = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_TYPEDEF_PARAMETERS", "ParserErrorCode.MISSING_TYPEDEF_PARAMETERS", "Typedefs must have an explicit list of parameters.", "Try adding a parameter list.");
-    B.ParserErrorWithoutArguments_9cF = new A.ParserErrorWithoutArguments(B.List_empty10, "SETTER_CONSTRUCTOR", "ParserErrorCode.SETTER_CONSTRUCTOR", "Constructors can't be a setter.", "Try removing 'set'.");
-    B.ParserErrorWithoutArguments_9kt = new A.ParserErrorWithoutArguments(B.List_empty10, "ANNOTATION_WITH_TYPE_ARGUMENTS_UNINSTANTIATED", "ParserErrorCode.ANNOTATION_WITH_TYPE_ARGUMENTS_UNINSTANTIATED", string$.An_ann, null);
-    B.ParserErrorWithoutArguments_9oe = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_HEX_ESCAPE", "ParserErrorCode.INVALID_HEX_ESCAPE", string$.An_escx, null);
-    B.ParserErrorWithoutArguments_9se = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_SUPER_IN_INITIALIZER", "ParserErrorCode.INVALID_SUPER_IN_INITIALIZER", string$.Can_ons, null);
-    B.ParserErrorWithoutArguments_A5N = new A.ParserErrorWithoutArguments(B.List_empty10, "ANNOTATION_WITH_TYPE_ARGUMENTS", "ParserErrorCode.ANNOTATION_WITH_TYPE_ARGUMENTS", "An annotation can't use type arguments.", null);
-    B.ParserErrorWithoutArguments_A9c = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_FUNCTION_PARAMETERS", "ParserErrorCode.MISSING_FUNCTION_PARAMETERS", "Functions must have an explicit list of parameters.", "Try adding a parameter list.");
-    B.ParserErrorWithoutArguments_Adz = new A.ParserErrorWithoutArguments(B.List_empty10, "TYPE_PARAMETER_ON_CONSTRUCTOR", "ParserErrorCode.TYPE_PARAMETER_ON_CONSTRUCTOR", "Constructors can't have type parameters.", "Try removing the type parameters.");
-    B.ParserErrorWithoutArguments_AuV = new A.ParserErrorWithoutArguments(B.List_empty10, "COLON_IN_PLACE_OF_IN", "ParserErrorCode.COLON_IN_PLACE_OF_IN", string$.For_in, string$.Try_repc);
-    B.ParserErrorWithoutArguments_BUc = new A.ParserErrorWithoutArguments(B.List_empty10, "ABSTRACT_FINAL_INTERFACE_CLASS", "ParserErrorCode.ABSTRACT_FINAL_INTERFACE_CLASS", string$.An__abi, string$.Try_remefi);
-    B.ParserErrorWithoutArguments_CCa = new A.ParserErrorWithoutArguments(B.List_empty10, "CONST_CONSTRUCTOR_WITH_BODY", "ParserErrorCode.CONST_CONSTRUCTOR_WITH_BODY", "Const constructors can't have a body.", string$.Try_remecnk);
-    B.ParserErrorWithoutArguments_CyI = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_NAMED_TYPE", "ParserErrorCode.EXPECTED_NAMED_TYPE_WITH", "Expected a mixin name.", "Try using a mixin name, possibly with type arguments.");
-    B.ParserErrorWithoutArguments_Due = new A.ParserErrorWithoutArguments(B.List_empty10, "PATTERN_VARIABLE_DECLARATION_OUTSIDE_FUNCTION_OR_METHOD", "ParserErrorCode.PATTERN_VARIABLE_DECLARATION_OUTSIDE_FUNCTION_OR_METHOD", string$.A_patta, string$.Try_de);
-    B.ParserErrorWithoutArguments_E5x = new A.ParserErrorWithoutArguments(B.List_empty10, "FINAL_ENUM", "ParserErrorCode.FINAL_ENUM", "Enums can't be declared to be 'final'.", "Try removing the keyword 'final'.");
-    B.ParserErrorWithoutArguments_ERf = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_CLASS", "ParserErrorCode.EXTERNAL_CLASS", string$.Classet, "Try removing the keyword 'external'.");
-    B.ParserErrorWithoutArguments_Ee1 = new A.ParserErrorWithoutArguments(B.List_empty10, "DEFAULT_IN_SWITCH_EXPRESSION", "ParserErrorCode.DEFAULT_IN_SWITCH_EXPRESSION", string$.A_switea, "Try replacing `default` with `_`.");
-    B.ParserErrorWithoutArguments_Eeh = new A.ParserErrorWithoutArguments(B.List_empty10, "NON_PART_OF_DIRECTIVE_IN_PART", "ParserErrorCode.NON_PART_OF_DIRECTIVE_IN_PART", string$.The_pa, string$.Try_remteot);
-    B.ParserErrorWithoutArguments_Emg = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_TRY_STATEMENT_BODY", string$.A_try_s, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_Ev2 = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_CONSTRUCTOR_NAME", "ParserErrorCode.INVALID_CONSTRUCTOR_NAME", string$.The_na, null);
-    B.ParserErrorWithoutArguments_F0V = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_TYPE_NAME", "ParserErrorCode.EXPECTED_TYPE_NAME", "Expected a type name.", null);
-    B.ParserErrorWithoutArguments_GIz = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_OPERATOR_QUESTIONMARK_PERIOD_FOR_SUPER", "ParserErrorCode.INVALID_OPERATOR_QUESTIONMARK_PERIOD_FOR_SUPER", string$.The_op, "Try replacing '?.' with '.'");
-    B.ParserErrorWithoutArguments_GKe = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_EXPRESSION_IN_THROW", "ParserErrorCode.MISSING_EXPRESSION_IN_THROW", "Missing expression after 'throw'.", string$.Add_an);
-    B.ParserErrorWithoutArguments_GPi = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_NAMED_TYPE", "ParserErrorCode.EXPECTED_NAMED_TYPE_EXTENDS", "Expected a class name.", "Try using a class name, possibly with type arguments.");
-    B.ParserErrorWithoutArguments_GmI = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_ASSIGNMENT_IN_INITIALIZER", "ParserErrorCode.MISSING_ASSIGNMENT_IN_INITIALIZER", string$.Expect, string$.To_ini);
-    B.ParserErrorWithoutArguments_GmL = new A.ParserErrorWithoutArguments(B.List_empty10, "ASYNC_KEYWORD_USED_AS_IDENTIFIER", "ParserErrorCode.ASYNC_KEYWORD_USED_AS_IDENTIFIER", "The keywords 'await' and 'yield' can't be used as identifiers in an asynchronous or generator function.", null);
-    B.ParserErrorWithoutArguments_H7j = new A.ParserErrorWithoutArguments(B.List_empty10, "TYPEDEF_IN_CLASS", "ParserErrorCode.TYPEDEF_IN_CLASS", string$.Typedei, "Try moving the typedef to the top-level.");
-    B.ParserErrorWithoutArguments_HDv = new A.ParserErrorWithoutArguments(B.List_empty10, "CATCH_SYNTAX", "ParserErrorCode.CATCH_SYNTAX", string$.x27catch, string$.No_typ);
-    B.ParserErrorWithoutArguments_HWm = new A.ParserErrorWithoutArguments(B.List_empty10, "REPRESENTATION_FIELD_TRAILING_COMMA", "ParserErrorCode.REPRESENTATION_FIELD_TRAILING_COMMA", "The representation field can't have a trailing comma.", "Try removing the trailing comma.");
-    B.ParserErrorWithoutArguments_Ha9 = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_STAR_AFTER_SYNC", "ParserErrorCode.MISSING_STAR_AFTER_SYNC", "The modifier 'sync' must be followed by a star ('*').", "Try removing the modifier, or add a star.");
-    B.ParserErrorWithoutArguments_HqL = new A.ParserErrorWithoutArguments(B.List_empty10, "INTERFACE_MIXIN", "ParserErrorCode.INTERFACE_MIXIN", "A mixin can't be declared 'interface'.", "Try removing the 'interface' keyword.");
-    B.ParserErrorWithoutArguments_IGE = new A.ParserErrorWithoutArguments(B.List_empty10, "NULL_AWARE_CASCADE_OUT_OF_ORDER", "ParserErrorCode.NULL_AWARE_CASCADE_OUT_OF_ORDER", string$.The___, string$.Try_mo_);
-    B.ParserErrorWithoutArguments_J37 = new A.ParserErrorWithoutArguments(B.List_empty10, "POSITIONAL_AFTER_NAMED_ARGUMENT", "ParserErrorCode.POSITIONAL_AFTER_NAMED_ARGUMENT", "Positional arguments must occur before named arguments.", "Try moving all of the positional arguments before the named arguments.");
-    B.ParserErrorWithoutArguments_Jjt = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_PRIMARY_CONSTRUCTOR_PARAMETERS", "ParserErrorCode.MISSING_PRIMARY_CONSTRUCTOR_PARAMETERS", string$.A_prim, string$.Try_adf);
-    B.ParserErrorWithoutArguments_K0R = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_NAMED_TYPE", "ParserErrorCode.EXPECTED_NAMED_TYPE_IMPLEMENTS", "Expected the name of a class or mixin.", string$.Try_usc);
-    B.ParserErrorWithoutArguments_KGr = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTENSION_AUGMENTATION_HAS_ON_CLAUSE", "ParserErrorCode.EXTENSION_AUGMENTATION_HAS_ON_CLAUSE", string$.Extens_, "Try removing the 'on' clause.");
-    B.ParserErrorWithoutArguments_Kgf = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_CONST_FINAL_VAR_OR_TYPE", "ParserErrorCode.MISSING_CONST_FINAL_VAR_OR_TYPE", string$.Variabsm, string$.Try_adt);
-    B.ParserErrorWithoutArguments_LEo = new A.ParserErrorWithoutArguments(B.List_empty10, "IMPORT_DIRECTIVE_AFTER_PART_DIRECTIVE", "ParserErrorCode.IMPORT_DIRECTIVE_AFTER_PART_DIRECTIVE", string$.Import, string$.Try_moi);
-    B.ParserErrorWithoutArguments_Ln9 = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPORT_DIRECTIVE_AFTER_PART_DIRECTIVE", "ParserErrorCode.EXPORT_DIRECTIVE_AFTER_PART_DIRECTIVE", string$.Export, string$.Try_moep);
-    B.ParserErrorWithoutArguments_MfN = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_INITIALIZER", "ParserErrorCode.INVALID_INITIALIZER", "Not a valid initializer.", string$.To_ini);
-    B.ParserErrorWithoutArguments_Mh7 = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_UNICODE_ESCAPE_U_BRACKET", "ParserErrorCode.INVALID_UNICODE_ESCAPE_U_BRACKET", string$.An_escux7b, null);
-    B.ParserErrorWithoutArguments_MrW = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_METHOD_WITH_BODY", "ParserErrorCode.EXTERNAL_METHOD_WITH_BODY", string$.An_extro, null);
-    B.ParserErrorWithoutArguments_Mwi = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_NAMED_TYPE", "ParserErrorCode.EXPECTED_NAMED_TYPE_ON", "Expected the name of a class or mixin.", string$.Try_usc);
-    B.ParserErrorWithoutArguments_N0t = new A.ParserErrorWithoutArguments(B.List_empty10, "ABSTRACT_CLASS_MEMBER", "ParserErrorCode.ABSTRACT_CLASS_MEMBER", string$.Membero, string$.Try_remte_ak);
-    B.ParserErrorWithoutArguments_Nab = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTENSION_DECLARES_CONSTRUCTOR", "ParserErrorCode.EXTENSION_DECLARES_CONSTRUCTOR", "Extensions can't declare constructors.", string$.Try_remtec);
-    B.ParserErrorWithoutArguments_NkJ = new A.ParserErrorWithoutArguments(B.List_empty10, "ABSTRACT_STATIC_FIELD", "ParserErrorCode.ABSTRACT_STATIC_FIELD", string$.Static, string$.Try_remte_aos);
-    B.ParserErrorWithoutArguments_OLl = new A.ParserErrorWithoutArguments(B.List_empty10, "VAR_RETURN_TYPE", "ParserErrorCode.VAR_RETURN_TYPE", "The return type can't be 'var'.", string$.Try_remtekx20);
-    B.ParserErrorWithoutArguments_OzI = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_UNICODE_ESCAPE_U_NO_BRACKET", "ParserErrorCode.INVALID_UNICODE_ESCAPE_U_NO_BRACKET", string$.An_escux27x2e, null);
-    B.ParserErrorWithoutArguments_PRx = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_MIXIN_BODY", string$.A_mixid, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_PRy = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_REPRESENTATION_FIELD", "ParserErrorCode.EXPECTED_REPRESENTATION_FIELD", "Expected a representation field.", "Try providing the representation field for this extension type.");
-    B.ParserErrorWithoutArguments_PfA = new A.ParserErrorWithoutArguments(B.List_empty10, "REDIRECTION_IN_NON_FACTORY_CONSTRUCTOR", "ParserErrorCode.REDIRECTION_IN_NON_FACTORY_CONSTRUCTOR", string$.Only_f, string$.Try_ma);
-    B.ParserErrorWithoutArguments_Qj4 = new A.ParserErrorWithoutArguments(B.List_empty10, "SEALED_MIXIN_CLASS", "ParserErrorCode.SEALED_MIXIN_CLASS", string$.A_mixics, "Try removing the 'sealed' keyword.");
-    B.ParserErrorWithoutArguments_RAm = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_PRIMARY_CONSTRUCTOR", "ParserErrorCode.MISSING_PRIMARY_CONSTRUCTOR", string$.An_extntmp, string$.Try_ada_pi);
-    B.ParserErrorWithoutArguments_RLw = new A.ParserErrorWithoutArguments(B.List_empty10, "CONST_AND_FINAL", "ParserErrorCode.CONST_AND_FINAL", string$.Memberccn, string$.Try_remecno);
-    B.ParserErrorWithoutArguments_RaT = new A.ParserErrorWithoutArguments(B.List_empty10, "PREFIX_AFTER_COMBINATOR", "ParserErrorCode.PREFIX_AFTER_COMBINATOR", string$.The_pr, string$.Try_mop);
-    B.ParserErrorWithoutArguments_SKo = new A.ParserErrorWithoutArguments(B.List_empty10, "RECORD_LITERAL_ONE_POSITIONAL_NO_TRAILING_COMMA", "ParserErrorCode.RECORD_LITERAL_ONE_POSITIONAL_NO_TRAILING_COMMA", string$.A_recol_, "Try adding a trailing comma.");
-    B.ParserErrorWithoutArguments_SNG = new A.ParserErrorWithoutArguments(B.List_empty10, "VAR_AND_TYPE", "ParserErrorCode.VAR_AND_TYPE", string$.Variabsc, "Try removing 'var.'");
-    B.ParserErrorWithoutArguments_Sc9 = new A.ParserErrorWithoutArguments(B.List_empty10, "STATIC_CONSTRUCTOR", "ParserErrorCode.STATIC_CONSTRUCTOR", "Constructors can't be static.", "Try removing the keyword 'static'.");
-    B.ParserErrorWithoutArguments_Sgo = new A.ParserErrorWithoutArguments(B.List_empty10, "VOID_WITH_TYPE_ARGUMENTS", "ParserErrorCode.VOID_WITH_TYPE_ARGUMENTS", "Type 'void' can't have type arguments.", "Try removing the type arguments.");
-    B.ParserErrorWithoutArguments_Swm = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_ENUM_BODY", "ParserErrorCode.MISSING_ENUM_BODY", string$.An_enu, "Try adding a body and defining at least one constant.");
-    B.ParserErrorWithoutArguments_TNj = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_LIBRARY_DIRECTIVES", "ParserErrorCode.MULTIPLE_LIBRARY_DIRECTIVES", string$.Only_ol, string$.Try_remaofl);
-    B.ParserErrorWithoutArguments_Tov = new A.ParserErrorWithoutArguments(B.List_empty10, "CONSTRUCTOR_WITH_TYPE_ARGUMENTS", "ParserErrorCode.CONSTRUCTOR_WITH_TYPE_ARGUMENTS", string$.A_cons, string$.Try_remtetr);
-    B.ParserErrorWithoutArguments_Tub = new A.ParserErrorWithoutArguments(B.List_empty10, "INTERFACE_MIXIN_CLASS", "ParserErrorCode.INTERFACE_MIXIN_CLASS", string$.A_mixici, "Try removing the 'interface' keyword.");
-    B.ParserErrorWithoutArguments_UBn = new A.ParserErrorWithoutArguments(B.List_empty10, "WRONG_NUMBER_OF_PARAMETERS_FOR_SETTER", "ParserErrorCode.WRONG_NUMBER_OF_PARAMETERS_FOR_SETTER", "Setters must declare exactly one required positional parameter.", null);
-    B.ParserErrorWithoutArguments_UcZ = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_FACTORY_REDIRECTION", "ParserErrorCode.EXTERNAL_FACTORY_REDIRECTION", "A redirecting factory can't be external.", "Try removing the 'external' modifier.");
-    B.ParserErrorWithoutArguments_Usw = new A.ParserErrorWithoutArguments(B.List_empty10, "COVARIANT_MEMBER", "ParserErrorCode.COVARIANT_MEMBER", string$.Getterv, "Try removing the 'covariant' keyword.");
-    B.ParserErrorWithoutArguments_VHT = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_PREFIX_IN_DEFERRED_IMPORT", "ParserErrorCode.MISSING_PREFIX_IN_DEFERRED_IMPORT", "Deferred imports should have a prefix.", string$.Try_ada_pe);
-    B.ParserErrorWithoutArguments_VJI = new A.ParserErrorWithoutArguments(B.List_empty10, "STACK_OVERFLOW", "ParserErrorCode.STACK_OVERFLOW", string$.The_fi, "Try simplifying the code.");
-    B.ParserErrorWithoutArguments_VRB = new A.ParserErrorWithoutArguments(B.List_empty10, "ENUM_IN_CLASS", "ParserErrorCode.ENUM_IN_CLASS", "Enums can't be declared inside classes.", "Try moving the enum to the top-level.");
-    B.ParserErrorWithoutArguments_VTk = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_INITIALIZER", "ParserErrorCode.MISSING_INITIALIZER", "Expected an initializer.", null);
-    B.ParserErrorWithoutArguments_ViY = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_EXECUTABLE", "ParserErrorCode.EXPECTED_EXECUTABLE", "Expected a method, getter, setter or operator declaration.", "This appears to be incomplete code. Try removing it or completing it.");
-    B.ParserErrorWithoutArguments_Vmw = new A.ParserErrorWithoutArguments(B.List_empty10, "ANNOTATION_SPACE_BEFORE_PARENTHESIS", "ParserErrorCode.ANNOTATION_SPACE_BEFORE_PARENTHESIS", string$.Annota, string$.Remove);
-    B.ParserErrorWithoutArguments_VtH = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTENSION_TYPE_EXTENDS", "ParserErrorCode.EXTENSION_TYPE_EXTENDS", string$.An_extntcn, string$.Try_remte_en);
-    B.ParserErrorWithoutArguments_WHb = new A.ParserErrorWithoutArguments(B.List_empty10, "TYPE_BEFORE_FACTORY", "ParserErrorCode.TYPE_BEFORE_FACTORY", string$.Factorc, string$.Try_remtetp);
-    B.ParserErrorWithoutArguments_Wbd = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_SWITCH_STATEMENT_BODY", string$.A_swits, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_WxZ = new A.ParserErrorWithoutArguments(B.List_empty10, "CONST_CLASS", "ParserErrorCode.CONST_CLASS", "Classes can't be declared to be 'const'.", string$.Try_remte_cx2e);
-    B.ParserErrorWithoutArguments_Wz4 = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_WITH_CLAUSES", "ParserErrorCode.MULTIPLE_WITH_CLAUSES", string$.Each_cw, string$.Try_coaw);
-    B.ParserErrorWithoutArguments_YHr = new A.ParserErrorWithoutArguments(B.List_empty10, "INITIALIZED_VARIABLE_IN_FOR_EACH", "ParserErrorCode.INITIALIZED_VARIABLE_IN_FOR_EACH", string$.The_lo, string$.Try_remtei);
-    B.ParserErrorWithoutArguments_YZL = new A.ParserErrorWithoutArguments(B.List_empty10, "DEFAULT_VALUE_IN_FUNCTION_TYPE", "ParserErrorCode.DEFAULT_VALUE_IN_FUNCTION_TYPE", "Parameters in a function type can't have default values.", "Try removing the default value.");
-    B.ParserErrorWithoutArguments_Yys = new A.ParserErrorWithoutArguments(B.List_empty10, "FINAL_AND_COVARIANT", "ParserErrorCode.FINAL_AND_COVARIANT", string$.Membercfc, string$.Try_remefcx2e);
-    B.ParserErrorWithoutArguments_Z7S = new A.ParserErrorWithoutArguments(B.List_empty10, "EMPTY_RECORD_TYPE_NAMED_FIELDS_LIST", "ParserErrorCode.EMPTY_RECORD_TYPE_NAMED_FIELDS_LIST", string$.The_lis, "Try adding a named field to the list.");
-    B.ParserErrorWithoutArguments_ZI4 = new A.ParserErrorWithoutArguments(B.List_empty10, "VAR_AS_TYPE_NAME", "ParserErrorCode.VAR_AS_TYPE_NAME", string$.The_kev, null);
-    B.ParserErrorWithoutArguments_aHW = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_ENUM", "ParserErrorCode.EXTERNAL_ENUM", string$.Enums_e, "Try removing the keyword 'external'.");
-    B.ParserErrorWithoutArguments_afy = new A.ParserErrorWithoutArguments(B.List_empty10, "CONST_FACTORY", "ParserErrorCode.CONST_FACTORY", string$.Only_r, string$.Try_remte_cx2c);
-    B.ParserErrorWithoutArguments_bZB = new A.ParserErrorWithoutArguments(B.List_empty10, "EMPTY_RECORD_LITERAL_WITH_COMMA", "ParserErrorCode.EMPTY_RECORD_LITERAL_WITH_COMMA", string$.A_recolo, "Try removing the trailing comma.");
-    B.ParserErrorWithoutArguments_bix = new A.ParserErrorWithoutArguments(B.List_empty10, "IMPLEMENTS_BEFORE_ON", "ParserErrorCode.IMPLEMENTS_BEFORE_ON", string$.The_on, string$.Try_moo);
-    B.ParserErrorWithoutArguments_cbm = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_IDENTIFIER", "ParserErrorCode.MISSING_IDENTIFIER", "Expected an identifier.", null);
-    B.ParserErrorWithoutArguments_dLO = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_FACTORY_WITH_BODY", "ParserErrorCode.EXTERNAL_FACTORY_WITH_BODY", "External factories can't have a body.", string$.Try_remtebx20);
-    B.ParserErrorWithoutArguments_e52 = new A.ParserErrorWithoutArguments(B.List_empty10, "ABSTRACT_EXTERNAL_FIELD", "ParserErrorCode.ABSTRACT_EXTERNAL_FIELD", string$.Fields, string$.Try_remte_aoe);
-    B.ParserErrorWithoutArguments_f5r = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_STRING_LITERAL", "ParserErrorCode.EXPECTED_STRING_LITERAL", "Expected a string literal.", null);
-    B.ParserErrorWithoutArguments_fKm = new A.ParserErrorWithoutArguments(B.List_empty10, "SWITCH_HAS_MULTIPLE_DEFAULT_CASES", "ParserErrorCode.SWITCH_HAS_MULTIPLE_DEFAULT_CASES", string$.The__d, "Try removing all but one default case.");
-    B.ParserErrorWithoutArguments_gTN = new A.ParserErrorWithoutArguments(B.List_empty10, "CONTINUE_OUTSIDE_OF_LOOP", "ParserErrorCode.CONTINUE_OUTSIDE_OF_LOOP", string$.A_contc, "Try removing the continue statement.");
-    B.ParserErrorWithoutArguments_guI = new A.ParserErrorWithoutArguments(B.List_empty10, "BASE_ENUM", "ParserErrorCode.BASE_ENUM", "Enums can't be declared to be 'base'.", "Try removing the keyword 'base'.");
-    B.ParserErrorWithoutArguments_gz3 = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_PART_OF_DIRECTIVES", "ParserErrorCode.MULTIPLE_PART_OF_DIRECTIVES", string$.Only_op, string$.Try_remaofp);
-    B.ParserErrorWithoutArguments_hrX = new A.ParserErrorWithoutArguments(B.List_empty10, "STATIC_OPERATOR", "ParserErrorCode.STATIC_OPERATOR", "Operators can't be static.", "Try removing the keyword 'static'.");
-    B.ParserErrorWithoutArguments_iNN = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_REPRESENTATION_TYPE", "ParserErrorCode.EXPECTED_REPRESENTATION_TYPE", "Expected a representation type.", "Try providing the representation type for this extension type.");
-    B.ParserErrorWithoutArguments_iWA = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_FINALLY_CLAUSE_BODY", string$.A_fina, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_j79 = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_LITERAL_IN_CONFIGURATION", "ParserErrorCode.INVALID_LITERAL_IN_CONFIGURATION", "The literal in a configuration can't contain interpolation.", "Try removing the interpolation expressions.");
-    B.ParserErrorWithoutArguments_jMg = new A.ParserErrorWithoutArguments(B.List_empty10, "FINAL_AND_VAR", "ParserErrorCode.FINAL_AND_VAR", string$.Membercfv, "Try removing the keyword 'var'.");
-    B.ParserErrorWithoutArguments_jaP = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_SWITCH_EXPRESSION_BODY", string$.A_switeu, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_k03 = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_THIS_IN_INITIALIZER", "ParserErrorCode.INVALID_THIS_IN_INITIALIZER", string$.Can_ont, null);
-    B.ParserErrorWithoutArguments_k4O = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_IMPLEMENTS_CLAUSES", "ParserErrorCode.MULTIPLE_IMPLEMENTS_CLAUSES", "Each class or mixin definition can have at most one implements clause.", string$.Try_coai);
-    B.ParserErrorWithoutArguments_kKv = new A.ParserErrorWithoutArguments(B.List_empty10, "CLASS_IN_CLASS", "ParserErrorCode.CLASS_IN_CLASS", string$.Classei, "Try moving the class to the top-level.");
-    B.ParserErrorWithoutArguments_kMf = new A.ParserErrorWithoutArguments(B.List_empty10, "GETTER_WITH_PARAMETERS", "ParserErrorCode.GETTER_WITH_PARAMETERS", "Getters must be declared without a parameter list.", "Try removing the parameter list, or removing the keyword 'get' to define a method rather than a getter.");
-    B.ParserErrorWithoutArguments_kR5 = new A.ParserErrorWithoutArguments(B.List_empty10, "FINAL_MIXIN", "ParserErrorCode.FINAL_MIXIN", "A mixin can't be declared 'final'.", "Try removing the 'final' keyword.");
-    B.ParserErrorWithoutArguments_klQ = new A.ParserErrorWithoutArguments(B.List_empty10, "DUPLICATE_DEFERRED", "ParserErrorCode.DUPLICATE_DEFERRED", string$.An_imp_, string$.Try_rema_);
-    B.ParserErrorWithoutArguments_kz7 = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_EXTENDS_CLAUSES", "ParserErrorCode.MULTIPLE_EXTENDS_CLAUSES", string$.Each_ce, string$.Try_cho);
-    B.ParserErrorWithoutArguments_lCA = new A.ParserErrorWithoutArguments(B.List_empty10, "LITERAL_WITH_NEW", "ParserErrorCode.LITERAL_WITH_NEW", "A literal can't be prefixed by 'new'.", "Try removing 'new'");
-    B.ParserErrorWithoutArguments_lGm = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_EXTENSION_TYPE_BODY", string$.An_extntmb, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_lWQ = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_METHOD_PARAMETERS", "ParserErrorCode.MISSING_METHOD_PARAMETERS", "Methods must have an explicit list of parameters.", "Try adding a parameter list.");
-    B.ParserErrorWithoutArguments_lc5 = new A.ParserErrorWithoutArguments(B.List_empty10, "ILLEGAL_ASSIGNMENT_TO_NON_ASSIGNABLE", "ParserErrorCode.ILLEGAL_ASSIGNMENT_TO_NON_ASSIGNABLE", string$.Illega, null);
-    B.ParserErrorWithoutArguments_ldz = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_CONSTRUCTOR_WITH_FIELD_INITIALIZERS", "ParserErrorCode.EXTERNAL_CONSTRUCTOR_WITH_FIELD_INITIALIZERS", "An external constructor can't initialize fields.", "Try removing the field initializers, or removing the keyword 'external'.");
-    B.ParserErrorWithoutArguments_lfe = new A.ParserErrorWithoutArguments(B.List_empty10, "NAMED_FUNCTION_EXPRESSION", "ParserErrorCode.NAMED_FUNCTION_EXPRESSION", "Function expressions can't be named.", "Try removing the name, or moving the function expression to a function declaration statement.");
-    B.ParserErrorWithoutArguments_lfz = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_TYPEDEF", "ParserErrorCode.EXTERNAL_TYPEDEF", string$.Typedet, "Try removing the keyword 'external'.");
-    B.ParserErrorWithoutArguments_lq6 = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTERNAL_CONSTRUCTOR_WITH_INITIALIZER", "ParserErrorCode.EXTERNAL_CONSTRUCTOR_WITH_INITIALIZER", string$.An_extrc, null);
-    B.ParserErrorWithoutArguments_m5C = new A.ParserErrorWithoutArguments(B.List_empty10, "ANNOTATION_ON_TYPE_ARGUMENT", "ParserErrorCode.ANNOTATION_ON_TYPE_ARGUMENT", string$.Type_a, null);
-    B.ParserErrorWithoutArguments_mC7 = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTENSION_DECLARES_ABSTRACT_MEMBER", "ParserErrorCode.EXTENSION_DECLARES_ABSTRACT_MEMBER", string$.Extenss, string$.Try_pr);
-    B.ParserErrorWithoutArguments_mKt = new A.ParserErrorWithoutArguments(B.List_empty10, "MEMBER_WITH_CLASS_NAME", "ParserErrorCode.MEMBER_WITH_CLASS_NAME", string$.A_clasm, "Try renaming the member.");
-    B.ParserErrorWithoutArguments_mY0 = new A.ParserErrorWithoutArguments(B.List_empty10, "MIXIN_WITH_CLAUSE", "ParserErrorCode.MIXIN_WITH_CLAUSE", "A mixin can't have a with clause.", null);
-    B.ParserErrorWithoutArguments_mih = new A.ParserErrorWithoutArguments(B.List_empty10, "FINAL_MIXIN_CLASS", "ParserErrorCode.FINAL_MIXIN_CLASS", "A mixin class can't be declared 'final'.", "Try removing the 'final' keyword.");
-    B.ParserErrorWithoutArguments_mlQ = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_ELSE_OR_COMMA", "ParserErrorCode.EXPECTED_ELSE_OR_COMMA", "Expected 'else' or comma.", null);
-    B.ParserErrorWithoutArguments_nVg = new A.ParserErrorWithoutArguments(B.List_empty10, "VARIABLE_PATTERN_KEYWORD_IN_DECLARATION_CONTEXT", "ParserErrorCode.VARIABLE_PATTERN_KEYWORD_IN_DECLARATION_CONTEXT", string$.Variab_, "Try removing the keyword.");
-    B.ParserErrorWithoutArguments_nzc = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_INSIDE_UNARY_PATTERN", "ParserErrorCode.INVALID_INSIDE_UNARY_PATTERN", string$.This_p, string$.Try_coi);
-    B.ParserErrorWithoutArguments_oPA = new A.ParserErrorWithoutArguments(B.List_empty10, "EXPECTED_BODY", "ParserErrorCode.EXPECTED_EXTENSION_BODY", string$.An_extnd, "Try adding an empty body.");
-    B.ParserErrorWithoutArguments_oW5 = new A.ParserErrorWithoutArguments(B.List_empty10, "TOP_LEVEL_OPERATOR", "ParserErrorCode.TOP_LEVEL_OPERATOR", string$.Operats, string$.Try_remteop);
-    B.ParserErrorWithoutArguments_okk = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_CONSTANT_CONST_PREFIX", "ParserErrorCode.INVALID_CONSTANT_CONST_PREFIX", string$.The_exp, string$.Try_wrx20);
-    B.ParserErrorWithoutArguments_qFW = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_CONSTANT_PATTERN_GENERIC", "ParserErrorCode.INVALID_CONSTANT_PATTERN_GENERIC", string$.This_e, string$.Try_wrx2e);
-    B.ParserErrorWithoutArguments_rTL = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_CATCH_OR_FINALLY", "ParserErrorCode.MISSING_CATCH_OR_FINALLY", string$.A_try_b, string$.Try_ade);
-    B.ParserErrorWithoutArguments_rUc = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_ON_CLAUSES", "ParserErrorCode.MULTIPLE_ON_CLAUSES", string$.Each_m, string$.Try_coao);
-    B.ParserErrorWithoutArguments_rY8 = new A.ParserErrorWithoutArguments(B.List_empty10, "EXTENSION_TYPE_WITH", "ParserErrorCode.EXTENSION_TYPE_WITH", string$.An_extntc_, string$.Try_remte_w);
-    B.ParserErrorWithoutArguments_rsP = new A.ParserErrorWithoutArguments(B.List_empty10, "FACTORY_TOP_LEVEL_DECLARATION", "ParserErrorCode.FACTORY_TOP_LEVEL_DECLARATION", string$.Top_le, "Try removing the keyword 'factory'.");
-    B.ParserErrorWithoutArguments_s2I = new A.ParserErrorWithoutArguments(B.List_empty10, "IMPLEMENTS_BEFORE_EXTENDS", "ParserErrorCode.IMPLEMENTS_BEFORE_EXTENDS", string$.The_exti, string$.Try_moeti);
-    B.ParserErrorWithoutArguments_s8f = new A.ParserErrorWithoutArguments(B.List_empty10, "CONST_WITHOUT_PRIMARY_CONSTRUCTOR", "ParserErrorCode.CONST_WITHOUT_PRIMARY_CONSTRUCTOR", string$.x27const, string$.Try_remte_cx20);
-    B.ParserErrorWithoutArguments_sfB = new A.ParserErrorWithoutArguments(B.List_empty10, "CONTINUE_WITHOUT_LABEL_IN_CASE", "ParserErrorCode.CONTINUE_WITHOUT_LABEL_IN_CASE", string$.A_conti, string$.Try_ada_l);
-    B.ParserErrorWithoutArguments_swJ = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_UNICODE_ESCAPE_U_STARTED", "ParserErrorCode.INVALID_UNICODE_ESCAPE_U_STARTED", string$.An_escux27x20, null);
-    B.ParserErrorWithoutArguments_tBx = new A.ParserErrorWithoutArguments(B.List_empty10, "EMPTY_RECORD_TYPE_WITH_COMMA", "ParserErrorCode.EMPTY_RECORD_TYPE_WITH_COMMA", string$.A_recoto, "Try removing the trailing comma.");
-    B.ParserErrorWithoutArguments_tFH = new A.ParserErrorWithoutArguments(B.List_empty10, "DUPLICATE_PREFIX", "ParserErrorCode.DUPLICATE_PREFIX", string$.An_impp, "Try removing all but one prefix.");
-    B.ParserErrorWithoutArguments_tLr = new A.ParserErrorWithoutArguments(B.List_empty10, "FINAL_AND_COVARIANT_LATE_WITH_INITIALIZER", "ParserErrorCode.FINAL_AND_COVARIANT_LATE_WITH_INITIALIZER", string$.Memberm, string$.Try_remefcx2c);
-    B.ParserErrorWithoutArguments_uMY = new A.ParserErrorWithoutArguments(B.List_empty10, "MISSING_KEYWORD_OPERATOR", "ParserErrorCode.MISSING_KEYWORD_OPERATOR", string$.Operat_, "Try adding the keyword 'operator'.");
-    B.ParserErrorWithoutArguments_uvN = new A.ParserErrorWithoutArguments(B.List_empty10, "LIBRARY_DIRECTIVE_NOT_FIRST", "ParserErrorCode.LIBRARY_DIRECTIVE_NOT_FIRST", string$.The_lib, string$.Try_mol);
-    B.ParserErrorWithoutArguments_uzA = new A.ParserErrorWithoutArguments(B.List_empty10, "ABSTRACT_FINAL_BASE_CLASS", "ParserErrorCode.ABSTRACT_FINAL_BASE_CLASS", string$.An__abb, string$.Try_remefb);
-    B.ParserErrorWithoutArguments_v53 = new A.ParserErrorWithoutArguments(B.List_empty10, "SEALED_ENUM", "ParserErrorCode.SEALED_ENUM", "Enums can't be declared to be 'sealed'.", "Try removing the keyword 'sealed'.");
-    B.ParserErrorWithoutArguments_vGQ = new A.ParserErrorWithoutArguments(B.List_empty10, "REDIRECTING_CONSTRUCTOR_WITH_BODY", "ParserErrorCode.REDIRECTING_CONSTRUCTOR_WITH_BODY", string$.Redire, string$.Try_remtebx2c);
-    B.ParserErrorWithoutArguments_wWz = new A.ParserErrorWithoutArguments(B.List_empty10, "IMPLEMENTS_BEFORE_WITH", "ParserErrorCode.IMPLEMENTS_BEFORE_WITH", string$.The_wi, string$.Try_mow);
-    B.ParserErrorWithoutArguments_wcZ = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_AWAIT_IN_FOR", "ParserErrorCode.INVALID_AWAIT_IN_FOR", string$.The_kea, string$.Try_remtekx2c);
-    B.ParserErrorWithoutArguments_wm1 = new A.ParserErrorWithoutArguments(B.List_empty10, "TYPE_PARAMETER_ON_OPERATOR", "ParserErrorCode.TYPE_PARAMETER_ON_OPERATOR", string$.Types_, "Try removing the type parameters.");
-    B.ParserErrorWithoutArguments_wt5 = new A.ParserErrorWithoutArguments(B.List_empty10, "MULTIPLE_REPRESENTATION_FIELDS", "ParserErrorCode.MULTIPLE_REPRESENTATION_FIELDS", "Each extension type should have exactly one representation field.", "Try combining fields into a record, or removing extra fields.");
-    B.ParserErrorWithoutArguments_xLR = new A.ParserErrorWithoutArguments(B.List_empty10, "INVALID_CONSTANT_PATTERN_NEGATION", "ParserErrorCode.INVALID_CONSTANT_PATTERN_NEGATION", string$.Only_n, string$.Try_wrx2e);
-    B.ParserErrorWithoutArguments_xfS = new A.ParserErrorWithoutArguments(B.List_empty10, "REPRESENTATION_FIELD_MODIFIER", "ParserErrorCode.REPRESENTATION_FIELD_MODIFIER", "Representation fields can't have modifiers.", "Try removing the modifier.");
-    B.ParserErrorWithoutArguments_xl7 = new A.ParserErrorWithoutArguments(B.List_empty10, "ABSTRACT_LATE_FIELD", "ParserErrorCode.ABSTRACT_LATE_FIELD", "Abstract fields cannot be late.", string$.Try_remte_aol);
-    B.ParserErrorWithoutArguments_y8c = new A.ParserErrorWithoutArguments(B.List_empty10, "MIXIN_DECLARES_CONSTRUCTOR", "ParserErrorCode.MIXIN_DECLARES_CONSTRUCTOR", "Mixins can't declare constructors.", null);
-    B.ParserErrorWithoutArguments_yR6 = new A.ParserErrorWithoutArguments(B.List_empty10, "EQUALITY_CANNOT_BE_EQUALITY_OPERAND", "ParserErrorCode.EQUALITY_CANNOT_BE_EQUALITY_OPERAND", string$.A_comp, string$.Try_pu);
-    B.ParserErrorWithoutArguments_yUU = new A.ParserErrorWithoutArguments(B.List_empty10, "CONSTRUCTOR_WITH_RETURN_TYPE", "ParserErrorCode.CONSTRUCTOR_WITH_RETURN_TYPE", "Constructors can't have a return type.", "Try removing the return type.");
     B.PatternContext_false_0_declaration = new A.PatternContext0(false, 0, "declaration");
     B.PatternContext_false_2_assignment = new A.PatternContext0(false, 2, "assignment");
     B.PatternContext_true_1_matching = new A.PatternContext0(true, 1, "matching");
@@ -77932,11 +77975,13 @@
     B.PseudoSharedCode_23 = new A.PseudoSharedCode(23, "internalProblemStackNotEmpty");
     B.PseudoSharedCode_24 = new A.PseudoSharedCode(24, "internalProblemUnhandled");
     B.PseudoSharedCode_25 = new A.PseudoSharedCode(25, "internalProblemUnsupported");
+    B.PseudoSharedCode_46 = new A.PseudoSharedCode(46, "privateNamedNonFieldParameter");
+    B.PseudoSharedCode_47 = new A.PseudoSharedCode(47, "privateOptionalParameter");
     B.PseudoSharedCode_5 = new A.PseudoSharedCode(5, "builtInIdentifierAsType");
-    B.PseudoSharedCode_51 = new A.PseudoSharedCode(51, "unexpectedToken");
-    B.PseudoSharedCode_52 = new A.PseudoSharedCode(52, "unspecified");
-    B.PseudoSharedCode_53 = new A.PseudoSharedCode(53, "unsupportedOperator");
-    B.PseudoSharedCode_55 = new A.PseudoSharedCode(55, "unterminatedStringLiteral");
+    B.PseudoSharedCode_52 = new A.PseudoSharedCode(52, "unexpectedToken");
+    B.PseudoSharedCode_53 = new A.PseudoSharedCode(53, "unspecified");
+    B.PseudoSharedCode_54 = new A.PseudoSharedCode(54, "unsupportedOperator");
+    B.PseudoSharedCode_56 = new A.PseudoSharedCode(56, "unterminatedStringLiteral");
     B.PseudoSharedCode_6 = new A.PseudoSharedCode(6, "builtInIdentifierInDeclaration");
     B.PseudoSharedCode_8 = new A.PseudoSharedCode(8, "constNotInitialized");
     B.Quote_0 = new A.Quote(0, "Single");
@@ -77947,21 +77992,10 @@
     B.Quote_5 = new A.Quote(5, "RawDouble");
     B.Quote_6 = new A.Quote(6, "RawMultiLineSingle");
     B.Quote_7 = new A.Quote(7, "RawMultiLineDouble");
-    B.List_empty12 = makeConstList([], type$.JSArray_DocDirectivePositionalArgument);
-    B.List_empty13 = makeConstList([], type$.JSArray_DocDirectiveNamedArgument);
-    B.Record2_List_empty_List_empty = new A._Record_2(B.List_empty12, B.List_empty13);
+    B.List_empty11 = makeConstList([], type$.JSArray_DocDirectivePositionalArgument);
+    B.List_empty12 = makeConstList([], type$.JSArray_DocDirectiveNamedArgument);
+    B.Record2_List_empty_List_empty = new A._Record_2(B.List_empty11, B.List_empty12);
     B.RecordFieldDeclarationIdentifierContext_FOH = new A.RecordFieldDeclarationIdentifierContext("recordFieldDeclaration", false, false, false, true, B.Template_CgK);
-    B.ExpectedType_3 = new A.ExpectedType(3, "object");
-    B.List_ExpectedType_3 = makeConstList([B.ExpectedType_3], type$.JSArray_ExpectedType);
-    B.ScannerErrorTemplate_xU1 = new A.ScannerErrorTemplate(B.List_ExpectedType_3, "ILLEGAL_CHARACTER", "ScannerErrorCode.ILLEGAL_CHARACTER", "Illegal character '{0}'.", null, A.findType("ScannerErrorTemplate<LocatableDiagnostic({p0!Object})>"));
-    B.ScannerErrorTemplate_zPa = new A.ScannerErrorTemplate(B.List_ExpectedType_4, "UNSUPPORTED_OPERATOR", "ScannerErrorCode.UNSUPPORTED_OPERATOR", "The '{0}' operator is not supported.", null, A.findType("ScannerErrorTemplate<LocatableDiagnostic({p0!String})>"));
-    B.ScannerErrorWithoutArguments_9Ii = new A.ScannerErrorWithoutArguments(B.List_empty10, "UNEXPECTED_SEPARATOR_IN_NUMBER", "ScannerErrorCode.UNEXPECTED_SEPARATOR_IN_NUMBER", string$.Digit_, "Try removing the '_'.");
-    B.ScannerErrorWithoutArguments_EDR = new A.ScannerErrorWithoutArguments(B.List_empty10, "UNTERMINATED_STRING_LITERAL", "ScannerErrorCode.UNTERMINATED_STRING_LITERAL", "Unterminated string literal.", null);
-    B.ScannerErrorWithoutArguments_Eat = new A.ScannerErrorWithoutArguments(B.List_empty10, "UNEXPECTED_DOLLAR_IN_STRING", "ScannerErrorCode.UNEXPECTED_DOLLAR_IN_STRING", string$.A_____, string$.Try_ada_b);
-    B.ScannerErrorWithoutArguments_WRp = new A.ScannerErrorWithoutArguments(B.List_empty10, "UNTERMINATED_MULTI_LINE_COMMENT", "ScannerErrorCode.UNTERMINATED_MULTI_LINE_COMMENT", "Unterminated multi-line comment.", "Try terminating the comment with '*/', or removing any unbalanced occurrences of '/*' (because comments nest in Dart).");
-    B.ScannerErrorWithoutArguments_dke = new A.ScannerErrorWithoutArguments(B.List_empty10, "ENCODING", "ScannerErrorCode.ENCODING", "Unable to decode bytes as UTF-8.", null);
-    B.ScannerErrorWithoutArguments_hrw = new A.ScannerErrorWithoutArguments(B.List_empty10, "MISSING_DIGIT", "ScannerErrorCode.MISSING_DIGIT", "Decimal digit expected.", null);
-    B.ScannerErrorWithoutArguments_nVy = new A.ScannerErrorWithoutArguments(B.List_empty10, "MISSING_HEX_DIGIT", "ScannerErrorCode.MISSING_HEX_DIGIT", "Hexadecimal digit expected.", null);
     B.Object_tOj = {ASSERT: 0, BREAK: 1, CASE: 2, CATCH: 3, CLASS: 4, CONST: 5, CONTINUE: 6, DEFAULT: 7, DO: 8, ELSE: 9, ENUM: 10, EXTENDS: 11, FALSE: 12, FINAL: 13, FINALLY: 14, FOR: 15, IF: 16, IN: 17, IS: 18, NEW: 19, NULL: 20, RETHROW: 21, RETURN: 22, SUPER: 23, SWITCH: 24, THIS: 25, THROW: 26, TRUE: 27, TRY: 28, VAR: 29, VOID: 30, WHILE: 31, WITH: 32, ABSTRACT: 33, AS: 34, AUGMENT: 35, COVARIANT: 36, DEFERRED: 37, DYNAMIC: 38, EXPORT: 39, EXTENSION: 40, EXTERNAL: 41, FACTORY: 42, FUNCTION: 43, GET: 44, IMPLEMENTS: 45, IMPORT: 46, INTERFACE: 47, LATE: 48, LIBRARY: 49, OPERATOR: 50, MIXIN: 51, PART: 52, REQUIRED: 53, SET: 54, STATIC: 55, TYPEDEF: 56, AWAIT: 57, YIELD: 58, ASYNC: 59, BASE: 60, HIDE: 61, OF: 62, ON: 63, SEALED: 64, SHOW: 65, SYNC: 66, TYPE: 67, WHEN: 68};
     B.Set_03Udf = new A.ConstantStringSet(B.Object_tOj, 69, type$.ConstantStringSet_String);
     B.Object_when_0_as_1 = {when: 0, as: 1};
@@ -77971,59 +78005,47 @@
     B.SimpleTypeWith1Argument_SimpleTypeArgument1GtEq = new A.SimpleTypeWith1Argument(B.C_SimpleTypeArgument1GtEq);
     B.SimpleTypeWith1Argument_SimpleTypeArgument1GtGt = new A.SimpleTypeWith1Argument(B.C_SimpleTypeArgument1GtGt);
     B.SpreadOperator_false_0 = new A.SpreadOperator(false, 0);
-    B.Symbol_GZ9 = new A.Symbol("_parent=");
-    B.Symbol__becomeParentOf = new A.Symbol("_becomeParentOf");
-    B.Symbol_accept = new A.Symbol("accept");
-    B.Symbol_beginToken = new A.Symbol("beginToken");
-    B.Symbol_endToken = new A.Symbol("endToken");
-    B.Symbol_length = new A.Symbol("length");
-    B.Symbol_offset = new A.Symbol("offset");
     B.Template_1oA = new A.Template(A.codes___withArgumentsOldConstFieldWithoutInitializer$closure(), A.codes___withArgumentsConstFieldWithoutInitializer$closure(), "ConstFieldWithoutInitializer", B.PseudoSharedCode_8, null, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
-    B.SharedCode_99 = new A.SharedCode(99, "invalidConstantPatternBinary");
-    B.Template_5rc = new A.Template(A.codes___withArgumentsOldInvalidConstantPatternBinary$closure(), A.codes___withArgumentsInvalidConstantPatternBinary$closure(), "InvalidConstantPatternBinary", null, B.SharedCode_99, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
     B.Template_8ib = new A.Template(A.codes___withArgumentsOldNonAsciiIdentifier$closure(), A.codes___withArgumentsNonAsciiIdentifier$closure(), "NonAsciiIdentifier", B.PseudoSharedCode_22, null, A.findType("Template<Message(String,int),Message({character!String,unicode!int})>"));
     B.CfeSeverity_3 = new A.CfeSeverity(3, "internalProblem");
     B.Template_9Aq = new A.Template(A.codes___withArgumentsOldInternalProblemStackNotEmpty$closure(), A.codes___withArgumentsInternalProblemStackNotEmpty$closure(), "InternalProblemStackNotEmpty", B.PseudoSharedCode_23, null, A.findType("Template<Message(String,String),Message({name!String,string!String})>"));
+    B.SharedCode_87 = new A.SharedCode(87, "illegalPatternAssignmentVariableName");
+    B.Template_BQE = new A.Template(A.codes___withArgumentsOldIllegalPatternAssignmentVariableName$closure(), A.codes___withArgumentsIllegalPatternAssignmentVariableName$closure(), "IllegalPatternAssignmentVariableName", null, B.SharedCode_87, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.SharedCode_73 = new A.SharedCode(73, "extraneousModifierInPrimaryConstructor");
     B.Template_Enc = new A.Template(A.codes___withArgumentsOldExtraneousModifierInPrimaryConstructor$closure(), A.codes___withArgumentsExtraneousModifierInPrimaryConstructor$closure(), "ExtraneousModifierInPrimaryConstructor", null, B.SharedCode_73, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.Template_EoY = new A.Template(A.codes___withArgumentsOldUnsupportedOperator$closure(), A.codes___withArgumentsUnsupportedOperator$closure(), "UnsupportedOperator", B.PseudoSharedCode_53, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_117 = new A.SharedCode(117, "invalidUseOfCovariantInExtension");
-    B.Template_Exj = new A.Template(A.codes___withArgumentsOldExtraneousModifierInExtension$closure(), A.codes___withArgumentsExtraneousModifierInExtension$closure(), "ExtraneousModifierInExtension", null, B.SharedCode_117, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.Template_FL7 = new A.Template(A.codes___withArgumentsOldAsciiControlCharacter$closure(), A.codes___withArgumentsAsciiControlCharacter$closure(), "AsciiControlCharacter", B.PseudoSharedCode_22, null, A.findType("Template<Message(int),Message({character!int})>"));
     B.Template_GF7 = new A.Template(A.codes___withArgumentsOldFinalFieldWithoutInitializer$closure(), A.codes___withArgumentsFinalFieldWithoutInitializer$closure(), "FinalFieldWithoutInitializer", B.PseudoSharedCode_20, null, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
-    B.SharedCode_148 = new A.SharedCode(148, "patternAssignmentDeclaresVariable");
-    B.Template_Gp6 = new A.Template(A.codes___withArgumentsOldPatternAssignmentDeclaresVariable$closure(), A.codes___withArgumentsPatternAssignmentDeclaresVariable$closure(), "PatternAssignmentDeclaresVariable", null, B.SharedCode_148, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
-    B.SharedCode_87 = new A.SharedCode(87, "illegalPatternIdentifierName");
-    B.Template_LpK = new A.Template(A.codes___withArgumentsOldIllegalPatternIdentifierName$closure(), A.codes___withArgumentsIllegalPatternIdentifierName$closure(), "IllegalPatternIdentifierName", null, B.SharedCode_87, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
+    B.Template_GOY = new A.Template(A.codes___withArgumentsOldUnsupportedOperator$closure(), A.codes___withArgumentsUnsupportedOperator$closure(), "UnsupportedOperator", B.PseudoSharedCode_54, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
+    B.SharedCode_139 = new A.SharedCode(139, "multipleClauses");
+    B.Template_H4z = new A.Template(A.codes___withArgumentsOldMultipleClauses$closure(), A.codes___withArgumentsMultipleClauses$closure(), "MultipleClauses", null, B.SharedCode_139, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
+    B.SharedCode_89 = new A.SharedCode(89, "illegalPatternVariableName");
+    B.Template_KH8 = new A.Template(A.codes___withArgumentsOldIllegalPatternVariableName$closure(), A.codes___withArgumentsIllegalPatternVariableName$closure(), "IllegalPatternVariableName", null, B.SharedCode_89, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.SharedCode_55 = new A.SharedCode(55, "experimentNotEnabledOffByDefault");
     B.Template_LqW = new A.Template(A.codes___withArgumentsOldExperimentNotEnabledOffByDefault$closure(), A.codes___withArgumentsExperimentNotEnabledOffByDefault$closure(), "ExperimentNotEnabledOffByDefault", null, B.SharedCode_55, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_string_String);
     B.Template_MJN = new A.Template(A.codes___withArgumentsOldExpectedAfterButGot$closure(), A.codes___withArgumentsExpectedAfterButGot$closure(), "ExpectedAfterButGot", B.PseudoSharedCode_14, null, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_string_String);
-    B.SharedCode_109 = new A.SharedCode(109, "invalidOperator");
-    B.Template_MOM = new A.Template(A.codes___withArgumentsOldInvalidOperator$closure(), A.codes___withArgumentsInvalidOperator$closure(), "InvalidOperator", null, B.SharedCode_109, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.Template_MpL = new A.Template(A.codes___withArgumentsOldExpectedClassMember$closure(), A.codes___withArgumentsExpectedClassMember$closure(), "ExpectedClassMember", B.PseudoSharedCode_11, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
+    B.Template_Mvq = new A.Template(A.codes___withArgumentsOldExpectedButGot2$closure(), A.codes___withArgumentsExpectedButGot2$closure(), "ExpectedButGot2", B.PseudoSharedCode_14, null, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.SharedCode_12 = new A.SharedCode(12, "binaryOperatorWrittenOut");
     B.Template_N7j = new A.Template(A.codes___withArgumentsOldBinaryOperatorWrittenOut$closure(), A.codes___withArgumentsBinaryOperatorWrittenOut$closure(), "BinaryOperatorWrittenOut", null, B.SharedCode_12, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.Template_NOF = new A.Template(A.codes___withArgumentsOldExpectedType$closure(), A.codes___withArgumentsExpectedType$closure(), "ExpectedType", B.PseudoSharedCode_15, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_104 = new A.SharedCode(104, "invalidConstantPatternUnary");
-    B.Template_OCe = new A.Template(A.codes___withArgumentsOldInvalidConstantPatternUnary$closure(), A.codes___withArgumentsInvalidConstantPatternUnary$closure(), "InvalidConstantPatternUnary", null, B.SharedCode_104, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
-    B.SharedCode_120 = new A.SharedCode(120, "literalWithClass");
-    B.Template_QfC = new A.Template(A.codes___withArgumentsOldLiteralWithClass$closure(), A.codes___withArgumentsLiteralWithClass$closure(), "LiteralWithClass", null, B.SharedCode_120, type$.Template_of_Message_Function_String_Token_and_Message_Function_$named_$req_lexeme_Token_and_$req_string_String);
+    B.Template_OBa = new A.Template(A.codes___withArgumentsOldUnterminatedString$closure(), A.codes___withArgumentsUnterminatedString$closure(), "UnterminatedString", B.PseudoSharedCode_56, null, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
+    B.SharedCode_138 = new A.SharedCode(138, "modifierOutOfOrder");
+    B.Template_QjQ = new A.Template(A.codes___withArgumentsOldModifierOutOfOrder$closure(), A.codes___withArgumentsModifierOutOfOrder$closure(), "ModifierOutOfOrder", null, B.SharedCode_138, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.Template_RdP = new A.Template(A.codes___withArgumentsOldBuiltInIdentifierAsType$closure(), A.codes___withArgumentsBuiltInIdentifierAsType$closure(), "BuiltInIdentifierAsType", B.PseudoSharedCode_5, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.Template_SNw = new A.Template(A.codes___withArgumentsOldNonAsciiWhitespace$closure(), A.codes___withArgumentsNonAsciiWhitespace$closure(), "NonAsciiWhitespace", B.PseudoSharedCode_22, null, A.findType("Template<Message(int),Message({unicode!int})>"));
+    B.SharedCode_151 = new A.SharedCode(151, "patternAssignmentDeclaresVariable");
+    B.Template_Sxm = new A.Template(A.codes___withArgumentsOldPatternAssignmentDeclaresVariable$closure(), A.codes___withArgumentsPatternAssignmentDeclaresVariable$closure(), "PatternAssignmentDeclaresVariable", null, B.SharedCode_151, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
+    B.SharedCode_105 = new A.SharedCode(105, "invalidConstantPatternUnary");
+    B.Template_TGj = new A.Template(A.codes___withArgumentsOldInvalidConstantPatternUnary$closure(), A.codes___withArgumentsInvalidConstantPatternUnary$closure(), "InvalidConstantPatternUnary", null, B.SharedCode_105, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
     B.Template_Utp = new A.Template(A.codes___withArgumentsOldBuiltInIdentifierInDeclaration$closure(), A.codes___withArgumentsBuiltInIdentifierInDeclaration$closure(), "BuiltInIdentifierInDeclaration", B.PseudoSharedCode_6, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_137 = new A.SharedCode(137, "modifierOutOfOrder");
-    B.Template_XKE = new A.Template(A.codes___withArgumentsOldModifierOutOfOrder$closure(), A.codes___withArgumentsModifierOutOfOrder$closure(), "ModifierOutOfOrder", null, B.SharedCode_137, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
+    B.SharedCode_88 = new A.SharedCode(88, "illegalPatternIdentifierName");
+    B.Template_W1q = new A.Template(A.codes___withArgumentsOldIllegalPatternIdentifierName$closure(), A.codes___withArgumentsIllegalPatternIdentifierName$closure(), "IllegalPatternIdentifierName", null, B.SharedCode_88, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
+    B.SharedCode_118 = new A.SharedCode(118, "invalidUseOfCovariantInExtension");
+    B.Template_W5a = new A.Template(A.codes___withArgumentsOldExtraneousModifierInExtension$closure(), A.codes___withArgumentsExtraneousModifierInExtension$closure(), "ExtraneousModifierInExtension", null, B.SharedCode_118, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.SharedCode_34 = new A.SharedCode(34, "duplicateLabelInSwitchStatement");
     B.Template_Xrz = new A.Template(A.codes___withArgumentsOldDuplicateLabelInSwitchStatement$closure(), A.codes___withArgumentsDuplicateLabelInSwitchStatement$closure(), "DuplicateLabelInSwitchStatement", null, B.SharedCode_34, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
     B.SharedCode_72 = new A.SharedCode(72, "extraneousModifierInExtensionType");
     B.Template_Z6Y = new A.Template(A.codes___withArgumentsOldExtraneousModifierInExtensionType$closure(), A.codes___withArgumentsExtraneousModifierInExtensionType$closure(), "ExtraneousModifierInExtensionType", null, B.SharedCode_72, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_86 = new A.SharedCode(86, "illegalPatternAssignmentVariableName");
-    B.Template_ZFv = new A.Template(A.codes___withArgumentsOldIllegalPatternAssignmentVariableName$closure(), A.codes___withArgumentsIllegalPatternAssignmentVariableName$closure(), "IllegalPatternAssignmentVariableName", null, B.SharedCode_86, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_147 = new A.SharedCode(147, "outOfOrderClauses");
-    B.Template_aUy = new A.Template(A.codes___withArgumentsOldOutOfOrderClauses$closure(), A.codes___withArgumentsOutOfOrderClauses$closure(), "OutOfOrderClauses", null, B.SharedCode_147, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
-    B.Template_bKS = new A.Template(A.codes___withArgumentsOldUnexpectedToken$closure(), A.codes___withArgumentsUnexpectedToken$closure(), "UnexpectedToken", B.PseudoSharedCode_51, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_138 = new A.SharedCode(138, "multipleClauses");
-    B.Template_bvo = new A.Template(A.codes___withArgumentsOldMultipleClauses$closure(), A.codes___withArgumentsMultipleClauses$closure(), "MultipleClauses", null, B.SharedCode_138, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.Template_cSX = new A.Template(A.codes___withArgumentsOldUnmatchedToken$closure(), A.codes___withArgumentsUnmatchedToken$closure(), "UnmatchedToken", B.PseudoSharedCode_14, null, type$.Template_of_Message_Function_String_Token_and_Message_Function_$named_$req_lexeme_Token_and_$req_string_String);
     B.SharedCode_49 = new A.SharedCode(49, "expectedInstead");
     B.Template_d8E = new A.Template(A.codes___withArgumentsOldExpectedInstead$closure(), A.codes___withArgumentsExpectedInstead$closure(), "ExpectedInstead", null, B.SharedCode_49, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_string_String);
@@ -78031,22 +78053,28 @@
     B.Template_h45 = new A.Template(A.codes___withArgumentsOldDuplicatedModifier$closure(), A.codes___withArgumentsDuplicatedModifier$closure(), "DuplicatedModifier", null, B.SharedCode_36, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.SharedCode_48 = new A.SharedCode(48, "expectedIdentifierButGotKeyword");
     B.Template_hRY = new A.Template(A.codes___withArgumentsOldExpectedIdentifierButGotKeyword$closure(), A.codes___withArgumentsExpectedIdentifierButGotKeyword$closure(), "ExpectedIdentifierButGotKeyword", null, B.SharedCode_48, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
+    B.SharedCode_150 = new A.SharedCode(150, "outOfOrderClauses");
+    B.Template_hkb = new A.Template(A.codes___withArgumentsOldOutOfOrderClauses$closure(), A.codes___withArgumentsOutOfOrderClauses$closure(), "OutOfOrderClauses", null, B.SharedCode_150, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.Template_ic0 = new A.Template(A.codes___withArgumentsOldInternalProblemUnhandled$closure(), A.codes___withArgumentsInternalProblemUnhandled$closure(), "InternalProblemUnhandled", B.PseudoSharedCode_24, null, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.Template_il5 = new A.Template(A.codes___withArgumentsOldExpectedString$closure(), A.codes___withArgumentsExpectedString$closure(), "ExpectedString", B.PseudoSharedCode_13, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
+    B.SharedCode_100 = new A.SharedCode(100, "invalidConstantPatternBinary");
+    B.Template_ipH = new A.Template(A.codes___withArgumentsOldInvalidConstantPatternBinary$closure(), A.codes___withArgumentsInvalidConstantPatternBinary$closure(), "InvalidConstantPatternBinary", null, B.SharedCode_100, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_name_String);
     B.SharedCode_71 = new A.SharedCode(71, "extraneousModifier");
     B.Template_kJs = new A.Template(A.codes___withArgumentsOldExtraneousModifier$closure(), A.codes___withArgumentsExtraneousModifier$closure(), "ExtraneousModifier", null, B.SharedCode_71, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.SharedCode_54 = new A.SharedCode(54, "experimentNotEnabled");
     B.Template_kQF = new A.Template(A.codes___withArgumentsOldExperimentNotEnabled$closure(), A.codes___withArgumentsExperimentNotEnabled$closure(), "ExperimentNotEnabled", null, B.SharedCode_54, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.Template_kbR = new A.Template(A.codes___withArgumentsOldExpectedToken$closure(), A.codes___withArgumentsExpectedToken$closure(), "ExpectedToken", B.PseudoSharedCode_14, null, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_string_String);
     B.Template_m2G = new A.Template(A.codes___withArgumentsOldExpectedDeclaration$closure(), A.codes___withArgumentsExpectedDeclaration$closure(), "ExpectedDeclaration", B.PseudoSharedCode_12, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_88 = new A.SharedCode(88, "illegalPatternVariableName");
-    B.Template_m4T = new A.Template(A.codes___withArgumentsOldIllegalPatternVariableName$closure(), A.codes___withArgumentsIllegalPatternVariableName$closure(), "IllegalPatternVariableName", null, B.SharedCode_88, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
-    B.SharedCode_121 = new A.SharedCode(121, "literalWithClassAndNew");
-    B.Template_pu2 = new A.Template(A.codes___withArgumentsOldLiteralWithClassAndNew$closure(), A.codes___withArgumentsLiteralWithClassAndNew$closure(), "LiteralWithClassAndNew", null, B.SharedCode_121, type$.Template_of_Message_Function_String_Token_and_Message_Function_$named_$req_lexeme_Token_and_$req_string_String);
+    B.SharedCode_121 = new A.SharedCode(121, "literalWithClass");
+    B.Template_mPF = new A.Template(A.codes___withArgumentsOldLiteralWithClass$closure(), A.codes___withArgumentsLiteralWithClass$closure(), "LiteralWithClass", null, B.SharedCode_121, type$.Template_of_Message_Function_String_Token_and_Message_Function_$named_$req_lexeme_Token_and_$req_string_String);
+    B.SharedCode_110 = new A.SharedCode(110, "invalidOperator");
+    B.Template_nuN = new A.Template(A.codes___withArgumentsOldInvalidOperator$closure(), A.codes___withArgumentsInvalidOperator$closure(), "InvalidOperator", null, B.SharedCode_110, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
+    B.SharedCode_122 = new A.SharedCode(122, "literalWithClassAndNew");
+    B.Template_p9r = new A.Template(A.codes___withArgumentsOldLiteralWithClassAndNew$closure(), A.codes___withArgumentsLiteralWithClassAndNew$closure(), "LiteralWithClassAndNew", null, B.SharedCode_122, type$.Template_of_Message_Function_String_Token_and_Message_Function_$named_$req_lexeme_Token_and_$req_string_String);
     B.SharedCode_18 = new A.SharedCode(18, "conflictingModifiers");
     B.Template_qvm = new A.Template(A.codes___withArgumentsOldConflictingModifiers$closure(), A.codes___withArgumentsConflictingModifiers$closure(), "ConflictingModifiers", null, B.SharedCode_18, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
-    B.Template_r02 = new A.Template(A.codes___withArgumentsOldUnterminatedString$closure(), A.codes___withArgumentsUnterminatedString$closure(), "UnterminatedString", B.PseudoSharedCode_55, null, type$.Template_of_Message_Function_String_String_and_Message_Function_$named_$req_string_String_and_$req_string2_String);
     B.Template_t34 = new A.Template(A.codes___withArgumentsOldExpectedButGot$closure(), A.codes___withArgumentsExpectedButGot$closure(), "ExpectedButGot", B.PseudoSharedCode_14, null, type$.Template_of_Message_Function_String_and_Message_Function_$named_$req_string_String);
+    B.Template_xFL = new A.Template(A.codes___withArgumentsOldUnexpectedToken$closure(), A.codes___withArgumentsUnexpectedToken$closure(), "UnexpectedToken", B.PseudoSharedCode_52, null, type$.Template_of_Message_Function_Token_and_Message_Function_$named_$req_lexeme_Token);
     B.List_zjm = makeConstList([B.TokenType_39Z, B.TokenType_K4l, B.TokenType_VRW, B.TokenType_ScO], type$.JSArray_TokenType);
     B.TopLevelDeclarationIdentifierContext_7Ma = new A.TopLevelDeclarationIdentifierContext(B.List_zjm, "topLevelVariableDeclaration", false, false, false, true, B.Template_CgK);
     B.List_V9Z = makeConstList([B.TokenType_JCA, B.TokenType_LQi, B.TokenType_1C0, B.TokenType_foG, B.Keyword_M92, B.Keyword_Oxc, B.TokenType_ScO], type$.JSArray_TokenType);
@@ -78073,15 +78101,6 @@
     B.TypedefDeclarationIdentifierContext_PJK = new A.TypedefDeclarationIdentifierContext("typedefDeclaration", false, false, false, false, B.Template_CgK);
     B.Utf8Decoder_false = new A.Utf8Decoder(false);
     B.Utf8Decoder_true = new A.Utf8Decoder(true);
-    B.WarningTemplate_0KU = new A.WarningTemplate(B.List_ExpectedType_4, "DOC_DIRECTIVE_UNKNOWN", "WarningCode.DOC_DIRECTIVE_UNKNOWN", "Doc directive '{0}' is unknown.", "Try using one of the supported doc directives.", type$.WarningTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.ExpectedType_1 = new A.ExpectedType(1, "int");
-    B.List_iw6 = makeConstList([B.ExpectedType_4, B.ExpectedType_1, B.ExpectedType_1], type$.JSArray_ExpectedType);
-    B.WarningTemplate_X2I = new A.WarningTemplate(B.List_iw6, "DOC_DIRECTIVE_HAS_EXTRA_ARGUMENTS", "WarningCode.DOC_DIRECTIVE_HAS_EXTRA_ARGUMENTS", "The '{0}' directive has '{1}' arguments, but only '{2}' are expected.", "Try removing the extra arguments.", A.findType("WarningTemplate<LocatableDiagnostic({p0!String,p1!int,p2!int})>"));
-    B.WarningTemplate_gnA = new A.WarningTemplate(B.List_ExpectedType_4, "DOC_DIRECTIVE_MISSING_OPENING_TAG", "WarningCode.DOC_DIRECTIVE_MISSING_OPENING_TAG", "Doc directive is missing an opening tag.", "Try opening the directive with the appropriate opening tag, '{0}'.", type$.WarningTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.List_ExpectedType_3_ExpectedType_3 = makeConstList([B.ExpectedType_3, B.ExpectedType_3], type$.JSArray_ExpectedType);
-    B.WarningTemplate_lB9 = new A.WarningTemplate(B.List_ExpectedType_3_ExpectedType_3, "INVALID_LANGUAGE_VERSION_OVERRIDE", "WarningCode.INVALID_LANGUAGE_VERSION_OVERRIDE_GREATER", "The language version override can't specify a version greater than the latest known language version: {0}.{1}.", "Try removing the language version override.", A.findType("WarningTemplate<LocatableDiagnostic({p0!Object,p1!Object})>"));
-    B.WarningTemplate_lvC = new A.WarningTemplate(B.List_ExpectedType_4, "DOC_DIRECTIVE_MISSING_CLOSING_TAG", "WarningCode.DOC_DIRECTIVE_MISSING_CLOSING_TAG", "Doc directive is missing a closing tag.", "Try closing the directive with the appropriate closing tag, '{0}'.", type$.WarningTemplate_of_LocatableDiagnostic_Function_$named_$req_p0_String);
-    B.WarningWithoutArguments_vh2 = new A.WarningWithoutArguments(B.List_empty10, "DOC_DIRECTIVE_MISSING_CLOSING_BRACE", "WarningCode.DOC_DIRECTIVE_MISSING_CLOSING_BRACE", "Doc directive is missing a closing curly brace ('}').", "Try closing the directive with a curly brace.");
     B._SetOrMapKind_2 = new A._SetOrMapKind(2, "unresolved");
   })();
   (function staticFields() {
@@ -78107,7 +78126,7 @@
     $.Uri__cachedBaseString = "";
     $.Uri__cachedBaseUri = null;
     $.KeywordStateHelper__table = null;
-    $.sharedAnalyzerCodes = A._setArrayType([B.ParserErrorWithoutArguments_N0t, B.ParserErrorWithoutArguments_e52, B.ParserErrorWithoutArguments_uzA, B.ParserErrorWithoutArguments_BUc, B.ParserErrorWithoutArguments_xl7, B.ParserErrorWithoutArguments_1gQ, B.ParserErrorWithoutArguments_NkJ, B.ParserErrorWithoutArguments_m5C, B.ParserErrorWithoutArguments_Vmw, B.ParserErrorWithoutArguments_A5N, B.ParserErrorWithoutArguments_9kt, B.ParserErrorWithoutArguments_guI, B.ParserErrorTemplate_UAG, B.ParserErrorWithoutArguments_4mr, B.ParserErrorWithoutArguments_HDv, B.ParserErrorWithoutArguments_2Z5, B.ParserErrorWithoutArguments_kKv, B.ParserErrorWithoutArguments_AuV, B.ParserErrorTemplate_SAT, B.ParserErrorWithoutArguments_RLw, B.ParserErrorWithoutArguments_WxZ, B.ParserErrorWithoutArguments_afy, B.ParserErrorWithoutArguments_0Z3, B.ParserErrorWithoutArguments_s8f, B.ParserErrorWithoutArguments_yUU, B.ParserErrorWithoutArguments_Tov, B.ParserErrorWithoutArguments_gTN, B.ParserErrorWithoutArguments_sfB, B.ParserErrorWithoutArguments_5gp, B.ParserErrorWithoutArguments_Usw, B.ParserErrorWithoutArguments_Ee1, B.ParserErrorWithoutArguments_3YO, B.ParserErrorWithoutArguments_1g0, B.ParserErrorWithoutArguments_klQ, B.ParserErrorCode_cR1, B.ParserErrorWithoutArguments_tFH, B.ParserErrorCode_lYX, B.ParserErrorWithoutArguments_bZB, B.ParserErrorWithoutArguments_Z7S, B.ParserErrorWithoutArguments_tBx, B.ParserErrorWithoutArguments_VRB, B.ParserErrorWithoutArguments_yR6, B.ParserErrorWithoutArguments_8Sm, B.ParserErrorWithoutArguments_8Uk, B.ParserErrorWithoutArguments_mlQ, B.ParserErrorWithoutArguments_oPA, B.ParserErrorWithoutArguments_lGm, B.ParserErrorWithoutArguments_iWA, B.ParserErrorCode_6Tg, B.ParserErrorTemplate_P5Q, B.ParserErrorWithoutArguments_PRx, B.ParserErrorWithoutArguments_jaP, B.ParserErrorWithoutArguments_Wbd, B.ParserErrorWithoutArguments_Emg, B.ParserErrorTemplate_jR8, B.ParserErrorTemplate_8OE, B.ParserErrorWithoutArguments_Ln9, B.ParserErrorWithoutArguments_KGr, B.ParserErrorWithoutArguments_mC7, B.ParserErrorWithoutArguments_Nab, B.ParserErrorWithoutArguments_VtH, B.ParserErrorWithoutArguments_rY8, B.ParserErrorWithoutArguments_ERf, B.ParserErrorWithoutArguments_ldz, B.ParserErrorWithoutArguments_lq6, B.ParserErrorWithoutArguments_aHW, B.ParserErrorWithoutArguments_UcZ, B.ParserErrorWithoutArguments_dLO, B.ParserErrorWithoutArguments_0wF, B.ParserErrorWithoutArguments_MrW, B.ParserErrorWithoutArguments_lfz, B.ParserErrorCode_qWN, B.ParserErrorCode_xeT, B.ParserErrorCode_ZWj, B.ParserErrorWithoutArguments_rsP, B.ParserErrorWithoutArguments_8ZT, B.CompileTimeErrorWithoutArguments_Tmo, B.ParserErrorWithoutArguments_Yys, B.ParserErrorWithoutArguments_tLr, B.ParserErrorWithoutArguments_jMg, B.ParserErrorWithoutArguments_E5x, B.ParserErrorWithoutArguments_kR5, B.ParserErrorWithoutArguments_mih, B.ParserErrorWithoutArguments_8eE, B.ParserErrorWithoutArguments_2Gp, B.ParserErrorWithoutArguments_lc5, B.ParserErrorCode_U3x, B.ParserErrorCode_yZC, B.ParserErrorCode_oe0, B.ParserErrorWithoutArguments_s2I, B.ParserErrorWithoutArguments_bix, B.ParserErrorWithoutArguments_wWz, B.ParserErrorWithoutArguments_LEo, B.ParserErrorWithoutArguments_YHr, B.ParserErrorWithoutArguments_7pa, B.ParserErrorWithoutArguments_HqL, B.ParserErrorWithoutArguments_Tub, B.ParserErrorWithoutArguments_wcZ, B.ParserErrorWithoutArguments_okk, B.ParserErrorCode_6du, B.ParserErrorWithoutArguments_7Lt, B.ParserErrorWithoutArguments_79l, B.ParserErrorWithoutArguments_qFW, B.ParserErrorWithoutArguments_xLR, B.ParserErrorCode_UOD, B.ParserErrorWithoutArguments_Ev2, B.ParserErrorWithoutArguments_9oe, B.ParserErrorWithoutArguments_MfN, B.ParserErrorWithoutArguments_nzc, B.ParserErrorCode_P6M, B.ParserErrorWithoutArguments_GIz, B.ParserErrorWithoutArguments_9se, B.ParserErrorWithoutArguments_k03, B.ParserErrorWithoutArguments_5I3, B.ParserErrorWithoutArguments_Mh7, B.ParserErrorWithoutArguments_OzI, B.ParserErrorWithoutArguments_swJ, B.ParserErrorCode_fa9, B.ParserErrorWithoutArguments_08W, B.ParserErrorWithoutArguments_uvN, B.ParserErrorCode_9e5, B.ParserErrorCode_giY, B.ParserErrorWithoutArguments_lCA, B.ParserErrorWithoutArguments_mKt, B.ParserErrorWithoutArguments_9Sf, B.ParserErrorWithoutArguments_GmI, B.ParserErrorWithoutArguments_rTL, B.ParserErrorWithoutArguments_Kgf, B.ParserErrorWithoutArguments_GKe, B.ParserErrorWithoutArguments_VTk, B.ParserErrorWithoutArguments_uMY, B.ParserErrorWithoutArguments_VHT, B.ParserErrorWithoutArguments_RAm, B.ParserErrorWithoutArguments_Jjt, B.ParserErrorWithoutArguments_4kB, B.ParserErrorWithoutArguments_y8c, B.ParserErrorWithoutArguments_mY0, B.ParserErrorTemplate_38z, B.ParserErrorTemplate_4kp, B.ParserErrorWithoutArguments_kz7, B.ParserErrorWithoutArguments_TNj, B.ParserErrorWithoutArguments_rUc, B.ParserErrorWithoutArguments_gz3, B.ParserErrorWithoutArguments_7sQ, B.ParserErrorWithoutArguments_Wz4, B.ParserErrorWithoutArguments_1dT, B.ParserErrorWithoutArguments_IGE, B.ParserErrorTemplate_BRK, B.ParserErrorCode_nEG, B.ParserErrorWithoutArguments_Due, B.ParserErrorWithoutArguments_RaT, B.ParserErrorWithoutArguments_SKo, B.ParserErrorWithoutArguments_5Ov, B.ParserErrorWithoutArguments_vGQ, B.ParserErrorWithoutArguments_PfA, B.ParserErrorWithoutArguments_v53, B.ParserErrorWithoutArguments_4g8, B.ParserErrorWithoutArguments_Qj4, B.ParserErrorWithoutArguments_9cF, B.ParserErrorWithoutArguments_VJI, B.ParserErrorWithoutArguments_Sc9, B.ParserErrorWithoutArguments_hrX, B.ParserErrorWithoutArguments_3vR, B.ParserErrorWithoutArguments_fKm, B.ParserErrorWithoutArguments_oW5, B.ParserErrorCode_Ouz, B.ParserErrorWithoutArguments_WHb, B.ParserErrorWithoutArguments_Adz, B.ParserErrorWithoutArguments_wm1, B.ParserErrorWithoutArguments_H7j, B.ParserErrorWithoutArguments_812, B.ParserErrorWithoutArguments_SNG, B.ParserErrorWithoutArguments_ZI4, B.ParserErrorWithoutArguments_OLl, B.ParserErrorWithoutArguments_nVg, B.ParserErrorWithoutArguments_Sgo, B.ParserErrorWithoutArguments_22I], A.findType("JSArray<DiagnosticCode>"));
+    $.sharedAnalyzerCodes = A._setArrayType([B.DiagnosticWithoutArgumentsImpl_4lh, B.DiagnosticWithoutArgumentsImpl_Frq, B.DiagnosticWithoutArgumentsImpl_LVo, B.DiagnosticWithoutArgumentsImpl_Blr, B.DiagnosticWithoutArgumentsImpl_1Ri, B.DiagnosticWithoutArgumentsImpl_vGq, B.DiagnosticWithoutArgumentsImpl_tKl, B.DiagnosticWithoutArgumentsImpl_CLD, B.DiagnosticWithoutArgumentsImpl_GBn, B.DiagnosticWithoutArgumentsImpl_ZXi, B.DiagnosticWithoutArgumentsImpl_bAr, B.DiagnosticWithoutArgumentsImpl_LHT, B.DiagnosticWithArguments_YlZ, B.DiagnosticWithoutArgumentsImpl_Eny, B.DiagnosticWithoutArgumentsImpl_D80, B.DiagnosticWithoutArgumentsImpl_oz3, B.DiagnosticWithoutArgumentsImpl_m0q, B.DiagnosticWithoutArgumentsImpl_cyW, B.DiagnosticWithArguments_UPH, B.DiagnosticWithoutArgumentsImpl_PMX, B.DiagnosticWithoutArgumentsImpl_r2m, B.DiagnosticWithoutArgumentsImpl_HcG, B.DiagnosticWithoutArgumentsImpl_taW, B.DiagnosticWithoutArgumentsImpl_eXL, B.DiagnosticWithoutArgumentsImpl_mhe, B.DiagnosticWithoutArgumentsImpl_i6w, B.DiagnosticWithoutArgumentsImpl_IYC, B.DiagnosticWithoutArgumentsImpl_D5v, B.DiagnosticWithoutArgumentsImpl_O0M, B.DiagnosticWithoutArgumentsImpl_Q9M, B.DiagnosticWithoutArgumentsImpl_kka, B.DiagnosticWithoutArgumentsImpl_Dud, B.DiagnosticWithoutArgumentsImpl_jZ8, B.DiagnosticWithoutArgumentsImpl_f6C, B.DiagnosticCodeWithExpectedTypes_a3p, B.DiagnosticWithoutArgumentsImpl_E7C, B.DiagnosticCodeWithExpectedTypes_erZ, B.DiagnosticWithoutArgumentsImpl_C2r, B.DiagnosticWithoutArgumentsImpl_TqJ, B.DiagnosticWithoutArgumentsImpl_Hie, B.DiagnosticWithoutArgumentsImpl_6Ab, B.DiagnosticWithoutArgumentsImpl_czB, B.DiagnosticWithoutArgumentsImpl_vsG, B.DiagnosticWithoutArgumentsImpl_9rK, B.DiagnosticWithoutArgumentsImpl_FiG, B.DiagnosticWithoutArgumentsImpl_cna, B.DiagnosticWithoutArgumentsImpl_M7l, B.DiagnosticWithoutArgumentsImpl_kk8, B.DiagnosticCodeWithExpectedTypes_WQ9, B.DiagnosticWithArguments_ygW, B.DiagnosticWithoutArgumentsImpl_q3p, B.DiagnosticWithoutArgumentsImpl_gjV, B.DiagnosticWithoutArgumentsImpl_0Ci, B.DiagnosticWithoutArgumentsImpl_7uN, B.DiagnosticWithArguments_27j, B.DiagnosticWithArguments_S5R, B.DiagnosticWithoutArgumentsImpl_rkN, B.DiagnosticWithoutArgumentsImpl_bXT, B.DiagnosticWithoutArgumentsImpl_7rP, B.DiagnosticWithoutArgumentsImpl_qla, B.DiagnosticWithoutArgumentsImpl_p8a, B.DiagnosticWithoutArgumentsImpl_KzX, B.DiagnosticWithoutArgumentsImpl_obQ, B.DiagnosticWithoutArgumentsImpl_P2H, B.DiagnosticWithoutArgumentsImpl_Rhy, B.DiagnosticWithoutArgumentsImpl_oL2, B.DiagnosticWithoutArgumentsImpl_RT4, B.DiagnosticWithoutArgumentsImpl_jkn, B.DiagnosticWithoutArgumentsImpl_7f2, B.DiagnosticWithoutArgumentsImpl_ZJw, B.DiagnosticWithoutArgumentsImpl_4pD, B.DiagnosticCodeWithExpectedTypes_68l, B.DiagnosticCodeWithExpectedTypes_hMU, B.DiagnosticCodeWithExpectedTypes_2me, B.DiagnosticWithoutArgumentsImpl_ov4, B.DiagnosticWithoutArgumentsImpl_ss1, B.DiagnosticWithoutArgumentsImpl_483, B.DiagnosticWithoutArgumentsImpl_ANd, B.DiagnosticWithoutArgumentsImpl_nr0, B.DiagnosticWithoutArgumentsImpl_S4C, B.DiagnosticWithoutArgumentsImpl_NG2, B.DiagnosticWithoutArgumentsImpl_DPN, B.DiagnosticWithoutArgumentsImpl_DnQ, B.DiagnosticWithoutArgumentsImpl_KmS, B.DiagnosticWithoutArgumentsImpl_7hu, B.DiagnosticWithoutArgumentsImpl_3p4, B.DiagnosticWithoutArgumentsImpl_1nE, B.DiagnosticCodeWithExpectedTypes_Gu7, B.DiagnosticCodeWithExpectedTypes_5pU, B.DiagnosticCodeWithExpectedTypes_m14, B.DiagnosticWithoutArgumentsImpl_BRH, B.DiagnosticWithoutArgumentsImpl_uMP, B.DiagnosticWithoutArgumentsImpl_Rxn, B.DiagnosticWithoutArgumentsImpl_9cM, B.DiagnosticWithoutArgumentsImpl_kY2, B.DiagnosticWithoutArgumentsImpl_H4R, B.DiagnosticWithoutArgumentsImpl_rK6, B.DiagnosticWithoutArgumentsImpl_A9r, B.DiagnosticWithoutArgumentsImpl_os2, B.DiagnosticWithoutArgumentsImpl_STb, B.DiagnosticCodeWithExpectedTypes_Qqx, B.DiagnosticWithoutArgumentsImpl_LbB, B.DiagnosticWithoutArgumentsImpl_t23, B.DiagnosticWithoutArgumentsImpl_R9j, B.DiagnosticWithoutArgumentsImpl_goy, B.DiagnosticCodeWithExpectedTypes_juR, B.DiagnosticWithoutArgumentsImpl_4BI, B.DiagnosticWithoutArgumentsImpl_NOi, B.DiagnosticWithoutArgumentsImpl_vUK, B.DiagnosticWithoutArgumentsImpl_TNn, B.DiagnosticCodeWithExpectedTypes_oua, B.DiagnosticWithoutArgumentsImpl_FdI, B.DiagnosticWithoutArgumentsImpl_gXH, B.DiagnosticWithoutArgumentsImpl_nR8, B.DiagnosticWithoutArgumentsImpl_cYT, B.DiagnosticWithoutArgumentsImpl_7EC, B.DiagnosticWithoutArgumentsImpl_bDB, B.DiagnosticWithoutArgumentsImpl_F7m, B.DiagnosticCodeWithExpectedTypes_ju3, B.DiagnosticWithoutArgumentsImpl_OKF, B.DiagnosticWithoutArgumentsImpl_CDI, B.DiagnosticCodeWithExpectedTypes_dfn, B.DiagnosticCodeWithExpectedTypes_doK, B.DiagnosticWithoutArgumentsImpl_WAT, B.DiagnosticWithoutArgumentsImpl_Eh9, B.DiagnosticWithoutArgumentsImpl_AIU, B.DiagnosticWithoutArgumentsImpl_ypH, B.DiagnosticWithoutArgumentsImpl_bTQ, B.DiagnosticWithoutArgumentsImpl_bOd, B.DiagnosticWithoutArgumentsImpl_7zh, B.DiagnosticWithoutArgumentsImpl_fNu, B.DiagnosticWithoutArgumentsImpl_0ol, B.DiagnosticWithoutArgumentsImpl_cUj, B.DiagnosticWithoutArgumentsImpl_g8Z, B.DiagnosticWithoutArgumentsImpl_K6I, B.DiagnosticWithoutArgumentsImpl_F31, B.DiagnosticWithoutArgumentsImpl_osT, B.DiagnosticWithoutArgumentsImpl_j3w, B.DiagnosticWithArguments_7pl, B.DiagnosticWithArguments_REj, B.DiagnosticWithoutArgumentsImpl_eHV, B.DiagnosticWithoutArgumentsImpl_ERy, B.DiagnosticWithoutArgumentsImpl_MaI, B.DiagnosticWithoutArgumentsImpl_306, B.DiagnosticWithoutArgumentsImpl_nOu, B.DiagnosticWithoutArgumentsImpl_RY2, B.DiagnosticWithoutArgumentsImpl_gBn, B.DiagnosticWithoutArgumentsImpl_PtH, B.DiagnosticWithoutArgumentsImpl_HMM, B.DiagnosticWithoutArgumentsImpl_VEf, B.DiagnosticWithArguments_Mfk, B.DiagnosticCodeWithExpectedTypes_AMk, B.DiagnosticWithoutArgumentsImpl_aMQ, B.DiagnosticWithoutArgumentsImpl_Y32, B.DiagnosticWithoutArgumentsImpl_8Oc, B.DiagnosticWithoutArgumentsImpl_bgl, B.DiagnosticWithoutArgumentsImpl_PSf, B.DiagnosticWithoutArgumentsImpl_rdF, B.DiagnosticWithoutArgumentsImpl_VGh, B.DiagnosticWithoutArgumentsImpl_QwJ, B.DiagnosticWithoutArgumentsImpl_i6U, B.DiagnosticWithoutArgumentsImpl_se4, B.DiagnosticWithoutArgumentsImpl_ize, B.DiagnosticWithoutArgumentsImpl_e2Z, B.DiagnosticWithoutArgumentsImpl_7l7, B.DiagnosticWithoutArgumentsImpl_YaE, B.DiagnosticWithoutArgumentsImpl_1Rf, B.DiagnosticWithoutArgumentsImpl_It7, B.DiagnosticCodeWithExpectedTypes_55d, B.DiagnosticWithoutArgumentsImpl_s8U, B.DiagnosticWithoutArgumentsImpl_KOt, B.DiagnosticWithoutArgumentsImpl_Gpb, B.DiagnosticWithoutArgumentsImpl_nj0, B.DiagnosticWithoutArgumentsImpl_dQB, B.DiagnosticWithoutArgumentsImpl_ump, B.DiagnosticWithoutArgumentsImpl_lc5, B.DiagnosticWithoutArgumentsImpl_BNA, B.DiagnosticWithoutArgumentsImpl_kPX, B.DiagnosticWithoutArgumentsImpl_Tku, B.DiagnosticWithoutArgumentsImpl_s9o], A.findType("JSArray<DiagnosticCode>"));
     $._InfoString__infoStrings = A.LinkedHashSet_LinkedHashSet$_empty(type$.String);
     $.PredictionContext_globalNodeCount = 0;
     $.index32 = A._setArrayType([0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30, 8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31], type$.JSArray_int);
@@ -78186,7 +78205,6 @@
     _lazy($, "StringUtilities_INTERNER", "$get$StringUtilities_INTERNER", () => new A.NullInterner());
     _lazyFinal($, "Feature_augmentations", "$get$Feature_augmentations", () => $.$get$ExperimentalFeatures_augmentations());
     _lazyFinal($, "Feature_class_modifiers", "$get$Feature_class_modifiers", () => $.$get$ExperimentalFeatures_class_modifiers());
-    _lazyFinal($, "Feature_declaring_constructors", "$get$Feature_declaring_constructors", () => $.$get$ExperimentalFeatures_declaring_constructors());
     _lazyFinal($, "Feature_digit_separators", "$get$Feature_digit_separators", () => $.$get$ExperimentalFeatures_digit_separators());
     _lazyFinal($, "Feature_constructor_tearoffs", "$get$Feature_constructor_tearoffs", () => $.$get$ExperimentalFeatures_constructor_tearoffs());
     _lazyFinal($, "Feature_dot_shorthands", "$get$Feature_dot_shorthands", () => $.$get$ExperimentalFeatures_dot_shorthands());
@@ -78197,6 +78215,7 @@
     _lazyFinal($, "Feature_macros", "$get$Feature_macros", () => $.$get$ExperimentalFeatures_macros());
     _lazyFinal($, "Feature_null_aware_elements", "$get$Feature_null_aware_elements", () => $.$get$ExperimentalFeatures_null_aware_elements());
     _lazyFinal($, "Feature_patterns", "$get$Feature_patterns", () => $.$get$ExperimentalFeatures_patterns());
+    _lazyFinal($, "Feature_primary_constructors", "$get$Feature_primary_constructors", () => $.$get$ExperimentalFeatures_primary_constructors());
     _lazyFinal($, "Feature_records", "$get$Feature_records", () => $.$get$ExperimentalFeatures_records());
     _lazyFinal($, "Feature_sealed_class", "$get$Feature_sealed_class", () => $.$get$ExperimentalFeatures_sealed_class());
     _lazyFinal($, "Feature_super_parameters", "$get$Feature_super_parameters", () => $.$get$ExperimentalFeatures_super_parameters());
@@ -78205,32 +78224,32 @@
     _lazyFinal($, "Feature_nonfunction_type_aliases", "$get$Feature_nonfunction_type_aliases", () => $.$get$ExperimentalFeatures_nonfunction_type_aliases());
     _lazyFinal($, "Feature_unnamedLibraries", "$get$Feature_unnamedLibraries", () => $.$get$ExperimentalFeatures_unnamed_libraries());
     _lazyFinal($, "Feature_variance", "$get$Feature_variance", () => $.$get$ExperimentalFeatures_variance());
-    _lazyFinal($, "ExperimentStatus_currentVersion", "$get$ExperimentStatus_currentVersion", () => A.Version_Version$parse("3.11.0"));
+    _lazyFinal($, "ExperimentStatus_currentVersion", "$get$ExperimentStatus_currentVersion", () => A.Version_Version$parse("3.12.0"));
     _lazyFinal($, "ExperimentStatus_knownFeatures", "$get$ExperimentStatus_knownFeatures", () => $.$get$_knownFeatures0());
-    _lazyFinal($, "_knownFeatures", "$get$_knownFeatures0", () => A.LinkedHashMap_LinkedHashMap$_literal(["augmentations", $.$get$ExperimentalFeatures_augmentations(), "class-modifiers", $.$get$ExperimentalFeatures_class_modifiers(), "const-functions", $.$get$ExperimentalFeatures_const_functions(), "constant-update-2018", $.$get$ExperimentalFeatures_constant_update_2018(), "constructor-tearoffs", $.$get$ExperimentalFeatures_constructor_tearoffs(), "control-flow-collections", $.$get$ExperimentalFeatures_control_flow_collections(), "data-assets", $.$get$ExperimentalFeatures_data_assets(), "declaring-constructors", $.$get$ExperimentalFeatures_declaring_constructors(), "digit-separators", $.$get$ExperimentalFeatures_digit_separators(), "dot-shorthands", $.$get$ExperimentalFeatures_dot_shorthands(), "enhanced-enums", $.$get$ExperimentalFeatures_enhanced_enums(), "enhanced-parts", $.$get$ExperimentalFeatures_enhanced_parts(), "extension-methods", $.$get$ExperimentalFeatures_extension_methods(), "generic-metadata", $.$get$ExperimentalFeatures_generic_metadata(), "getter-setter-error", $.$get$ExperimentalFeatures_getter_setter_error(), "inference-update-1", $.$get$ExperimentalFeatures_inference_update_1(), "inference-update-2", $.$get$ExperimentalFeatures_inference_update_2(), "inference-update-3", $.$get$ExperimentalFeatures_inference_update_3(), "inference-update-4", $.$get$ExperimentalFeatures_inference_update_4(), "inference-using-bounds", $.$get$ExperimentalFeatures_inference_using_bounds(), "inline-class", $.$get$ExperimentalFeatures_inline_class(), "macros", $.$get$ExperimentalFeatures_macros(), "named-arguments-anywhere", $.$get$ExperimentalFeatures_named_arguments_anywhere(), "native-assets", $.$get$ExperimentalFeatures_native_assets(), "non-nullable", $.$get$ExperimentalFeatures_non_nullable(), "nonfunction-type-aliases", $.$get$ExperimentalFeatures_nonfunction_type_aliases(), "null-aware-elements", $.$get$ExperimentalFeatures_null_aware_elements(), "patterns", $.$get$ExperimentalFeatures_patterns(), "private-named-parameters", $.$get$ExperimentalFeatures_private_named_parameters(), "record-use", $.$get$ExperimentalFeatures_record_use(), "records", $.$get$ExperimentalFeatures_records(), "sealed-class", $.$get$ExperimentalFeatures_sealed_class(), "set-literals", $.$get$ExperimentalFeatures_set_literals(), "sound-flow-analysis", $.$get$ExperimentalFeatures_sound_flow_analysis(), "spread-collections", $.$get$ExperimentalFeatures_spread_collections(), "static-extensions", $.$get$ExperimentalFeatures_static_extensions(), "super-parameters", $.$get$ExperimentalFeatures_super_parameters(), "test-experiment", $.$get$ExperimentalFeatures_test_experiment(), "triple-shift", $.$get$ExperimentalFeatures_triple_shift(), "unnamed-libraries", $.$get$ExperimentalFeatures_unnamed_libraries(), "unquoted-imports", $.$get$ExperimentalFeatures_unquoted_imports(), "variance", $.$get$ExperimentalFeatures_variance(), "wildcard-variables", $.$get$ExperimentalFeatures_wildcard_variables()], type$.String, A.findType("ExperimentalFeature")));
+    _lazyFinal($, "_knownFeatures", "$get$_knownFeatures0", () => A.LinkedHashMap_LinkedHashMap$_literal(["anonymous-methods", $.$get$ExperimentalFeatures_anonymous_methods(), "augmentations", $.$get$ExperimentalFeatures_augmentations(), "class-modifiers", $.$get$ExperimentalFeatures_class_modifiers(), "const-functions", $.$get$ExperimentalFeatures_const_functions(), "constant-update-2018", $.$get$ExperimentalFeatures_constant_update_2018(), "constructor-tearoffs", $.$get$ExperimentalFeatures_constructor_tearoffs(), "control-flow-collections", $.$get$ExperimentalFeatures_control_flow_collections(), "data-assets", $.$get$ExperimentalFeatures_data_assets(), "digit-separators", $.$get$ExperimentalFeatures_digit_separators(), "dot-shorthands", $.$get$ExperimentalFeatures_dot_shorthands(), "enhanced-enums", $.$get$ExperimentalFeatures_enhanced_enums(), "enhanced-parts", $.$get$ExperimentalFeatures_enhanced_parts(), "extension-methods", $.$get$ExperimentalFeatures_extension_methods(), "generic-metadata", $.$get$ExperimentalFeatures_generic_metadata(), "getter-setter-error", $.$get$ExperimentalFeatures_getter_setter_error(), "inference-update-1", $.$get$ExperimentalFeatures_inference_update_1(), "inference-update-2", $.$get$ExperimentalFeatures_inference_update_2(), "inference-update-3", $.$get$ExperimentalFeatures_inference_update_3(), "inference-update-4", $.$get$ExperimentalFeatures_inference_update_4(), "inference-using-bounds", $.$get$ExperimentalFeatures_inference_using_bounds(), "inline-class", $.$get$ExperimentalFeatures_inline_class(), "macros", $.$get$ExperimentalFeatures_macros(), "named-arguments-anywhere", $.$get$ExperimentalFeatures_named_arguments_anywhere(), "native-assets", $.$get$ExperimentalFeatures_native_assets(), "non-nullable", $.$get$ExperimentalFeatures_non_nullable(), "nonfunction-type-aliases", $.$get$ExperimentalFeatures_nonfunction_type_aliases(), "null-aware-elements", $.$get$ExperimentalFeatures_null_aware_elements(), "patterns", $.$get$ExperimentalFeatures_patterns(), "primary-constructors", $.$get$ExperimentalFeatures_primary_constructors(), "private-named-parameters", $.$get$ExperimentalFeatures_private_named_parameters(), "record-use", $.$get$ExperimentalFeatures_record_use(), "records", $.$get$ExperimentalFeatures_records(), "sealed-class", $.$get$ExperimentalFeatures_sealed_class(), "set-literals", $.$get$ExperimentalFeatures_set_literals(), "sound-flow-analysis", $.$get$ExperimentalFeatures_sound_flow_analysis(), "spread-collections", $.$get$ExperimentalFeatures_spread_collections(), "static-extensions", $.$get$ExperimentalFeatures_static_extensions(), "super-parameters", $.$get$ExperimentalFeatures_super_parameters(), "test-experiment", $.$get$ExperimentalFeatures_test_experiment(), "triple-shift", $.$get$ExperimentalFeatures_triple_shift(), "unnamed-libraries", $.$get$ExperimentalFeatures_unnamed_libraries(), "unquoted-imports", $.$get$ExperimentalFeatures_unquoted_imports(), "variance", $.$get$ExperimentalFeatures_variance(), "wildcard-variables", $.$get$ExperimentalFeatures_wildcard_variables()], type$.String, A.findType("ExperimentalFeature")));
+    _lazyFinal($, "ExperimentalFeatures_anonymous_methods", "$get$ExperimentalFeatures_anonymous_methods", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Anonymous methods.", "anonymous-methods", null, 0, false, false, null));
     _lazyFinal($, "ExperimentalFeatures_augmentations", "$get$ExperimentalFeatures_augmentations", () => {
       var t1 = A.Version_Version$parse("3.6.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Augmentations - enhancing declarations from outside", "augmentations", t1, 0, false, false, null);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Augmentations - enhancing declarations from outside", "augmentations", t1, 1, false, false, null);
     });
     _lazyFinal($, "ExperimentalFeatures_class_modifiers", "$get$ExperimentalFeatures_class_modifiers", () => {
       var t1 = A.Version_Version$parse("3.0.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Class modifiers", "class-modifiers", null, 1, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Class modifiers", "class-modifiers", null, 2, true, true, t1);
     });
-    _lazyFinal($, "ExperimentalFeatures_const_functions", "$get$ExperimentalFeatures_const_functions", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Allow more of the Dart language to be executed in const expressions.", "const-functions", null, 2, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_const_functions", "$get$ExperimentalFeatures_const_functions", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Allow more of the Dart language to be executed in const expressions.", "const-functions", null, 3, false, false, null));
     _lazyFinal($, "ExperimentalFeatures_constant_update_2018", "$get$ExperimentalFeatures_constant_update_2018", () => {
       var t1 = A.Version_Version$parse("2.0.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Enhanced constant expressions", "constant-update-2018", null, 3, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Enhanced constant expressions", "constant-update-2018", null, 4, true, true, t1);
     });
     _lazyFinal($, "ExperimentalFeatures_constructor_tearoffs", "$get$ExperimentalFeatures_constructor_tearoffs", () => {
       var t1 = A.Version_Version$parse("2.15.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Allow constructor tear-offs and explicit generic instantiations.", "constructor-tearoffs", null, 4, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Allow constructor tear-offs and explicit generic instantiations.", "constructor-tearoffs", null, 5, true, true, t1);
     });
     _lazyFinal($, "ExperimentalFeatures_control_flow_collections", "$get$ExperimentalFeatures_control_flow_collections", () => {
       var t1 = A.Version_Version$parse("2.0.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Control Flow Collections", "control-flow-collections", null, 5, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Control Flow Collections", "control-flow-collections", null, 6, true, true, t1);
     });
-    _lazyFinal($, "ExperimentalFeatures_data_assets", "$get$ExperimentalFeatures_data_assets", () => A.ExperimentalFeature$(A._setArrayType(["main", "dev"], type$.JSArray_String), "Enable data assets in hooks.", "data-assets", null, 6, false, false, null));
-    _lazyFinal($, "ExperimentalFeatures_declaring_constructors", "$get$ExperimentalFeatures_declaring_constructors", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Less verbose constructors.", "declaring-constructors", null, 7, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_data_assets", "$get$ExperimentalFeatures_data_assets", () => A.ExperimentalFeature$(A._setArrayType(["main", "dev"], type$.JSArray_String), "Enable data assets in hooks.", "data-assets", null, 7, false, false, null));
     _lazyFinal($, "ExperimentalFeatures_digit_separators", "$get$ExperimentalFeatures_digit_separators", () => {
       var t1 = A.Version_Version$parse("3.6.0");
       return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Number literals with digit separators.", "digit-separators", null, 8, true, true, t1);
@@ -78311,47 +78330,48 @@
       var t1 = A.Version_Version$parse("3.0.0");
       return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Patterns", "patterns", null, 27, true, true, t1);
     });
-    _lazyFinal($, "ExperimentalFeatures_private_named_parameters", "$get$ExperimentalFeatures_private_named_parameters", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Allow named parameters with private names that refer to fields.", "private-named-parameters", null, 28, false, false, null));
-    _lazyFinal($, "ExperimentalFeatures_record_use", "$get$ExperimentalFeatures_record_use", () => A.ExperimentalFeature$(A._setArrayType(["main", "dev"], type$.JSArray_String), "Output arguments used by static functions.", "record-use", null, 29, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_primary_constructors", "$get$ExperimentalFeatures_primary_constructors", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Less verbose constructors.", "primary-constructors", null, 28, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_private_named_parameters", "$get$ExperimentalFeatures_private_named_parameters", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Allow named parameters with private names that refer to fields.", "private-named-parameters", null, 29, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_record_use", "$get$ExperimentalFeatures_record_use", () => A.ExperimentalFeature$(A._setArrayType(["main", "dev"], type$.JSArray_String), "Output arguments used by static functions.", "record-use", null, 30, false, false, null));
     _lazyFinal($, "ExperimentalFeatures_records", "$get$ExperimentalFeatures_records", () => {
       var t1 = A.Version_Version$parse("3.0.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Records", "records", null, 30, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Records", "records", null, 31, true, true, t1);
     });
     _lazyFinal($, "ExperimentalFeatures_sealed_class", "$get$ExperimentalFeatures_sealed_class", () => {
       var t1 = A.Version_Version$parse("3.0.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Sealed class", "sealed-class", null, 31, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Sealed class", "sealed-class", null, 32, true, true, t1);
     });
     _lazyFinal($, "ExperimentalFeatures_set_literals", "$get$ExperimentalFeatures_set_literals", () => {
       var t1 = A.Version_Version$parse("2.0.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Set Literals", "set-literals", null, 32, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Set Literals", "set-literals", null, 33, true, true, t1);
     });
     _lazyFinal($, "ExperimentalFeatures_sound_flow_analysis", "$get$ExperimentalFeatures_sound_flow_analysis", () => {
       var t1 = A.Version_Version$parse("3.9.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Assume sound null safety when computing type promotion, reachability, and definite assignment.", "sound-flow-analysis", null, 33, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Assume sound null safety when computing type promotion, reachability, and definite assignment.", "sound-flow-analysis", null, 34, true, true, t1);
     });
     _lazyFinal($, "ExperimentalFeatures_spread_collections", "$get$ExperimentalFeatures_spread_collections", () => {
       var t1 = A.Version_Version$parse("2.0.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Spread Collections", "spread-collections", null, 34, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Spread Collections", "spread-collections", null, 35, true, true, t1);
     });
-    _lazyFinal($, "ExperimentalFeatures_static_extensions", "$get$ExperimentalFeatures_static_extensions", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Extensions with static capabilities.", "static-extensions", null, 35, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_static_extensions", "$get$ExperimentalFeatures_static_extensions", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Extensions with static capabilities.", "static-extensions", null, 36, false, false, null));
     _lazyFinal($, "ExperimentalFeatures_super_parameters", "$get$ExperimentalFeatures_super_parameters", () => {
       var t1 = A.Version_Version$parse("2.17.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Super-Initializer Parameters", "super-parameters", null, 36, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Super-Initializer Parameters", "super-parameters", null, 37, true, true, t1);
     });
-    _lazyFinal($, "ExperimentalFeatures_test_experiment", "$get$ExperimentalFeatures_test_experiment", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Has no effect. Can be used for testing the --enable-experiment command line functionality.", "test-experiment", null, 37, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_test_experiment", "$get$ExperimentalFeatures_test_experiment", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Has no effect. Can be used for testing the --enable-experiment command line functionality.", "test-experiment", null, 38, false, false, null));
     _lazyFinal($, "ExperimentalFeatures_triple_shift", "$get$ExperimentalFeatures_triple_shift", () => {
       var t1 = A.Version_Version$parse("2.14.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Triple-shift operator", "triple-shift", null, 38, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Triple-shift operator", "triple-shift", null, 39, true, true, t1);
     });
     _lazyFinal($, "ExperimentalFeatures_unnamed_libraries", "$get$ExperimentalFeatures_unnamed_libraries", () => {
       var t1 = A.Version_Version$parse("2.19.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Unnamed libraries", "unnamed-libraries", null, 39, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Unnamed libraries", "unnamed-libraries", null, 40, true, true, t1);
     });
-    _lazyFinal($, "ExperimentalFeatures_unquoted_imports", "$get$ExperimentalFeatures_unquoted_imports", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Shorter import syntax.", "unquoted-imports", null, 40, false, false, null));
-    _lazyFinal($, "ExperimentalFeatures_variance", "$get$ExperimentalFeatures_variance", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Sound variance", "variance", null, 41, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_unquoted_imports", "$get$ExperimentalFeatures_unquoted_imports", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Shorter import syntax.", "unquoted-imports", null, 41, false, false, null));
+    _lazyFinal($, "ExperimentalFeatures_variance", "$get$ExperimentalFeatures_variance", () => A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Sound variance", "variance", null, 42, false, false, null));
     _lazyFinal($, "ExperimentalFeatures_wildcard_variables", "$get$ExperimentalFeatures_wildcard_variables", () => {
       var t1 = A.Version_Version$parse("3.7.0");
-      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Local declarations and parameters named `_` are non-binding.", "wildcard-variables", null, 42, true, true, t1);
+      return A.ExperimentalFeature$(A._setArrayType(["stable", "beta", "dev", "main"], type$.JSArray_String), "Local declarations and parameters named `_` are non-binding.", "wildcard-variables", null, 43, true, true, t1);
     });
     _lazy($, "_knownFeatures0", "$get$_knownFeatures", () => $.$get$ExperimentStatus_knownFeatures());
     _lazy($, "AstNode_LEXICAL_ORDER", "$get$AstNode_LEXICAL_ORDER", () => new A.AstNode_LEXICAL_ORDER_closure());
@@ -78480,6 +78500,9 @@
   };
   Function.prototype.call$7 = function(a, b, c, d, e, f, g) {
     return this(a, b, c, d, e, f, g);
+  };
+  Function.prototype.call$11 = function(a, b, c, d, e, f, g, h, i, j, k) {
+    return this(a, b, c, d, e, f, g, h, i, j, k);
   };
   Function.prototype.call$10 = function(a, b, c, d, e, f, g, h, i, j) {
     return this(a, b, c, d, e, f, g, h, i, j);

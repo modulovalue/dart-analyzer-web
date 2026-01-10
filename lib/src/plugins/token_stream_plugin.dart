@@ -58,9 +58,10 @@ class TokenStreamPlugin extends Plugin {
 
       stopwatch.stop();
 
-      // Generate HTML output
-      final html = _generateHtml(tokens);
-      return PluginResult.success(html, processingTime: stopwatch.elapsed);
+      // Generate HTML output with diagnostics
+      final html = _generateHtml(tokens, result.errors);
+      final hasIssues = result.errors.isNotEmpty;
+      return PluginResult.success(html, processingTime: stopwatch.elapsed, hasIssues: hasIssues);
     } catch (e) {
       stopwatch.stop();
       return PluginResult.error('Tokenization failed: $e');
@@ -83,13 +84,29 @@ class TokenStreamPlugin extends Plugin {
     return column;
   }
 
-  String _generateHtml(List<_TokenInfo> tokens) {
+  String _generateHtml(List<_TokenInfo> tokens, List<dynamic> errors) {
     final buffer = StringBuffer();
     buffer.writeln('<div class="token-stream">');
     buffer.writeln('<div class="plugin-header">');
     buffer.writeln('<span class="plugin-badge">Analyzer</span>');
     buffer.writeln('<span class="version-info">v$analyzerVersion</span>');
     buffer.writeln('</div>');
+
+    // Show diagnostics section
+    if (errors.isNotEmpty) {
+      buffer.writeln('<div class="ast-errors">');
+      buffer.writeln('<h4>Tokenization Diagnostics (${errors.length})</h4>');
+      buffer.writeln('<ul>');
+      for (final error in errors) {
+        buffer.writeln('<li class="error-item">${_escapeHtml(error.toString())}</li>');
+      }
+      buffer.writeln('</ul></div>');
+    } else {
+      buffer.writeln('<div class="diagnostics-success">');
+      buffer.writeln('<span class="success-icon">&#10003;</span> No diagnostics produced');
+      buffer.writeln('</div>');
+    }
+
     buffer.writeln('<table class="token-table">');
     buffer.writeln('<thead><tr>');
     buffer.writeln('<th>Line</th><th>Col</th><th>Type</th><th>Lexeme</th>');

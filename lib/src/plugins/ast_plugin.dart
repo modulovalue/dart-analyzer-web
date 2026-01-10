@@ -46,15 +46,19 @@ class AstPlugin extends Plugin {
     buffer.writeln('<span class="version-info">v$analyzerVersion</span>');
     buffer.writeln('</div>');
 
-    // Show errors if any
+    // Show diagnostics section
     if (errors.isNotEmpty) {
       buffer.writeln('<div class="ast-errors">');
-      buffer.writeln('<h4>Parse Errors (${errors.length})</h4>');
+      buffer.writeln('<h4>Parse Diagnostics (${errors.length})</h4>');
       buffer.writeln('<ul>');
       for (final error in errors) {
         buffer.writeln('<li class="error-item">${_escapeHtml(error.toString())}</li>');
       }
       buffer.writeln('</ul></div>');
+    } else {
+      buffer.writeln('<div class="diagnostics-success">');
+      buffer.writeln('<span class="success-icon">&#10003;</span> No diagnostics produced');
+      buffer.writeln('</div>');
     }
 
     // Show AST tree

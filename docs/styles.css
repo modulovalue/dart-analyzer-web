@@ -638,6 +638,23 @@ body {
     font-size: 12px;
 }
 
+.diagnostics-success {
+    background-color: rgba(78, 201, 176, 0.1);
+    border: 1px solid var(--accent-green);
+    border-radius: var(--panel-radius);
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    color: var(--accent-green);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.diagnostics-success .success-icon {
+    font-weight: bold;
+}
+
 .ast-tree {
     line-height: 1.6;
 }
